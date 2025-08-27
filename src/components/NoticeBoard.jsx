@@ -79,7 +79,7 @@ const NewsEvents = () => {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            News & Events
+           News &  <span className="text-4xl text-blue-900">  Events</span> 
           </h2>
           <div className="w-20 h-1 bg-blue-600 mx-auto"></div>
           <p className="text-gray-600 mt-4 max-w-2xl mx-auto">

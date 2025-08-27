@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import Lenis from "@studio-freight/lenis";
 import ScrollToTop from "../components/ScrollToTop";
 import Topbar from "../components/Topbar";
+import CategoryMenu from "../components/CategoryMenu";
 
 const Layout = () => {
   useEffect(() => {
@@ -30,10 +31,13 @@ const Layout = () => {
     <div className="flex flex-col min-h-screen">
       <ScrollToTop /> {/* 👈 Add this here */}
       <Topbar />
+      
       {/* Navbar */}
       <header>
         <Navbar />
       </header>
+
+      <CategoryMenu />
 
       {/* Main Content */}
       <main>

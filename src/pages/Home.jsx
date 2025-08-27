@@ -5,6 +5,7 @@ import AchievementsMarquee from '../components/AchievementsMarquee';
 import NoticeBoard from '../components/NoticeBoard';
 import CoursesOffered from '../components/CoursesOffered';
 import AboutSection from '../components/AboutSection';
+import Leadership from '../components/Leadership';
 
 const Home = () => {
   return (
@@ -13,9 +14,9 @@ const Home = () => {
       <AchievementsMarquee/>
       <CoursesOffered/>
       <AboutSection/>
-      <NoticeBoard/>
+      <Leadership/>
       <PlacementPartners/>
-
+      <NoticeBoard/>
     </div>
   );
 }

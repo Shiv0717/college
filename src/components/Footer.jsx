@@ -115,9 +115,9 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-blue-700 mt-8 pt-6 text-center">
-          <p>© 2023 Krishna Engineering College. All rights reserved.</p>
-          <div className="flex justify-center space-x-6 mt-4">
+        <div className="border-t border-blue-700 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
+          <p className="mb-4 md:mb-0">© 2023 Krishna Engineering College. All rights reserved.</p>
+          <div className="flex justify-center space-x-6">
             <a href="#" className="text-sm text-white hover:text-yellow-400 transition-colors">Privacy Policy</a>
             <a href="#" className="text-sm text-white hover:text-yellow-400 transition-colors">Terms of Service</a>
             <a href="#" className="text-sm text-white hover:text-yellow-400 transition-colors">Sitemap</a>
@@ -128,4 +128,5 @@ const Footer = () => {
   );
 }
 
-export default Footer;
+
+export default Footer
