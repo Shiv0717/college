@@ -4,20 +4,17 @@ import {
   BookOpen, 
   FileText, 
   Building, 
- 
   Bell, 
   Clipboard,
   ChevronDown
 } from "lucide-react";
 
 const categories = [
-  { name: "About Us", icon: Users },
-  { name: "Programs & Eligibility", icon: BookOpen },
-  { name: "Examination", icon: FileText },
-  { name: "Infrastructure", icon: Building },
-  
-  { name: "Notices & Media", icon: Bell },
-  { name: "Admission", icon: Clipboard },
+  { name: "About Us", path: "about", icon: Users },
+  { name: "Infrastructure", path: "#", icon: Building },
+  { name: "Research & Development", path: "#", icon: Building },
+  { name: "Notices & Media", path: "#", icon: Bell },
+  { name: "Admission", path: "admission", icon: Clipboard },
 ];
 
 const UniversityMenu = () => {
@@ -30,8 +27,9 @@ const UniversityMenu = () => {
         {categories.map((cat) => {
           const IconComponent = cat.icon;
           return (
-            <button
+            <a
               key={cat.name}
+              href={cat.path}
               onClick={() => setActive(cat.name)}
               onMouseEnter={() => setHovered(cat.name)}
               onMouseLeave={() => setHovered(null)}
@@ -60,14 +58,9 @@ const UniversityMenu = () => {
                 <span className="absolute inset-0 bg-white/10 rounded-md transition-all duration-300"></span>
               )}
               
-              {/* Subtle dropdown indicator for items that might have submenus */}
-              <ChevronDown 
-                size={14} 
-                className={`ml-1 transition-transform duration-300 ${
-                  active === cat.name ? "text-blue-300 rotate-180" : "text-blue-200/70 group-hover:text-blue-300"
-                }`} 
-              />
-            </button>
+              {/* Subtle dropdown indicator */}
+             
+            </a>
           );
         })}
       </div>
