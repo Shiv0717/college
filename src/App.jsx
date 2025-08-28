@@ -14,6 +14,7 @@ import FacilitiesPage from "./pages/Facilities";
 import ContactUs from "./pages/ContactUs";
 import PlacementPage from "./pages/Placement";
 import Notice from "./pages/Notice";
+import Research from "./pages/Research";
 
 
 const router = createBrowserRouter([
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
       { path: "facilities", element: <FacilitiesPage/> },
       { path: "placements", element: <PlacementPage/> },
       { path: "notice", element: <Notice/> },
+      { path: "research", element: <Research/> },
     ],
   },
 ]);
