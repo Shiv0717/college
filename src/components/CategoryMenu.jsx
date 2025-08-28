@@ -11,11 +11,11 @@ import {
 import { Link } from "react-router-dom";
 
 const categories = [
-  { name: "About Us", path: "about", icon: Users },
+  { name: "About Us", path: "/about", icon: Users },
   { name: "Infrastructure", path: "#", icon: Building },
   { name: "Research & Development", path: "#", icon: Building },
-  { name: "Notices & Media", path: "notice", icon: Bell },
-  { name: "Admission", path: "admission", icon: Clipboard },
+  { name: "Notices & Media", path: "/notice", icon: Bell },
+  { name: "Admission", path: "/admission", icon: Clipboard },
 ];
 
 const UniversityMenu = () => {
