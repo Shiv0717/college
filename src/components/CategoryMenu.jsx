@@ -14,7 +14,7 @@ const categories = [
   { name: "About Us", path: "about", icon: Users },
   { name: "Infrastructure", path: "#", icon: Building },
   { name: "Research & Development", path: "#", icon: Building },
-  { name: "Notices & Media", path: "#", icon: Bell },
+  { name: "Notices & Media", path: "notice", icon: Bell },
   { name: "Admission", path: "admission", icon: Clipboard },
 ];
 
