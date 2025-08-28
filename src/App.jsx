@@ -13,6 +13,7 @@ import AdmissionKEC from "./pages/Admission";
 import FacilitiesPage from "./pages/Facilities";
 import ContactUs from "./pages/ContactUs";
 import PlacementPage from "./pages/Placement";
+import Notice from "./pages/Notice";
 
 
 const router = createBrowserRouter([
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
       { path: "admission", element: <AdmissionKEC /> },
       { path: "facilities", element: <FacilitiesPage/> },
       { path: "placements", element: <PlacementPage/> },
+      { path: "notice", element: <Notice/> },
     ],
   },
 ]);

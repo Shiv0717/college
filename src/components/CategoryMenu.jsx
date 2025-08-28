@@ -8,6 +8,7 @@ import {
   Clipboard,
   ChevronDown
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const categories = [
   { name: "About Us", path: "about", icon: Users },
@@ -27,9 +28,9 @@ const UniversityMenu = () => {
         {categories.map((cat) => {
           const IconComponent = cat.icon;
           return (
-            <a
+            <Link
               key={cat.name}
-              href={cat.path}
+              to={cat.path}
               onClick={() => setActive(cat.name)}
               onMouseEnter={() => setHovered(cat.name)}
               onMouseLeave={() => setHovered(null)}
@@ -60,7 +61,7 @@ const UniversityMenu = () => {
               
               {/* Subtle dropdown indicator */}
              
-            </a>
+            </Link>
           );
         })}
       </div>
