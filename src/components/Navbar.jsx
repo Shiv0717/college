@@ -33,7 +33,7 @@ const Navbar = () => {
         { name: "About College", path: "/about" },
         { name: "Principal's Message", path: "/principal" },
         { name: "Mission & Vision", path: "/mission" },
-        { name: "Infrastructure", path: "/infra" },
+        { name: "Infrastructure", path: "/infrastructure" },
         { name: "Facilities", path: "/facilities" },
         { name: "Governance", path: "/governance" },
       ],
@@ -44,17 +44,12 @@ const Navbar = () => {
       icon: <BookOpen className="w-5 h-5" />,
       dropdown: [
         { name: "Computer Science", path: "/departments/cse" },
-        { name: "Electronics & Communication", path: "/departments/ece" },
         { name: "Mechanical Engineering", path: "/departments/mech" },
         { name: "Civil Engineering", path: "/departments/civil" },
         { name: "Electrical Engineering", path: "/departments/eee" },
       ],
     },
-    { 
-      name: "Placements", 
-      path: "/placements", 
-      icon: <Briefcase className="w-5 h-5" /> 
-    },
+    
     { 
       name: "Contact", 
       path: "/contact", 

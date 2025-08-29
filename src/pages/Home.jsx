@@ -6,6 +6,7 @@ import NoticeBoard from '../components/NoticeBoard';
 import CoursesOffered from '../components/CoursesOffered';
 import AboutSection from '../components/AboutSection';
 import Leadership from '../components/Leadership';
+import AlumniSection from '../components/alumni';
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
       <AboutSection/>
       <Leadership/>
       <PlacementPartners/>
+      <AlumniSection/>
       <NoticeBoard/>
     </div>
   );

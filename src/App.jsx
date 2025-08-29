@@ -23,6 +23,11 @@ import FacultyPage from "./pages/Faculty";
 import MissionVision from "./pages/MissionVision";
 import Governance from "./pages/Governance";
 import PrincipalMessage from "./pages/PrincipalMessage";
+import Infrastructure from "./pages/Infrastructure";
+import AffiliationAccreditation from "./pages/AffiliationAccreditation";
+import EventComponent from "./pages/EventComponent";
+import PressMediaPage from "./pages/PressMediaPage";
+import GalleryPage from "./pages/GalleryPage";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +48,11 @@ const router = createBrowserRouter([
       { path: "mission", element: <MissionVision/> },
       { path: "governance", element: <Governance/>},
       { path: "principal", element: <PrincipalMessage/>},
+      { path: "infrastructure", element: <Infrastructure/>},
+      { path: "affiliation", element:<AffiliationAccreditation/>},
+      { path: "event", element:<EventComponent/>},
+      { path: "press", element:<PressMediaPage/>},
+      { path: "gallery", element:<GalleryPage/>},
       { path: "*", element: <NotFound/> },
     ],
   },

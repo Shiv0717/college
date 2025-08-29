@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
@@ -18,8 +18,14 @@ import {
   BuildingLibraryIcon,
   CalendarIcon,
   CheckCircleIcon,
-  PlayIcon
+  PlayIcon,
+  MagnifyingGlassIcon,
+  FunnelIcon,
+  ChevronUpDownIcon
 } from '@heroicons/react/24/outline';
+import DataTable from 'react-data-table-component';
+import CompaniesVisitedTable from '../components/CompaniesVisitedTable';
+
 
 const PlacementPortal = () => {
   const [activeTab, setActiveTab] = useState('overview');
@@ -42,15 +48,6 @@ const PlacementPortal = () => {
     }
   };
 
-  const slideIn = {
-    hidden: { opacity: 0, x: -50 },
-    visible: { 
-      opacity: 1, 
-      x: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
-    }
-  };
-
   const stats = [
     { value: '95%', label: 'Placement Rate', icon: ChartBarIcon },
     { value: '250+', label: 'Companies Visited', icon: BriefcaseIcon },
@@ -60,16 +57,7 @@ const PlacementPortal = () => {
 
   const recruiters = [
     'Microsoft', 'Amazon', 'Google', 'Infosys', 'TCS', 'Wipro',
-    'Accenture', 'IBM', 'Deloitte', 'Cognizant', 'Capgemini', 'Tech Mahindra'
-  ];
-
-  const placementProcess = [
-    { step: 1, title: 'Registration', description: 'Students register for placement drive' },
-    { step: 2, title: 'Pre-Placement Talk', description: 'Companies present their opportunities' },
-    { step: 3, title: 'Aptitude Test', description: 'Initial screening of candidates' },
-    { step: 4, title: 'Group Discussion', description: 'Assessment of communication skills' },
-    { step: 5, title: 'Technical Interview', description: 'Evaluation of technical knowledge' },
-    { step: 6, title: 'HR Interview', description: 'Final assessment for cultural fit' }
+    'Accenture', 'IBM', 'Deliotte', 'Cognizant', 'Capgemini', 'Tech Mahindra'
   ];
 
   const testimonials = [
@@ -130,8 +118,6 @@ const PlacementPortal = () => {
             </motion.div>
           </motion.div>
         </div>
-        
-      
       </motion.section>
 
       {/* Stats Section */}
@@ -226,85 +212,6 @@ const PlacementPortal = () => {
         </div>
       </section>
 
-      {/* Process Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="text-3xl font-bold text-center mb-12 text-blue-900"
-          >
-            Our Placement Process
-          </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {placementProcess.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-                className="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all border border-gray-100 relative"
-              >
-                <div className="absolute -top-4 -left-4 w-12 h-12 rounded-full bg-blue-900 flex items-center justify-center text-white font-bold text-lg">
-                  {item.step}
-                </div>
-                <h3 className="text-xl font-semibold text-blue-900 mb-2 mt-4">{item.title}</h3>
-                <p className="text-gray-700">{item.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Upcoming Drives */}
-      <section className="py-16 bg-gradient-to-r from-indigo-50 to-purple-50">
-        <div className="container mx-auto px-4">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="text-3xl font-bold text-center mb-12 text-blue-900"
-          >
-            Upcoming Placement Drives
-          </motion.h2>
-          <div className="max-w-4xl mx-auto">
-            {[1, 2, 3].map((item) => (
-              <motion.div
-                key={item}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ delay: item * 0.1 }}
-                whileHover={{ x: 5 }}
-                className="bg-white p-6 rounded-xl shadow-md mb-6 flex items-start border border-gray-200"
-              >
-                <div className="bg-blue-100 p-3 rounded-lg mr-4">
-                  <CalendarIcon className="h-6 w-6 text-blue-900" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-blue-900 mb-1">Tech Solutions Inc. Recruitment Drive</h3>
-                  <p className="text-gray-600 mb-2">September 25, 2023 • 10:00 AM • College Auditorium</p>
-                  <div className="flex items-center text-sm text-gray-500">
-                    <span className="mr-4">Eligibility: 7.0 CGPA and above</span>
-                    <span>Roles: Software Developer, Data Analyst</span>
-                  </div>
-                </div>
-                <motion.button 
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-blue-900 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-800 transition-colors"
-                >
-                  Register Now
-                </motion.button>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Testimonials with Swiper */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
@@ -375,88 +282,10 @@ const PlacementPortal = () => {
         </div>
       </section>
 
-      {/* Contact Section */}
+      {/* Companies Visited Table Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="text-3xl font-bold text-center mb-12 text-blue-900"
-          >
-            Contact Our Placement Cell
-          </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              className="bg-white p-8 rounded-xl shadow-md border border-gray-200"
-            >
-              <h3 className="text-xl font-semibold mb-6 text-blue-900">Get in Touch</h3>
-              <div className="space-y-6">
-                <motion.div 
-                  className="flex items-start"
-                  whileHover={{ x: 5 }}
-                >
-                  <MapPinIcon className="h-6 w-6 text-blue-900 mr-3 mt-1" />
-                  <div>
-                    <h4 className="font-medium text-blue-900">Address</h4>
-                    <p className="text-gray-700">123 College Road, Academic Nagar, Bengaluru, Karnataka - 560001</p>
-                  </div>
-                </motion.div>
-                <motion.div 
-                  className="flex items-center"
-                  whileHover={{ x: 5 }}
-                >
-                  <PhoneIcon className="h-6 w-6 text-blue-900 mr-3" />
-                  <div>
-                    <h4 className="font-medium text-blue-900">Phone</h4>
-                    <p className="text-gray-700">+91 80 2345 6789</p>
-                  </div>
-                </motion.div>
-                <motion.div 
-                  className="flex items-center"
-                  whileHover={{ x: 5 }}
-                >
-                  <EnvelopeIcon className="h-6 w-6 text-blue-900 mr-3" />
-                  <div>
-                    <h4 className="font-medium text-blue-900">Email</h4>
-                    <p className="text-gray-700">placement@krishnacollege.edu.in</p>
-                  </div>
-                </motion.div>
-              </div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              className="bg-white p-8 rounded-xl shadow-md border border-gray-200"
-            >
-              <h3 className="text-xl font-semibold mb-6 text-blue-900">Send us a Message</h3>
-              <form className="space-y-6">
-                <div>
-                  <label className="block text-sm font-medium text-blue-900 mb-1">Your Name</label>
-                  <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900 focus:border-transparent" />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-blue-900 mb-1">Your Email</label>
-                  <input type="email" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900 focus:border-transparent" />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-blue-900 mb-1">Your Message</label>
-                  <textarea rows="4" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900 focus:border-transparent"></textarea>
-                </div>
-                <motion.button 
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="bg-blue-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800 transition-colors w-full"
-                >
-                  Send Message
-                </motion.button>
-              </form>
-            </motion.div>
-          </div>
+          <CompaniesVisitedTable />
         </div>
       </section>
     </div>

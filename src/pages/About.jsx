@@ -1,87 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  BookOpen, 
-  Home, 
-  Activity, 
-  Monitor, 
-  Mic, 
-  Heart, 
-  Coffee, 
-  Bus,
-  Award,
-  GraduationCap,
-  Users,
-  BookText,
-  ExternalLink,
-} from 'lucide-react';
-
-// Sample images (replace with actual image paths)
-const facilityImages = {
-  library: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80",
-  hostel: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1258&q=80",
-  sports: "https://images.unsplash.com/photo-1549060279-7e168fce7090?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80",
-  labs: "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80",
-  auditorium: "https://images.unsplash.com/photo-1567446537738-74804ee3a9bd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80",
-  healthcare: "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80",
-  cafeteria: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80",
-  transport: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80"
-};
-
-const facilities = [
-  { 
-    title: 'Library', 
-    desc: '50,000+ books, IEEE & DELNET access, spacious AC premises with digital resources and quiet study areas.', 
-    icon: BookOpen,
-    image: facilityImages.library
-  },
-  { 
-    title: 'Hostels', 
-    desc: 'Separate hostels for boys and girls with single/double/triple sharing options; Wi-Fi, nutritious meals, gym & laundry facilities.', 
-    icon: Home,
-    image: facilityImages.hostel
-  },
-  { 
-    title: 'Sports', 
-    desc: 'Playgrounds for cricket, basketball, volleyball; indoor facilities for badminton, table-tennis, and chess.', 
-    icon: Activity,
-    image: facilityImages.sports
-  },
-  { 
-    title: 'Labs & IT', 
-    desc: 'Well-equipped labs with high-speed Wi-Fi and modern hardware/software for practical learning across all disciplines.', 
-    icon: Monitor,
-    image: facilityImages.labs
-  },
-  { 
-    title: 'Auditorium', 
-    desc: 'Spacious 500+ capacity venue with modern audio-visual setup for events, seminars and cultural activities.', 
-    icon: Mic,
-    image: facilityImages.auditorium
-  },
-  { 
-    title: 'Healthcare', 
-    desc: 'On-campus medical wing with qualified doctors & technician offering free medical services to students and staff.', 
-    icon: Heart,
-    image: facilityImages.healthcare
-  },
-  { 
-    title: 'Cafeteria & Store', 
-    desc: 'Hygienic food at affordable prices and a well-stocked convenience store for daily needs and stationery.', 
-    icon: Coffee,
-    image: facilityImages.cafeteria
-  },
-  { 
-    title: 'Transport', 
-    desc: 'Fleet of buses servicing students and staff across Bhilai and nearby areas with convenient pick-up/drop points.', 
-    icon: Bus,
-    image: facilityImages.transport
-  }
-];
+import { GraduationCap, Users, BookText, Award, MapPin, Calendar, Star } from 'lucide-react';
 
 const About = () => (
   <div className="bg-gradient-to-b from-blue-50 to-white min-h-screen">
     <div className="container mx-auto px-4 py-12 max-w-7xl">
+
       {/* Hero Section */}
       <motion.div
         className="text-center mb-16"
@@ -105,6 +29,21 @@ const About = () => (
           Chhattisgarh Swami Vivekanand Technical University (CSVTU). We foster technical excellence, 
           innovation, and holistic development to prepare students for real-world challenges.
         </p>
+        
+        <div className="flex flex-wrap justify-center mt-8 gap-6">
+          <div className="flex items-center text-blue-800">
+            <MapPin size={20} className="mr-2" />
+            <span>Bhilai, Chhattisgarh</span>
+          </div>
+          <div className="flex items-center text-blue-800">
+            <Calendar size={20} className="mr-2" />
+            <span>Established 2008</span>
+          </div>
+          <div className="flex items-center text-blue-800">
+            <Star size={20} className="mr-2" />
+            <span>Affiliated to CSVTU</span>
+          </div>
+        </div>
       </motion.div>
 
       {/* Key Stats */}
@@ -116,134 +55,235 @@ const About = () => (
       >
         {[
           { icon: GraduationCap, number: "2000+", label: "Students" },
-          { icon: Users, number: "150+", label: "Faculty" },
-          { icon: BookText, number: "50+", label: "Programs" },
-          { icon: Award, number: "15+", label: "Years" },
+          { icon: Users, number: "150+", label: "Faculty & Staff" },
+          { icon: BookText, number: "12+", label: "Programs" },
+          { icon: Award, number: "15+", label: "Years of Excellence" },
         ].map((stat, index) => (
-          <div key={index} className="bg-white p-6 rounded-xl shadow-md text-center border border-blue-100">
+          <motion.div 
+            key={index} 
+            className="bg-white p-6 rounded-xl shadow-lg text-center border border-blue-100 hover:shadow-xl transition-shadow"
+            whileHover={{ y: -5 }}
+          >
             <stat.icon className="mx-auto text-blue-900 mb-3" size={32} />
             <div className="text-2xl font-bold text-blue-900">{stat.number}</div>
             <div className="text-blue-700">{stat.label}</div>
-          </div>
+          </motion.div>
         ))}
       </motion.div>
 
-      {/* Facilities Section */}
-      <section className="py-16 bg-blue-50">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">World-Class Campus Facilities</h2>
-            <div className="w-16 h-1 bg-yellow-500 mx-auto"></div>
-            <p className="text-blue-700 max-w-2xl mx-auto mt-4">
-              Our campus is designed to provide the perfect environment for learning, innovation, and personal growth
-            </p>
-          </motion.div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {facilities.map((f, index) => {
-              const IconComponent = f.icon;
-              return (
-                <motion.div
-                  key={index}
-                  className="bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl group"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ y: -5 }}
-                >
-                  <div className="h-48 overflow-hidden relative">
-                    <img 
-                      src={f.image} 
-                      alt={f.title} 
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                      <button className="text-white font-medium flex items-center">
-                        Explore Facility <ExternalLink size={16} className="ml-2" />
-                      </button>
-                    </div>
-                  </div>
-                  <div className="p-6">
-                    <div className="flex items-center mb-3">
-                      <div className="p-3 bg-blue-100 rounded-xl mr-4 group-hover:bg-blue-200 transition-colors">
-                        <IconComponent className="text-blue-900" size={24} />
-                      </div>
-                      <h3 className="text-xl font-semibold text-blue-900">{f.title}</h3>
-                    </div>
-                    <p className="text-blue-800">{f.desc}</p>
-                  </div>
-                </motion.div>
-              );
-            })}
+      {/* Campus & Facilities */}
+      <motion.div
+        className="bg-white p-8 md:p-12 rounded-2xl shadow-lg mb-16 border border-blue-100"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
+      >
+        <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-6 text-center">Campus & Infrastructure</h2>
+        <p className="text-blue-800 text-lg leading-relaxed mb-4 text-center max-w-3xl mx-auto">
+          Our sprawling campus provides an ideal environment for academic excellence and personal growth with state-of-the-art facilities.
+        </p>
+        <div className="grid md:grid-cols-2 gap-6 mt-8">
+          <div className="space-y-4">
+            <h3 className="text-xl font-semibold text-blue-900 border-b-2 border-yellow-500 pb-2">Academic Facilities</h3>
+            <ul className="text-blue-700 space-y-2">
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">•</span>
+                Modern classrooms with digital teaching aids
+              </li>
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">•</span>
+                Specialized laboratories for each department
+              </li>
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">•</span>
+                Central library with extensive collection
+              </li>
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">•</span>
+                High-speed internet connectivity across campus
+              </li>
+            </ul>
+          </div>
+          <div className="space-y-4">
+            <h3 className="text-xl font-semibold text-blue-900 border-b-2 border-yellow-500 pb-2">Student Amenities</h3>
+            <ul className="text-blue-700 space-y-2">
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">•</span>
+                Hostel accommodation for boys and girls
+              </li>
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">•</span>
+                Cafeteria serving nutritious meals
+              </li>
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">•</span>
+                Sports facilities and playgrounds
+              </li>
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">•</span>
+                Medical facilities and counseling services
+              </li>
+            </ul>
           </div>
         </div>
-      </section>
+      </motion.div>
 
-      {/* Additional Highlights */}
+      {/* Academic Excellence */}
       <motion.div
-        className="bg-blue-900 text-white p-8 md:p-12 rounded-2xl shadow-lg mb-16"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        className="bg-blue-50 p-8 md:p-12 rounded-2xl shadow-lg mb-16 border border-blue-100"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.7 }}
       >
-        <h2 className="text-3xl font-bold mb-8 text-center text-yellow-400">Key Highlights</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-6 text-center">Academic Programs</h2>
+        <p className="text-blue-800 text-lg leading-relaxed mb-4 text-center max-w-3xl mx-auto">
+          We offer a comprehensive range of programs designed to meet industry demands and foster innovation.
+        </p>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-4">
-            {[
-              "B.Tech programs in CSE, IT, AI & ML, Mechanical, Civil, ECE, EEE",
-              "Library spans over 1000 sqm, fully computerized and air-conditioned",
-              "Industry-oriented curriculum with focus on practical learning",
-              "Regular workshops and seminars by industry experts"
-            ].map((item, index) => (
-              <div key={index} className="flex items-start">
-                <div className="bg-yellow-500 p-1 rounded-full mr-4 mt-1">
-                  <div className="w-2 h-2 bg-white rounded-full"></div>
-                </div>
-                <p className="text-blue-100">{item}</p>
-              </div>
-            ))}
+        <div className="grid md:grid-cols-2 gap-8 mt-8">
+          <div>
+            <h3 className="text-xl font-semibold text-blue-900 mb-4 border-b-2 border-yellow-500 pb-2">Undergraduate Programs</h3>
+            <ul className="text-blue-700 space-y-2">
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">•</span>
+                Computer Science & Engineering
+              </li>
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">•</span>
+                Information Technology
+              </li>
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">•</span>
+                Artificial Intelligence & Machine Learning
+              </li>
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">•</span>
+                Mechanical Engineering
+              </li>
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">•</span>
+                Civil Engineering
+              </li>
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">•</span>
+                Electronics & Communication Engineering
+              </li>
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">•</span>
+                Electrical & Electronics Engineering
+              </li>
+            </ul>
           </div>
           
-          <div className="space-y-4">
-            {[
-              "Placement cell with strong industry connections and 85% placement rate",
-              "Student clubs for technical, cultural and sports activities",
-              "Research and innovation center with modern equipment",
-              "Green campus with rainwater harvesting and solar power initiatives"
-            ].map((item, index) => (
-              <div key={index} className="flex items-start">
-                <div className="bg-yellow-500 p-1 rounded-full mr-4 mt-1">
-                  <div className="w-2 h-2 bg-white rounded-full"></div>
-                </div>
-                <p className="text-blue-100">{item}</p>
-              </div>
-            ))}
+          <div>
+            <h3 className="text-xl font-semibold text-blue-900 mb-4 border-b-2 border-yellow-500 pb-2">Postgraduate Programs</h3>
+            <ul className="text-blue-700 space-y-2">
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">•</span>
+                Master of Technology in various specializations
+              </li>
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">•</span>
+                Master of Computer Applications (MCA)
+              </li>
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">•</span>
+                Ph.D. programs in engineering disciplines
+              </li>
+            </ul>
+            
+            <h3 className="text-xl font-semibold text-blue-900 mb-4 mt-6 border-b-2 border-yellow-500 pb-2">Teaching Methodology</h3>
+            <ul className="text-blue-700 space-y-2">
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">•</span>
+                Industry-oriented curriculum with practical focus
+              </li>
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">•</span>
+                Regular workshops and expert lectures
+              </li>
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">•</span>
+                Project-based learning approach
+              </li>
+            </ul>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Achievements */}
+      <motion.div
+        className="bg-white p-8 md:p-12 rounded-2xl shadow-lg mb-16 border border-blue-100"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.9 }}
+      >
+        <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-6 text-center">Recognition & Achievements</h2>
+        
+        <div className="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 className="text-xl font-semibold text-blue-900 mb-4 border-b-2 border-yellow-500 pb-2">Accreditations</h3>
+            <ul className="text-blue-700 space-y-2">
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">•</span>
+                NAAC Accredited with 'A' Grade
+              </li>
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">•</span>
+                Approved by AICTE, New Delhi
+              </li>
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">•</span>
+                Permanent Affiliation with CSVTU, Bhilai
+              </li>
+            </ul>
+          </div>
+          
+          <div>
+            <h3 className="text-xl font-semibold text-blue-900 mb-4 border-b-2 border-yellow-500 pb-2">Notable Achievements</h3>
+            <ul className="text-blue-700 space-y-2">
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">•</span>
+                Consistent high placement records
+              </li>
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">•</span>
+                Research publications in reputed journals
+              </li>
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">•</span>
+                Awards in technical festivals and competitions
+              </li>
+              <li className="flex items-start">
+                <span className="text-yellow-500 mr-2">•</span>
+                Industry collaborations for skill development
+              </li>
+            </ul>
           </div>
         </div>
       </motion.div>
 
       {/* Call to Action */}
       <motion.div 
-        className="text-center bg-white p-8 rounded-xl shadow-md border border-blue-100"
+        className="text-center bg-gradient-to-r from-blue-900 to-blue-800 text-white p-8 md:p-12 rounded-xl shadow-lg mb-16"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.9 }}
+        transition={{ delay: 1.1 }}
       >
-        <h3 className="text-2xl font-bold text-blue-900 mb-4">Begin Your Engineering Journey With Us</h3>
-        <p className="text-blue-800 mb-6 max-w-2xl mx-auto">
-          Join our vibrant community of learners and innovators at Krishna Engineering College, Bhilai
+        <h3 className="text-2xl md:text-3xl font-bold mb-4">Begin Your Engineering Journey With Us</h3>
+        <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
+          Join our community of innovators, thinkers, and problem solvers. Discover your potential at Krishna Engineering College.
         </p>
-        <button className="bg-blue-900 hover:bg-blue-800 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300">
-          Explore Admissions
-        </button>
+        <div className="flex flex-wrap justify-center gap-4">
+          <button className="bg-yellow-500 hover:bg-yellow-400 text-blue-900 font-semibold py-3 px-8 rounded-lg transition-colors duration-300">
+            Explore Admissions
+          </button>
+          <button className="bg-transparent hover:bg-blue-700 border-2 border-white text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300">
+            Campus Tour
+          </button>
+        </div>
       </motion.div>
+
     </div>
   </div>
 );
