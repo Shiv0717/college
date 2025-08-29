@@ -28,6 +28,7 @@ import AffiliationAccreditation from "./pages/AffiliationAccreditation";
 import EventComponent from "./pages/EventComponent";
 import PressMediaPage from "./pages/PressMediaPage";
 import GalleryPage from "./pages/GalleryPage";
+import ApplyNow from "./pages/ApplyNow";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,7 @@ const router = createBrowserRouter([
       { path: "event", element:<EventComponent/>},
       { path: "press", element:<PressMediaPage/>},
       { path: "gallery", element:<GalleryPage/>},
+      { path: "apply", element:<ApplyNow/>},
       { path: "*", element: <NotFound/> },
     ],
   },

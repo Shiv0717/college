@@ -165,7 +165,7 @@ const Navbar = () => {
               whileTap={{ scale: 0.95 }}
               className="bg-yellow-400 text-blue-900 font-bold px-6 py-2.5 rounded-lg shadow-md hover:bg-yellow-300 transition-colors duration-300 flex items-center space-x-2"
             >
-              <span>Apply Now</span>
+              <span> <Link to={'/admission'}> Apply Now </Link></span>
               <motion.span
                 animate={{ x: [0, 4, 0] }}
                 transition={{ repeat: Infinity, duration: 1.5 }}

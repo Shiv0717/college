@@ -12,7 +12,7 @@ import {
 import { Link } from "react-router-dom";
 
 const categories = [
-  { name: "Infrastructure", path: "/infrastructure", icon: Building },
+  
   { name: "Research & Development", path: "/research", icon: Beaker },
   { name: "Notices & Media", path: "/notice", icon: Bell },
   { name: "Admission", path: "/admission", icon: Clipboard },

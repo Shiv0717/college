@@ -60,7 +60,7 @@ const alumniData = [
 
 const AlumniSection = () => {
   return (
-    <section className="bg-gradient-to-b from-white via-blue-50 to-blue-100 py-16 px-4">
+    <section className="bg-gradient-to-b from-white via-blue-50 to-blue-100 py-16 px-4 ">
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
         <motion.div
