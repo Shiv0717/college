@@ -138,21 +138,22 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-blue-700 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
-          <p className="mb-4 md:mb-0 text-blue-200 text-sm">
-            © 2023 Krishna Engineering College. All rights reserved.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-            <a href="#" className="text-sm text-blue-200 hover:text-yellow-400 transition-colors flex items-center">
-              <Globe size={14} className="mr-1" /> Privacy Policy
-            </a>
-            <a href="#" className="text-sm text-blue-200 hover:text-yellow-400 transition-colors flex items-center">
-              <Globe size={14} className="mr-1" /> Terms of Service
-            </a>
-            <a href="#" className="text-sm text-blue-200 hover:text-yellow-400 transition-colors flex items-center">
-              <Globe size={14} className="mr-1" /> Sitemap
-            </a>
-          </div>
-        </div>
+  {/* Left - Copyright */}
+  <p className="mb-4 md:mb-0 text-blue-200 text-sm">
+    © 2023 Krishna Engineering College. All rights reserved.
+  </p>
+
+  {/* Right - Crafted by */}
+  <a
+    href="https://www.linkedin.com/in/u-shiv-kumar-625376219/" // <-- replace with your actual LinkedIn
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-sm text-blue-200 hover:text-yellow-400 transition-colors flex items-center"
+  >
+    Crafted with ❤️ by 
+    <span className="ml-1 font-semibold text-white">Shiv Kumar</span>
+  </a>
+</div>
       </div>
     </footer>
   );

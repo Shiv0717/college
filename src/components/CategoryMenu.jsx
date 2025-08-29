@@ -5,17 +5,18 @@ import {
   FileText, 
   Building, 
   Bell, 
-  Clipboard,
-  ChevronDown
+  Clipboard, 
+  ChevronDown 
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const categories = [
   { name: "About Us", path: "/about", icon: Users },
   { name: "Infrastructure", path: "#", icon: Building },
-  { name: "Research & Development", path: "#", icon: Building },
+  { name: "Research & Development", path: "research", icon: Building },
   { name: "Notices & Media", path: "/notice", icon: Bell },
   { name: "Admission", path: "/admission", icon: Clipboard },
+  { name: "Faculty", path: "/faculty", icon: Users },
 ];
 
 const UniversityMenu = () => {

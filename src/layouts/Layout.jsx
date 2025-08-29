@@ -1,13 +1,16 @@
 import React, { useEffect } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigation } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Lenis from "@studio-freight/lenis";
 import ScrollToTop from "../components/ScrollToTop";
 import Topbar from "../components/Topbar";
 import CategoryMenu from "../components/CategoryMenu";
+import Loader from "../components/Loader"; // 👈 import loader
 
 const Layout = () => {
+  const navigation = useNavigation(); // 👈 detects route changes
+
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -29,7 +32,10 @@ const Layout = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <ScrollToTop /> {/* 👈 Add this here */}
+      {/* Show loader while route is changing */}
+      {navigation.state === "loading" && <Loader />}
+
+      <ScrollToTop />
       <Topbar />
       
       {/* Navbar */}
@@ -40,7 +46,7 @@ const Layout = () => {
       <CategoryMenu />
 
       {/* Main Content */}
-      <main>
+      <main className="flex-1">
         <Outlet />
       </main>
 

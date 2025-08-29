@@ -13,9 +13,7 @@ import {
   GraduationCap,
   Users,
   BookText,
-  Dumbbell,
-  ShoppingCart,
-  BanknoteIcon
+  ExternalLink,
 } from 'lucide-react';
 
 // Sample images (replace with actual image paths)
@@ -131,48 +129,61 @@ const About = () => (
       </motion.div>
 
       {/* Facilities Section */}
-      <motion.section
-        className="mb-16"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5 }}
-      >
-        <h2 className="text-3xl font-bold text-blue-900 mb-2 text-center">Campus Facilities</h2>
-        <div className="w-16 h-1 bg-yellow-500 mx-auto mb-10"></div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {facilities.map((f, index) => {
-            const IconComponent = f.icon;
-            return (
-              <motion.div
-                key={index}
-                className="bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-              >
-                <div className="h-48 overflow-hidden">
-                  <img 
-                    src={f.image} 
-                    alt={f.title} 
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                  />
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center mb-3">
-                    <div className="p-2 bg-blue-100 rounded-lg mr-4">
-                      <IconComponent className="text-blue-900" size={24} />
+      <section className="py-16 bg-blue-50">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">World-Class Campus Facilities</h2>
+            <div className="w-16 h-1 bg-yellow-500 mx-auto"></div>
+            <p className="text-blue-700 max-w-2xl mx-auto mt-4">
+              Our campus is designed to provide the perfect environment for learning, innovation, and personal growth
+            </p>
+          </motion.div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {facilities.map((f, index) => {
+              const IconComponent = f.icon;
+              return (
+                <motion.div
+                  key={index}
+                  className="bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl group"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ y: -5 }}
+                >
+                  <div className="h-48 overflow-hidden relative">
+                    <img 
+                      src={f.image} 
+                      alt={f.title} 
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                      <button className="text-white font-medium flex items-center">
+                        Explore Facility <ExternalLink size={16} className="ml-2" />
+                      </button>
                     </div>
-                    <h3 className="text-xl font-semibold text-blue-900">{f.title}</h3>
                   </div>
-                  <p className="text-blue-800">{f.desc}</p>
-                </div>
-              </motion.div>
-            );
-          })}
+                  <div className="p-6">
+                    <div className="flex items-center mb-3">
+                      <div className="p-3 bg-blue-100 rounded-xl mr-4 group-hover:bg-blue-200 transition-colors">
+                        <IconComponent className="text-blue-900" size={24} />
+                      </div>
+                      <h3 className="text-xl font-semibold text-blue-900">{f.title}</h3>
+                    </div>
+                    <p className="text-blue-800">{f.desc}</p>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Additional Highlights */}
       <motion.div

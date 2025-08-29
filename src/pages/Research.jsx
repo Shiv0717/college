@@ -226,7 +226,7 @@ const Research = () => {
               transition={{ delay: 0.2 }}
               className="text-center p-6 bg-blue-50 rounded-xl shadow-md"
             >
-              <div className="text-4xl font-bold text-blue-900 mb-2">₹12.5Cr+</div>
+              <div className="text-4xl font-bold text-blue-900 mb-2">₹1Cr+</div>
               <div className="text-gray-700">Research Funding</div>
             </motion.div>
             <motion.div

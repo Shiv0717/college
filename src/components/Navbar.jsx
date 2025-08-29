@@ -34,6 +34,7 @@ const Navbar = () => {
         { name: "Principal's Message", path: "/principal" },
         { name: "Mission & Vision", path: "/mission" },
         { name: "Infrastructure", path: "/infra" },
+        { name: "Facilities", path: "/facilities" },
         { name: "Governance", path: "/governance" },
       ],
     },

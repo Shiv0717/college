@@ -4,7 +4,7 @@ import { Phone, Mail, Facebook, Twitter, Instagram } from "lucide-react";
 
 const Topbar = () => {
   return (
-    <div className="w-full bg-[#FDC800] text-blue-900 text-sm">
+    <div className="w-full bg-[#FDC800] text-blue-900 text-sm z-99">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between px-4 py-2 gap-2 md:gap-0">
         
         {/* Left - Contact Info */}
