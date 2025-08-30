@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Shield, Users, Building2, Award, Quote, ChevronLeft, ChevronRight, Linkedin, Mail } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Leadership = () => {
   const [activeProfile, setActiveProfile] = useState(0);
@@ -61,13 +62,25 @@ const Leadership = () => {
     <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Heading */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-blue-900 mb-4"> <span className="text-gray-900"> Our</span> Leadership</h2>
-          <div className="w-20 h-1 bg-blue-900 mx-auto mb-6"></div>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-            Guided by visionaries who are committed to excellence in education and institutional growth
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <div className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700 mb-4">
+            <Users className="h-4 w-4 mr-2" />
+            Our Leaders
+          </div>
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            Our <span className="text-blue-900">Leadership</span>
+          </h2>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            Guided by visionaries who are committed to excellence in education 
+            and institutional growth.
           </p>
-        </div>
+        </motion.div>
 
         {/* Navigation Dots for Mobile */}
         <div className="flex justify-center md:hidden mb-8">
@@ -100,85 +113,116 @@ const Leadership = () => {
             <ChevronRight className="w-6 h-6 text-blue-900" />
           </button>
 
-          {/* Profile Card */}
-          <div className="bg-white shadow rounded-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-2 transition-all duration-300 transform ">
-            {/* Left Side – Image & Basic Info */}
-            <div className="relative bg-gradient-to-br from-blue-50 to-gray-100 p-10 flex flex-col items-center justify-center">
-              <div className="relative mb-8">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-transparent opacity-20 rounded-full transform -rotate-6 scale-105"></div>
-                <img
-                  src={leadershipData[activeProfile].image}
-                  alt={leadershipData[activeProfile].name}
-                  className="w-64 h-64 object-cover rounded-full border-4 border-white shadow-xl relative z-10"
-                />
-              </div>
-              
-              <h3 className="text-2xl font-bold text-blue-900 text-center mb-2">
-                {leadershipData[activeProfile].name}
-              </h3>
-              <p className="text-blue-800 font-medium text-lg mb-6">
-                {leadershipData[activeProfile].role}
-              </p>
-              
-              <div className="flex space-x-4">
-                <a 
-                  href={leadershipData[activeProfile].linkedin} 
-                  className="bg-blue-100 text-blue-900 p-3 rounded-full hover:bg-blue-200 transition-colors"
-                  aria-label="LinkedIn profile"
-                >
-                  <Linkedin className="w-5 h-5" />
-                </a>
-                <a 
-                  href={`mailto:${leadershipData[activeProfile].email}`}
-                  className="bg-blue-100 text-blue-900 p-3 rounded-full hover:bg-blue-200 transition-colors"
-                  aria-label="Send email"
-                >
-                  <Mail className="w-5 h-5" />
-                </a>
-              </div>
-            </div>
-
-            {/* Right Side – Detailed Content */}
-            <div className="p-10 flex flex-col justify-center">
-              {/* Achievements */}
-              <div className="mb-8">
-                <h4 className="text-lg font-semibold text-blue-900 mb-4 flex items-center">
-                  <Award className="w-5 h-5 text-blue-900 mr-2" />
-                  Key Roles & Achievements
-                </h4>
-                <ul className="space-y-3">
-                  {leadershipData[activeProfile].achievements.map((achievement, index) => (
-                    <li key={index} className="flex items-start">
-                      <div className="bg-blue-100 p-1 rounded-full mr-3 mt-1">
-                        <div className="w-1.5 h-1.5 bg-blue-900 rounded-full"></div>
-                      </div>
-                      <span className="text-gray-700">{achievement}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Bio */}
-              <div className="mb-8">
-                <h4 className="text-lg font-semibold text-blue-900 mb-4">Profile</h4>
-                <p className="text-gray-700 leading-relaxed">
-                  {leadershipData[activeProfile].bio}
-                </p>
-              </div>
-
-              {/* Quote */}
-              <div className="bg-blue-50 rounded-xl p-5 border-l-4 border-blue-900">
-                <div className="flex items-start">
-                  <Quote className="w-5 h-5 text-blue-800 mr-2 mt-1 transform rotate-180" />
-                  <p className="text-gray-700 italic">
-                    "{leadershipData[activeProfile].quote}"
-                  </p>
+          {/* Profile Card with Animation */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeProfile}
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -50 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="bg-white shadow rounded-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-2"
+            >
+              {/* Left Side – Image & Basic Info */}
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
+                className="relative bg-gradient-to-br from-blue-50 to-gray-100 p-10 flex flex-col items-center justify-center"
+              >
+                <div className="relative mb-8">
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-transparent opacity-20 rounded-full transform -rotate-6 scale-105"></div>
+                  <img
+                    src={leadershipData[activeProfile].image}
+                    alt={leadershipData[activeProfile].name}
+                    className="w-64 h-64 object-cover rounded-full border-4 border-white shadow-xl relative z-10"
+                  />
                 </div>
-              </div>
-            </div>
-          </div>
+                
+                <h3 className="text-2xl font-bold text-blue-900 text-center mb-2">
+                  {leadershipData[activeProfile].name}
+                </h3>
+                <p className="text-blue-800 font-medium text-lg mb-6">
+                  {leadershipData[activeProfile].role}
+                </p>
+                
+                <div className="flex space-x-4">
+                  <a 
+                    href={leadershipData[activeProfile].linkedin} 
+                    className="bg-blue-100 text-blue-900 p-3 rounded-full hover:bg-blue-200 transition-colors"
+                    aria-label="LinkedIn profile"
+                  >
+                    <Linkedin className="w-5 h-5" />
+                  </a>
+                  <a 
+                    href={`mailto:${leadershipData[activeProfile].email}`}
+                    className="bg-blue-100 text-blue-900 p-3 rounded-full hover:bg-blue-200 transition-colors"
+                    aria-label="Send email"
+                  >
+                    <Mail className="w-5 h-5" />
+                  </a>
+                </div>
+              </motion.div>
+
+              {/* Right Side – Detailed Content */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+                className="p-10 flex flex-col justify-center"
+              >
+                <div className="mb-8">
+                  <h4 className="text-lg font-semibold text-blue-900 mb-4 flex items-center">
+                    <Award className="w-5 h-5 text-blue-900 mr-2" />
+                    Key Roles & Achievements
+                  </h4>
+                  <ul className="space-y-3">
+                    {leadershipData[activeProfile].achievements.map((achievement, index) => (
+                      <motion.li 
+                        key={index} 
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.4 + index * 0.1, duration: 0.4 }}
+                        className="flex items-start"
+                      >
+                        <div className="bg-blue-100 p-1 rounded-full mr-3 mt-1">
+                          <div className="w-1.5 h-1.5 bg-blue-900 rounded-full"></div>
+                        </div>
+                        <span className="text-gray-700">{achievement}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="mb-8">
+                  <h4 className="text-lg font-semibold text-blue-900 mb-4">Profile</h4>
+                  <motion.p 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.7, duration: 0.6 }}
+                    className="text-gray-700 leading-relaxed"
+                  >
+                    {leadershipData[activeProfile].bio}
+                  </motion.p>
+                </div>
+
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.9, duration: 0.5 }}
+                  className="bg-blue-50 rounded-xl p-5 border-l-4 border-blue-900"
+                >
+                  <div className="flex items-start">
+                    <Quote className="w-5 h-5 text-blue-800 mr-2 mt-1 transform rotate-180" />
+                    <p className="text-gray-700 italic">
+                      "{leadershipData[activeProfile].quote}"
+                    </p>
+                  </div>
+                </motion.div>
+              </motion.div>
+            </motion.div>
+          </AnimatePresence>
         </div>
-       
       </div>
     </section>
   );

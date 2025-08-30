@@ -22,7 +22,7 @@ const facultyMembers = [
     dept: "Computer Science",
     qualification: "Ph.D., M.Tech",
     experience: "18 years",
-    specialization: "Artificial Intelligence, Machine Learning",
+    specialization: "Artificial Intelligence",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80",
     publications: 34,
     projects: 9,
@@ -169,63 +169,98 @@ const FacultyPage = () => {
 
       {/* Faculty Grid */}
       <motion.div 
-        className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-7xl mx-auto"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.6 }}
+  className="grid gap-6 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 max-w-7xl mx-auto px-4"
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ delay: 0.6 }}
+>
+  <AnimatePresence>
+    {filteredFaculty.map((faculty, index) => (
+      <motion.div
+        key={index}
+        initial={{ opacity: 0, scale: 0.9, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.9 }}
+        transition={{ duration: 0.4, delay: index * 0.05 }}
+        layout
+        whileHover={{ 
+          y: -8, 
+          scale: 1.02,
+          transition: { duration: 0.2, ease: "easeOut" } 
+        }}
+        className="bg-white rounded-2xl shadow-lg p-6 text-center border border-gray-100 hover:shadow-2xl transition-all cursor-pointer group relative overflow-hidden"
+        onClick={() => setSelectedMember(faculty)}
       >
-        <AnimatePresence>
-          {filteredFaculty.map((faculty, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
-              layout
-              whileHover={{ y: -8, transition: { duration: 0.2 } }}
-              className="bg-white rounded-2xl shadow-md p-5 text-center border border-slate-100 hover:shadow-xl transition-all cursor-pointer group relative overflow-hidden"
-              onClick={() => setSelectedMember(faculty)}
-            >
-              <div className="absolute top-0 right-0 bg-blue-600 text-white text-xs px-2 py-1 rounded-bl-lg rounded-tr-2xl z-10 flex items-center gap-1">
-                <Star size={12} fill="currentColor" /> {faculty.rating}
-              </div>
-              
-              <div className="relative mb-4">
-                <div className="w-28 h-28 rounded-full mx-auto overflow-hidden border-4 border-white shadow-lg group-hover:border-blue-100 transition-colors">
-                  <img
-                    src={faculty.image}
-                    alt={faculty.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                  />
-                </div>
-                <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white text-xs px-3 py-1 rounded-full shadow-md">
-                  {faculty.dept}
-                </div>
-              </div>
-              
-              <h2 className="text-lg font-semibold text-slate-800 mb-1 line-clamp-1">{faculty.name}</h2>
-              <p className="text-blue-700 font-medium text-sm mb-2">{faculty.role}</p>
-              
-              <div className="flex items-center justify-center gap-1 text-slate-600 text-xs mb-2">
-                <BookOpen size={12} /> {faculty.qualification}
-              </div>
-              
-              <div className="flex items-center justify-center gap-1 text-slate-500 text-xs mb-3">
-                <Award size={12} /> {faculty.experience} experience
-              </div>
-              
-              <div className="bg-slate-50 rounded-lg p-2 mb-3">
-                <p className="text-slate-600 text-xs line-clamp-2">{faculty.specialization}</p>
-              </div>
-              
-              <button className="mt-2 text-blue-600 text-sm flex items-center justify-center gap-1 mx-auto font-medium group-hover:text-blue-800 transition-colors">
-                View Profile <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-              </button>
-            </motion.div>
-          ))}
-        </AnimatePresence>
+        {/* Background decorative element */}
+        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-bl-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        
+        {/* Rating Badge */}
+        <div className="absolute top-4 right-4 bg-gradient-to-r from-amber-500 to-amber-600 text-white text-xs px-3 py-1 rounded-full z-10 flex items-center gap-1 shadow-md">
+          <Star size={12} fill="currentColor" /> {faculty.rating}
+        </div>
+        
+        {/* Image Container */}
+        <div className="relative mb-5">
+          <div className="w-32 h-32 rounded-full mx-auto overflow-hidden border-4 border-white shadow-xl group-hover:border-blue-100 transition-colors duration-300 ring-2 ring-blue-50">
+            <img
+              src={faculty.image}
+              alt={faculty.name}
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            />
+          </div>
+          
+          {/* Department Badge */}
+          <motion.div 
+            className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs px-4 py-1.5 rounded-full shadow-lg"
+            whileHover={{ scale: 1.05 }}
+          >
+            {faculty.dept}
+          </motion.div>
+        </div>
+        
+        {/* Name and Role */}
+        <h2 className="text-lg font-bold text-gray-900 mb-2 line-clamp-1 group-hover:text-blue-800 transition-colors">
+          {faculty.name}
+        </h2>
+        <p className="text-blue-700 font-semibold text-sm mb-3 bg-blue-50 px-3 py-1 rounded-full inline-block">
+          {faculty.role}
+        </p>
+        
+        {/* Qualification */}
+        <div className="flex items-center justify-center gap-2 text-gray-600 text-xs mb-3">
+          <BookOpen size={14} className="text-blue-500" />
+          <span className="line-clamp-1">{faculty.qualification}</span>
+        </div>
+        
+        {/* Experience */}
+        <div className="flex items-center justify-center gap-2 text-gray-600 text-xs mb-4">
+          <Award size={14} className="text-amber-500" />
+          <span>{faculty.experience} years experience</span>
+        </div>
+        
+        {/* Specialization */}
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-3 mb-4 group-hover:from-blue-100 group-hover:to-indigo-100 transition-all">
+          <p className="text-gray-700 text-xs font-medium line-clamp-2 leading-relaxed">
+            {faculty.specialization}
+          </p>
+        </div>
+        
+        {/* Action Button */}
+        <motion.button 
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-2.5 rounded-xl text-sm font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2 mx-auto"
+        >
+          View Profile 
+          <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+        </motion.button>
+
+        {/* Hover Effect Indicator */}
+        <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
       </motion.div>
+    ))}
+  </AnimatePresence>
+</motion.div>
 
       {/* Empty State */}
       {filteredFaculty.length === 0 && (

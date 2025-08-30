@@ -185,7 +185,7 @@ const GalleryPage = () => {
   {/* Search + Sort */}
   <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
     {/* Search */}
-    <div className="relative w-full sm:w-64">
+    <div className="relative w-full sm:w-72">
       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
         <Search className="h-5 w-5 text-gray-400" />
       </div>
@@ -197,45 +197,8 @@ const GalleryPage = () => {
         onChange={(e) => setSearchQuery(e.target.value)}
       />
     </div>
-
     {/* Sort */}
-    <div className="relative">
-      <button
-        onClick={() => setIsSortOpen(!isSortOpen)}
-        className="flex items-center justify-between gap-2 px-4 py-2 border border-gray-200 rounded-xl text-sm text-gray-700 bg-white hover:bg-gray-50 w-full sm:w-auto"
-      >
-        <span>{sortOptions.find((opt) => opt.id === sortBy)?.name}</span>
-        <ChevronDown
-          size={16}
-          className={`transition-transform ${
-            isSortOpen ? "rotate-180" : ""
-          }`}
-        />
-      </button>
-
-      {isSortOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-100 z-10">
-          {sortOptions.map((option) => (
-            <button
-              key={option.id}
-              onClick={() => {
-                setSortBy(option.id);
-                setIsSortOpen(false);
-              }}
-              className={`block w-full text-left px-4 py-2 text-sm hover:bg-gray-50 ${
-                sortBy === option.id
-                  ? "text-blue-600 bg-blue-50"
-                  : "text-gray-700"
-              } ${option.id === "newest" ? "rounded-t-xl" : ""} ${
-                option.id === "popular" ? "rounded-b-xl" : ""
-              }`}
-            >
-              {option.name}
-            </button>
-          ))}
-        </div>
-      )}
-    </div>
+    
   </div>
 </motion.div>
 

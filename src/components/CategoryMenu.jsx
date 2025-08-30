@@ -7,24 +7,31 @@ import {
   Briefcase,
   Info,
   Award,
-  Beaker
+  Beaker,
+  Newspaper,
+  Image,
+  Calendar,
+  FileText,
+  GraduationCap,
+  BookOpen
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
+
+
 const categories = [
-  
-  { name: "Research & Development", path: "/research", icon: Beaker },
-  { name: "Notices & Media", path: "/notice", icon: Bell },
-  { name: "Admission", path: "/admission", icon: Clipboard },
-  { name: "Faculty", path: "/faculty", icon: Users },
-  { name: "Placements", path: "/placements", icon: Briefcase },
-  { name: "Affiliation", path: "/affiliation", icon: Award },
-  { name: "Press", path: "/press", icon: Users },
-  { name: "Event", path: "/event", icon: Briefcase },
-  { name: "gallery", path: "/gallery", icon: Award },
-  { name: "Mandatory", path: "/mandatory/Mandatory Disclosures_KEC.pdf", icon: Info, isPDF: true },
-  
+  { name: "Research & Development", path: "/research", icon: Beaker },          // Beaker = experiments/research
+  { name: "Notices & Media", path: "/notice", icon: Newspaper },                // Newspaper = announcements
+  { name: "Admission", path: "/admission", icon: GraduationCap },               // GraduationCap = admission/education
+  { name: "Faculty", path: "/faculty", icon: Users },                           // Users = staff/faculty
+  { name: "Placements", path: "/placements", icon: Briefcase },                 // Briefcase = jobs/placements
+  { name: "Affiliation", path: "/affiliation", icon: Award },                   // Award = recognition/affiliation
+  { name: "Press", path: "/press", icon: FileText },                            // FileText = press releases
+  { name: "Event", path: "/event", icon: Calendar },                            // Calendar = events
+  { name: "Gallery", path: "/gallery", icon: Image },                           // Image = gallery/photos
+  { name: "Mandatory", path: "/mandatory/Mandatory Disclosures_KEC.pdf", icon: Info, isPDF: true }, // Info = disclosures
 ];
+
 
 const UniversityMenu = () => {
   const [active, setActive] = useState("About Us");

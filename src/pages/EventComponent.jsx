@@ -121,57 +121,65 @@ const EventComponent = () => {
 
         {/* Filters */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="mb-10 bg-white rounded-2xl p-6 shadow-md"
+  initial={{ opacity: 0 }}
+  whileInView={{ opacity: 1 }}
+  viewport={{ once: true }}
+  className="bg-gray-50 rounded-xl p-4 mb-8 shadow-sm"
+>
+  <div className="flex flex-col md:flex-row gap-4 justify-between items-start md:items-center">
+    {/* Search Box */}
+    <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-lg border border-gray-200 w-full md:w-auto">
+      <Search size={18} className="text-gray-500" />
+      <input
+        type="text"
+        placeholder="Search events..."
+        className="bg-transparent outline-none w-full"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+    </div>
+
+    {/* Filters */}
+    <div className="flex flex-wrap gap-2 items-center">
+      <div className="flex items-center gap-2 text-gray-700">
+        <Filter size={18} />
+        <span>Filter by Category:</span>
+      </div>
+
+      {/* All Button */}
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+          selectedCategory === "All"
+            ? "bg-blue-600 text-white"
+            : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+        }`}
+        onClick={() => setSelectedCategory("All")}
+      >
+        All
+      </motion.button>
+
+      {/* Dynamic Categories */}
+      {categories.map((category) => (
+        <motion.button
+          key={category}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+            selectedCategory === category
+              ? "bg-blue-600 text-white"
+              : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+          }`}
+          onClick={() => setSelectedCategory(category)}
         >
-          <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-              <input
-                type="text"
-                placeholder="Search events..."
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
-            
-            <div className="flex items-center gap-2">
-              <Filter size={20} className="text-gray-600" />
-              <select 
-                className="border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-              >
-                <option value="All">All Categories</option>
-                {categories.map(category => (
-                  <option key={category} value={category}>{category}</option>
-                ))}
-              </select>
-            </div>
-          </div>
-          
-          <div className="mt-4 flex flex-wrap gap-2">
-            <span 
-              className={`px-4 py-2 rounded-full text-sm cursor-pointer transition-all ${selectedCategory === "All" ? "bg-blue-600 text-white shadow-md" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
-              onClick={() => setSelectedCategory("All")}
-            >
-              All
-            </span>
-            {categories.map(category => (
-              <span 
-                key={category}
-                className={`px-4 py-2 rounded-full text-sm cursor-pointer transition-all ${selectedCategory === category ? "bg-blue-600 text-white shadow-md" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
-                onClick={() => setSelectedCategory(category)}
-              >
-                {category}
-              </span>
-            ))}
-          </div>
-        </motion.div>
+          {category}
+        </motion.button>
+      ))}
+    </div>
+  </div>
+</motion.div>
+
 
         {/* Upcoming Events */}
         {upcomingEvents.length > 0 && (

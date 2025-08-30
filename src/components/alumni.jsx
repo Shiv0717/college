@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { Linkedin, Quote, ChevronLeft, ChevronRight } from "lucide-react";
+import { Linkedin, Quote, ChevronLeft, ChevronRight,GraduationCap } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
@@ -64,20 +64,29 @@ const AlumniSection = () => {
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-4xl md:text-5xl font-extrabold text-blue-900">
-            Our Proud Alumni
-          </h2>
-          <div className="w-24 h-1 bg-yellow-500 mx-auto mt-3"></div>
-          <p className="text-lg text-blue-800 mt-4 max-w-2xl mx-auto">
-            Alumni of Krishna Engineering College have made their mark across
-            the globe in diverse industries, from technology to entrepreneurship.
-          </p>
-        </motion.div>
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+      className="text-center mb-16"
+    >
+      {/* Tagline pill */}
+      <div className="inline-flex items-center rounded-full bg-yellow-100 px-4 py-2 text-sm font-medium text-yellow-700 mb-4">
+        <GraduationCap className="h-4 w-4 mr-2" />
+        Our Alumni
+      </div>
+
+      {/* Heading */}
+      <h2 className="text-4xl font-bold text-gray-900 mb-4">
+        Our Proud <span className="text-blue-900">Alumni</span>
+      </h2>
+
+      {/* Subtitle */}
+      <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+        Alumni of Krishna Engineering College have made their mark across
+        the globe in diverse industries, from technology to entrepreneurship.
+      </p>
+    </motion.div>
 
         {/* Swiper Container */}
         <div className="relative ">
@@ -109,7 +118,7 @@ const AlumniSection = () => {
               disableOnInteraction: false,
             }}
             loop={true}
-            className="pb-12 mt-5"
+            className="pb-12 "
           >
             {alumniData.map((alumni, index) => (
               <SwiperSlide key={index}>
@@ -122,7 +131,7 @@ const AlumniSection = () => {
                   {/* Alumni Image */}
                   <div className="relative mb-4">
                     <img
-                      src={alumni.img}
+                      src={'https://plus.unsplash.com/premium_photo-1682431850447-0318570fcdec?q=80&w=2144&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'}
                       alt={alumni.name}
                       className="w-24 h-24 rounded-full object-cover mx-auto border-4 border-blue-200"
                     />
