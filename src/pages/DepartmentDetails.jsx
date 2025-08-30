@@ -190,23 +190,7 @@ const DepartmentDetails = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
       {/* Header Navigation */}
-      <motion.div 
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="bg-white shadow-sm border-b border-blue-100 py-4 px-4 sticky top-0 z-10"
-      >
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <Link 
-            to="/departments" 
-            className="text-blue-600 hover:text-blue-800 font-medium flex items-center transition-colors"
-          >
-            <ArrowLeft size={18} className="mr-2" /> All Departments
-          </Link>
-          <div className="text-sm text-blue-700 font-medium px-3 py-1 bg-blue-100 rounded-full">
-            {department.shortName}
-          </div>
-        </div>
-      </motion.div>
+      
 
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Hero Section */}

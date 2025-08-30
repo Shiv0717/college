@@ -64,7 +64,7 @@ const AboutSection = () => {
     <section className="py-14 bg-gradient-to-b from-blue-50 to-white relative overflow-hidden">
       {/* Decorative elements */}
       <div className="absolute top-0 left-0 w-72 h-72 bg-blue-200 rounded-full -translate-x-36 -translate-y-36 opacity-50"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-100 rounded-full translate-x-48 translate-y-48 opacity-40"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-80 lg:h-96 bg-blue-100 rounded-full translate-x-48 translate-y-48 opacity-40"></div>
       
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         {/* Heading */}

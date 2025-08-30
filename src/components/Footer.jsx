@@ -150,7 +150,7 @@ const Footer = () => {
     rel="noopener noreferrer"
     className="text-sm text-blue-200 hover:text-yellow-400 transition-colors flex items-center"
   >
-    Crafted with ❤️ by 
+   Designed & Developed by 
     <span className="ml-1 font-semibold text-white">Shiv Kumar</span>
   </a>
 </div>

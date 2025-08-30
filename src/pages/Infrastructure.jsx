@@ -15,7 +15,8 @@ import {
   XMarkIcon,
   MagnifyingGlassIcon,
   MapPinIcon,
-  ArrowRightIcon
+  ArrowRightIcon,
+  
 } from '@heroicons/react/24/outline';
 
 const infrastructureData = [
@@ -157,7 +158,8 @@ const Infrastructure = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedItem, setSelectedItem] = useState(null);
-  const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'map'
+  const [viewMode, setViewMode] = useState('grid'); 
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
@@ -222,67 +224,132 @@ const Infrastructure = () => {
 
         {/* Controls Section */}
         <motion.div 
-          className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8 p-6 bg-white rounded-2xl shadow-sm border border-gray-100"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ delay: 0.2 }}
+  className="flex flex-col md:flex-row justify-between items-start gap-4 mb-8 p-4 sm:p-6 bg-white rounded-2xl shadow-lg border border-gray-100"
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true, margin: "-50px" }}
+  transition={{ delay: 0.2 }}
+>
+  {/* Categories Filter */}
+  <div className="w-full md:w-auto">
+    <div className="flex flex-wrap gap-2">
+      {categories.map((category) => (
+        <motion.button
+          key={category.id}
+          onClick={() => setActiveCategory(category.id)}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className={`px-3 py-2 rounded-full font-medium transition-all flex items-center gap-2 text-sm sm:text-base ${
+            activeCategory === category.id
+              ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg'
+              : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 hover:border-gray-300'
+          }`}
         >
-          <div className="flex flex-wrap gap-2">
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className={`px-4 py-2 rounded-full font-medium transition-all flex items-center gap-2 ${
-                  activeCategory === category.id
-                    ? 'bg-blue-900 text-white shadow-lg'
-                    : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50'
-                }`}
-              >
-                <span>{category.name}</span>
-                <span className={`text-xs px-1.5 py-0.5 rounded-full ${
-                  activeCategory === category.id ? 'bg-blue-700' : 'bg-gray-100'
-                }`}>
-                  {category.count}
-                </span>
-              </button>
-            ))}
-          </div>
+          <span className="whitespace-nowrap">{category.name}</span>
+          <span className={`text-xs px-1.5 py-0.5 rounded-full min-w-[24px] text-center ${
+            activeCategory === category.id 
+              ? 'bg-blue-500 text-white' 
+              : 'bg-gray-100 text-gray-600'
+          }`}>
+            {category.count}
+          </span>
+        </motion.button>
+      ))}
+    </div>
+  </div>
 
-          <div className="flex items-center gap-3">
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" />
-              </div>
-              <input
-                type="text"
-                placeholder="Search facilities..."
-                className="pl-10 pr-4 py-2 border border-gray-200 rounded-full text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-64"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-            </div>
+  {/* Search and View Controls */}
+  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto">
+    {/* Search Input */}
+    <div className="relative flex-1 min-w-[200px]">
+      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+        <MagnifyingGlassIcon className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" />
+      </div>
+      <input
+        type="text"
+        placeholder="Search facilities..."
+        className="pl-9 pr-4 py-2 border border-gray-200 rounded-full text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full h-full"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+      />
+    </div>
 
-            <div className="flex bg-gray-100 p-1 rounded-full">
-              <button 
-                onClick={() => setViewMode('grid')}
-                className={`p-2 rounded-full ${viewMode === 'grid' ? 'bg-white shadow' : ''}`}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-                </svg>
-              </button>
-              <button 
-                onClick={() => setViewMode('map')}
-                className={`p-2 rounded-full ${viewMode === 'map' ? 'bg-white shadow' : ''}`}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </motion.div>
+    {/* View Toggle */}
+    <div className="flex bg-gray-100 p-1 rounded-full border border-gray-200">
+      <motion.button 
+        onClick={() => setViewMode('grid')}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        className={`p-2 rounded-full transition-all ${
+          viewMode === 'grid' 
+            ? 'bg-white shadow-lg text-blue-600' 
+            : 'text-gray-500 hover:text-gray-700'
+        }`}
+        title="Grid view"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+        </svg>
+      </motion.button>
+      
+      <motion.button 
+        onClick={() => setViewMode('map')}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        className={`p-2 rounded-full transition-all ${
+          viewMode === 'map' 
+            ? 'bg-white shadow-lg text-blue-600' 
+            : 'text-gray-500 hover:text-gray-700'
+        }`}
+        title="Map view"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+        </svg>
+      </motion.button>
+    </div>
+
+    {/* Filter Button for Mobile */}
+    <motion.button
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      className="md:hidden px-4 py-2 bg-blue-600 text-white rounded-full text-sm font-medium flex items-center gap-2"
+      onClick={() => setIsFilterOpen(!isFilterOpen)}
+    >
+      
+      <span>Filters</span>
+    </motion.button>
+  </div>
+
+  {/* Mobile Filter Dropdown */}
+  {isFilterOpen && (
+    <motion.div
+      initial={{ opacity: 0, height: 0 }}
+      animate={{ opacity: 1, height: 'auto' }}
+      exit={{ opacity: 0, height: 0 }}
+      className="md:hidden w-full bg-gray-50 rounded-xl p-4 mt-2"
+    >
+      <div className="grid grid-cols-2 gap-2">
+        {categories.map((category) => (
+          <button
+            key={category.id}
+            onClick={() => {
+              setActiveCategory(category.id);
+              setIsFilterOpen(false);
+            }}
+            className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+              activeCategory === category.id
+                ? 'bg-blue-600 text-white'
+                : 'bg-white text-gray-700 border border-gray-200'
+            }`}
+          >
+            {category.name} ({category.count})
+          </button>
+        ))}
+      </div>
+    </motion.div>
+  )}
+</motion.div>
 
         {/* Results count */}
         <motion.div 
