@@ -93,7 +93,7 @@ const CoursesOffered = () => {
       duration: "4 Years",
       seats: 120,
       enrolled: 115,
-      image: "https://images.unsplash.com/photo-1581093458791-9d33f465dea5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      image: "https://plus.unsplash.com/premium_photo-1664297997167-88170c57bc35?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       description: "Our Mechanical Engineering department offers comprehensive programs in thermal sciences, design engineering, manufacturing, and robotics. We emphasize practical learning and industry exposure.",
       outcomes: ["Thermal Engineering", "Design Engineering", "Manufacturing", "Robotics", "Automotive Systems"],
       prerequisites: ["12th with PCM", "JEE Main/State Entrance", "Minimum 70% aggregate"],
