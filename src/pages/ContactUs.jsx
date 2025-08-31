@@ -218,7 +218,7 @@ const ContactUs = () => {
         </div>
 
         {/* Map */}
-        <div className="rounded-xl md:rounded-2xl overflow-hidden shadow-lg">
+        <div className="rounded-xl md:rounded-2xl overflow-hidden shadow-lg mt-6">
               <iframe
                 title="Krishna Engineering College Map"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3700.042892081!2d81.3815!3d21.1939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjHCsDExJzM4LjAiTiA4McKwMjMnMTMuNSJF!5e0!3m2!1sen!2sin!4v1694080381429"

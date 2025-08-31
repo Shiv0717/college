@@ -63,7 +63,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-gradient-to-r from-blue-900 to-blue-800 text-white shadow-lg sticky top-0 z-50">
+    <nav className="bg-gradient-to-r from-blue-900 to-blue-800 text-white shadow-lg sticky top-0 z-50 ">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
@@ -255,7 +255,7 @@ const Navbar = () => {
                   className="w-full bg-yellow-400 text-blue-900 font-bold px-4 py-3 rounded-lg shadow-md hover:bg-yellow-300 transition-colors flex items-center justify-center space-x-2"
                   onClick={() => setIsOpen(false)}
                 >
-                  <span>Apply Now</span>
+                <span> <Link to={'/admission'}> Apply Now </Link></span>
                   <span>→</span>
                 </motion.button>
               </div>

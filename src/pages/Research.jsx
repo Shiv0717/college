@@ -611,46 +611,7 @@ const Research = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-blue-900 to-purple-900 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="text-3xl font-bold mb-6"
-          >
-            Join Our Research Community
-          </motion.h2>
-          
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ delay: 0.2 }}
-            className="text-xl max-w-3xl mx-auto mb-8 text-blue-100"
-          >
-            Explore research opportunities, collaborate with our faculty, and contribute to cutting-edge innovation
-          </motion.p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-white text-blue-900 px-6 py-3 rounded-xl font-semibold shadow-lg hover:bg-blue-50 transition-all flex items-center justify-center"
-            >
-              Apply for Research Programs <ExternalLink className="ml-2 w-5 h-5" />
-            </motion.button>
-            
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-xl font-semibold hover:bg-white/10 transition-all flex items-center justify-center"
-            >
-              <BookText className="mr-2 w-5 h-5" /> View Publications
-            </motion.button>
-          </div>
-        </div>
-      </section>
+     
     </div>
   );
 };
