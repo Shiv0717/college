@@ -11,7 +11,8 @@ import {
   BookOpen,
   GraduationCap,
   Building,
-  Users
+  Users,
+ 
 } from "lucide-react";
 
 const Notice = () => {
@@ -120,23 +121,56 @@ const Notice = () => {
 
   return (
     <div className="max-w-7xl mx-auto p-6">
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="mb-8"
-      >
-        <h1 className="text-3xl font-bold text-blue-900 flex items-center gap-3">
-          <motion.div
-            animate={{ rotate: [0, -5, 0] }}
-            transition={{ repeat: Infinity, duration: 3 }}
-          >
-            <Megaphone size={32} className="text-blue-700" />
-          </motion.div>
-          College Notice Board
-        </h1>
-        <p className="text-gray-600 mt-2">Stay updated with the latest announcements and events</p>
-      </motion.div>
+      <section className="py-12 md:py-16 px-4 sm:px-6 text-blue-900 relative overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute top-0 left-0 w-72 h-72 bg-blue-200 rounded-full -translate-x-1/2 -translate-y-1/2 opacity-30 blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-indigo-200 rounded-full translate-x-1/3 translate-y-1/3 opacity-30 blur-3xl"></div>
+
+      <div className="max-w-5xl mx-auto text-center relative z-10">
+        {/* Tagline pill */}
+        <motion.div
+          className="inline-flex items-center justify-center px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium mb-6 shadow-sm"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <Megaphone className="w-4 h-4 mr-2" />
+          Latest Announcements
+        </motion.div>
+
+        {/* Heading */}
+        <motion.h1
+          className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          College <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Notice Board</span>
+        </motion.h1>
+
+        {/* Subtitle */}
+        <motion.p
+          className="text-lg md:text-xl text-blue-700 max-w-3xl mx-auto leading-relaxed mb-6 md:mb-8 px-4"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+        >
+          Stay updated with the latest announcements, important events, and campus activities at Krishna Engineering College.
+        </motion.p>
+
+        {/* Underline accent */}
+        <motion.div
+          className="w-28 h-1.5 bg-gradient-to-r from-yellow-400 to-yellow-500 mx-auto rounded-full"
+          initial={{ width: 0 }}
+          whileInView={{ width: 112 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.4 }}
+        />
+      </div>
+    </section>
 
       {/* Filters and Search */}
       <motion.div 

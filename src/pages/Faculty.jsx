@@ -69,28 +69,54 @@ const FacultyPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 px-4 py-8 md:px-8 md:py-12">
       {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="text-center mb-12"
-      >
+      <section className="py-16 md:py-20 px-4 sm:px-6 text-blue-900 relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute top-0 left-0 w-72 h-72 bg-blue-200 rounded-full -translate-x-1/2 -translate-y-1/2 opacity-30 blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-200 rounded-full translate-x-1/3 translate-y-1/3 opacity-30 blur-3xl"></div>
+      
+      <div className="max-w-7xl mx-auto text-center relative z-10">
+        {/* Tagline pill */}
         <motion.div 
-          className="flex items-center justify-center mb-4"
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+          className="inline-flex items-center justify-center px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium mb-6 shadow-sm"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
         >
-          <div className="p-3 bg-gradient-to-r from-blue-600 to-indigo-700 rounded-full shadow-lg">
-            <GraduationCap size={36} className="text-white" />
-          </div>
+          <GraduationCap className="w-4 h-4 mr-2" />
+          Our Distinguished Faculty
         </motion.div>
-        <h1 className="text-4xl font-bold text-slate-800 mb-3">Our Distinguished Faculty</h1>
-        <p className="text-slate-600 max-w-3xl mx-auto text-lg">
-          At <span className="font-semibold text-blue-700">Krishna Engineering College</span>, our dedicated and experienced faculty members 
-          are committed to nurturing innovation, knowledge, and excellence among students.
-        </p>
-      </motion.div>
+        
+        {/* Heading */}
+        <motion.h1 
+          className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+        >
+          Mentors of <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Excellence</span>
+        </motion.h1>
+        
+        {/* Subtitle */}
+        <motion.p 
+          className="text-lg md:text-xl text-blue-700 max-w-4xl mx-auto leading-relaxed mb-6 md:mb-8 px-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+        >
+          At <span className="font-semibold text-blue-700">Krishna Engineering College</span>, 
+          our dedicated and experienced faculty members are committed to nurturing 
+          innovation, knowledge, and excellence among students.
+        </motion.p>
+        
+        {/* Underline animation */}
+        <motion.div 
+          className="w-32 h-1.5 bg-gradient-to-r from-yellow-400 to-yellow-500 mx-auto rounded-full"
+          initial={{ width: 0 }}
+          animate={{ width: 128 }}
+          transition={{ duration: 0.7, delay: 0.4 }}
+        />
+      </div>
+    </section>
 
       {/* Filters */}
       <motion.div 
