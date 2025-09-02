@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const Leadership = () => {
   const [activeProfile, setActiveProfile] = useState(0);
-  
   const leadershipData = [
     {
       name: "Mr. Anand Kumar Tripathi",
@@ -12,7 +11,7 @@ const Leadership = () => {
       image: "https://krishnasoftwaresolutions.com/img/chairman.png",
       achievements: [
         "Chairman – Krishna Engineering College",
-        "Vice Chairman – Krishna Society",
+        "Vice Chairman – Krishna Education Society",
         "Vice President – KPS Group"
       ],
       bio: "A visionary educationist and leader with over 25 years of experience in academic excellence and institutional development. Mr. Tripathi has been instrumental in establishing 12 educational institutions across Northern India and has received the 'EduVisionary Award 2022' for outstanding contributions to technical education.",
@@ -21,35 +20,34 @@ const Leadership = () => {
       email: "anand.tripathi@example.com"
     },
     {
-      name: "Dr. Priya Sharma",
-      role: "Director of Academics",
-      image: "/images/priya-sharma.jpg",
+      name: "Mr. M. M. Tripathi",
+      role: "Chairman, Krishna Education Society",
+      image: "https://www.kecbhilai.com/images/MANAGEMENT%20&%20HIGHER%20AUTHORITIES/mmtripathi.jpg",
       achievements: [
-        "PhD in Educational Leadership",
-        "Former Dean - IIT Delhi",
-        "Author of 5 books on pedagogy"
+        "Chairman – Krishna Education Society",
+        "Founder visionary of KEC’s managing body"
       ],
-      bio: "With a distinguished career spanning two decades, Dr. Sharma brings innovative teaching methodologies and curriculum development expertise. She has pioneered industry-academia collaboration programs that have placed over 2000 students in top tech companies.",
-      quote: "The future of education lies in adaptable learning systems that evolve with technological advancements.",
+      bio: "As the head of the governing body, Mr. M. M. Tripathi leads the Krishna Education Society, overseeing the strategic vision and expansion of its educational institutions, including Krishna Engineering College.",
+      quote: "There is no purifier greater than knowledge.",
       linkedin: "#",
-      email: "priya.sharma@example.com"
+      email: "mm.tripathi@example.com"
     },
     {
-      name: "Mr. Rajesh Verma",
-      role: "Chief Operations Officer",
-      image: "/images/rajesh-verma.jpg",
+      name: "Mr. Pramod Kumar Tripathi",
+      role: "Secretary, Krishna Education Society",
+      image: "https://www.kecbhilai.com/images/MANAGEMENT%20&%20HIGHER%20AUTHORITIES/pramodtripathi.jpg",
       achievements: [
-        "Operations Management Expert",
-        "Infrastructure Development Specialist",
-        "20+ years in educational administration"
+        "Secretary – Krishna Education Society",
+        "Governance and administrative leadership"
       ],
-      bio: "Mr. Verma oversees the seamless operation of all campus facilities and student services. His strategic planning has been crucial in expanding campus infrastructure by 40% while maintaining sustainable practices and eco-friendly initiatives.",
-      quote: "Efficiency in operations creates the foundation upon which academic excellence can thrive.",
+      bio: "In his role as Secretary, Mr. Pramod Kumar Tripathi handles critical administrative functions and governance decisions for the Krishna Education Society, enabling seamless institutional operations.",
+      quote: "Dedication to service and education is the true path to progress.",
       linkedin: "#",
-      email: "rajesh.verma@example.com"
-    }
+      email: "pramod.tripathi@example.com"
+    },
+    
   ];
-
+  
   const nextProfile = () => {
     setActiveProfile((prev) => (prev === leadershipData.length - 1 ? 0 : prev + 1));
   };
@@ -135,7 +133,7 @@ const Leadership = () => {
                   <img
                     src={leadershipData[activeProfile].image}
                     alt={leadershipData[activeProfile].name}
-                    className="w-64 h-64 object-cover rounded-full border-4 border-white shadow-xl relative z-10"
+                    className="w-64 h-64 object-contain rounded-full border-4 border-white shadow-xl relative z-10"
                   />
                 </div>
                 

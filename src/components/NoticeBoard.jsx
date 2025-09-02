@@ -19,33 +19,33 @@ const NewsEvents = () => {
 
   const news = [
     {
-      img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
-      title: "International Conference on Emerging Technologies",
-      desc: "Successfully concluded with global participation at Krishna Engineering College.",
-      date: "May 15, 2025",
-      category: "Conference"
+      img: "", // Recommended: use a visual from the Facebook post or college gallery
+      title: "Welcome Address to B.Tech Batch of 2025–26",
+      desc: "KEC Bhilai held an induction program to welcome the newest B.Tech cohort to college life.",
+      date: "August 2025",
+      category: "Orientation"
     },
     {
-      img: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
-      title: "Awareness Program on Sustainability",
-      desc: "KCE organized a green campus initiative with active student involvement.",
-      date: "April 22, 2025",
-      category: "Event"
+      img: "",
+      title: "Visit by Dr. Prashant Mathur",
+      desc: "Dr. Prashant Mathur, CEO of IIT Bhilai Innovation and Technology Park, visited KEC to foster academic collaboration.",
+      date: "Late 2025",
+      category: "Guest Visit"
     },
     {
-      img: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
-      title: "KCE Students Secure First Prize at Techfest 2025",
-      desc: "Our ECE team bagged the innovation award at National Level Technovation.",
-      date: "March 10, 2025",
-      category: "Achievement"
+      img: "",
+      title: "Admissions Open for 2025 with Scholarships",
+      desc: "KEC announced admissions for 2025 with 100% scholarship seats including aid up to ₹1 lakh.",
+      date: "4 months ago (2025)",
+      category: "Admission Notice"
     },
     {
-      img: "https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
-      title: "Students Celebrate Engineers' Day",
-      desc: "Workshops, competitions, and cultural programs marked the celebrations.",
-      date: "September 15, 2024",
+      img: "https://scontent.fidr4-1.fna.fbcdn.net/v/t39.30808-6/533448186_1160483716099153_594768434130928822_n.jpg?stp=dst-jpg_p960x960_tt6&_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=VpF2Xj8B4p0Q7kNvwFuRX79&_nc_oc=AdnGSnN9LUb96smq8z0l06vg6lcYn8gnXejyWPq46bxOxuvSl7VDoHCJMS4LwZGmPJczA7wYx_KGdpisqjMcyADO&_nc_zt=23&_nc_ht=scontent.fidr4-1.fna&_nc_gid=TXvd0vCF5qcc5qMP1f_VeQ&oh=00_AfW5DKCL7LQmpH0NLBreWkjUuNOCTHBo4LxNzjpwPObNYw&oe=68BC255E",
+      title: "Celebrating 79th Independence Day",
+      desc: "KEC Bhilai celebrated India’s 79th Independence Day with patriotic fervor and campus-wide events.",
+      date: "August 15, 2025",
       category: "Celebration"
-    },
+    }
   ];
 
   const announcements = [

@@ -63,10 +63,10 @@ const About = () => (
         transition={{ delay: 0.3, duration: 0.7 }}
       >
         {[
-          { icon: GraduationCap, number: "2000+", label: "Students", color: "from-blue-500 to-blue-700" },
-          { icon: Users, number: "150+", label: "Faculty & Staff", color: "from-green-500 to-green-700" },
-          { icon: BookText, number: "12+", label: "Programs", color: "from-purple-500 to-purple-700" },
-          { icon: Award, number: "15+", label: "Years of Excellence", color: "from-orange-500 to-orange-700" },
+         { icon: GraduationCap, number: "2500+", label: "Students", color: "from-blue-500 to-blue-700" },
+         { icon: Users, number: "200+", label: "Faculty & Staff", color: "from-green-500 to-green-700" },
+         { icon: BookText, number: "20+", label: "Programs", color: "from-purple-500 to-purple-700" },
+         { icon: Award, number: "25+", label: "Years of Excellence", color: "from-orange-500 to-orange-700" },
         ].map((stat, index) => (
           <motion.div 
             key={index} 

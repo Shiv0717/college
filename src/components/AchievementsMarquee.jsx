@@ -13,24 +13,26 @@ import {
   Briefcase,
   Bookmark,
   Heart,
+  MapPin,
+  TrendingUp
 } from "lucide-react";
 
-const achievements = [
-  { icon: <Trophy className="w-6 h-6 text-yellow-500" />, text: "NAAC Accredited A+ Grade" },
-  { icon: <Award className="w-6 h-6 text-blue-500" />, text: "Best Engineering College 2023" },
-  { icon: <Users className="w-6 h-6 text-green-500" />, text: "5000+ Happy Students" },
-  { icon: <BookOpen className="w-6 h-6 text-purple-500" />, text: "12+ Academic Programs" },
-  { icon: <GraduationCap className="w-6 h-6 text-red-500" />, text: "95% Placement Record" },
-  { icon: <Building className="w-6 h-6 text-indigo-600" />, text: "25 Acre Green Campus" },
-  { icon: <Calendar className="w-6 h-6 text-orange-500" />, text: "15+ Years of Excellence" },
-  { icon: <Target className="w-6 h-6 text-pink-500" />, text: "100+ Industry Partnerships" },
-];
+
+  const achievements = [
+    { icon: <Building className="w-6 h-6 text-indigo-600" />, text: "AICTE Approved College" },
+    { icon: <BookOpen className="w-6 h-6 text-purple-500" />, text: "4 B.Tech Disciplines" },
+    { icon: <Briefcase className="w-6 h-6 text-blue-500" />, text: "Top Firm Placements" },
+    { icon: <Users className="w-6 h-6 text-green-500" />, text: "120 CSE Seats" },
+    { icon: <Trophy className="w-6 h-6 text-yellow-500" />, text: "₹10 LPA Placements" },
+    { icon: <MapPin className="w-6 h-6 text-red-500" />, text: "Bhilai Junwani Campus" }
+  ];
+
 
 const stats = [
-  { value: "5000+", label: "Alumni Network", icon: <Users className="w-8 h-8" /> },
-  { value: "95%", label: "Placement Rate", icon: <Briefcase className="w-8 h-8" /> },
-  { value: "25+", label: "Acres Campus", icon: <Building className="w-8 h-8" /> },
-  { value: "15+", label: "Years Excellence", icon: <Calendar className="w-8 h-8" /> },
+  { value: "240+", label: "Total B.Tech Seats", icon: <BookOpen className="w-8 h-8" /> },
+  { value: "₹6 LPA", label: "Avg Placement Package", icon: <TrendingUp className="w-8 h-8" /> },
+  { value: "80-99%", label: "Placement Rate", icon: <Users className="w-8 h-8" /> },
+  { value: "5 acres", label: "Campus Area", icon: <Building className="w-8 h-8" /> }
 ];
 
 const Pill = ({ icon, text }) => (

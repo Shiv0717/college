@@ -12,7 +12,10 @@ import {
   Target,
   Heart,
   Calendar,
-  Info
+  Info,
+  TrendingUp,
+  CheckCircle,
+  Book
 } from "lucide-react";
 
 // Animation Variants
@@ -43,20 +46,20 @@ const AboutSection = () => {
 
   const highlights = [
     {
-      icon: <Target size={20} className="text-blue-600" />,
-      text: "NAAC Accredited with 'A' Grade"
+      icon: <CheckCircle size={20} className="text-blue-600" />,
+      text: "AICTE-approved engineering institution"
     },
     {
-      icon: <Heart size={20} className="text-blue-600" />,
-      text: "Industry Partnerships with 100+ Companies"
+      icon: <Book size={20} className="text-blue-600" />,
+      text: "4 BE programs (CSE, Civil, Mechanical, Electrical) with ~240 seats"
     },
     {
-      icon: <Star size={20} className="text-blue-600" />,
-      text: "95% Placement Record in 2024"
+      icon: <TrendingUp size={20} className="text-blue-600" />,
+      text: "Average package ₹6 LPA, highest up to ₹10 LPA"
     },
     {
-      icon: <Clock size={20} className="text-blue-600" />,
-      text: "24/7 Learning Resources Access"
+      icon: <Users size={20} className="text-blue-600" />,
+      text: "Placement rate ranging from 80% to ~99%"
     }
   ];
 
@@ -137,21 +140,12 @@ const AboutSection = () => {
           >
             
             <p className="text-gray-600 mb-4 leading-relaxed">
-              At Krishna College, we provide an education that goes beyond
-              textbooks. Our campus fosters innovation, critical thinking, and
-              hands-on learning experiences that prepare students for
-              real-world challenges.
-            </p>
-            <p className="text-gray-600 mb-4 leading-relaxed">
-              With state-of-the-art laboratories, strong industry partnerships,
-              and experienced faculty, students thrive academically and
-              personally.
-            </p>
-            <p className="text-gray-600 mb-6 leading-relaxed">
-              We take pride in our diverse community of learners and our
-              commitment to producing engineers who excel technically and uphold
-              strong ethical values and social responsibility.
-            </p>
+            Krishna Engineering College (KEC), Bhilai, established in 2011, is AICTE-approved and CSVTU-affiliated, offering modern technical education with strong focus on academic excellence and practical skills.
+</p>
+<p className="text-gray-600 mb-4 leading-relaxed">
+Established in 2011, Krishna Engineering College (KEC), Bhilai, AICTE-approved and CSVTU-affiliated, offers B.Tech programs in CSE, Civil, Mechanical, and Electrical, with admissions via 10+2 PCM and JEE Main/CG PET
+</p>
+
 
             {/* Highlights List */}
             <motion.div 

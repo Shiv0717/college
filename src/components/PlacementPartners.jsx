@@ -10,61 +10,86 @@ import "swiper/css/navigation";
 
 const PlacementPartners = () => {
   const partners = [
-    { 
-      id: 1, 
-      name: "Microsoft",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
-      hires: "85+ Students"
+   
+    {
+      id: 1,
+      name: "TCS",
+      industry: "IT Services & Consulting",
+      location: "India",
+      logo: "https://brandeps.com/logo-download/T/TATA-Consultancy-Services-logo-01.png",
+     
     },
-    { 
-      id: 2, 
-      name: "Google",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Google_logo.svg",
-      hires: "45+ Students"
-    },
-    { 
-      id: 3, 
-      name: "Apple",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg",
-      hires: "30+ Students"
-    },
-    { 
-      id: 4, 
-      name: "Netflix",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg",
-      hires: "25+ Students"
-    },
-    { 
-      id: 5, 
-      name: "Tata",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/0/0b/Tata_logo.svg",
-      hires: "120+ Students"
-    },
-    { 
-      id: 6, 
+    {
+      id: 2,
       name: "Infosys",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/d/db/Infosys_logo.svg",
-      hires: "200+ Students"
+      industry: "IT & Software",
+      location: "India",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Infosys_logo.svg/1280px-Infosys_logo.svg.png",
+      
     },
-    { 
-      id: 7, 
-      name: "IBM",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/7/76/IBM_logo.svg",
-      hires: "95+ Students"
+    {
+      id: 3,
+      name: "Wipro",
+      industry: "Technology & Services",
+      location: "India",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Wipro_new_logo.svg/250px-Wipro_new_logo.svg.png",
+      
     },
-    { 
-      id: 8, 
-      name: "Amazon",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
-      hires: "65+ Students"
+    {
+      id: 4,
+      name: "Capgemini",
+      industry: "Consulting & Technology",
+      location: "Global",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Capgemini_201x_logo.svg",
+     
     },
+    {
+      id: 5,
+      name: "Tech Mahindra",
+      industry: "IT & Telecom",
+      location: "India",
+      logo: "https://appexchange.salesforce.com/partners/servlet/servlet.FileDownload?file=00P4V000015GC4CUAW",
+      image: "https://1000logos.net/wp-content/uploads/2021/05/Tech-Mahindra-logo.png"
+    },
+    {
+      id: 6,
+      name: "HCL ",
+      industry: "IT Services",
+      location: "India",
+      logo: "https://logos-world.net/wp-content/uploads/2022/07/HCL-Logo.png",
+      image: "https://1000logos.net/wp-content/uploads/2021/05/HCL-Technologies-logo.png"
+    },
+    {
+      id: 7,
+      name: "Cognizant",
+      industry: "Consulting & IT Services",
+      location: "Global",
+      logo: "https://www.opentext.com/assets/images/partners/cognizant-logo-416x274.png",
+      image: "https://1000logos.net/wp-content/uploads/2021/05/Cognizant-logo.png"
+    }
+    
+    
+    
   ];
 
   const stats = [
-    { icon: <Users className="h-6 w-6" />, value: "95%", label: "Placement Rate" },
-    { icon: <TrendingUp className="h-6 w-6" />, value: "₹18 LPA", label: "Highest Package" },
-    { icon: <Award className="h-6 w-6" />, value: "₹9.5 LPA", label: "Average Package" },
+    {
+      icon: <Users className="h-6 w-6" />,
+      value: "80%",
+      label: "Placement Rate"
+    },
+    {
+      icon: <TrendingUp className="h-6 w-6" />,
+      value: "₹8 LPA",
+      label: "Highest Package"
+    },
+    {
+      icon: <Award className="h-6 w-6" />,
+      value: "₹4.5 LPA",
+      label: "Average Package"
+    }
   ];
+  
 
   return (
     <section className="relative bg-gradient-to-br from-slate-50 to-blue-50 py-20 overflow-hidden">

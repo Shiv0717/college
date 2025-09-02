@@ -24,12 +24,12 @@ const CoursesOffered = () => {
       bgColor: "bg-blue-50",
       textColor: "text-blue-700"
     },
-    ece: { 
-      name: "Electronics & Communication Engg.", 
-      icon: <Cpu className="w-5 h-5" />, 
-      color: "from-purple-500 to-purple-700",
-      bgColor: "bg-purple-50",
-      textColor: "text-purple-700"
+    eee: { 
+      name: "Electrical Engineering", 
+      icon: <Zap className="w-5 h-5" />, 
+      color: "from-yellow-500 to-yellow-700",
+      bgColor: "bg-yellow-50",
+      textColor: "text-yellow-700"
     },
     mech: { 
       name: "Mechanical Engineering", 
@@ -56,33 +56,33 @@ const CoursesOffered = () => {
       credits: 160,
       duration: "4 Years",
       seats: 120,
-      enrolled: 118,
-      image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      description: "The Department of Computer Science & Engineering offers cutting-edge programs in software development, artificial intelligence, data science, and cybersecurity. Our curriculum is designed to prepare students for the rapidly evolving tech industry.",
-      outcomes: ["Software Development", "AI & Machine Learning", "Data Science", "Cybersecurity", "Cloud Computing"],
-      prerequisites: ["12th with PCM", "JEE Main/State Entrance", "Minimum 75% aggregate"],
-      instructor: "Dr. Rajesh Kumar",
+      enrolled: 120,          // not specified
+      image: "https://www.kecbhilai.com/images/pc1.jpg",               // placeholder or supply relevant image
+      description: "The CSE department covers core computing topics such as software development, data structures, algorithms, and emerging areas like AI & ML.",
+      outcomes: ["Software Development", "Data Analysis", "AI & ML", "Cybersecurity"],
+      prerequisites: ["12th with PCM", "JEE Main / CG PET"],
+      instructor: null,
       schedule: "Full-time Program",
-      popularity: "98%",
-      programs: ["B.Tech CSE", "M.Tech CSE", "B.Tech AI & ML"]
+      popularity: null,
+      programs: ["B.E. CSE"]
     },
     {
       id: 2,
-      title: "Electronics & Communication Engineering",
-      code: "ECE",
-      department: "ece",
+      title: "Electrical Engineering",
+      code: "EEE",
+      department: "eee",
       credits: 160,
       duration: "4 Years",
-      seats: 90,
-      enrolled: 88,
-      image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      description: "The ECE department focuses on electronics, communication systems, signal processing, and embedded systems. We provide hands-on experience with state-of-the-art equipment and industry collaborations.",
-      outcomes: ["VLSI Design", "Communication Systems", "Embedded Systems", "Signal Processing", "IoT Technologies"],
-      prerequisites: ["12th with PCM", "JEE Main/State Entrance", "Minimum 70% aggregate"],
-      instructor: "Dr. Priya Sharma",
+      seats: 60,
+      enrolled: 48,
+      image: "https://www.kecbhilai.com/images/pc3.jpg",
+      description: "Electrical Engineering focuses on power systems, electrical machines, renewable energy, and control systems.",
+      outcomes: ["Power Systems", "Electrical Machines", "Control Systems", "Renewable Energy"],
+      prerequisites: ["12th with PCM", "JEE Main / CG PET"],
+      instructor: null,
       schedule: "Full-time Program",
-      popularity: "95%",
-      programs: ["B.Tech ECE", "M.Tech VLSI", "M.Tech Communication Systems"]
+      popularity: null,
+      programs: ["B.E. EEE"]
     },
     {
       id: 3,
@@ -91,16 +91,16 @@ const CoursesOffered = () => {
       department: "mech",
       credits: 160,
       duration: "4 Years",
-      seats: 120,
-      enrolled: 115,
-      image: "https://plus.unsplash.com/premium_photo-1664297997167-88170c57bc35?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      description: "Our Mechanical Engineering department offers comprehensive programs in thermal sciences, design engineering, manufacturing, and robotics. We emphasize practical learning and industry exposure.",
-      outcomes: ["Thermal Engineering", "Design Engineering", "Manufacturing", "Robotics", "Automotive Systems"],
-      prerequisites: ["12th with PCM", "JEE Main/State Entrance", "Minimum 70% aggregate"],
-      instructor: "Dr. Amit Patel",
-      schedule: "Full-time Program", 
-      popularity: "96%",
-      programs: ["B.Tech Mechanical", "M.Tech Thermal", "M.Tech Production"]
+      seats: 30,
+      enrolled: 30,
+      image: "https://www.kecbhilai.com/images/pc4.jpg",
+      description: "Covers thermal sciences, design, manufacturing processes, and robotics with a focus on practical exposure.",
+      outcomes: ["Design Engineering", "Manufacturing", "Robotics", "Thermal Systems"],
+      prerequisites: ["12th with PCM", "JEE Main / CG PET"],
+      instructor: null,
+      schedule: "Full-time Program",
+      popularity: null,
+      programs: ["B.E. Mechanical"]
     },
     {
       id: 4,
@@ -109,17 +109,18 @@ const CoursesOffered = () => {
       department: "civil",
       credits: 160,
       duration: "4 Years",
-      seats: 90,
-      enrolled: 85,
-      image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      description: "The Civil Engineering department focuses on structural engineering, construction technology, environmental engineering, and transportation systems. We build the foundations of modern infrastructure.",
-      outcomes: ["Structural Engineering", "Construction Technology", "Environmental Engineering", "Transportation Systems", "Geotechnical Engineering"],
-      prerequisites: ["12th with PCM", "JEE Main/State Entrance", "Minimum 70% aggregate"],
-      instructor: "Dr. Sanjay Verma",
+      seats: 60,
+      enrolled: 55,
+      image: "https://www.kecbhilai.com/images/pc2.jpg",
+      description: "Covers structural engineering, construction technologies, environmental design, and sustainable infrastructure.",
+      outcomes: ["Structural Design", "Construction Tech", "Environmental Engineering", "Transportation Systems"],
+      prerequisites: ["12th with PCM", "JEE Main / CG PET"],
+      instructor: null,
       schedule: "Full-time Program",
-      popularity: "94%",
-      programs: ["B.Tech Civil", "M.Tech Structural", "M.Tech Environmental"]
+      popularity: null,
+      programs: ["B.E. Civil"]
     },
+    
   ];
 
   const toggleCourseExpand = (courseId) => {
