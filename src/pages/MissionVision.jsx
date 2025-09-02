@@ -9,47 +9,52 @@ const MissionVision = () => {
   const items = [
     {
       id: 1,
-      title: "Our Mission",
-      desc: "To provide world-class technical education, foster innovation, and nurture ethical engineers who contribute to society with excellence, responsibility, and leadership.",
-      icon: <Target className="w-10 h-10 text-indigo-600" />,
-      image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      color: "from-indigo-500 to-indigo-700",
-      details: [
-        "Deliver industry-relevant curriculum with hands-on learning",
-        "Foster research and innovation through state-of-the-art labs",
-        "Develop ethical professionals with strong leadership qualities",
-        "Create industry partnerships for real-world experience"
-      ]
-    },
-    {
-      id: 2,
       title: "Our Vision",
-      desc: "To be a premier institution of engineering and technology, recognized globally for academic excellence, cutting-edge research, and transformative learning that empowers future leaders.",
+      desc: "KEC Bhilai aims to be an extraordinary and exemplary institution — a centre of excellence in engineering and technology. We strive to produce technically competent and employable students with high expectations, strong knowledge creation, skill development, and ethical values.",
       icon: <Eye className="w-10 h-10 text-pink-600" />,
       image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       color: "from-pink-500 to-pink-700",
       details: [
-        "Achieve top rankings among engineering institutions nationally",
-        "Establish centers of excellence in emerging technologies",
-        "Foster global collaborations with leading universities",
-        "Produce graduates who become industry leaders and innovators"
+        "Be an extraordinary and exemplary institution",
+        "Act as a centre of excellence in engineering & technology",
+        "Produce technically competent and employable students",
+        "Uphold high expectations, strong knowledge creation, and ethical values"
+      ]
+    },
+    {
+      id: 2,
+      title: "Our Mission",
+      desc: "We are committed to creating awareness among youth and nurturing a cutting-edge entrepreneurial mindset, offering equal opportunities and full support for start-ups to grow into global companies.",
+      icon: <Target className="w-10 h-10 text-indigo-600" />,
+      image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      color: "from-indigo-500 to-indigo-700",
+      details: [
+        "Create awareness among youth",
+        "Render cutting-edge entrepreneurial mindset",
+        "Nurture young talents with equal opportunities",
+        "Provide end-to-end assistance to start-ups for global growth"
       ]
     },
     {
       id: 3,
-      title: "Our Values",
-      desc: "We are committed to excellence, integrity, innovation, and inclusivity in everything we do, creating an environment where both students and faculty can thrive.",
+      title: "Quality Policy",
+      desc: "We follow a quality-driven approach in teaching-learning, research, and administration through regular audits, empathetic teaching, and a commitment to integrity, discipline, and holistic development.",
       icon: <Star className="w-10 h-10 text-amber-600" />,
       image: "https://images.unsplash.com/photo-1524178232400-38d816f003ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       color: "from-amber-500 to-amber-600",
       details: [
-        "Excellence in teaching, research, and innovation",
-        "Integrity and ethical conduct in all endeavors",
-        "Inclusivity and diversity in our community",
-        "Collaboration across disciplines and industries"
+        "Quality-driven teaching, learning, research, and admin processes",
+        "Regular audits and standardized procedures",
+        "Empathetic teaching, integrity, teamwork, and discipline",
+        "Focus on overall holistic development",
+        "Student and faculty skill development",
+        "Interdisciplinary research and academic rigor",
+        "Commitment to ethics, honesty, and innovation",
+        "Innovation in teaching, research, and business processes"
       ]
     }
   ];
+  
 
   const nextSlide = () => {
     setActiveIndex((prevIndex) => 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Download, FileText, Calendar, DollarSign, CheckCircle } from 'lucide-react';
+import { Download, FileText, Calendar, DollarSign, CheckCircle, User, Mail, Phone, MessageCircle } from 'lucide-react';
 
 const AdmissionKEC = () => {
   const [activeTab, setActiveTab] = useState("process");
@@ -33,6 +33,17 @@ const AdmissionKEC = () => {
     "Physically Handicapped certificate (if required)"
   ];
 
+  const headOfAdmission = {
+    name: "Mr. Durga Das",
+    position: "Head of Admissions",
+    qualification: "Ph.D in Education Management, MBA",
+    experience: "15+ years in academic administration",
+    email: "admission.head@kecbhilai.edu.in",
+    phone: "+91-9876543210",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+    message: "I welcome all prospective students to Krishna Engineering College. Our admission process is designed to be transparent and student-friendly. Feel free to reach out to me or my team for any assistance throughout your admission journey."
+  };
+
   const feeStructure = [
     { program: "B.Tech (CSE/AI/IT)", tuitionFee: "₹85,000", developmentFee: "₹15,000", total: "₹1,00,000" },
     { program: "B.Tech (Mechanical/Civil)", tuitionFee: "₹75,000", developmentFee: "₹15,000", total: "₹90,000" },
@@ -60,6 +71,59 @@ const AdmissionKEC = () => {
             and apply online for a successful career ahead.
           </p>
         </motion.div>
+
+
+        <motion.div 
+          className="bg-white p-8 rounded-2xl shadow-lg mb-12 border border-blue-100"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+        >
+          <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
+            {/* Image */}
+            <div className="flex-shrink-0">
+              <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-blue-100 shadow-lg">
+                <img 
+                  src={headOfAdmission.image} 
+                  alt={headOfAdmission.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+            
+            {/* Content */}
+            <div className="flex-1 text-center md:text-left">
+              <div className="inline-flex items-center bg-blue-100 text-blue-800 px-4 py-1 rounded-full text-sm font-medium mb-4">
+                <User size={16} className="mr-2" />
+                Head of Admissions
+              </div>
+              
+              <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-2">
+                {headOfAdmission.name}
+              </h2>
+              
+              <p className="text-blue-700 font-medium mb-4">
+                {headOfAdmission.position}
+              </p>
+              
+              <div className="mb-4">
+                <p className="text-gray-600 mb-2">
+                  <span className="font-semibold">Qualification:</span> {headOfAdmission.qualification}
+                </p>
+                <p className="text-gray-600">
+                  <span className="font-semibold">Experience:</span> {headOfAdmission.experience}
+                </p>
+              </div>
+              
+              <p className="text-blue-800 italic mb-6 border-l-4 border-blue-300 pl-4 py-2">
+                "{headOfAdmission.message}"
+              </p>
+              
+             
+            </div>
+          </div>
+        </motion.div>
+
 
         {/* Tab Navigation */}
         <div className="flex flex-wrap justify-center mb-12 border-b border-blue-200">

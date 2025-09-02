@@ -12,51 +12,120 @@ import "swiper/css/pagination";
 
 const alumniData = [
   {
-    name: "Rohit Sharma",
-    batch: "B.Tech CSE, 2012",
-    role: "Senior Software Engineer at Microsoft",
+    name: "Sakshi",
+    batch: "B.Tech Civil, 2024",
+    role: "Fail - Exam; BSP Valuation work, Maple Architect",
     img: "/images/alumni1.jpg",
-    quote:
-      "Krishna Engineering College shaped my career by providing strong fundamentals and exposure to real-world projects. The faculty guidance was invaluable.",
-    linkedin: "https://linkedin.com/in/rohitsharma",
+    quote: "KEC gave me the foundation and confidence to pursue my dream career in civil engineering.",
+    linkedin: "#"
   },
   {
-    name: "Priya Verma",
-    batch: "B.Tech ECE, 2015",
-    role: "Product Manager at Google",
+    name: "Amisha Ramteke",
+    batch: "B.Tech Civil, 2023",
+    role: "Raipur Ultratech",
     img: "/images/alumni2.jpg",
-    quote:
-      "The vibrant campus life and academic excellence at KEC helped me grow not only as an engineer but also as a leader.",
-    linkedin: "https://linkedin.com/in/priyaverma",
+    quote: "The practical exposure at KEC Bhilai prepared me for real-world construction challenges.",
+    linkedin: "#"
   },
   {
-    name: "Amit Desai",
-    batch: "B.Tech ME, 2010",
-    role: "Founder & CEO, TechNova Solutions",
+    name: "Arpit Kumar Mishra",
+    batch: "B.Tech Civil, 2023",
+    role: "Kalptaru Projects KPIL",
     img: "/images/alumni3.jpg",
-    quote:
-      "The entrepreneurial spirit I developed at KEC gave me the confidence to start my own company and scale it globally.",
-    linkedin: "https://linkedin.com/in/amitdesai",
+    quote: "With the right mentorship, I developed strong technical and leadership skills at KEC.",
+    linkedin: "#"
   },
   {
-    name: "Neha Gupta",
-    batch: "B.Tech CSE, 2017",
-    role: "Data Scientist at Amazon",
+    name: "Aryan Dewangan",
+    batch: "B.Tech Civil, 2023",
+    role: "Works in PWD Adhoc",
     img: "/images/alumni4.jpg",
-    quote:
-      "The industry-relevant curriculum and hands-on projects at KEC prepared me perfectly for a career in data science.",
-    linkedin: "https://linkedin.com/in/nehagupta",
+    quote: "The academic environment at KEC encouraged innovation and problem-solving.",
+    linkedin: "#"
   },
   {
-    name: "Vikram Singh",
-    batch: "B.Tech EEE, 2013",
-    role: "Technical Lead at NVIDIA",
+    name: "Bhavna",
+    batch: "B.Tech Civil, 2023",
+    role: "Sarthi Associates, Raipur",
     img: "/images/alumni5.jpg",
-    quote:
-      "The technical clubs and workshops at KEC helped me discover my passion for hardware design and embedded systems.",
-    linkedin: "https://linkedin.com/in/vikramsingh",
+    quote: "My journey at KEC shaped my professional and personal growth equally.",
+    linkedin: "#"
   },
+  {
+    name: "Fanendra Dewangan",
+    batch: "B.Tech Civil, 2023",
+    role: "Site Engineer, Utopia Durg",
+    img: "/images/alumni6.jpg",
+    quote: "KEC provided me with industry exposure that was vital for my career.",
+    linkedin: "#"
+  },
+  {
+    name: "Hitesh Kumar Chandel",
+    batch: "B.Tech Civil, 2023",
+    role: "Swami Constructions, Raipur",
+    img: "/images/alumni7.jpg",
+    quote: "The faculty support and hands-on labs made me industry ready.",
+    linkedin: "#"
+  },
+  {
+    name: "Revendra Hirwanee",
+    batch: "B.Tech Civil, 2023",
+    role: "Chandak & Sharda Associates, Durg",
+    img: "/images/alumni8.jpg",
+    quote: "KEC Bhilai laid a strong base for my technical expertise in surveying.",
+    linkedin: "#"
+  },
+  {
+    name: "Vinod Kumar Kosariya",
+    batch: "B.Tech Civil, 2023",
+    role: "Green Earth Solution Ltd., Raipur",
+    img: "/images/alumni9.jpg",
+    quote: "The environment at KEC motivated me to excel in my field.",
+    linkedin: "#"
+  },
+  {
+    name: "Dhanraj Soni",
+    batch: "B.Tech Electrical, 2023",
+    role: "RR Ispat, Hira Group",
+    img: "/images/alumni10.jpg",
+    quote: "KEC’s practical training sessions gave me confidence in handling power systems.",
+    linkedin: "#"
+  },
+  {
+    name: "Amitesh Sharma",
+    batch: "B.Tech Mechanical",
+    role: "Mechanical Design Engineer",
+    img: "/images/alumni11.jpg",
+    quote: "KEC inspired me to think innovatively and pursue design engineering.",
+    linkedin: "#"
+  },
+  {
+    name: "Rahul Kumar",
+    batch: "B.Tech Mechanical",
+    role: "Production Engineer",
+    img: "/images/alumni12.jpg",
+    quote: "The mechanical workshops at KEC played a key role in my career journey.",
+    linkedin: "#"
+  },
+  {
+    name: "Rupendra",
+    batch: "B.Tech Civil",
+    role: "Civil Site Engineer",
+    img: "/images/alumni13.jpg",
+    quote: "KEC Bhilai gave me opportunities to learn beyond textbooks.",
+    linkedin: "#"
+  },
+  {
+    name: "Yogeshraj Sahu",
+    batch: "B.Tech Civil",
+    role: "Infrastructure Engineer",
+    img: "/images/alumni14.jpg",
+    quote: "My time at KEC helped me gain both skills and confidence to succeed.",
+    linkedin: "#"
+  }
 ];
+
+
 
 const AlumniSection = () => {
   return (
@@ -135,9 +204,11 @@ const AlumniSection = () => {
                       alt={alumni.name}
                       className="w-24 h-24 rounded-full object-cover mx-auto border-4 border-blue-200"
                     />
-                    <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded-full">
-                      {alumni.batch.split(",")[1].trim()}
-                    </div>
+                   <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded-full">
+  {alumni.batch.includes(",")
+    ? alumni.batch.split(",")[1].trim()
+    : alumni.batch.replace("B.Tech", "").trim()}
+</div>
                   </div>
 
                   {/* Alumni Info */}
@@ -158,16 +229,7 @@ const AlumniSection = () => {
                   </div>
 
                   {/* LinkedIn */}
-                  <div className="flex justify-center mt-auto">
-                    <a
-                      href={alumni.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-full text-sm font-medium transition-colors"
-                    >
-                      <Linkedin size={16} /> Connect on LinkedIn
-                    </a>
-                  </div>
+                 
                 </motion.div>
               </SwiperSlide>
             ))}

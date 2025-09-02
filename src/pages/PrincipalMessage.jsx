@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Quote, Award, GraduationCap, BookOpen, Mail, Calendar, ArrowRight } from "lucide-react";
+import { Quote, Award, GraduationCap, BookOpen, Mail, Calendar, ArrowRight, MapPin, Phone, User } from "lucide-react";
 
 const PrincipalMessage = () => {
   const [ref, inView] = useInView({
@@ -54,6 +54,28 @@ const PrincipalMessage = () => {
     }
   };
 
+  // Principal data
+  const principalData = {
+    name: "Dr. Ajay Tiwari",
+    address: "203, 2nd floor, Bikshika Complex, Paradise Complex, Borsi Durg C.G. 491001",
+    contact: "9893510942",
+    email: "drajay2806@gmail.com",
+    education: "PhD Mechanical (Robotics)",
+    dob: "28-6-1962",
+    joiningDate: "22-02-2021",
+    experience: "33 years",
+    specialization: "Mechanical (Robotics)",
+    publications: {
+      total: 21,
+      national: 10,
+      international: 7,
+      journalsConferences: 8
+    },
+    phdGuided: 2,
+    patents: 1,
+    books: 0
+  };
+
   return (
     <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50 relative overflow-hidden">
       {/* Decorative elements */}
@@ -96,12 +118,12 @@ const PrincipalMessage = () => {
             className="relative flex-shrink-0 w-64 h-64 lg:w-80 lg:h-80 rounded-2xl overflow-hidden shadow-2xl mx-auto lg:mx-0"
           >
             <img
-              src="https://media.istockphoto.com/id/1364388476/photo/headshot-of-multiracial-male-educator-standing-outdoors.jpg?s=612x612&w=0&k=20&c=B8EIA7VqGbbk1trLIkzeL6M6jfZ_ZwuqYip7Gj_tml4="
-              alt="Dr. Anand Kumar Tripathi, Principal"
+              src="https://image-static.collegedunia.com/public/image/19-09:08-Ajay_Tiwari_01.jpeg"
+              alt="Dr. Ajay Tiwari, Principal"
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-              <span className="text-white text-sm font-medium">Dr. Anand Kumar Tripathi</span>
+              <span className="text-white text-sm font-medium">{principalData.name}</span>
             </div>
             
             {/* Decorative badge */}
@@ -164,27 +186,31 @@ const PrincipalMessage = () => {
 
             {/* Name & Designation */}
             <motion.div variants={itemVariants} className="mb-6">
-              <h3 className="text-2xl font-bold text-blue-900 mb-1">Dr. Anand Kumar Tripathi</h3>
+              <h3 className="text-2xl font-bold text-blue-900 mb-1">{principalData.name}</h3>
               <p className="text-blue-800 font-medium mb-2">Principal, Krishna Engineering College</p>
               
               <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
                 <div className="flex items-center text-sm text-blue-700">
                   <GraduationCap className="w-4 h-4 mr-1" />
-                  <span>Ph.D. in Electrical Engineering</span>
+                  <span>{principalData.education}</span>
                 </div>
                 <div className="flex items-center text-sm text-blue-700">
                   <Calendar className="w-4 h-4 mr-1" />
-                  <span>15+ Years of Experience</span>
+                  <span>{principalData.experience} of Experience</span>
                 </div>
               </div>
             </motion.div>
 
+            {/* Contact Information */}
+            <motion.div variants={itemVariants} className="mb-6 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+              
+             
+            </motion.div>
+
             {/* Signature and CTA */}
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6">
-            
-              
               <motion.a
-                href="mailto:principal@krishnaengineering.edu.in"
+                href={`mailto:${principalData.email}`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex items-center px-5 py-2.5 bg-blue-700 text-white rounded-lg shadow-md hover:bg-blue-800 transition-colors"
@@ -201,30 +227,50 @@ const PrincipalMessage = () => {
           initial="hidden"
           animate={controls}
           variants={containerVariants}
-          className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6"
+          className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           <motion.div variants={itemVariants} className="bg-white p-6 rounded-2xl shadow-md border border-blue-100 text-center">
             <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4">
               <BookOpen className="w-6 h-6 text-blue-700" />
             </div>
-            <h4 className="font-semibold text-blue-900 mb-2">25+ Publications</h4>
-            <p className="text-gray-600 text-sm">In international journals and conferences</p>
+            <h4 className="font-semibold text-blue-900 mb-2">{principalData.publications.total} Publications</h4>
+            <p className="text-gray-600 text-sm">
+              {principalData.publications.national} National, {principalData.publications.international} International
+            </p>
+          </motion.div>
+          
+         
+          
+          <motion.div variants={itemVariants} className="bg-white p-6 rounded-2xl shadow-md border border-blue-100 text-center">
+            <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+              <User className="w-6 h-6 text-blue-700" />
+            </div>
+            <h4 className="font-semibold text-blue-900 mb-2">{principalData.phdGuided} PhD Guided</h4>
+            <p className="text-gray-600 text-sm">Research scholars mentored</p>
           </motion.div>
           
           <motion.div variants={itemVariants} className="bg-white p-6 rounded-2xl shadow-md border border-blue-100 text-center">
             <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-              <Award className="w-6 h-6 text-blue-700" />
+              <Calendar className="w-6 h-6 text-blue-700" />
             </div>
-            <h4 className="font-semibold text-blue-900 mb-2">10 Awards</h4>
-            <p className="text-gray-600 text-sm">For excellence in education and research</p>
+            <h4 className="font-semibold text-blue-900 mb-2">{principalData.experience}</h4>
+            <p className="text-gray-600 text-sm">Of teaching experience</p>
           </motion.div>
-          
-          <motion.div variants={itemVariants} className="bg-white p-6 rounded-2xl shadow-md border border-blue-100 text-center">
-            <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-              <GraduationCap className="w-6 h-6 text-blue-700" />
+        </motion.div>
+
+        {/* Specialization Area */}
+        <motion.div
+          initial="hidden"
+          animate={controls}
+          variants={containerVariants}
+          className="mt-12 bg-blue-100 rounded-2xl p-8 text-center"
+        >
+          <motion.div variants={itemVariants}>
+            <h3 className="text-2xl font-bold text-blue-900 mb-4">Area of Specialization</h3>
+            <div className="inline-flex items-center bg-white px-4 py-2 rounded-full shadow-sm">
+              <Award className="w-5 h-5 text-blue-700 mr-2" />
+              <span className="text-blue-800 font-medium">{principalData.specialization}</span>
             </div>
-            <h4 className="font-semibold text-blue-900 mb-2">5 Patents</h4>
-            <p className="text-gray-600 text-sm">In innovative engineering solutions</p>
           </motion.div>
         </motion.div>
       </div>

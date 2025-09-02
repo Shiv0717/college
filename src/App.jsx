@@ -29,6 +29,7 @@ import EventComponent from "./pages/EventComponent";
 import PressMediaPage from "./pages/PressMediaPage";
 import GalleryPage from "./pages/GalleryPage";
 import ApplyNow from "./pages/ApplyNow";
+import AlumniPage from "./pages/AlumniPage";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,7 @@ const router = createBrowserRouter([
       { path: "placements", element: <PlacementPage/> },
       { path: "notice", element: <Notice/> },
       { path: "research", element: <Research/> },
+      { path: "alumni", element: <AlumniPage/> },
       { path: "faculty", element: <FacultyPage/> },
       { path: "mission", element: <MissionVision/> },
       { path: "governance", element: <Governance/>},
