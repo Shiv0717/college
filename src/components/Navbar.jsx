@@ -6,11 +6,11 @@ import {
   Menu,
   X,
   GraduationCap,
-  BookOpen,
   Users,
   Phone,
   ChevronDown,
   Home,
+  BookOpen,
   Briefcase,
 } from "lucide-react";
 
@@ -50,7 +50,11 @@ const Navbar = () => {
         { name: "Electrical Engineering", path: "/departments/eee" },
       ],
     },
-    
+    { 
+      name: "Courses", 
+      path: "/courses", 
+      icon: <BookOpen className="w-5 h-5" /> 
+    },
     { 
       name: "Contact", 
       path: "/contact", 

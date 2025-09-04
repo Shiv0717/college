@@ -5,94 +5,35 @@ import { X, Search, ChevronDown, ZoomIn, Download, Share } from "lucide-react";
 const galleryData = [
   {
     id: 1,
-    title: "Annual Cultural Fest 2025",
+    title: "Hanuman Jayanti Celebration 2025",
     category: "Events",
-    image: "https://images.unsplash.com/photo-1515169067865-5387ec356754?auto=format&fit=crop&w=800&q=80",
-    date: "2025-03-15",
-    description: "Our annual cultural festival showcased incredible talent from students across all departments with performances, art exhibitions, and food stalls.",
-    likes: 124,
-    downloads: 57
+    image: "https://scontent.fbho3-1.fna.fbcdn.net/v/t39.30808-6/441305399_122752391367473984_3686828832087925275_n.jpg", // replace with actual
+    date: "2025-04-23",
+    description: "Hanuman Jayanti was celebrated with great devotion and enthusiasm at Krishna Engineering College. Both students and staff collaborated to organize a vibrant and spiritual event.",
+    likes: 90,
+    downloads: 40
   },
   {
     id: 2,
-    title: "AI Workshop with Industry Experts",
-    category: "Workshops",
-    image: "https://images.unsplash.com/photo-1596495577886-d920f1fb2540?auto=format&fit=crop&w=800&q=80",
-    date: "2025-02-28",
-    description: "Students participated in an intensive AI workshop led by industry professionals, working on real-world problems and solutions.",
-    likes: 89,
-    downloads: 42
+    title: "Gulal 2.0: Freshers & Farewell Party 2025",
+    category: "Events",
+    image: "https://scontent.fbho3-1.fna.fbcdn.net/v/t39.30808-6/441230145_122752391347473984_7869424194947334913_n.jpg", // replace with actual
+    date: "2025-03-10",
+    description: "A colorful and joyful celebration as Krishna Engineering College hosted Gulal 2.0, combining Freshers’ Welcome and Farewell party. Students celebrated Holi and bid farewell to seniors with music, dance, and fun.",
+    likes: 110,
+    downloads: 50
   },
   {
     id: 3,
-    title: "Sports Day 2025",
+    title: "Kite Festival 2025",
     category: "Events",
-    image: "https://images.unsplash.com/photo-1581090700227-0fc2c9f6ec0b?auto=format&fit=crop&w=800&q=80",
-    date: "2025-02-10",
-    description: "Annual sports day featuring competitions in track and field, team sports, and special events for faculty and staff.",
-    likes: 156,
-    downloads: 68
-  },
-  {
-    id: 4,
-    title: "Graduation Ceremony",
-    category: "Ceremony",
-    image: "https://images.unsplash.com/photo-1605902711622-cfb43c4438c1?auto=format&fit=crop&w=800&q=80",
-    date: "2025-01-25",
-    description: "Celebrating the achievements of our graduating class of 2025 with keynote speakers and special awards.",
-    likes: 201,
-    downloads: 93
-  },
-  {
-    id: 5,
-    title: "National Robotics Competition",
-    category: "Competitions",
-    image: "https://images.unsplash.com/photo-1581091215363-79913f0b6cfa?auto=format&fit=crop&w=800&q=80",
-    date: "2025-01-12",
-    description: "Our team won first place in the national robotics competition with their innovative design and implementation.",
-    likes: 178,
-    downloads: 75
-  },
-  {
-    id: 6,
-    title: "Science Exhibition 2025",
-    category: "Exhibitions",
-    image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80",
-    date: "2024-12-05",
-    description: "Students presented innovative projects in physics, chemistry, and biology to judges and visitors.",
-    likes: 132,
-    downloads: 61
-  },
-  {
-    id: 7,
-    title: "Faculty Development Program",
-    category: "Workshops",
-    image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80",
-    date: "2024-11-20",
-    description: "Week-long faculty development program focused on innovative teaching methodologies and curriculum design.",
-    likes: 76,
-    downloads: 38
-  },
-  {
-    id: 8,
-    title: "New Campus Inauguration",
-    category: "Ceremony",
-    image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=80",
-    date: "2024-11-08",
-    description: "Inauguration of our new sustainable campus building with state-of-the-art facilities and laboratories.",
-    likes: 189,
-    downloads: 82
-  },
-  {
-    id: 9,
-    title: "Hackathon 2024",
-    category: "Competitions",
-    image: "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?auto=format&fit=crop&w=800&q=80",
-    date: "2024-10-22",
-    description: "48-hour hackathon where students developed solutions for social and environmental challenges.",
-    likes: 167,
-    downloads: 71
-  },
+    image: "https://scontent.fbho3-1.fna.fbcdn.net/v/t39.30808-6/441312370_122752391407473984_2403120141868937387_n.jpg", // replace with actual
+    date: "2025-02-05",
+    description: "A vibrant Kite Festival was hosted at Krishna College, Bhilai on 5th Feb 2025. Students participated in kite flying competitions, winning exciting prizes and enjoying colorful skies.",
+    likes: 150,
+    downloads: 70
+  }
+  
 ];
 
 const categories = [

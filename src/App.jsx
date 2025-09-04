@@ -31,6 +31,7 @@ import GalleryPage from "./pages/GalleryPage";
 import ApplyNow from "./pages/ApplyNow";
 import AlumniPage from "./pages/AlumniPage";
 import Hod from "./pages/Hod";
+import Courses from "./pages/Courses";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,7 @@ const router = createBrowserRouter([
       { path: "contact", element: <ContactUs /> },
       { path: "departments", element: <DepartmentsPage/> },
       { path: "departments/:id", element: <DepartmentDetails/> },
+      { path: "courses", element: <Courses/> },
       { path: "admission", element: <AdmissionKEC /> },
       { path: "facilities", element: <FacilitiesPage/> },
       { path: "placements", element: <PlacementPage/> },
