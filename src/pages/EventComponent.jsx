@@ -3,85 +3,71 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Calendar, X, MapPin, Clock, Users, ArrowRight, Filter, Search } from "lucide-react";
 
 const eventsData = [
+  // Event 1 - Independence Day
   {
-    id: 1,
-    title: "Annual Tech Symposium",
-    date: "2025-09-15",
-    time: "10:00 AM - 4:00 PM",
-    location: "Main Auditorium",
-    category: "Technology",
-    description: "A gathering of tech enthusiasts, students, and faculty to showcase projects, research, and workshops on emerging technologies.",
-    image: "https://images.unsplash.com/photo-1596495577886-d920f1fb2540?auto=format&fit=crop&w=800&q=80",
-    attendees: 250,
-    status: "upcoming",
-    registrationLink: "#"
-  },
-  {
-    id: 2,
-    title: "Cultural Fest",
-    date: "2025-10-05",
-    time: "11:00 AM - 6:00 PM",
-    location: "College Grounds",
-    category: "Cultural",
-    description: "Celebrate diversity and creativity with dance, music, drama, and art performances from students across all departments.",
-    image: "https://images.unsplash.com/photo-1519337265831-281ec6cc8514?auto=format&fit=crop&w=800&q=80",
+    id: 7,
+    title: "Happy 79th Independence Day!",
+    date: "2025-08-15",
+    time: "09:00 AM",
+    location: "Krishna Engineering College, Bhilai",
+    category: "National Celebration",
+    description:
+      "At Krishna Engineering College, we salute the spirit of freedom, innovation, and resilience that defines our great nation. May we continue to build a stronger India — with knowledge, technology, and unity at the core.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Flag_Hoisting_Independence_Day.jpg", // Replace with actual image if available
     attendees: 500,
-    status: "upcoming",
-    registrationLink: "#"
-  },
-  {
-    id: 3,
-    title: "Guest Lecture on AI & ML",
-    date: "2025-09-25",
-    time: "2:00 PM - 5:00 PM",
-    location: "Lecture Hall 2",
-    category: "Lecture",
-    description: "A session by industry experts on Artificial Intelligence and Machine Learning trends, applications, and career opportunities.",
-    image: "https://images.unsplash.com/photo-1581091012184-49b91f4b7a0f?auto=format&fit=crop&w=800&q=80",
-    attendees: 120,
-    status: "upcoming",
-    registrationLink: "#"
-  },
-  {
-    id: 4,
-    title: "Hackathon 2025",
-    date: "2025-08-10",
-    time: "9:00 AM - 9:00 PM",
-    location: "Computer Lab",
-    category: "Technology",
-    description: "24-hour coding competition where students solve real-world problems with innovative tech solutions.",
-    image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80",
-    attendees: 100,
-    status: "upcoming",
-    registrationLink: "#"
-  },
-  {
-    id: 5,
-    title: "Sports Day",
-    date: "2025-03-15",
-    time: "8:00 AM - 5:00 PM",
-    location: "Sports Ground",
-    category: "Sports",
-    description: "Annual sports competition with various athletic events and team games.",
-    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80",
-    attendees: 300,
     status: "past",
     registrationLink: "#"
   },
+
+  // Event 2 - Welcome (General Induction)
   {
-    id: 6,
-    title: "Industry Connect Workshop",
-    date: "2025-11-20",
-    time: "1:00 PM - 4:00 PM",
-    location: "Seminar Hall",
-    category: "Workshop",
-    description: "Interactive session with industry professionals to bridge the gap between academia and industry.",
-    image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80",
-    attendees: 80,
-    status: "upcoming",
+    id: 8,
+    title: "Welcome B.Tech Batch of 2025–26!",
+    date: "2025-08-12",
+    time: "10:00 AM",
+    location: "KEC, Bhilai",
+    category: "Orientation",
+    description:
+      "We’re thrilled to welcome the newest members of our Krishna Engineering College family! Join us for the Induction Programme as we kick-start an exciting journey of learning, innovation, and growth.",
+    image: "https://images.unsplash.com/photo-1600195077073-2a8de00b2118?auto=format&fit=crop&w=800&q=80",
+    attendees: 400,
+    status: "past",
     registrationLink: "#"
   },
+
+  // Event 3 - Induction with Chief Guest
+  {
+    id: 9,
+    title: "Induction Program with Prof. Rajiv Prakash",
+    date: "2025-08-13",
+    time: "10:30 AM",
+    location: "Seminar Hall, KEC, Bhilai",
+    category: "Orientation",
+    description:
+      "We’re honored to have Prof. Rajiv Prakash, Director of IIT Bhilai, as our Chief Guest to inspire and guide our fresh minds at the Induction Programme 2025-26.",
+    image: "https://images.unsplash.com/photo-1608408891400-0fe7e1089ccf?auto=format&fit=crop&w=800&q=80",
+    attendees: 450,
+    status: "past",
+    registrationLink: "#"
+  },
+
+  // Event 4 - MoU with IBITF
+  {
+    id: 10,
+    title: "MoU Signing with IIT Bhilai Innovation Foundation",
+    date: "2025-08-12",
+    time: "11:30 AM",
+    location: "KEC Campus, Bhilai",
+    category: "Partnership",
+    description:
+      "A proud moment for KEC Bhilai as we hosted Dr. Prashant Mathur, CEO of IBITF, for the signing of a significant MoU. This marks a new chapter of innovation, growth, and opportunity for our institute.",
+    image: "https://images.unsplash.com/photo-1581093588401-6c47b44954d4?auto=format&fit=crop&w=800&q=80",
+    attendees: 150,
+    status: "past",
+    registrationLink: "#"
+  }
 ];
+
 
 const categories = [...new Set(eventsData.map(event => event.category))];
 

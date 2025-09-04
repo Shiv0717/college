@@ -69,9 +69,9 @@ const DepartmentDetails = () => {
         experience: "12+ years average"
       },
       contact: {
-        email: "cse@krishnacollege.edu",
-        phone: "+91-1234567890",
-        website: "cse.krishnacollege.edu"
+        email: "admission@kecbhilai.com",
+        phone: "+91-7000130299",
+       
       },
       established: 2008,
       students: 450,
@@ -93,6 +93,11 @@ const DepartmentDetails = () => {
         { name: "B.Tech in Civil Engineering", duration: "4 Years", seats: 90 },
         { name: "M.Tech in Structural Engineering", duration: "2 Years", seats: 25 }
       ],
+      contact: {
+        email: "admission@kecbhilai.com",
+        phone: "+91-7000130299",
+       
+      },
       established: 2008,
       students: 280,
       placement: "92%"
@@ -113,6 +118,11 @@ const DepartmentDetails = () => {
         { name: "B.Tech in Mechanical Engineering", duration: "4 Years", seats: 120 },
         { name: "M.Tech in Thermal Engineering", duration: "2 Years", seats: 20 }
       ],
+      contact: {
+        email: "admission@kecbhilai.com",
+        phone: "+91-7000130299",
+       
+      },
       established: 2008,
       students: 380,
       placement: "94%"
@@ -133,6 +143,11 @@ const DepartmentDetails = () => {
         { name: "B.Tech in Electrical Engineering", duration: "4 Years", seats: 90 },
         { name: "M.Tech in Power Systems", duration: "2 Years", seats: 18 }
       ],
+      contact: {
+        email: "admission@kecbhilai.com",
+        phone: "+91-7000130299",
+       
+      },
       established: 2008,
       students: 320,
       placement: "91%"
@@ -469,10 +484,7 @@ const DepartmentDetails = () => {
                   <Mail size={18} className="text-blue-700 mr-3" />
                   <span className="text-blue-800">{department.contact?.email || "department@college.edu"}</span>
                 </div>
-                <div className="flex items-center p-3 bg-blue-50 rounded-lg">
-                  <Globe size={18} className="text-blue-700 mr-3" />
-                  <span className="text-blue-800">{department.contact?.website || "department.college.edu"}</span>
-                </div>
+               
               </div>
             </motion.div>
 
@@ -490,13 +502,7 @@ const DepartmentDetails = () => {
                 Apply Now <ExternalLink size={18} className="ml-2" />
               </motion.button>
               
-              <motion.button 
-                className="w-full mt-4 border border-blue-600 text-blue-600 hover:bg-blue-50 font-medium py-3 px-4 rounded-xl transition-colors duration-300 flex items-center justify-center"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Heart size={18} className="mr-2" /> Save Department
-              </motion.button>
+              
             </motion.div>
           </div>
         </div>

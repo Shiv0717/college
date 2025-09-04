@@ -32,6 +32,7 @@ const Navbar = () => {
       dropdown: [
         { name: "About College", path: "/about" },
         { name: "Principal's Message", path: "/principal" },
+        { name: "HOD", path: "/hod" },
         { name: "Mission & Vision", path: "/mission" },
         { name: "Infrastructure", path: "/infrastructure" },
         { name: "Facilities", path: "/facilities" },

@@ -7,78 +7,214 @@ import { FunnelIcon, MagnifyingGlassIcon, ChevronUpDownIcon } from '@heroicons/r
 const companiesData = [
   {
     id: 1,
-    date: "2023-07-15",
-    name: "Microsoft",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
-    sector: "Technology",
-    package: "18 LPA",
-    students: 25
+    date: "2024-03-15", // example date, adjust as needed
+    name: "Codenicely",
+    logo: "https://cdn.worldvectorlogo.com/logos/codenicely.svg", // placeholder
+    sector: "Software Development",
+    package: "6 LPA",
+    students: 5
   },
   {
     id: 2,
-    date: "2023-07-18",
-    name: "Google",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
-    sector: "Technology",
-    package: "20 LPA",
-    students: 15
+    date: "2024-03-17",
+    name: "Sthanve Software",
+    logo: "https://cdn.worldvectorlogo.com/logos/placeholder.svg",
+    sector: "Software Development",
+    package: "5 LPA",
+    students: 4
   },
   {
     id: 3,
-    date: "2023-07-20",
-    name: "Apple",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg",
-    sector: "Technology",
-    package: "19 LPA",
-    students: 12
+    date: "2024-03-20",
+    name: "Augtech Nextwealth",
+    logo: "https://cdn.worldvectorlogo.com/logos/placeholder.svg",
+    sector: "Tech Consulting",
+    package: "7 LPA",
+    students: 3
   },
   {
     id: 4,
-    date: "2023-07-22",
-    name: "Amazon",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
-    sector: "E-commerce",
-    package: "16 LPA",
-    students: 30
+    date: "2024-03-22",
+    name: "Gravity Engineering Services",
+    logo: "https://cdn.worldvectorlogo.com/logos/placeholder.svg",
+    sector: "Engineering",
+    package: "6.5 LPA",
+    students: 2
   },
   {
     id: 5,
-    date: "2023-07-25",
-    name: "Infosys",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/9/95/Infosys_logo.svg",
+    date: "2024-03-25",
+    name: "IB Group",
+    logo: "https://cdn.worldvectorlogo.com/logos/placeholder.svg",
     sector: "IT Services",
-    package: "8 LPA",
-    students: 45
+    package: "5.5 LPA",
+    students: 1
   },
   {
     id: 6,
-    date: "2023-07-28",
-    name: "TCS",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/b/b1/Tata_Consultancy_Services_Logo.svg",
-    sector: "IT Services",
-    package: "7.5 LPA",
-    students: 50
+    date: "2024-03-28",
+    name: "Avinash Builders",
+    logo: "https://cdn.worldvectorlogo.com/logos/placeholder.svg",
+    sector: "Construction",
+    package: "4.5 LPA",
+    students: 1
   },
   {
     id: 7,
-    date: "2023-08-01",
-    name: "Wipro",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/c/c0/Wipro_Logo.svg",
-    sector: "IT Services",
-    package: "7 LPA",
-    students: 40
+    date: "2024-04-01",
+    name: "AQUAPLAST Infraproject Pvt. Ltd.",
+    logo: "https://cdn.worldvectorlogo.com/logos/placeholder.svg",
+    sector: "Infrastructure",
+    package: "4.7 LPA",
+    students: 1
   },
   {
     id: 8,
-    date: "2023-08-05",
-    name: "Accenture",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/c/cd/Accenture.svg",
-    sector: "Consulting",
-    package: "9 LPA",
-    students: 35
+    date: "2024-04-05",
+    name: "IIT Bhilai",
+    logo: "https://upload.wikimedia.org/wikipedia/en/thumb/f/f6/IIT_Bhilai_Logo.svg/1200px-IIT_Bhilai_Logo.svg.png",
+    sector: "Research / Academia",
+    package: "N/A (Project Assistant)",
+    students: 2
   },
-  // Add more entries up to 204
+  {
+    id: 9,
+    date: "2024-04-10",
+    name: "Deepija Telecommunication Pvt Ltd",
+    logo: "https://cdn.worldvectorlogo.com/logos/placeholder.svg",
+    sector: "Telecommunications",
+    package: "5 LPA",
+    students: 1
+  },
+  {
+    id: 10,
+    date: "2024-04-15",
+    name: "Adani",
+    logo: "https://cdn.worldvectorlogo.com/logos/adani.svg",
+    sector: "Energy & Infrastructure",
+    package: "8 LPA",
+    students: 1
+  },
+  {
+    id: 11,
+    date: "2024-04-20",
+    name: "Kalptaru Projects KPIL",
+    logo: "https://cdn.worldvectorlogo.com/logos/placeholder.svg",
+    sector: "Construction",
+    package: "5 LPA",
+    students: 3
+  },
+  {
+    id: 12,
+    date: "2024-04-25",
+    name: "RR ISPAT",
+    logo: "https://cdn.worldvectorlogo.com/logos/placeholder.svg",
+    sector: "Steel & Power",
+    package: "6 LPA",
+    students: 3
+  },
+  {
+    id: 13,
+    date: "2024-04-30",
+    name: "Shri Balaji Construction",
+    logo: "https://cdn.worldvectorlogo.com/logos/placeholder.svg",
+    sector: "Construction",
+    package: "4.5 LPA",
+    students: 1
+  },
+  {
+    id: 14,
+    date: "2024-05-05",
+    name: "Maple Architect",
+    logo: "https://cdn.worldvectorlogo.com/logos/placeholder.svg",
+    sector: "Architecture",
+    package: "4.2 LPA",
+    students: 1
+  },
+  {
+    id: 15,
+    date: "2023-07-10",
+    name: "Ultratech Cement",
+    logo: "https://cdn.worldvectorlogo.com/logos/ultratech.svg",
+    sector: "Manufacturing",
+    package: "7 LPA",
+    students: 1
+  },
+  {
+    id: 16,
+    date: "2024-05-10",
+    name: "Sarthi Associates",
+    logo: "https://cdn.worldvectorlogo.com/logos/placeholder.svg",
+    sector: "Consulting",
+    package: "4 LPA",
+    students: 1
+  },
+  {
+    id: 17,
+    date: "2024-05-15",
+    name: "Utopia Durg",
+    logo: "https://cdn.worldvectorlogo.com/logos/placeholder.svg",
+    sector: "Construction",
+    package: "4 LPA",
+    students: 1
+  },
+  {
+    id: 18,
+    date: "2024-05-20",
+    name: "Swami Constructions Raipur",
+    logo: "https://cdn.worldvectorlogo.com/logos/placeholder.svg",
+    sector: "Construction",
+    package: "4 LPA",
+    students: 1
+  },
+  {
+    id: 19,
+    date: "2024-05-25",
+    name: "Chandak & Sharda Associates Durg",
+    logo: "https://cdn.worldvectorlogo.com/logos/placeholder.svg",
+    sector: "Consulting",
+    package: "4.2 LPA",
+    students: 1
+  },
+  {
+    id: 20,
+    date: "2024-05-30",
+    name: "Green Earth Solution Ltd. Raipur",
+    logo: "https://cdn.worldvectorlogo.com/logos/placeholder.svg",
+    sector: "Environmental Services",
+    package: "4.5 LPA",
+    students: 1
+  },
+  {
+    id: 21,
+    date: "2023-06-15",
+    name: "KPIL",
+    logo: "https://cdn.worldvectorlogo.com/logos/placeholder.svg",
+    sector: "Construction",
+    package: "5 LPA",
+    students: 3
+  },
+  {
+    id: 22,
+    date: "2023-06-20",
+    name: "Govt Job Coalfield India",
+    logo: "https://cdn.worldvectorlogo.com/logos/placeholder.svg",
+    sector: "Government",
+    package: "N/A",
+    students: 1
+  },
+  {
+    id: 23,
+    date: "2023-06-25",
+    name: "Govt Job CSPDCL",
+    logo: "https://cdn.worldvectorlogo.com/logos/placeholder.svg",
+    sector: "Government",
+    package: "N/A",
+    students: 1
+  }
+  // Add more entries up to 204 as per your full data set
 ];
+
 
 // Define table columns
 const columns = [

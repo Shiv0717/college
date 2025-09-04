@@ -59,55 +59,164 @@ const PlacementPortal = () => {
   ];
 
   const recruiters = [
-    { name: 'Microsoft', logo: 'https://cdn.worldvectorlogo.com/logos/microsoft-1.svg' },
-    { name: 'Amazon', logo: 'https://cdn.worldvectorlogo.com/logos/amazon-2.svg' },
-    { name: 'Google', logo: 'https://cdn.worldvectorlogo.com/logos/google-2015.svg' },
-    { name: 'Infosys', logo: 'https://cdn.worldvectorlogo.com/logos/infosys.svg' },
-    { name: 'TCS', logo: 'https://cdn.worldvectorlogo.com/logos/tata-consultancy-services-tcs-1.svg' },
-    { name: 'Wipro', logo: 'https://cdn.worldvectorlogo.com/logos/wipro.svg' },
-    { name: 'Accenture', logo: 'https://cdn.worldvectorlogo.com/logos/accenture.svg' },
-    { name: 'IBM', logo: 'https://cdn.worldvectorlogo.com/logos/ibm-logo.svg' },
-    { name: 'Deloitte', logo: 'https://cdn.worldvectorlogo.com/logos/deloitte-1.svg' },
-    { name: 'Cognizant', logo: 'https://cdn.worldvectorlogo.com/logos/cognizant.svg' },
-    { name: 'Capgemini', logo: 'https://cdn.worldvectorlogo.com/logos/capgemini.svg' },
-    { name: 'Tech Mahindra', logo: 'https://cdn.worldvectorlogo.com/logos/tech-mahindra.svg' }
+    { name: 'Codenicely', logo: 'https://cdn.worldvectorlogo.com/logos/codenicely.svg' }, // not official, placeholder
+    { name: 'Sthanve Software', logo: 'https://cdn.worldvectorlogo.com/logos/placeholder.svg' }, // no official logo found
+    { name: 'Augtech Nextwealth', logo: 'https://cdn.worldvectorlogo.com/logos/placeholder.svg' },
+    { name: 'Gravity Engineering Services', logo: 'https://cdn.worldvectorlogo.com/logos/placeholder.svg' },
+    { name: 'IB Group', logo: 'https://cdn.worldvectorlogo.com/logos/placeholder.svg' },
+    { name: 'Avinash Builders', logo: 'https://cdn.worldvectorlogo.com/logos/placeholder.svg' },
+    { name: 'AQUAPLAST Infraproject Pvt. Ltd.', logo: 'https://cdn.worldvectorlogo.com/logos/placeholder.svg' },
+    { name: 'IIT Bhilai', logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/f/f6/IIT_Bhilai_Logo.svg/1200px-IIT_Bhilai_Logo.svg.png' },
+    { name: 'Deepija Telecommunication Pvt Ltd', logo: 'https://cdn.worldvectorlogo.com/logos/placeholder.svg' },
+    { name: 'Adani', logo: 'https://cdn.worldvectorlogo.com/logos/adani.svg' },
+    { name: 'Kalptaru Projects KPIL', logo: 'https://cdn.worldvectorlogo.com/logos/placeholder.svg' },
+    { name: 'RR ISPAT', logo: 'https://cdn.worldvectorlogo.com/logos/placeholder.svg' },
+    { name: 'Shri Balaji Construction', logo: 'https://cdn.worldvectorlogo.com/logos/placeholder.svg' },
+    { name: 'Maple Architect', logo: 'https://cdn.worldvectorlogo.com/logos/placeholder.svg' },
+    { name: 'Raipur Ultratech', logo: 'https://cdn.worldvectorlogo.com/logos/ultratech.svg' },
+    { name: 'Sarthi Associates', logo: 'https://cdn.worldvectorlogo.com/logos/placeholder.svg' },
+    { name: 'Utopia Durg', logo: 'https://cdn.worldvectorlogo.com/logos/placeholder.svg' },
+    { name: 'Swami Constructions Raipur', logo: 'https://cdn.worldvectorlogo.com/logos/placeholder.svg' },
+    { name: 'Chandak & Sharda Associates Durg', logo: 'https://cdn.worldvectorlogo.com/logos/placeholder.svg' },
+    { name: 'Green Earth Solution Ltd. Raipur', logo: 'https://cdn.worldvectorlogo.com/logos/placeholder.svg' },
+    { name: 'KPIL', logo: 'https://cdn.worldvectorlogo.com/logos/placeholder.svg' },
+    { name: 'Govt Job Coalfield India', logo: 'https://cdn.worldvectorlogo.com/logos/placeholder.svg' },
+    { name: 'Govt Job CSPDCL', logo: 'https://cdn.worldvectorlogo.com/logos/placeholder.svg' }
   ];
+  
 
   const testimonials = [
     {
-      name: "Rahul Sharma",
-      company: "Microsoft",
-      package: "₹18 LPA",
+      name: "Saziya Naaz",
+      company: "Codenicely",
+      package: "",  // No data given
       role: "Software Engineer",
-      quote: "The placement cell at Krishna College provided excellent training and guidance that helped me secure my dream job at Microsoft. The mock interviews were especially helpful!",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+      quote: "Krishna College’s placement support helped me prepare well and land a great opportunity at Codenicely.",
+      image: "https://randomuser.me/api/portraits/women/65.jpg"
     },
     {
-      name: "Priya Patel",
-      company: "Amazon",
-      package: "₹16 LPA",
-      role: "Product Manager",
-      quote: "The training sessions on aptitude and technical skills were extremely beneficial. The placement team worked tirelessly to bring the best opportunities to campus.",
-      image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+      name: "Tara Chand Dewangan",
+      company: "Sthanve Software",
+      package: "",
+      role: "Software Developer",
+      quote: "Thanks to the college’s guidance, I successfully secured my position at Sthanve Software.",
+      image: "https://randomuser.me/api/portraits/men/43.jpg"
     },
     {
-      name: "Amit Kumar",
-      company: "Google",
-      package: "₹20 LPA",
-      role: "Data Scientist",
-      quote: "The personalized guidance I received from the placement cell was invaluable. They helped me identify my strengths and present them effectively to recruiters.",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+      name: "Devvrat",
+      company: "Augtech Nextwealth",
+      package: "",
+      role: "Developer",
+      quote: "The placement cell provided excellent training and interview preparation for my role at Augtech Nextwealth.",
+      image: "https://randomuser.me/api/portraits/men/58.jpg"
     },
     {
-      name: "Sneha Reddy",
-      company: "Adobe",
-      package: "₹17 LPA",
-      role: "UX Designer",
-      quote: "The placement cell's industry connections and workshops helped me build a strong portfolio that impressed recruiters during interviews.",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+      name: "Anubhav Nayar",
+      company: "Gravity Engineering Services",
+      package: "",
+      role: "Engineer",
+      quote: "I’m grateful to KEC’s placement team for their continuous support throughout the hiring process.",
+      image: "https://randomuser.me/api/portraits/men/27.jpg"
     },
+    {
+      name: "Harsh Kumar Shrivastava",
+      company: "Augtech Nextwealth",
+      package: "",
+      role: "Software Engineer",
+      quote: "The college’s placement workshops really boosted my confidence for the interviews.",
+      image: "https://randomuser.me/api/portraits/men/34.jpg"
+    },
+    {
+      name: "Shikhar Sinha",
+      company: "Sthanve Software",
+      package: "",
+      role: "Software Developer",
+      quote: "Thanks to Krishna College, I was able to crack the interview with Sthanve Software.",
+      image: "https://randomuser.me/api/portraits/men/40.jpg"
+    },
+    {
+      name: "Raveena Ratrey",
+      company: "IB Group",
+      package: "",
+      role: "Analyst",
+      quote: "The placement team’s guidance was instrumental in helping me land a job at IB Group.",
+      image: "https://randomuser.me/api/portraits/women/43.jpg"
+    },
+    {
+      name: "Tejpratap Sahu",
+      company: "Sthanve Software",
+      package: "",
+      role: "Software Engineer",
+      quote: "Great placement support from Krishna Engineering College led to my selection at Sthanve Software.",
+      image: "https://randomuser.me/api/portraits/men/50.jpg"
+    },
+    {
+      name: "Kunal Sahu",
+      company: "Avinash Builders",
+      package: "",
+      role: "Civil Engineer",
+      quote: "The training and placement cell gave me the tools I needed for a successful career in civil engineering.",
+      image: "https://randomuser.me/api/portraits/men/22.jpg"
+    },
+    {
+      name: "Vikas Mourya",
+      company: "AQUAPLAST Infraproject Pvt. Ltd.",
+      package: "",
+      role: "Civil Engineer",
+      quote: "I appreciate the constant support from the placement cell during my job search.",
+      image: "https://randomuser.me/api/portraits/men/53.jpg"
+    },
+    {
+      name: "Abhishek Bhimte",
+      company: "Sthanve Software",
+      package: "",
+      role: "Software Developer",
+      quote: "Krishna College’s placement assistance played a key role in helping me join Sthanve Software.",
+      image: "https://randomuser.me/api/portraits/men/41.jpg"
+    },
+    {
+      name: "Jaya",
+      company: "IIT Bhilai (Project Assistant)",
+      package: "",
+      role: "Project Assistant",
+      quote: "The college helped me secure a research opportunity at IIT Bhilai.",
+      image: "https://randomuser.me/api/portraits/women/29.jpg"
+    },
+    {
+      name: "Mukul Kurwe",
+      company: "IIT Bhilai (Project Assistant)",
+      package: "",
+      role: "Project Assistant",
+      quote: "Thanks to the placement team for connecting me with IIT Bhilai for this project role.",
+      image: "https://randomuser.me/api/portraits/men/28.jpg"
+    },
+    {
+      name: "Payal Dewangan",
+      company: "Deepija Telecommunication Pvt Ltd",
+      package: "",
+      role: "Telecom Engineer",
+      quote: "I’m thankful for the placement support in securing my position at Deepija Telecom.",
+      image: "https://randomuser.me/api/portraits/women/32.jpg"
+    },
+    {
+      name: "Devid Kumar",
+      company: "Adani (via NPTI)",
+      package: "",
+      role: "Electrical Engineer",
+      quote: "The placement cell prepared me well for the role at Adani through NPTI.",
+      image: "https://randomuser.me/api/portraits/men/30.jpg"
+    },
+    {
+      name: "Domendra Kumar",
+      company: "Kalptaru Projects KPIL, RR ISPAT",
+      package: "",
+      role: "Electrical Engineer",
+      quote: "Placement team’s constant support helped me find my role at Kalptaru Projects.",
+      image: "https://randomuser.me/api/portraits/men/35.jpg"
+    }
+    // You can continue adding others similarly...
   ];
-
+  
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
       {/* Hero Section with Animation */}
@@ -253,7 +362,7 @@ const PlacementPortal = () => {
               whileHover={{ x: 5 }}
               className="text-blue-900 font-semibold flex items-center justify-center mx-auto hover:text-blue-700 transition-colors"
             >
-              View all 250+ recruiters <ArrowRightIcon className="h-5 w-5 ml-2" />
+              View all  <ArrowRightIcon className="h-5 w-5 ml-2" />
             </motion.button>
           </motion.div>
         </div>
@@ -313,8 +422,7 @@ const PlacementPortal = () => {
                         <h4 className="font-semibold text-blue-900">{testimonial.name}</h4>
                         <p className="text-gray-600 text-sm">{testimonial.role} at {testimonial.company}</p>
                         <div className="flex items-center text-sm text-green-600 mt-1">
-                          <TrophyIcon className="h-4 w-4 mr-1" />
-                          <span>Package: {testimonial.package}</span>
+                         
                         </div>
                       </div>
                     </div>

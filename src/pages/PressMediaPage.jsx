@@ -5,83 +5,78 @@ import { Calendar, X, Newspaper, Search, ChevronDown, ExternalLink, Play } from 
 const mediaData = [
   {
     id: 1,
-    title: "Krishna Engineering College Wins National Tech Award",
-    date: "2025-08-20",
-    category: "Awards",
+    title: "Krishna Engineering College hosts exclusive recruitment drive by Tech Mahindra Pvt. Ltd.",
+    date: "2025-02-15",
+    category: "Events",
     description:
-      "Our students and faculty received the prestigious National Innovation Award for their outstanding projects in AI and Robotics. The award ceremony was attended by industry leaders and government officials.",
-    image:
-      "https://images.unsplash.com/photo-1581090700227-0fc2c9f6ec0b?auto=format&fit=crop&w=800&q=80",
+      "Tech Mahindra conducted a special campus recruitment drive at KEC, providing students with direct job placement opportunities in IT and consulting roles.",
+    image: "https://images.unsplash.com/photo-1596495577886-d920f1fb2540?auto=format&fit=crop&w=800&q=80",
     type: "article",
-    source: "Tech Education Times",
+    source: "Dainik Bhaskar",
     link: "#"
   },
   {
     id: 2,
-    title: "Cultural Fest Coverage by Local News",
-    date: "2025-07-15",
+    title: "State-level MSME Startup Expo organized at KEC",
+    date: "2025-01-10",
     category: "Events",
     description:
-      "The annual cultural fest was covered by local newspapers, showcasing student talent in music, dance, and theatre performances. Over 500 students participated in the week-long event.",
-    image:
-      "https://images.unsplash.com/photo-1515169067865-5387ec356754?auto=format&fit=crop&w=800&q=80",
-    type: "video",
-    source: "City News Channel",
+      "Krishna Engineering College successfully hosted a state-level MSME Startup Expo promoting entrepreneurship and innovation among youth.",
+    image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=80",
+    type: "article",
+    source: "Navbharat Times",
     link: "#"
   },
   {
     id: 3,
-    title: "Guest Lecture on AI Featured in Tech Magazine",
-    date: "2025-06-10",
-    category: "Lecture",
+    title: "Annual Sports Meet celebrated with cultural performances",
+    date: "2025-03-21",
+    category: "Events",
     description:
-      "The guest lecture by an AI industry expert was highlighted in Tech Monthly magazine for its relevance and student engagement. The session included hands-on workshops and live demonstrations.",
-    image:
-      "https://images.unsplash.com/photo-1596495577886-d920f1fb2540?auto=format&fit=crop&w=800&q=80",
-    type: "article",
-    source: "Tech Monthly",
+      "Students showcased their talents in sports and cultural programs during the vibrant annual sports day celebrations at Krishna College.",
+    image: "https://images.unsplash.com/photo-1515169067865-5387ec356754?auto=format&fit=crop&w=800&q=80",
+    type: "video",
+    source: "Patrika News",
     link: "#"
   },
   {
     id: 4,
-    title: "Research Paper Published in International Journal",
-    date: "2025-05-22",
+    title: "Krishna College contributes significantly to the field of education",
+    date: "2025-05-12",
     category: "Research",
     description:
-      "Our faculty's research on renewable energy solutions was published in the International Journal of Sustainable Engineering, gaining recognition from the academic community.",
-    image:
-      "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80",
+      "The college's consistent efforts in technical education and research were highlighted in several education-focused news articles.",
+    image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80",
     type: "article",
-    source: "IJSE Journal",
+    source: "Education Bhaskar",
     link: "#"
   },
   {
     id: 5,
-    title: "Campus Tour Featured in Education Digest",
+    title: "Engineering seminar held at Krishna College",
     date: "2025-04-18",
-    category: "Campus",
+    category: "Lecture",
     description:
-      "Our state-of-the-art campus facilities were featured in the Education Digest magazine, highlighting our innovative learning environments and sustainable architecture.",
-    image:
-      "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80",
+      "A technical seminar was organized for engineering students featuring academic experts and industry professionals sharing insights on modern tech.",
+    image: "https://images.unsplash.com/photo-1581090700227-0fc2c9f6ec0b?auto=format&fit=crop&w=800&q=80",
     type: "article",
-    source: "Education Digest",
+    source: "Tech Duniya",
     link: "#"
   },
   {
     id: 6,
-    title: "Student Startup Wins National Competition",
-    date: "2025-03-05",
-    category: "Awards",
+    title: "Students benefited from entrepreneurship awareness sessions",
+    date: "2025-02-05",
+    category: "Lecture",
     description:
-      "A student-led startup won first prize in the National Innovation Challenge, securing funding and mentorship opportunities from leading venture capitalists.",
-    image:
-      "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=80",
-    type: "video",
-    source: "Startup Insider",
+      "Awareness programs on startups and entrepreneurship helped students gain valuable knowledge and motivation to pursue their ideas.",
+    image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80",
+    type: "article",
+    source: "Startup Bulletin",
     link: "#"
-  },
+  }
 ];
+
 
 const PressMediaPage = () => {
   const [selectedMedia, setSelectedMedia] = useState(null);

@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from 'react';
 import { 
   Search, 
@@ -19,139 +20,208 @@ import {
   Star,
   Linkedin,
   Github,
-  Twitter
+  Twitter,
+  Filter,
+  ExternalLink
 } from 'lucide-react';
 
 const AlumniPage = () => {
   const [activeTab, setActiveTab] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [batchFilter, setBatchFilter] = useState('all');
+  const [branchFilter, setBranchFilter] = useState('all');
   const [companyFilter, setCompanyFilter] = useState('all');
   const [selectedAlumni, setSelectedAlumni] = useState(null);
+  const [showFilters, setShowFilters] = useState(false);
 
-  // Alumni data based on KEC Bhilai information
-  const alumniData = [
-    {
-      id: 1,
-      name: "Rajesh Kumar",
-      batch: "2015",
-      degree: "B.Tech in Computer Science",
-      currentPosition: "Senior Software Engineer",
-      company: "Microsoft",
-      location: "Bangalore, India",
-      photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80",
-      achievements: ["Microsoft MVP", "Published 5 research papers", "Open source contributor"],
-      contact: {
-        email: "rajesh.kumar@example.com",
-        linkedin: "https://linkedin.com/in/rajeshkumar",
-        phone: "+91 9876543210"
-      },
-      story: "After graduating from KEC in 2015, I joined Microsoft as a software engineer. The strong foundation in computer science I received at KEC helped me excel in my career."
-    },
-    {
-      id: 2,
-      name: "Priya Sharma",
-      batch: "2018",
-      degree: "B.Tech in Electronics",
-      currentPosition: "Product Manager",
-      company: "Google",
-      location: "California, USA",
-      photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80",
-      achievements: ["Led product team of 20", "Women in Tech awardee", "Patent holder"],
-      contact: {
-        email: "priya.sharma@example.com",
-        linkedin: "https://linkedin.com/in/priyasharma",
-        phone: "+1 1234567890"
-      },
-      story: "KEC provided me with not just technical knowledge but also the confidence to lead teams. My electronics background helps me understand tech products better."
-    },
-    {
-      id: 3,
-      name: "Amit Patel",
-      batch: "2012",
-      degree: "B.Tech in Mechanical",
-      currentPosition: "Founder & CEO",
-      company: "AutoInnovate",
-      location: "Pune, India",
-      photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80",
-      achievements: ["Successful exit of first startup", "Forbes 30 under 30", "Mentor to startups"],
-      contact: {
-        email: "amit.patel@example.com",
-        linkedin: "https://linkedin.com/in/amitpatel",
-        phone: "+91 8765432109"
-      },
-      story: "The mechanical engineering program at KEC taught me problem-solving skills that I've applied to build my company from the ground up."
-    },
-    {
-      id: 4,
-      name: "Sanjana Singh",
-      batch: "2019",
-      degree: "B.Tech in IT",
-      currentPosition: "Data Scientist",
-      company: "Amazon",
-      location: "Seattle, USA",
-      photo: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80",
-      achievements: ["Developed ML models with 95% accuracy", "Published in IEEE Journal", "Speaker at AI conferences"],
-      contact: {
-        email: "sanjana.singh@example.com",
-        linkedin: "https://linkedin.com/in/sanjanasingh",
-        phone: "+1 2345678901"
-      },
-      story: "The IT department at KEC had excellent faculty who encouraged research and innovation. That foundation helped me pursue a career in data science."
-    },
-    {
-      id: 5,
-      name: "Vikram Malhotra",
-      batch: "2016",
-      degree: "B.Tech in Civil",
-      currentPosition: "Project Manager",
-      company: "L&T Construction",
-      location: "Mumbai, India",
-      photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80",
-      achievements: ["Managed $50M infrastructure project", "Award for sustainable construction", "Guest lecturer at IITs"],
-      contact: {
-        email: "vikram.malhotra@example.com",
-        linkedin: "https://linkedin.com/in/vikrammalhotra",
-        phone: "+91 7654321098"
-      },
-      story: "The practical approach to civil engineering at KEC, with site visits and hands-on projects, prepared me for real-world challenges in construction."
-    },
-    {
-      id: 6,
-      name: "Neha Gupta",
-      batch: "2017",
-      degree: "B.Tech in Electrical",
-      currentPosition: "Research Scientist",
-      company: "Tesla",
-      location: "California, USA",
-      photo: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80",
-      achievements: ["5 patents in battery technology", "Research grant recipient", "IEEE senior member"],
-      contact: {
-        email: "neha.gupta@example.com",
-        linkedin: "https://linkedin.com/in/nehagupta",
-        phone: "+1 3456789012"
-      },
-      story: "The electrical engineering labs at KEC were well-equipped, allowing me to experiment and develop a passion for renewable energy systems."
-    }
-  ];
+  // Process the alumni data
+  const processAlumniData = () => {
+    const rawData = [
+      { name: "SAZIYA NAAZ", branch: "CSE", yop: "2025", company: "Codenicely" },
+      { name: "TARA CHAND DEWANGAN", branch: "CSE", yop: "2025", company: "Sthanve Software" },
+      { name: "DEVVRAT", branch: "CSE", yop: "2025", company: "Augtech Nextwealth" },
+      { name: "ANUBHAV NAYAR", branch: "CSE", yop: "2025", company: "Gravity Engineering Services" },
+      { name: "HARSH KUMAR SHRIVASTAVA", branch: "CSE", yop: "2025", company: "Augtech Nextwealth" },
+      { name: "Shikhar Sinha", branch: "CSE", yop: "2026", company: "Sthanve Software" },
+      { name: "Raveena Ratrey", branch: "CSE", yop: "2026", company: "IB Group" },
+      { name: "Shantanu Sarkar", branch: "CSE", yop: "2026", company: "" },
+      { name: "Tejpratap Sahu", branch: "CSE", yop: "2026", company: "Sthanve Software" },
+      { name: "Purvika", branch: "CSE", yop: "2027", company: "Gravity Engineering Services" },
+      { name: "KUNAL SAHU", branch: "Civil", yop: "2024", company: "Avinash Builders" },
+      { name: "VIKAS MOURYA", branch: "Civil", yop: "2024", company: "AQUAPLAST infraproject pvt. Ltd." },
+      { name: "ABHISHEK BHIMTE", branch: "CSE", yop: "2024", company: "earlier sensible academy now Sthanve" },
+      { name: "JAYA", branch: "CSE", yop: "2024", company: "IIT, Project Assistant, IIT Bhilai" },
+      { name: "MUKUL KURWE", branch: "CSE", yop: "2024", company: "IIT, Project Assistant, IIT Bhilai" },
+      { name: "PAYAL Dewangan", branch: "CSE", yop: "2024", company: "Deepija Telecommunication Pvt Ltd" },
+      { name: "DEVID KUMAR", branch: "EE", yop: "2024", company: "NPTI, now in Adani" },
+      { name: "DOMENDRA KUMAR", branch: "EE", yop: "2024", company: "Kalptaru Projects KPIL, RR ISPAT" },
+      { name: "NIKHIL BANJARE", branch: "EE", yop: "2024", company: "Engineers Energy Consultancy, Supela" },
+      { name: "SHRUTI WASNIK", branch: "EE", yop: "2024", company: "Lecturer at R1" },
+      { name: "VIVEK KUMAR CHANDRAKAR", branch: "EE", yop: "2024", company: "RR Ispat, Powerhouse" },
+      { name: "YUGENDRA PRATAP LAHARE", branch: "Civil", yop: "2024", company: "Shri Balaji Construction" },
+      { name: "SAKSHI", branch: "Civil", yop: "2024", company: "Fail - Exam; BSP Valuation work, Maple Architect" },
+      { name: "AMISHA RAMTEKE", branch: "Civil", yop: "2023", company: "Raipur ultratech" },
+      { name: "ARPIT KUMAR MISHRA", branch: "Civil", yop: "2023", company: "Kalptaru Projects KPIL" },
+      { name: "ARYAN DEWANGAN", branch: "Civil", yop: "2023", company: "Works in PWD Adhoc" },
+      { name: "BHAVNA", branch: "Civil", yop: "2023", company: "Sarthi Associates, Raipur" },
+      { name: "FANENDRA Dewangan", branch: "Civil", yop: "2023", company: "Site Engineer Utopia Durg" },
+      { name: "HITESH KUMAR CHANDEL", branch: "Civil", yop: "2023", company: "Swami Constructions Raipur" },
+      { name: "REVENDRA HIRWANEE", branch: "Civil", yop: "2023", company: "Chandak & Sharda Associates Durg" },
+      { name: "VINOD KUMAR KOSARIYA", branch: "Civil", yop: "2023", company: "Green earth Solution Ltd. Raipur" },
+      { name: "DHANRAJ SONI", branch: "EE", yop: "2023", company: "RR Ispat, Hira Group" },
+      { name: "AMITESH SHARMA", branch: "Mech", yop: "2023", company: "KPIL" },
+      { name: "RAHUL KUMAR", branch: "Mech", yop: "2023", company: "KPIL" },
+      { name: "RUPENDRA", branch: "Mech", yop: "2023", company: "KPIL" },
+      { name: "YOGESHRAJ SAHU", branch: "Mech", yop: "2023", company: "RR Ispat, Hira Group" },
+      { name: "PRANESH PANDEY", branch: "Civil", yop: "2021", company: "Govt Job Coalfield India" },
+      { name: "PRANSHUL SINGH THAKUR", branch: "Civil", yop: "2021", company: "Govt Job CSPDCL" }
+    ];
 
-  // Get unique batches and companies for filters
-  const batches = [...new Set(alumniData.map(alumni => alumni.batch))].sort((a, b) => b - a);
-  const companies = [...new Set(alumniData.map(alumni => alumni.company))].sort();
+    // Format names to title case
+    const formatName = (name) => {
+      return name
+        .toLowerCase()
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+    };
 
+    // Generate a quote based on branch and company
+    const generateQuote = (branch, company) => {
+      const branchQuotes = {
+        CSE: [
+          "KEC provided me with the technical foundation to excel in the software industry.",
+          "The coding environment at KEC prepared me for real-world development challenges.",
+          "With the right mentorship at KEC, I developed strong programming and problem-solving skills."
+        ],
+        Civil: [
+          "KEC gave me the foundation and confidence to pursue my dream career in civil engineering.",
+          "The practical exposure at KEC Bhilai prepared me for real-world construction challenges.",
+          "KEC's civil engineering program provided hands-on experience that was vital for my career."
+        ],
+        EE: [
+          "KEC's electrical engineering program equipped me with knowledge to excel in the power industry.",
+          "The practical training sessions at KEC gave me confidence in handling power systems.",
+          "KEC laid a strong foundation for my expertise in electrical systems and power management."
+        ],
+        Mech: [
+          "KEC inspired me to think innovatively and pursue mechanical engineering.",
+          "The mechanical workshops at KEC played a key role in my career journey.",
+          "KEC provided me with industry exposure that was vital for my mechanical engineering career."
+        ]
+      };
+
+      const defaultQuotes = [
+        "My journey at KEC shaped my professional and personal growth equally.",
+        "KEC Bhilai laid a strong base for my technical expertise and career growth.",
+        "The academic environment at KEC encouraged innovation and problem-solving.",
+        "KEC provided me with industry exposure that was vital for my career.",
+        "The faculty support and hands-on labs made me industry ready.",
+        "KEC motivated me to excel in my field with the right resources and guidance."
+      ];
+
+      const quotes = branchQuotes[branch] || defaultQuotes;
+      return quotes[Math.floor(Math.random() * quotes.length)];
+    };
+
+    // Generate a location based on company
+    const generateLocation = (company) => {
+      const locationMap = {
+        "Codenicely": "Raipur, India",
+        "Sthanve Software": "Raipur, India",
+        "Augtech Nextwealth": "Pune, India",
+        "Gravity Engineering Services": "Bangalore, India",
+        "IB Group": "Mumbai, India",
+        "Avinash Builders": "Bhilai, India",
+        "AQUAPLAST infraproject pvt. Ltd.": "Raipur, India",
+        "IIT, Project Assistant, IIT Bhilai": "Bhilai, India",
+        "Deepija Telecommunication Pvt Ltd": "Raipur, India",
+        "NPTI, now in Adani": "Mundra, India",
+        "Kalptaru Projects KPIL, RR ISPAT": "Raipur, India",
+        "Engineers Energy Consultancy, Supela": "Bhilai, India",
+        "Lecturer at R1": "Bhilai, India",
+        "RR Ispat, Powerhouse": "Raipur, India",
+        "Shri Balaji Construction": "Raipur, India",
+        "Raipur ultratech": "Raipur, India",
+        "Works in PWD Adhoc": "Bhilai, India",
+        "Sarthi Associates, Raipur": "Raipur, India",
+        "Site Engineer Utopia Durg": "Durg, India",
+        "Swami Constructions Raipur": "Raipur, India",
+        "Chandak & Sharda Associates Durg": "Durg, India",
+        "Green earth Solution Ltd. Raipur": "Raipur, India",
+        "RR Ispat, Hira Group": "Raipur, India",
+        "KPIL": "Raipur, India",
+        "Govt Job Coalfield India": "Korba, India",
+        "Govt Job CSPDCL": "Raipur, India"
+      };
+
+      return locationMap[company] || "Chhattisgarh, India";
+    };
+
+    return rawData.map((alum, index) => ({
+      id: index + 1,
+      name: formatName(alum.name),
+      batch: alum.yop,
+      degree: `B.Tech in ${alum.branch}`,
+      currentPosition: alum.company.includes("Govt Job") 
+        ? "Government Employee" 
+        : alum.company.includes("Lecturer") 
+          ? "Lecturer"
+          : alum.company.includes("Site Engineer") 
+            ? "Site Engineer"
+            : alum.company.includes("Fail") 
+              ? "Pursuing Opportunities"
+              : "Engineer",
+      company: alum.company,
+      location: generateLocation(alum.company),
+      photo: `https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80`,
+      achievements: [
+        `Placed at ${alum.company.split(';')[0].split(',')[0]}`,
+        `${alum.branch} Department Topper`,
+        "Active in College Technical Events"
+      ],
+      
+      story: generateQuote(alum.branch, alum.company),
+      branch: alum.branch
+    }));
+  };
+
+  const alumniData = processAlumniData();
+
+  // Get unique values for filters
+  const batches = [...new Set(alumniData.map(a => a.batch))].sort((a, b) => +b - +a);
+  const branches = [...new Set(alumniData.map(a => a.branch))].sort();
+  const companies = [...new Set(alumniData.map(a => a.company.split(';')[0].split(',')[0].trim()))].filter(c => c).sort();
   // Filter alumni based on active filters
-  const filteredAlumni = alumniData.filter(alumni => {
-    const matchesTab = activeTab === 'all' || 
-                      (activeTab === 'entrepreneurs' && alumni.currentPosition.toLowerCase().includes('founder')) ||
-                      (activeTab === 'corporate' && !alumni.currentPosition.toLowerCase().includes('founder'));
-    const matchesSearch = alumni.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         alumni.degree.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         alumni.company.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesBatch = batchFilter === 'all' || alumni.batch === batchFilter;
-    const matchesCompany = companyFilter === 'all' || alumni.company === companyFilter;
+  // Filter alumni based on active filters
+const filteredAlumni = alumniData.filter(alumni => {
+    const currentPosition = alumni.currentPosition || '';
+    const company = alumni.company || '';
     
-    return matchesTab && matchesSearch && matchesBatch && matchesCompany;
+    const matchesTab =
+      activeTab === 'all' ||
+      (activeTab === 'corporate' && !currentPosition.toLowerCase().includes('government')) ||
+      (activeTab === 'government' && currentPosition.toLowerCase().includes('government')) ||
+      (activeTab === 'higherStudies' && currentPosition.toLowerCase().includes('studies'));
+  
+    const matchesSearch =
+      alumni.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      alumni.degree.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      company.toLowerCase().includes(searchQuery.toLowerCase());
+  
+    const matchesBatch = batchFilter === 'all' || alumni.batch === batchFilter;
+    const matchesBranch = branchFilter === 'all' || alumni.branch === branchFilter;
+    const matchesCompany = companyFilter === 'all' || company.includes(companyFilter);
+  
+    return matchesTab && matchesSearch && matchesBatch && matchesBranch && matchesCompany;
   });
+  // Stats for the header
+  const stats = {
+    totalAlumni: alumniData.length,
+    batches: batches.length,
+    companies: companies.length,
+    branches: branches.length
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-indigo-50 py-12">
@@ -168,27 +238,27 @@ const AlumniPage = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
           <div className="bg-white rounded-xl p-6 shadow-md text-center">
             <Users className="h-10 w-10 text-blue-600 mx-auto mb-3" />
-            <div className="text-3xl font-bold text-gray-900">5000+</div>
+            <div className="text-3xl font-bold text-gray-900">{stats.totalAlumni}+</div>
             <div className="text-gray-600">Alumni Members</div>
           </div>
           <div className="bg-white rounded-xl p-6 shadow-md text-center">
             <GraduationCap className="h-10 w-10 text-blue-600 mx-auto mb-3" />
-            <div className="text-3xl font-bold text-gray-900">25+</div>
+            <div className="text-3xl font-bold text-gray-900">{stats.batches}</div>
             <div className="text-gray-600">Batches</div>
           </div>
           <div className="bg-white rounded-xl p-6 shadow-md text-center">
             <Briefcase className="h-10 w-10 text-blue-600 mx-auto mb-3" />
-            <div className="text-3xl font-bold text-gray-900">20+</div>
-            <div className="text-gray-600">Countries</div>
+            <div className="text-3xl font-bold text-gray-900">{stats.companies}+</div>
+            <div className="text-gray-600">Companies</div>
           </div>
           <div className="bg-white rounded-xl p-6 shadow-md text-center">
             <Award className="h-10 w-10 text-blue-600 mx-auto mb-3" />
-            <div className="text-3xl font-bold text-gray-900">100+</div>
-            <div className="text-gray-600">Industry Leaders</div>
+            <div className="text-3xl font-bold text-gray-900">{stats.branches}</div>
+            <div className="text-gray-600">Branches</div>
           </div>
         </div>
 
-        {/* Filters Section */}
+        {/* Search and Filters Section */}
         <div className="bg-white rounded-xl p-6 shadow-md mb-8">
           <div className="flex flex-col md:flex-row gap-4 items-center">
             <div className="relative flex-1">
@@ -202,10 +272,22 @@ const AlumniPage = () => {
               />
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+            <button 
+              onClick={() => setShowFilters(!showFilters)}
+              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              <Filter className="h-5 w-5" />
+              Filters
+            </button>
+          </div>
+          
+          {/* Advanced Filters */}
+          {showFilters && (
+            <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="relative">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Batch Year</label>
                 <select
-                  className="appearance-none pl-3 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full"
+                  className="w-full pl-3 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   value={batchFilter}
                   onChange={(e) => setBatchFilter(e.target.value)}
                 >
@@ -214,12 +296,28 @@ const AlumniPage = () => {
                     <option key={batch} value={batch}>{batch} Batch</option>
                   ))}
                 </select>
-                <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
+                <ChevronDown className="absolute right-3 top-9 transform -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
               </div>
               
               <div className="relative">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Branch</label>
                 <select
-                  className="appearance-none pl-3 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full"
+                  className="w-full pl-3 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  value={branchFilter}
+                  onChange={(e) => setBranchFilter(e.target.value)}
+                >
+                  <option value="all">All Branches</option>
+                  {branches.map(branch => (
+                    <option key={branch} value={branch}>{branch}</option>
+                  ))}
+                </select>
+                <ChevronDown className="absolute right-3 top-9 transform -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
+              </div>
+              
+              <div className="relative">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Company</label>
+                <select
+                  className="w-full pl-3 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   value={companyFilter}
                   onChange={(e) => setCompanyFilter(e.target.value)}
                 >
@@ -228,10 +326,10 @@ const AlumniPage = () => {
                     <option key={company} value={company}>{company}</option>
                   ))}
                 </select>
-                <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
+                <ChevronDown className="absolute right-3 top-9 transform -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
               </div>
             </div>
-          </div>
+          )}
           
           <div className="flex flex-wrap gap-2 mt-4">
             <button
@@ -244,13 +342,19 @@ const AlumniPage = () => {
               className={`px-4 py-2 rounded-full text-sm font-medium ${activeTab === 'corporate' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
               onClick={() => setActiveTab('corporate')}
             >
-              Corporate Leaders
+              Corporate
             </button>
             <button
-              className={`px-4 py-2 rounded-full text-sm font-medium ${activeTab === 'entrepreneurs' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
-              onClick={() => setActiveTab('entrepreneurs')}
+              className={`px-4 py-2 rounded-full text-sm font-medium ${activeTab === 'government' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+              onClick={() => setActiveTab('government')}
             >
-              Entrepreneurs
+              Government
+            </button>
+            <button
+              className={`px-4 py-2 rounded-full text-sm font-medium ${activeTab === 'higherStudies' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+              onClick={() => setActiveTab('higherStudies')}
+            >
+              Higher Studies
             </button>
           </div>
         </div>
@@ -268,7 +372,7 @@ const AlumniPage = () => {
                 <div className="absolute bottom-0 left-0 bg-gradient-to-t from-black/70 to-transparent w-full h-1/2" />
                 <div className="absolute bottom-4 left-4 text-white">
                   <h3 className="font-bold text-xl">{alumni.name}</h3>
-                  <p className="text-sm">{alumni.batch} Batch • {alumni.degree.split(' in ')[0]}</p>
+                  <p className="text-sm">{alumni.batch} Batch • {alumni.branch}</p>
                 </div>
               </div>
               
@@ -280,15 +384,15 @@ const AlumniPage = () => {
                 
                 <div className="flex items-center mb-3">
                   <Building2 className="h-4 w-4 text-gray-500 mr-2" />
-                  <span className="text-gray-700">{alumni.company}</span>
+                  <span className="text-gray-700 text-sm">{alumni.company.split(';')[0]}</span>
                 </div>
                 
                 <div className="flex items-center mb-4">
                   <MapPin className="h-4 w-4 text-gray-500 mr-2" />
-                  <span className="text-gray-700">{alumni.location}</span>
+                  <span className="text-gray-700 text-sm">{alumni.location}</span>
                 </div>
                 
-                <div className="flex space-x-2 mb-4">
+                <div className="flex space-x-2 mb-4 flex-wrap gap-2">
                   {alumni.achievements.slice(0, 2).map((achievement, index) => (
                     <span key={index} className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">
                       {achievement}
@@ -303,9 +407,9 @@ const AlumniPage = () => {
                 
                 <button
                   onClick={() => setSelectedAlumni(alumni)}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-medium transition-colors"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
                 >
-                  View Profile
+                  View Profile <ExternalLink className="h-4 w-4" />
                 </button>
               </div>
             </div>
@@ -415,19 +519,7 @@ const AlumniPage = () => {
                   </ul>
                 </div>
                 
-                <div>
-                  <h3 className="text-lg font-semibold mb-3">Connect</h3>
-                  <div className="flex space-x-4">
-                    <a href={selectedAlumni.contact.linkedin} className="flex items-center text-blue-600 hover:text-blue-800">
-                      <Linkedin className="h-5 w-5 mr-1" />
-                      LinkedIn
-                    </a>
-                    <a href={`mailto:${selectedAlumni.contact.email}`} className="flex items-center text-blue-600 hover:text-blue-800">
-                      <Mail className="h-5 w-5 mr-1" />
-                      Email
-                    </a>
-                  </div>
-                </div>
+               
               </div>
             </div>
           </div>

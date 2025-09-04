@@ -30,6 +30,7 @@ import PressMediaPage from "./pages/PressMediaPage";
 import GalleryPage from "./pages/GalleryPage";
 import ApplyNow from "./pages/ApplyNow";
 import AlumniPage from "./pages/AlumniPage";
+import Hod from "./pages/Hod";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,7 @@ const router = createBrowserRouter([
       { path: "governance", element: <Governance/>},
       { path: "principal", element: <PrincipalMessage/>},
       { path: "infrastructure", element: <Infrastructure/>},
+      { path: "hod", element: <Hod/>},
       { path: "affiliation", element:<AffiliationAccreditation/>},
       { path: "event", element:<EventComponent/>},
       { path: "press", element:<PressMediaPage/>},
