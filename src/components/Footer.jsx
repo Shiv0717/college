@@ -42,10 +42,17 @@ const Footer = () => {
               business and other disciplines to yield transformative results.
             </p>
             
-            <div className="flex items-center mb-4">
-              <Award className="text-yellow-400 mr-2" size={18} />
-              <span className="text-sm">Affiliated to Dr. A.P.J. Abdul Kalam Technical University</span>
-            </div>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-6 mb-6">
+  <div className="flex items-center mb-2 sm:mb-0">
+    <Award className="text-yellow-400 mr-2" size={18} />
+    <span className="text-sm text-white">Approved by AICTE</span>
+  </div>
+  <div className="flex items-center">
+    <Award className="text-yellow-400 mr-2" size={18} />
+    <span className="text-sm text-white">Affiliated to CSVTU</span>
+  </div>
+</div>
+
             
             <div className="flex space-x-4 mt-6">
               <a href="#" className="bg-blue-800 p-2 rounded-full hover:bg-yellow-400 hover:text-blue-900 transition-all duration-300">
