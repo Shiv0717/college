@@ -112,77 +112,76 @@ const Research = () => {
   const researchProjects = [
     {
       id: 1,
-      title: "AI-Powered Healthcare Diagnostics",
-      department: "Computer Science",
-      funding: "₹42,00,000",
-      duration: "2023-2025",
+      title: "Electric Vehicle Development with Sodium-Ion Battery",
+      department: "Mechanical Engineering",
+      funding: "₹55,00,000",
+      duration: "2024-2026",
       status: "Ongoing",
-      description: "Developing machine learning algorithms for early detection of diseases from medical imaging data.",
-      team: ["Dr. Rajesh Kumar", "Dr. Priya Sharma", "5 Research Scholars"],
-      outcomes: "3 Publications, 1 Patent Filed",
-      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      description:
+        "India's first initiative in EV development using sodium-ion batteries to enhance vehicle range in a single charge. Focus on energy efficiency and cost reduction.",
+      team: ["Dr. Joy Sonashalol", "Mr. Ash Kumar Soni", "6 Research Scholars"],
+      outcomes: "Prototype Developed, 2 Publications",
+      image:
+        "https://images.unsplash.com/photo-1614436165834-50e93f5cd79e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
     },
     {
       id: 2,
-      title: "Solar Energy Harvesting using Nanomaterials",
-      department: "Physics",
-      funding: "₹35,00,000",
-      duration: "2022-2024",
+      title: "Fast Charging Station Infrastructure with GPS Integration",
+      department: "Electrical Engineering",
+      funding: "₹48,00,000",
+      duration: "2023-2025",
       status: "Ongoing",
-      description: "Designing and testing novel nanomaterials for improved efficiency in solar energy conversion.",
-      team: ["Dr. S. Mehta", "Dr. A. Singh", "4 Research Scholars"],
-      outcomes: "2 Publications, Prototype Developed",
-      image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      description:
+        "Development of fast charging station modules for EVs with GPS-enabled tracking for easy location access by users and service providers.",
+      team: ["Mr. Tarachand Sahu", "4 Research Scholars"],
+      outcomes: "Mobile App Developed, Pilot Deployment",
+      image:
+        "https://images.unsplash.com/photo-1581091012184-5c46a1cd2765?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
     },
     {
       id: 3,
-      title: "Waste Water Treatment using Microbial Fuel Cells",
-      department: "Biotechnology",
-      funding: "₹28,00,000",
-      duration: "2021-2023",
-      status: "Completed",
-      description: "Developing cost-effective microbial fuel cells for simultaneous wastewater treatment and energy generation.",
-      team: ["Dr. N. Patel", "Dr. K. Reddy", "6 Research Scholars"],
-      outcomes: "5 Publications, Technology Transferred to Industry",
-      image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      title: "Intelligent Robotics with Artificial Intelligence",
+      department: "Computer Science & Engineering",
+      funding: "₹62,00,000",
+      duration: "2023-2026",
+      status: "Ongoing",
+      description:
+        "Building advanced robotics systems capable of adaptive behavior and decision-making through machine learning and AI integration.",
+      team: ["Dr. Priya Singh", "5 Research Scholars"],
+      outcomes: "3 Publications, 1 Patent Filed",
+      image:
+        "https://images.unsplash.com/photo-1581090700227-1e8f9e1f2c44?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
     },
     {
       id: 4,
-      title: "Blockchain-based Secure Voting System",
-      department: "Computer Science",
-      funding: "₹19,00,000",
-      duration: "2023-2024",
+      title: "Semiconductor Chip Research & Manufacturing",
+      department: "Electronics and Communication",
+      funding: "₹78,00,000",
+      duration: "2024-2027",
       status: "Ongoing",
-      description: "Creating a transparent, secure, and tamper-proof digital voting system using blockchain technology.",
-      team: ["Dr. M. Gupta", "3 Research Scholars"],
-      outcomes: "2 Publications, Prototype Developed",
-      image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      description:
+        "Research on design, material optimization, and indigenous manufacturing of semiconductor chips aimed at reducing import dependency.",
+      team: ["Dr. V. Sharma", "Dr. S. Joshi", "6 Research Scholars"],
+      outcomes: "2 Prototypes, Industry Collaboration Initiated",
+      image:
+        "https://images.unsplash.com/photo-1581092334600-5fc179ee4c35?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
     },
     {
       id: 5,
-      title: "Development of Biodegradable Polymers",
-      department: "Chemistry",
-      funding: "₹31,00,000",
-      duration: "2022-2024",
+      title: "Hyperloop Transportation System Research",
+      department: "Mechanical Engineering",
+      funding: "₹1,00,00,000",
+      duration: "2024-2028",
       status: "Ongoing",
-      description: "Synthesizing environmentally friendly biodegradable polymers to replace conventional plastics.",
-      team: ["Dr. R. Malhotra", "Dr. P. Chaturvedi", "4 Research Scholars"],
-      outcomes: "3 Publications, 2 Patents Filed",
-      image: "https://images.unsplash.com/photo-1587351021759-3e566b3db4f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      id: 6,
-      title: "IoT-based Smart Agriculture System",
-      department: "Electronics",
-      funding: "₹24,00,000",
-      duration: "2020-2023",
-      status: "Completed",
-      description: "Developing an integrated system for precision agriculture using IoT sensors and data analytics.",
-      team: ["Dr. V. Sharma", "Dr. S. Joshi", "5 Research Scholars"],
-      outcomes: "4 Publications, Commercial Product Launched",
-      image: "https://images.unsplash.com/photo-1592841612096-4caf1c6c12e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      description:
+        "Exploratory research on implementing Hyperloop technology for ultra-fast transportation, focusing on magnetic levitation and vacuum tube dynamics.",
+      team: ["Dr. Joy Sonashalol", "8 Research Scholars"],
+      outcomes: "Design Simulation Completed, 1 Journal Publication",
+      image:
+        "https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
     }
   ];
+  
 
   const researchFacilities = [
     {
