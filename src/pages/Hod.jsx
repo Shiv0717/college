@@ -75,23 +75,22 @@ const Hod = () => {
         ],
         bio: "A leading academician in computer science, known for pioneering research in artificial intelligence and machine learning. Passionate about shaping future tech leaders through innovation and mentorship."
       },      
-    {
-      id: 4,
-      name: "Dr. Tara Chand Sahu",
-      department: "Electrical Engineering",
-      image: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      qualification: "Ph.D. in Power Systems, IIT Kanpur",
-      experience: "16 years",
-      email: "hod.ee@kec.edu",
-      phone: "+91 9876543213",
-      specialization: "Smart Grids, Power Electronics",
-      achievements: [
-        "Led national smart grid initiative",
-        "Awarded Women in Engineering 2021",
-        "10+ sponsored research projects"
-      ],
-      bio: "A pioneer in power systems and smart grid technology. Recognized nationally for contributions to electrical engineering education and research."
-    }
+      {
+        id: 4,
+        name: "Mr. Tarachand Sahu",
+        department: "Electrical Engineering",
+        image: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+        qualification: "B.E. (Electrical & Electronics Engineering), M.Tech (Electrical Engineering)",
+        experience: "—", // Add exact number if available, e.g., "8 years"
+        email: "tarachand.sahu@kec.edu", // Update if you have the real email
+        phone: "+91 9876543216", // Update if required
+        specialization: "Electrical Machines, Power Systems", // Adjust if needed
+        achievements: [
+          "Published 2 research papers in reputed journals"
+        ],
+        bio: "Mr. Tarachand Sahu is an Assistant Professor in the Department of Electrical Engineering. His teaching and academic interests lie in the areas of power systems and electrical machines. He is committed to student development and technical excellence."
+      }
+      
   ];
 
   return (
