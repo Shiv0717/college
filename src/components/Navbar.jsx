@@ -12,6 +12,12 @@ import {
   Home,
   BookOpen,
   Briefcase,
+  School,
+  Bookmark,
+  MessageCircle,
+  Building,
+  Target,
+  Heart,
 } from "lucide-react";
 
 const Navbar = () => {
@@ -23,12 +29,12 @@ const Navbar = () => {
     { 
       name: "Home", 
       path: "/", 
-      icon: <Home className="w-5 h-5" /> 
+      icon: <Home className="w-4 h-4" /> 
     },
     {
       name: "About",
       path: "/about",
-      icon: <Users className="w-5 h-5" />,
+      icon: <Building className="w-4 h-4" />,
       dropdown: [
         { name: "About College", path: "/about" },
         { name: "Principal's Message", path: "/principal" },
@@ -42,7 +48,7 @@ const Navbar = () => {
     {
       name: "Departments",
       path: "/departments",
-      icon: <BookOpen className="w-5 h-5" />,
+      icon: <School className="w-4 h-4" />,
       dropdown: [
         { name: "Computer Science", path: "/departments/cse" },
         { name: "Mechanical Engineering", path: "/departments/mech" },
@@ -53,12 +59,12 @@ const Navbar = () => {
     { 
       name: "Courses", 
       path: "/courses", 
-      icon: <BookOpen className="w-5 h-5" /> 
+      icon: <Bookmark className="w-4 h-4" /> 
     },
     { 
       name: "Contact", 
       path: "/contact", 
-      icon: <Phone className="w-5 h-5" /> 
+      icon: <MessageCircle className="w-4 h-4" /> 
     },
   ];
 
@@ -68,9 +74,9 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-gradient-to-r from-blue-900 to-blue-800 text-white shadow-lg sticky top-0 z-50 ">
+    <nav className="bg-white text-gray-700 shadow-sm sticky top-0 z-50 border-b border-gray-100">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -79,10 +85,12 @@ const Navbar = () => {
             className="flex items-center space-x-3"
           >
             <div className="flex items-center">
-             <img src="/images/2025-08-27 19.10.46.jpg" className=" w-10 h-10 lg:w-14 lg:h-14 mr-3"></img>
+              <div className="w-10 h-10 lg:w-12 lg:h-12 mr-3 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-md">
+                <img src="/images/2025-08-27 19.10.46.jpg"></img>
+              </div>
               <div className="flex flex-col">
-                <span className="font-bold text-xl tracking-tight">KRISHNA</span>
-                <span className="text-xs text-yellow-400 -mt-1">ENGINEERING COLLEGE</span>
+                <span className="font-bold text-xl tracking-tight text-blue-800">KRISHNA</span>
+                <span className="text-xs text-blue-500 -mt-1">ENGINEERING COLLEGE</span>
               </div>
             </div>
           </motion.div>
@@ -101,26 +109,26 @@ const Navbar = () => {
               >
                 <Link
                   to={item.path}
-                  className="flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 group relative"
+                  className="flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-300 group relative"
                 >
-                  <span className="mr-2 group-hover:text-yellow-400 transition-colors">
+                  <span className="mr-2 text-blue-500 group-hover:text-blue-600 transition-colors">
                     {item.icon}
                   </span>
-                  <span className="flex items-center gap-1 group-hover:text-yellow-400 transition-colors">
+                  <span className="flex items-center gap-1 group-hover:text-blue-600 transition-colors">
                     {item.name}
                     {item.dropdown && (
                       <motion.span
                         animate={{ rotate: activeDropdown === item.name ? 180 : 0 }}
                         transition={{ duration: 0.2 }}
                       >
-                        <ChevronDown size={16} />
+                        <ChevronDown size={14} />
                       </motion.span>
                     )}
                   </span>
                   
                   {/* Hover indicator */}
                   <motion.div 
-                    className="absolute bottom-0 left-0 w-full h-0.5 bg-yellow-400"
+                    className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-400"
                     initial={{ scaleX: 0 }}
                     whileHover={{ scaleX: 1 }}
                     transition={{ duration: 0.2 }}
@@ -135,7 +143,7 @@ const Navbar = () => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 10 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute left-0 mt-1 w-56 bg-white text-gray-800 rounded-lg shadow-xl z-50 overflow-hidden border border-gray-200"
+                      className="absolute left-0 mt-1 w-56 bg-white text-gray-700 rounded-lg shadow-lg z-50 overflow-hidden border border-gray-100"
                       onMouseEnter={() => setActiveDropdown(item.name)}
                       onMouseLeave={() => setActiveDropdown(null)}
                     >
@@ -143,7 +151,7 @@ const Navbar = () => {
                         <Link
                           key={i}
                           to={drop.path}
-                          className="block px-4 py-3 text-sm hover:bg-blue-50 hover:text-blue-700 transition-colors border-b border-gray-100 last:border-b-0"
+                          className="block px-4 py-3 text-sm hover:bg-blue-50 hover:text-blue-600 transition-colors border-b border-gray-100 last:border-b-0"
                         >
                           {drop.name}
                         </Link>
@@ -165,14 +173,14 @@ const Navbar = () => {
             <motion.button
               whileHover={{
                 scale: 1.05,
-                boxShadow: "0 10px 25px -5px rgba(255, 193, 7, 0.4)",
+                boxShadow: "0 5px 15px -3px rgba(66, 153, 225, 0.3)",
               }}
               whileTap={{ scale: 0.95 }}
-              className="bg-yellow-400 text-blue-900 font-bold px-6 py-2.5 rounded-lg shadow-md hover:bg-yellow-300 transition-colors duration-300 flex items-center space-x-2"
+              className="bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium px-5 py-2 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 flex items-center space-x-2"
             >
-              <span> <Link to={'/admission'}> Apply Now </Link></span>
+              <span><Link to={'/admission'}>Apply Now</Link></span>
               <motion.span
-                animate={{ x: [0, 4, 0] }}
+                animate={{ x: [0, 3, 0] }}
                 transition={{ repeat: Infinity, duration: 1.5 }}
               >
                 →
@@ -185,10 +193,10 @@ const Navbar = () => {
             <motion.button
               whileTap={{ scale: 0.9 }}
               onClick={toggleMenu}
-              className="inline-flex items-center justify-center p-2 rounded-md text-white hover:bg-blue-700 transition-colors"
+              className="inline-flex items-center justify-center p-2 rounded-md text-blue-600 hover:bg-blue-50 transition-colors"
               aria-label="Toggle menu"
             >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </motion.button>
           </div>
         </div>
@@ -202,17 +210,17 @@ const Navbar = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-blue-800 shadow-xl overflow-hidden"
+            className="md:hidden bg-white shadow-xl overflow-hidden border-t border-gray-100"
           >
             <div className="px-2 pt-2 pb-4 space-y-1">
               {navItems.map((item, index) => (
-                <div key={index} className="border-b border-blue-700 last:border-b-0">
+                <div key={index} className="border-b border-gray-100 last:border-b-0">
                   <div 
-                    className="flex items-center justify-between px-3 py-3 text-base font-medium rounded-lg text-white hover:bg-blue-700 transition-colors"
+                    className="flex items-center justify-between px-3 py-3 text-base font-medium rounded-lg text-gray-700 hover:bg-blue-50 transition-colors"
                     onClick={() => item.dropdown ? toggleMobileDropdown(item.name) : setIsOpen(false)}
                   >
                     <div className="flex items-center">
-                      <span className="mr-3">{item.icon}</span>
+                      <span className="mr-3 text-blue-500">{item.icon}</span>
                       <Link to={item.path} onClick={() => !item.dropdown && setIsOpen(false)}>
                         {item.name}
                       </Link>
@@ -221,8 +229,9 @@ const Navbar = () => {
                       <motion.span
                         animate={{ rotate: mobileDropdown === item.name ? 180 : 0 }}
                         transition={{ duration: 0.2 }}
+                        className="text-blue-400"
                       >
-                        <ChevronDown size={18} />
+                        <ChevronDown size={16} />
                       </motion.span>
                     )}
                   </div>
@@ -235,13 +244,13 @@ const Navbar = () => {
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.2 }}
-                        className="ml-6 bg-blue-900 rounded-lg overflow-hidden"
+                        className="ml-6 bg-blue-50 rounded-lg overflow-hidden"
                       >
                         {item.dropdown.map((drop, i) => (
                           <Link
                             key={i}
                             to={drop.path}
-                            className="block px-4 py-3 text-sm text-gray-200 hover:text-yellow-400 hover:bg-blue-700 transition-colors border-b border-blue-800 last:border-b-0"
+                            className="block px-4 py-3 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-100 transition-colors border-b border-blue-100 last:border-b-0"
                             onClick={() => setIsOpen(false)}
                           >
                             {drop.name}
@@ -257,10 +266,10 @@ const Navbar = () => {
               <div className="px-3 pt-3">
                 <motion.button
                   whileTap={{ scale: 0.95 }}
-                  className="w-full bg-yellow-400 text-blue-900 font-bold px-4 py-3 rounded-lg shadow-md hover:bg-yellow-300 transition-colors flex items-center justify-center space-x-2"
+                  className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium px-4 py-3 rounded-lg shadow-sm hover:shadow-md transition-all flex items-center justify-center space-x-2"
                   onClick={() => setIsOpen(false)}
                 >
-                <span> <Link to={'/admission'}> Apply Now </Link></span>
+                  <span><Link to={'/admission'}>Apply Now</Link></span>
                   <span>→</span>
                 </motion.button>
               </div>

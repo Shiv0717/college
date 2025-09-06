@@ -90,12 +90,7 @@ const AboutSection = () => {
       </h2>
 
       {/* Subtitle */}
-      <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-        Krishna Engineering College is committed to fostering academic excellence, 
-        innovation, and holistic development. With world-class infrastructure, 
-        experienced faculty, and a vibrant campus life, we empower students to become 
-        future leaders and innovators in engineering and technology.
-      </p>
+      
     </motion.div>
 
         {/* Main Content */}
@@ -117,7 +112,7 @@ const AboutSection = () => {
               <div className="p-6 text-white">
                 <div className="flex items-center mb-2">
                   <MapPin size={18} className="mr-2" />
-                  <span>Bengaluru, India</span>
+                  <span>Bhilai, India</span>
                 </div>
                 <h3 className="text-xl font-semibold">25+ Years of Educational Excellence</h3>
               </div>

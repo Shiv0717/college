@@ -139,7 +139,7 @@ const About = () => (
             </div>
             <ul className="space-y-4">
               {[
-                "Modern classrooms with digital teaching aids",
+               
                 "Specialized laboratories for each department",
                 "Central library with extensive collection",
                 "High-speed internet connectivity across campus",
@@ -171,7 +171,7 @@ const About = () => (
                 "Sports facilities and playgrounds",
                 "Medical facilities and counseling services",
                 "Transportation services",
-                "Bank and ATM facilities on campus"
+               
               ].map((item, index) => (
                 <motion.li 
                   key={index} 
@@ -209,16 +209,12 @@ const About = () => (
                 <GraduationCap className="mr-2 text-blue-700" size={24} />
                 Undergraduate Programs
               </h3>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 gap-3">
                 {[
                   "Computer Science & Engineering",
-                  "Information Technology",
-                  "AI & Machine Learning",
                   "Mechanical Engineering",
                   "Civil Engineering",
-                  "Electronics & Communication",
                   "Electrical Engineering",
-                  "Data Science"
                 ].map((program, index) => (
                   <motion.div 
                     key={index}
@@ -237,13 +233,18 @@ const About = () => (
             <div className="bg-white p-6 rounded-xl shadow-sm mb-6">
               <h3 className="text-xl font-semibold text-blue-900 mb-4 flex items-center">
                 <BookText className="mr-2 text-blue-700" size={24} />
-                Postgraduate Programs
+                Courses Offered
               </h3>
-              <div className="space-y-3">
+              <div className="grid grid-cols-1  md:grid-cols-2 gap-2">
                 {[
-                  "Master of Technology in various specializations",
-                  "Master of Computer Applications (MCA)",
-                  "Ph.D. programs in engineering disciplines"
+                 "Artificial Intelligence (AI)",
+                 "Machine Learning (ML)",
+                 "Cyber Security",
+                 "Cloud Computing",
+                 "Data Science",
+                 "Electric Vehicle Technology",
+                 "Fast Charging Station Infrastructure",
+                 "Robotics"
                 ].map((program, index) => (
                   <motion.div 
                     key={index}
@@ -263,74 +264,7 @@ const About = () => (
       </motion.div>
 
       {/* Achievements */}
-      <motion.div
-        className="bg-white p-8 md:p-10 rounded-2xl shadow-lg mb-20 border-0"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.8 }}
-      >
-        <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Recognition & Achievements</h2>
-          <p className="text-blue-800 text-lg max-w-3xl mx-auto">
-            Our commitment to excellence has been recognized through various accreditations and achievements.
-          </p>
-        </div>
-        
-        <div className="grid md:grid-cols-2 gap-10">
-          <div>
-            <div className="flex items-center mb-6">
-              <Trophy className="text-blue-700 mr-3" size={28} />
-              <h3 className="text-xl font-semibold text-blue-900">Accreditations</h3>
-            </div>
-            <div className="space-y-4">
-              {[
-                "NAAC Accredited with 'A' Grade",
-                "Approved by AICTE, New Delhi",
-                "Permanent Affiliation with CSVTU, Bhilai",
-                "ISO 9001:2015 Certified"
-              ].map((item, index) => (
-                <motion.div 
-                  key={index}
-                  className="flex items-center p-4 bg-blue-50 rounded-xl"
-                  whileHover={{ x: 5 }}
-                >
-                  <div className="flex items-center justify-center w-8 h-8 bg-blue-100 text-blue-700 rounded-full mr-3">
-                    {index + 1}
-                  </div>
-                  <span className="text-blue-700 font-medium">{item}</span>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-          
-          <div>
-            <div className="flex items-center mb-6">
-              <Award className="text-blue-700 mr-3" size={28} />
-              <h3 className="text-xl font-semibold text-blue-900">Notable Achievements</h3>
-            </div>
-            <div className="space-y-4">
-              {[
-                "Consistent high placement records",
-                "Research publications in reputed journals",
-                "Awards in technical festivals and competitions",
-                "Industry collaborations for skill development",
-                "Student startups and innovation projects"
-              ].map((item, index) => (
-                <motion.div 
-                  key={index}
-                  className="flex items-center p-4 bg-blue-50 rounded-xl"
-                  whileHover={{ x: 5 }}
-                >
-                  <div className="flex items-center justify-center w-8 h-8 bg-blue-100 text-blue-700 rounded-full mr-3">
-                    {index + 1}
-                  </div>
-                  <span className="text-blue-700 font-medium">{item}</span>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </motion.div>
+      
 
       {/* Call to Action */}
       <motion.div 

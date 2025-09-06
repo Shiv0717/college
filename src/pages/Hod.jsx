@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   GraduationCap,
   Award,
@@ -6,18 +6,24 @@ import {
   Phone,
   Briefcase,
   Star,
-  X,
+  ChevronDown,
+  ChevronUp,
   BookOpen,
   Users,
-  ChevronRight,
+  FileText,
   Calendar,
   MapPin
 } from 'lucide-react';
 
 const Hod = () => {
-  const [selectedHod, setSelectedHod] = useState(null);
+  const [expandedCards, setExpandedCards] = useState({});
 
-  
+  const toggleExpand = (id) => {
+    setExpandedCards(prev => ({
+      ...prev,
+      [id]: !prev[id]
+    }));
+  };
 
   const hods = [
     {
@@ -40,7 +46,7 @@ const Hod = () => {
       id: 6,
       name: "Prabhat Kumar Patel",
       department: "Civil Engineering",
-      image: "/hod/Prabhat.jpeg",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
       qualification: "B.E (Civil), M.Tech (CTM - Civil Engineering), MBA (Finance), MBA (HR & Marketing), Pursuing AMIE",
       experience: "7 years",
       email: "hod.civil.prabhat@kec.edu",
@@ -59,38 +65,37 @@ const Hod = () => {
       bio: "A highly accomplished academician with multiple qualifications and numerous awards. Passionate about research and student mentorship."
     },
     {
-        id: 3,
-        name: "Dr. Joy Sonashalol",
-        department: "Computer Science & Engineering",
-        image: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-        qualification: "Ph.D. in Artificial Intelligence",
-        experience: "20 years",
-        email: "hod.cse@kec.edu",
-        phone: "+91 9876543212",
-        specialization: "Artificial Intelligence, Machine Learning, Data Science",
-        achievements: [
-          "Developed AI-driven learning platforms",
-          "Author of 3 textbooks in Machine Learning and AI",
-          "Consultant for multiple software product companies"
-        ],
-        bio: "A leading academician in computer science, known for pioneering research in artificial intelligence and machine learning. Passionate about shaping future tech leaders through innovation and mentorship."
-      },      
-      {
-        id: 4,
-        name: "Mr. Tarachand Sahu",
-        department: "Electrical Engineering",
-        image: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-        qualification: "B.E. (Electrical & Electronics Engineering), M.Tech (Electrical Engineering)",
-        experience: "—", // Add exact number if available, e.g., "8 years"
-        email: "tarachand.sahu@kec.edu", // Update if you have the real email
-        phone: "+91 9876543216", // Update if required
-        specialization: "Electrical Machines, Power Systems", // Adjust if needed
-        achievements: [
-          "Published 2 research papers in reputed journals"
-        ],
-        bio: "Mr. Tarachand Sahu is an Assistant Professor in the Department of Electrical Engineering. His teaching and academic interests lie in the areas of power systems and electrical machines. He is committed to student development and technical excellence."
-      }
-      
+      id: 3,
+      name: "Dr. Joy Sonashalol",
+      department: "Computer Science & Engineering",
+      image: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      qualification: "Ph.D. in Artificial Intelligence",
+      experience: "20 years",
+      email: "hod.cse@kec.edu",
+      phone: "+91 9876543212",
+      specialization: "Artificial Intelligence, Machine Learning, Data Science",
+      achievements: [
+        "Developed AI-driven learning platforms",
+        "Author of 3 textbooks in Machine Learning and AI",
+        "Consultant for multiple software product companies"
+      ],
+      bio: "A leading academician in computer science, known for pioneering research in artificial intelligence and machine learning. Passionate about shaping future tech leaders through innovation and mentorship."
+    },      
+    {
+      id: 4,
+      name: "Mr. Tarachand Sahu",
+      department: "Electrical Engineering",
+      image: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      qualification: "B.E. (Electrical & Electronics Engineering), M.Tech (Electrical Engineering)",
+      experience: "—",
+      email: "tarachand.sahu@kec.edu",
+      phone: "+91 9876543216",
+      specialization: "Electrical Machines, Power Systems",
+      achievements: [
+        "Published 2 research papers in reputed journals"
+      ],
+      bio: "Mr. Tarachand Sahu is an Assistant Professor in the Department of Electrical Engineering. His teaching and academic interests lie in the areas of power systems and electrical machines. He is committed to student development and technical excellence."
+    }
   ];
 
   return (
@@ -106,14 +111,14 @@ const Hod = () => {
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {hods.map((hod) => (
-            <div key={hod.id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group">
+            <div key={hod.id} className={`bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 ${expandedCards[hod.id] ? 'ring-2 ring-blue-500 shadow-xl' : 'hover:shadow-md'}`}>
               <div className="relative h-64 overflow-hidden">
                 <img 
                   src={hod.image} 
                   alt={hod.name} 
-                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover"
                 />
                 <div className="absolute bottom-0 left-0 bg-gradient-to-t from-black/80 to-transparent w-full h-2/3" />
                 <div className="absolute bottom-4 left-4 text-white">
@@ -123,168 +128,124 @@ const Hod = () => {
               </div>
 
               <div className="p-6">
-                {/* Qualification */}
+                <div className="grid grid-cols-2 gap-4 mb-4">
+                  <div className="flex items-center">
+                    <div className="bg-blue-100 p-2 rounded-lg mr-3">
+                      <GraduationCap className="h-5 w-5 text-blue-600" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500">Qualification</p>
+                      <p className="font-medium text-sm line-clamp-1">{hod.qualification.split(',')[0]}</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center">
+                    <div className="bg-blue-100 p-2 rounded-lg mr-3">
+                      <Briefcase className="h-5 w-5 text-blue-600" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500">Experience</p>
+                      <p className="font-medium text-sm">{hod.experience}</p>
+                    </div>
+                  </div>
+                </div>
+
                 <div className="flex items-center mb-4">
-                  <div className="bg-blue-100 p-2 rounded-xl mr-3">
-                    <GraduationCap className="h-6 w-6 text-blue-600" />
+                  <div className="bg-blue-100 p-2 rounded-lg mr-3">
+                    <Award className="h-5 w-5 text-blue-600" />
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600">Qualification</p>
-                    <p className="font-medium text-sm line-clamp-1">{hod.qualification}</p>
+                    <p className="text-xs text-gray-500">Specialization</p>
+                    <p className="font-medium text-sm">{hod.specialization}</p>
                   </div>
                 </div>
 
-                {/* Experience */}
-                <div className="flex items-center mb-4">
-                  <div className="bg-blue-100 p-2 rounded-xl mr-3">
-                    <Briefcase className="h-6 w-6 text-blue-600" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-600">Experience</p>
-                    <p className="font-medium">{hod.experience}</p>
-                  </div>
+                <div className="border-t border-gray-100 pt-4 mt-4">
+                  <a href={`mailto:${hod.email}`} className="text-blue-600 text-sm hover:text-blue-800 flex items-center">
+                    <Mail className="h-4 w-4 mr-2" />
+                    {hod.email}
+                  </a>
                 </div>
 
-                {/* Specialization */}
-                <div className="mb-4">
-                  <p className="text-sm text-gray-600 mb-1">Specialization</p>
-                  <p className="font-medium text-sm">{hod.specialization}</p>
-                </div>
-
-                {/* Contact Info */}
-                <div className="border-t border-gray-200 pt-4 mt-4">
-                  <p className="text-sm text-gray-600 mb-2">Contact</p>
-                  <div className="flex flex-col space-y-2">
-                    <a href={`mailto:${hod.email}`} className="text-blue-600 text-sm hover:text-blue-800 flex items-center">
-                      <Mail className="h-4 w-4 mr-2" />
-                      {hod.email}
-                    </a>
-                    
-                  </div>
-                </div>
-
-                {/* View Profile Button */}
                 <button
-                  onClick={() => setSelectedHod(hod)}
-                  className="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-medium transition-colors flex items-center justify-center group/btn"
+                  onClick={() => toggleExpand(hod.id)}
+                  className="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-lg font-medium transition-colors flex items-center justify-center"
                 >
-                  View Full Profile
-                  <ChevronRight className="h-4 w-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+                  {expandedCards[hod.id] ? (
+                    <>
+                      Show Less <ChevronUp className="h-4 w-4 ml-2" />
+                    </>
+                  ) : (
+                    <>
+                      View Full Profile <ChevronDown className="h-4 w-4 ml-2" />
+                    </>
+                  )}
                 </button>
               </div>
+
+              {/* Expanded Content - Only shows for the selected card */}
+              {expandedCards[hod.id] && (
+                <div className="px-6 pb-6 border-t border-gray-100">
+                  <div className="pt-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                      <div className="bg-blue-50 p-4 rounded-xl">
+                        <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
+                          <BookOpen className="text-blue-600 mr-2" size={20} />
+                          Qualifications
+                        </h3>
+                        <p className="text-gray-700 text-sm">{hod.qualification}</p>
+                      </div>
+                      
+                      <div className="bg-gray-50 p-4 rounded-xl">
+                        <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
+                          <Users className="text-blue-600 mr-2" size={20} />
+                          Bio
+                        </h3>
+                        <p className="text-gray-700 text-sm">{hod.bio}</p>
+                      </div>
+                    </div>
+                    
+                    {/* Achievements section */}
+                    <div className="bg-yellow-50 rounded-xl p-5 mb-6">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                        <Award className="text-yellow-600 mr-3" size={20} />
+                        Achievements & Awards
+                      </h3>
+                      <div className="grid grid-cols-1 gap-3">
+                        {hod.achievements.map((achievement, index) => (
+                          <div key={index} className="flex items-start bg-white p-3 rounded-lg shadow-sm">
+                            <div className="flex-shrink-0 h-6 w-6 rounded-full bg-yellow-100 flex items-center justify-center mr-3 mt-0.5">
+                              <Star className="h-4 w-4 text-yellow-600" />
+                            </div>
+                            <span className="text-gray-700 text-sm">{achievement}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    {/* Contact Details */}
+                    <div className="bg-blue-50 rounded-xl p-5">
+                      <h3 className="font-semibold text-lg text-gray-900 mb-3 flex items-center">
+                        <FileText className="text-blue-600 mr-2" size={20} />
+                        Contact Information
+                      </h3>
+                      <div className="space-y-2">
+                        <a href={`mailto:${hod.email}`} className="flex items-center text-blue-600 hover:text-blue-800 text-sm">
+                          <Mail className="h-4 w-4 mr-3" />
+                          {hod.email}
+                        </a>
+                        <a href={`tel:${hod.phone}`} className="flex items-center text-blue-600 hover:text-blue-800 text-sm">
+                          <Phone className="h-4 w-4 mr-3" />
+                          {hod.phone}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           ))}
         </div>
-
-        {/* HOD Modal - Completely redesigned */}
-        {selectedHod && (
-          <div className="fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-50 overflow-hidden">
-            <div className="bg-white rounded-2xl max-w-6xl w-full max-h-[90vh] flex flex-col overflow-hidden shadow-2xl">
-              {/* Header with close button */}
-              <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-white sticky top-0 z-10">
-                <h2 className="text-2xl font-bold text-gray-900">{selectedHod.name}</h2>
-                <button 
-                  onClick={() => setSelectedHod(null)}
-                  className="p-2 rounded-full hover:bg-gray-100 transition-colors"
-                  aria-label="Close modal"
-                >
-                  <X className="h-6 w-6" />
-                </button>
-              </div>
-              
-              {/* Scrollable content container */}
-              <div className="overflow-y-auto flex-1">
-                <div className="p-6">
-                  {/* Profile header with image and basic info */}
-                  <div className="flex flex-col lg:flex-row gap-8 mb-8">
-                    <div className="w-full lg:w-1/3">
-                      <div className="rounded-2xl overflow-hidden shadow-md">
-                        <img 
-                          src={selectedHod.image} 
-                          alt={selectedHod.name} 
-                          className="w-full h-72 object-contain"
-                        />
-                      </div>
-                      
-                      <div className="mt-6 bg-blue-50 rounded-xl p-5">
-                        <h3 className="font-semibold text-lg text-gray-900 mb-3">Contact Information</h3>
-                        <div className="space-y-3">
-                          <a href={`mailto:${selectedHod.email}`} className="flex items-center text-blue-600 hover:text-blue-800">
-                            <Mail className="h-5 w-5 mr-3" />
-                            {selectedHod.email}
-                          </a>
-                          <a href={`tel:${selectedHod.phone}`} className="flex items-center text-blue-600 hover:text-blue-800">
-                            <Phone className="h-5 w-5 mr-3" />
-                            {selectedHod.phone}
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="w-full lg:w-2/3">
-                      <div className="mb-6">
-                        <h3 className="text-xl font-semibold text-gray-900 mb-2">{selectedHod.department}</h3>
-                        <p className="text-gray-600">{selectedHod.specialization}</p>
-                      </div>
-                      
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                        <div className="bg-gray-50 rounded-xl p-4">
-                          <div className="flex items-center mb-2">
-                            <Briefcase className="h-5 w-5 text-blue-500 mr-2" />
-                            <span className="font-medium">Experience</span>
-                          </div>
-                          <p className="text-gray-700">{selectedHod.experience}</p>
-                        </div>
-                        
-                        <div className="bg-gray-50 rounded-xl p-4">
-                          <div className="flex items-center mb-2">
-                            <GraduationCap className="h-5 w-5 text-blue-500 mr-2" />
-                            <span className="font-medium">Department</span>
-                          </div>
-                          <p className="text-gray-700">{selectedHod.department}</p>
-                        </div>
-                      </div>
-                      
-                      <div className="mb-6">
-                        <h3 className="text-xl font-semibold text-gray-900 mb-3 flex items-center">
-                          <BookOpen className="text-blue-500 mr-2" size={20} />
-                          Qualifications
-                        </h3>
-                        <p className="text-gray-700 bg-blue-50 p-4 rounded-xl">{selectedHod.qualification}</p>
-                      </div>
-                      
-                      <div className="mb-6">
-                        <h3 className="text-xl font-semibold text-gray-900 mb-3 flex items-center">
-                          <Users className="text-blue-500 mr-2" size={20} />
-                          Bio
-                        </h3>
-                        <p className="text-gray-700 bg-gray-50 p-4 rounded-xl">{selectedHod.bio}</p>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Achievements section */}
-                  <div className="bg-yellow-50 rounded-2xl p-6">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                      <Award className="text-yellow-600 mr-3" size={24} />
-                      Achievements & Awards
-                    </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {selectedHod.achievements.map((achievement, index) => (
-                        <div key={index} className="flex items-start bg-white p-4 rounded-lg shadow-sm">
-                          <div className="flex-shrink-0 h-8 w-8 rounded-full bg-yellow-100 flex items-center justify-center mr-3">
-                            <Star className="h-4 w-4 text-yellow-600" />
-                          </div>
-                          <span className="text-gray-700">{achievement}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
 
         {/* Bottom Section */}
         <div className="mt-16 bg-white rounded-2xl shadow-lg p-8">
