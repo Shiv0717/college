@@ -92,10 +92,8 @@ const PlacementPartners = () => {
   
 
   return (
-    <section className="relative bg-gradient-to-br from-slate-50 to-blue-50 py-20 overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute top-10 left-10 w-40 h-40 bg-blue-200 rounded-full opacity-20"></div>
-      <div className="absolute bottom-10 right-10 w-32 h-32 bg-indigo-200 rounded-full opacity-20"></div>
+    <section className="relative py-8 overflow-hidden">
+     
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
@@ -106,12 +104,12 @@ const PlacementPartners = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700 mb-4">
+          <div className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-600 mb-4">
             <Building2 className="h-4 w-4 mr-2" />
             Industry Connections
           </div>
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Our <span className="text-blue-900">Placement Partners</span>
+          <h2 className="text-4xl font-bold text-blue-900 mb-4">
+            Our <span className="text-blue-600">Placement Partners</span>
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             We partner with leading companies to provide exceptional career opportunities for our students

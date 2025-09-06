@@ -1,19 +1,5 @@
 import React, { useState } from "react";
-import { 
-  Shield, 
-  Users, 
-  Building2, 
-  Award, 
-  Quote, 
-  ChevronLeft, 
-  ChevronRight, 
-  Linkedin, 
-  Mail,
-  GraduationCap,
-  Briefcase,
-  Star,
-  BookOpen
-} from "lucide-react";
+import { Shield, Users, Building2, Award, Quote, ChevronLeft, ChevronRight, Linkedin, Mail, Calendar, BookOpen, Target } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Leadership = () => {
@@ -32,8 +18,8 @@ const Leadership = () => {
       quote: "Education is not just about degrees, but about shaping character and building futures.",
       linkedin: "#",
       email: "anand.tripathi@example.com",
-      experience: "25+ years",
-      education: "M.Tech, MBA"
+      tenure: "2011 - Present",
+      expertise: ["Educational Leadership", "Institutional Development", "Strategic Planning"]
     },
     {
       name: "Mr. M. M. Tripathi",
@@ -41,15 +27,14 @@ const Leadership = () => {
       image: "https://www.kecbhilai.com/images/MANAGEMENT%20&%20HIGHER%20AUTHORITIES/mmtripathi.jpg",
       achievements: [
         "Chairman – Krishna Education Society",
-        "Founder visionary of KEC's managing body",
-        "Pioneer in educational reforms"
+        "Founder visionary of KEC's managing body"
       ],
-      bio: "As the head of the governing body, Mr. M. M. Tripathi leads the Krishna Education Society, overseeing the strategic vision and expansion of its educational institutions, including Krishna Engineering College. His leadership has been instrumental in establishing high standards of academic excellence.",
+      bio: "As the head of the governing body, Mr. M. M. Tripathi leads the Krishna Education Society, overseeing the strategic vision and expansion of its educational institutions, including Krishna Engineering College.",
       quote: "There is no purifier greater than knowledge.",
       linkedin: "#",
       email: "mm.tripathi@example.com",
-      experience: "30+ years",
-      education: "Ph.D, M.Ed"
+      tenure: "2005 - Present",
+      expertise: ["Governance", "Educational Policy", "Community Development"]
     },
     {
       name: "Mr. Pramod Kumar Tripathi",
@@ -57,15 +42,14 @@ const Leadership = () => {
       image: "https://www.kecbhilai.com/images/MANAGEMENT%20&%20HIGHER%20AUTHORITIES/pramodtripathi.jpg",
       achievements: [
         "Secretary – Krishna Education Society",
-        "Governance and administrative leadership",
-        "Strategic planning expert"
+        "Governance and administrative leadership"
       ],
-      bio: "In his role as Secretary, Mr. Pramod Kumar Tripathi handles critical administrative functions and governance decisions for the Krishna Education Society, enabling seamless institutional operations. His expertise in strategic planning has significantly contributed to the growth of the institution.",
+      bio: "In his role as Secretary, Mr. Pramod Kumar Tripathi handles critical administrative functions and governance decisions for the Krishna Education Society, enabling seamless institutional operations.",
       quote: "Dedication to service and education is the true path to progress.",
       linkedin: "#",
       email: "pramod.tripathi@example.com",
-      experience: "22+ years",
-      education: "MBA, LLB"
+      tenure: "2010 - Present",
+      expertise: ["Administration", "Operations Management", "Strategic Planning"]
     },
   ];
 
@@ -78,187 +62,183 @@ const Leadership = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-b from-blue-50 to-indigo-50">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section className="py-12 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <div className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700 mb-4 shadow-sm">
-            <Users className="h-4 w-4 mr-2" />
-            Visionary Leadership
+          <div className="inline-flex items-center rounded-full bg-blue-50 mb-6 px-4 py-2  text-sm font-medium text-blue-700 ">
+            <Shield className="h-4 w-4 mr-2 " />
+            Leadership Team
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Guiding <span className="text-blue-900">Visionaries</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Guiding <span className="text-blue-600">Visionaries</span>
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Meet the exceptional leaders who shape the future of education at Krishna Engineering College
+            Meet the exceptional leaders who shape our institution's future with 
+            wisdom, dedication, and innovative thinking.
           </p>
         </motion.div>
 
-        {/* Navigation Dots */}
-        <div className="flex justify-center mb-8">
-          {leadershipData.map((_, index) => (
-            <button
+        {/* Leadership Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          {leadershipData.map((leader, index) => (
+            <motion.div
               key={index}
-              className={`w-3 h-3 rounded-full mx-2 transition-all ${index === activeProfile ? 'bg-blue-900 scale-125' : 'bg-gray-300 hover:bg-gray-400'}`}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className={`bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 transition-all duration-300 hover:shadow-lg ${
+                activeProfile === index ? 'ring-2 ring-blue-500' : ''
+              }`}
               onClick={() => setActiveProfile(index)}
-              aria-label={`View ${leadershipData[index].name}'s profile`}
-            />
+            >
+              <div className="relative">
+                <img
+                  src={leader.image}
+                  alt={leader.name}
+                  className="w-full h-48 object-contain"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                <div className="absolute bottom-4 left-4 text-white">
+                  <h3 className="font-bold text-lg">{leader.name}</h3>
+                  <p className="text-blue-200 text-sm">{leader.role}</p>
+                </div>
+              </div>
+              <div className="p-6">
+                <div className="flex items-center text-sm text-gray-500 mb-3">
+                  <Calendar className="w-4 h-4 mr-1" />
+                  <span>{leader.tenure}</span>
+                </div>
+                <p className="text-gray-600 text-sm line-clamp-3">{leader.bio}</p>
+                <button className="mt-4 text-blue-600 text-sm font-medium hover:text-blue-700 transition-colors">
+                  View Profile →
+                </button>
+              </div>
+            </motion.div>
           ))}
         </div>
 
-        {/* Leadership Profiles */}
-        <div className="relative">
-          {/* Navigation Arrows */}
-          <button 
-            onClick={prevProfile}
-            className="hidden md:flex absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-12 bg-white rounded-full p-4 shadow-lg hover:bg-blue-50 transition-all z-10 border border-gray-100"
-            aria-label="Previous profile"
+        {/* Detailed Profile View */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeProfile}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5 }}
+            className="bg-gradient-to-br from-blue-50 to-gray-50 rounded-2xl p-8 md:p-12 shadow-inner"
           >
-            <ChevronLeft className="w-6 h-6 text-blue-900" />
-          </button>
-          
-          <button 
-            onClick={nextProfile}
-            className="hidden md:flex absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-12 bg-white rounded-full p-4 shadow-lg hover:bg-blue-50 transition-all z-10 border border-gray-100"
-            aria-label="Next profile"
-          >
-            <ChevronRight className="w-6 h-6 text-blue-900" />
-          </button>
-
-          {/* Profile Card with Animation */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeProfile}
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-              className="bg-white rounded-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-2 shadow-xl border border-gray-100"
-            >
-              {/* Left Side – Image & Basic Info */}
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.2, duration: 0.6 }}
-                className="relative bg-blue-50 p-8 flex flex-col items-center justify-center"
-              >
-                <div className="relative mb-8">
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-400 opacity-20 rounded-full transform -rotate-6 scale-105"></div>
-                  <div className="absolute -inset-2 bg-gradient-to-br from-blue-200 to-purple-200 rounded-full opacity-50 blur-sm"></div>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {/* Leader Image & Basic Info */}
+              <div className="lg:col-span-1 flex flex-col items-center">
+                <div className="relative mb-6">
+                  <div className="absolute -inset-4 bg-blue-200 rounded-full opacity-30"></div>
                   <img
                     src={leadershipData[activeProfile].image}
                     alt={leadershipData[activeProfile].name}
-                    className="w-64 h-64 object-cover rounded-full border-4 border-white shadow-2xl relative z-10"
+                    className="relative w-48 h-48 object-cover rounded-full border-4 border-white shadow-xl"
                   />
                 </div>
                 
                 <h3 className="text-2xl font-bold text-gray-900 text-center mb-2">
                   {leadershipData[activeProfile].name}
                 </h3>
-                <p className="text-blue-800 font-medium text-lg mb-4">
+                <p className="text-blue-700 font-medium text-lg mb-4 text-center">
                   {leadershipData[activeProfile].role}
                 </p>
                 
-                <div className="flex flex-col sm:flex-row gap-4 mb-6">
-                  <div className="flex items-center bg-white px-4 py-2 rounded-full shadow-sm">
-                    <Briefcase className="w-4 h-4 text-blue-600 mr-2" />
-                    <span className="text-sm text-gray-700">{leadershipData[activeProfile].experience}</span>
-                  </div>
-                  <div className="flex items-center bg-white px-4 py-2 rounded-full shadow-sm">
-                    <GraduationCap className="w-4 h-4 text-blue-600 mr-2" />
-                    <span className="text-sm text-gray-700">{leadershipData[activeProfile].education}</span>
-                  </div>
+                <div className="flex items-center text-sm text-gray-600 mb-6">
+                  <Calendar className="w-4 h-4 mr-2" />
+                  <span>{leadershipData[activeProfile].tenure}</span>
                 </div>
                 
-               
-               
-              </motion.div>
+              
+              </div>
 
-              {/* Right Side – Detailed Content */}
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.6 }}
-                className="p-8 flex flex-col justify-center"
-              >
-                <div className="mb-8">
-                  <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                    <Award className="w-5 h-5 text-blue-600 mr-2" />
-                    Key Roles & Achievements
-                  </h4>
-                  <ul className="space-y-3">
-                    {leadershipData[activeProfile].achievements.map((achievement, index) => (
-                      <motion.li 
-                        key={index} 
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.4 + index * 0.1, duration: 0.4 }}
-                        className="flex items-start bg-blue-50 p-3 rounded-lg"
-                      >
-                        <div className="bg-blue-600 p-1 rounded-full mr-3 mt-1 flex-shrink-0">
-                          <Star className="w-3 h-3 text-white" />
-                        </div>
-                        <span className="text-gray-700">{achievement}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
+              {/* Leader Details */}
+              <div className="lg:col-span-2">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {/* Achievements */}
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                      <Award className="w-5 h-5 text-blue-600 mr-2" />
+                      Key Achievements
+                    </h4>
+                    <ul className="space-y-3">
+                      {leadershipData[activeProfile].achievements.map((achievement, index) => (
+                        <li key={index} className="flex items-start">
+                          <div className="bg-blue-100 p-1 rounded-full mr-3 mt-1 flex-shrink-0">
+                            <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                          </div>
+                          <span className="text-gray-700 text-sm">{achievement}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Areas of Expertise */}
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                      <Target className="w-5 h-5 text-blue-600 mr-2" />
+                      Areas of Expertise
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {leadershipData[activeProfile].expertise.map((expertise, index) => (
+                        <span
+                          key={index}
+                          className="bg-blue-100 text-blue-700 text-xs font-medium px-3 py-1.5 rounded-full"
+                        >
+                          {expertise}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
 
-                <div className="mb-8">
+                {/* Bio */}
+                <div className="mt-8">
                   <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
                     <BookOpen className="w-5 h-5 text-blue-600 mr-2" />
-                    Leadership Profile
+                    Profile
                   </h4>
-                  <motion.p 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.7, duration: 0.6 }}
-                    className="text-gray-700 leading-relaxed"
-                  >
+                  <p className="text-gray-700 leading-relaxed">
                     {leadershipData[activeProfile].bio}
-                  </motion.p>
+                  </p>
                 </div>
 
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.9, duration: 0.5 }}
-                  className="bg-gradient-to-r from-blue-100 to-indigo-100 rounded-xl p-5 border-l-4 border-blue-600"
-                >
-                  <div className="flex items-start">
-                    <Quote className="w-5 h-5 text-blue-600 mr-3 mt-1 flex-shrink-0" />
-                    <p className="text-gray-800 italic font-medium">
+                {/* Quote */}
+                <div className="mt-8 p-6 bg-white rounded-xl shadow-sm border-l-4 border-blue-500">
+                  <div className="flex">
+                    <Quote className="w-6 h-6 text-blue-400 mr-3 flex-shrink-0" />
+                    <p className="text-gray-700 italic text-lg">
                       "{leadershipData[activeProfile].quote}"
                     </p>
                   </div>
-                </motion.div>
-              </motion.div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
 
-        {/* Mobile Navigation Arrows */}
-        <div className="flex justify-center mt-8 md:hidden">
-          <button 
-            onClick={prevProfile}
-            className="bg-white rounded-full p-3 shadow-md mx-2 hover:bg-blue-50 transition-colors border border-gray-200"
-            aria-label="Previous profile"
-          >
-            <ChevronLeft className="w-5 h-5 text-blue-900" />
-          </button>
-          <button 
-            onClick={nextProfile}
-            className="bg-white rounded-full p-3 shadow-md mx-2 hover:bg-blue-50 transition-colors border border-gray-200"
-            aria-label="Next profile"
-          >
-            <ChevronRight className="w-5 h-5 text-blue-900" />
-          </button>
+        {/* Navigation Dots */}
+        <div className="flex justify-center mt-8">
+          {leadershipData.map((_, index) => (
+            <button
+              key={index}
+              className={`w-3 h-3 rounded-full mx-2 transition-all ${
+                index === activeProfile ? 'bg-blue-600 scale-110' : 'bg-gray-300 hover:bg-gray-400'
+              }`}
+              onClick={() => setActiveProfile(index)}
+              aria-label={`View ${leadershipData[index].name}'s profile`}
+            />
+          ))}
         </div>
       </div>
     </section>

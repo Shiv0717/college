@@ -7,15 +7,17 @@ import {
   BookOpen,
   GraduationCap,
   MapPin,
-  Clock,
-  Star,
-  Target,
-  Heart,
-  Calendar,
   Info,
   TrendingUp,
   CheckCircle,
-  Book
+  Book,
+  Target,
+  Heart,
+  Clock,
+  BarChart3,
+  Shield,
+  Star,
+  Calendar,
 } from "lucide-react";
 
 // Animation Variants
@@ -37,91 +39,130 @@ const itemVariants = {
 };
 
 const AboutSection = () => {
-  const stats = [
-    { icon: <GraduationCap size={28} />, value: "5000+", label: "Graduates" },
-    { icon: <Users size={28} />, value: "200+", label: "Faculty Members" },
-    { icon: <BookOpen size={28} />, value: "50+", label: "Programs" },
-    { icon: <Award size={28} />, value: "25+", label: "Years of Excellence" },
-  ];
-
   const highlights = [
     {
       icon: <CheckCircle size={20} className="text-blue-600" />,
-      text: "AICTE-approved engineering institution"
+      text: "AICTE-approved & CSVTU-affiliated institution",
     },
     {
       icon: <Book size={20} className="text-blue-600" />,
-      text: "4 BE programs (CSE, Civil, Mechanical, Electrical) with ~240 seats"
+      text: "B.Tech programs in CSE, Civil, Mechanical & Electrical",
     },
     {
       icon: <TrendingUp size={20} className="text-blue-600" />,
-      text: "Average package ₹6 LPA, highest up to ₹10 LPA"
+      text: "Average package ₹6 LPA, highest ₹10 LPA",
     },
     {
       icon: <Users size={20} className="text-blue-600" />,
-      text: "Placement rate ranging from 80% to ~99%"
-    }
+      text: "Placement rate between 80% – 99%",
+    },
+  ];
+
+  const stats = [
+    { icon: <GraduationCap size={24} />, value: "1000+", label: "Students" },
+    { icon: <BookOpen size={24} />, value: "15+", label: "Programs" },
+    { icon: <Award size={24} />, value: "50+", label: "Awards" },
+    { icon: <Users size={24} />, value: "100+", label: "Faculty" },
+  ];
+
+  const values = [
+    {
+      icon: <Target size={20} />,
+      title: "Excellence",
+      description: "Commitment to academic and professional excellence",
+    },
+    {
+      icon: <Heart size={20} />,
+      title: "Integrity",
+      description: "Upholding ethical standards in all endeavors",
+    },
+    {
+      icon: <BarChart3 size={20} />,
+      title: "Innovation",
+      description: "Fostering creativity and innovative thinking",
+    },
+    {
+      icon: <Shield size={20} />,
+      title: "Inclusion",
+      description: "Creating an inclusive learning environment",
+    },
   ];
 
   return (
-    <section className="py-14 bg-gradient-to-b from-blue-50 to-white relative overflow-hidden">
+    <section
+      id="about"
+      className="py-4 bg-gradient-to-b from-blue-50 to-white relative overflow-hidden"
+    >
       {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-72 h-72 bg-blue-200 rounded-full -translate-x-36 -translate-y-36 opacity-50"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-80 lg:h-96 bg-blue-100 rounded-full translate-x-48 translate-y-48 opacity-40"></div>
-      
+
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         {/* Heading */}
         <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      viewport={{ once: true }}
-      className="text-center mb-16"
-    >
-      {/* Tagline pill */}
-      <div className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700 mb-4">
-        <Info className="h-4 w-4 mr-2" />
-        About Us
-      </div>
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: "-100px" }}
+          className="text-center mb-16"
+        >
+          <div className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700 mb-4">
+            <Info className="h-4 w-4 mr-2" />
+            About Us
+          </div>
 
-      {/* Heading */}
-      <h2 className="text-4xl font-bold text-gray-900 mb-4">
-        Welcome to <span className="text-blue-900">Krishna Engineering College</span>
-      </h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Welcome to{" "}
+            <span className="text-blue-600">Krishna Engineering College</span>
+          </h2>
 
-      {/* Subtitle */}
-      
-    </motion.div>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            Empowering students with knowledge, innovation, and values since
+            2011. Shaping the next generation of engineers and leaders.
+          </p>
+        </motion.div>
 
         {/* Main Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16 items-center">
-          {/* Left Image */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-6 items-center">
+          {/* Left Image Block */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
             viewport={{ once: true, margin: "-100px" }}
-            className="relative rounded-2xl overflow-hidden shadow-2xl group"
+            className="relative rounded-2xl overflow-hidden shadow-xl group"
           >
             <img
               src="https://www.kecbhilai.com/images/slider_img2.jpg"
               alt="Krishna College Campus"
-              className="w-full h-110 object-cover transition-transform duration-700 group-hover:scale-105"
+              className="w-full h-[450px] object-cover transition-transform duration-700 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent flex items-end">
+
+            <div className="absolute inset-0 bg-gradient-to-t from-blue-900/70 to-transparent flex items-end">
               <div className="p-6 text-white">
                 <div className="flex items-center mb-2">
                   <MapPin size={18} className="mr-2" />
-                  <span>Bhilai, India</span>
+                  <span>Bhilai, Chhattisgarh</span>
                 </div>
-                <h3 className="text-xl font-semibold">25+ Years of Educational Excellence</h3>
+                <h3 className="text-xl font-semibold">
+                  25+ Years of Educational Excellence
+                </h3>
               </div>
             </div>
-            
-            {/* Accreditation badge */}
-            <div className="absolute top-6 right-6 bg-white rounded-lg shadow-lg py-2 px-4 flex items-center">
+
+            <div className="absolute top-6 right-6 bg-white/90 backdrop-blur-lg rounded-lg shadow-md py-2 px-4 flex items-center">
               <Award size={20} className="text-yellow-500 mr-2" />
-              <span className="text-sm font-medium">NAAC Accredited</span>
+              <span className="text-sm font-medium text-gray-800">
+                Approved by AICTE
+              </span>
+            </div>
+
+            {/* Floating stats */}
+            <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-lg rounded-lg shadow-md py-2 px-4">
+              <div className="flex items-center">
+                <Calendar size={16} className="text-blue-600 mr-2" />
+                <span className="text-sm font-medium text-gray-800">
+                  Est. 2011
+                </span>
+              </div>
             </div>
           </motion.div>
 
@@ -133,36 +174,51 @@ const AboutSection = () => {
             viewport={{ once: true, margin: "-100px" }}
             className="flex flex-col justify-center"
           >
-            
-            <p className="text-gray-600 mb-4 leading-relaxed">
-            Krishna Engineering College (KEC), Bhilai, established in 2011, is AICTE-approved and CSVTU-affiliated, offering modern technical education with strong focus on academic excellence and practical skills.
-</p>
-<p className="text-gray-600 mb-4 leading-relaxed">
-Established in 2011, Krishna Engineering College (KEC), Bhilai, AICTE-approved and CSVTU-affiliated, offers B.Tech programs in CSE, Civil, Mechanical, and Electrical, with admissions via 10+2 PCM and JEE Main/CG PET
-</p>
+            <div className="mb-6">
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                Our Mission
+              </h3>
+              <p className="text-gray-700 mb-6 leading-relaxed">
+                Krishna Engineering College (KEC), established in 2011, is a
+                premier institution offering top-notch engineering education.
+                Approved by AICTE and affiliated with CSVTU, we emphasize
+                academic rigor and industry-aligned skills to prepare students
+                for successful careers.
+              </p>
 
+              <p className="text-gray-700 mb-6 leading-relaxed">
+                Our state-of-the-art infrastructure, experienced faculty, and
+                industry partnerships create an environment where students can
+                thrive academically and personally.
+              </p>
+            </div>
 
-            {/* Highlights List */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-100px" }}
               className="mb-8"
             >
-              <h3 className="font-semibold text-gray-800 mb-4">Key Highlights:</h3>
+              <h3 className="font-semibold text-gray-800 mb-4 text-lg">
+                Key Highlights:
+              </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {highlights.map((highlight, index) => (
-                  <motion.div 
+                  <motion.div
                     key={index}
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="flex items-center bg-blue-50 rounded-lg p-3"
+                    viewport={{ once: true, margin: "-100px" }}
+                    className="flex items-center bg-blue-50 rounded-lg p-4 hover:bg-blue-100 transition-colors"
                   >
-                    {highlight.icon}
-                    <span className="text-sm text-gray-700 ml-2">{highlight.text}</span>
+                    <div className="bg-white p-2 rounded-lg shadow-sm mr-3">
+                      {highlight.icon}
+                    </div>
+                    <span className="text-sm text-gray-700">
+                      {highlight.text}
+                    </span>
                   </motion.div>
                 ))}
               </div>
@@ -170,8 +226,33 @@ Established in 2011, Krishna Engineering College (KEC), Bhilai, AICTE-approved a
           </motion.div>
         </div>
 
-       
-        
+        {/* Stats Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-6"
+        >
+          {stats.map((stat, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ delay: index * 0.1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              className="bg-gradient-to-b from-white via-blue-50 to-white rounded-2xl p-6 text-center shadow-md hover:shadow-xl transition-shadow duration-300 border border-blue-100"
+            >
+              <div className="text-blue-600 bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 shadow-sm">
+                {stat.icon}
+              </div>
+              <h3 className="text-3xl font-extrabold text-gray-800 mb-1 tracking-tight">
+                {stat.value}
+              </h3>
+              <p className="text-gray-600 text-sm font-medium">{stat.label}</p>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

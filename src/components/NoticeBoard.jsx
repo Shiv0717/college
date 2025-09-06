@@ -87,7 +87,7 @@ const NewsEvents = () => {
 
       {/* Heading */}
       <h2 className="text-4xl font-bold text-gray-900 mb-4">
-        Latest <span className="text-blue-900">Updates</span>
+        Latest <span className="text-blue-600">Updates</span>
       </h2>
 
       {/* Subtitle */}
