@@ -85,7 +85,7 @@ const Navbar = () => {
             className="flex items-center space-x-3"
           >
             <div className="flex items-center">
-              <div className="w-10 h-10 lg:w-12 lg:h-12 mr-3 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-md">
+              <div className="w-10 h-10 lg:w-12 lg:h-12 mr-3 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center ">
                 <img src="/images/2025-08-27 19.10.46.jpg"></img>
               </div>
               <div className="flex flex-col">

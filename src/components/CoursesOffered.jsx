@@ -205,7 +205,7 @@ const CoursesOffered = () => {
                 centeredSlides: true,
               },
             }}
-            className="w-full pb-16"
+            className="w-full pb-16 "
           >
             {courses.map((course) => {
               const dept = engineeringDepartments[course.department];
@@ -217,7 +217,7 @@ const CoursesOffered = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
-                    className={`bg-white rounded-2xl shadow-lg overflow-hidden border ${dept.borderColor} grid grid-cols-1 lg:grid-cols-2`}
+                    className={`bg-white rounded-2xl  mb-4  shadow overflow-hidden border ${dept.borderColor} grid grid-cols-1 lg:grid-cols-2`}
                   >
                     {/* Left: Image with Department Badge */}
                     <div className="relative h-72 lg:h-auto">
