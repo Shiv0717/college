@@ -1,13 +1,22 @@
-"use client";
-import React from "react";
-import { motion } from "framer-motion";
-import { Linkedin, Quote, ChevronLeft, ChevronRight, GraduationCap, Star } from "lucide-react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
-// Import Swiper styles
+
+
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCoverflow, Autoplay, Pagination } from "swiper/modules";
+import { motion } from "framer-motion";
+import { GraduationCap, Star } from "lucide-react";
+import {
+  Linkedin,
+  Quote,
+  ChevronLeft,
+  ChevronRight,
+  Briefcase,
+  MapPin,
+} from "lucide-react";
+// Swiper styles
 import "swiper/css";
-import "swiper/css/navigation";
+import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 
 const alumniData = [
@@ -15,198 +24,207 @@ const alumniData = [
     name: "Sakshi",
     batch: "B.Tech Civil, 2024",
     role: "Fail - Exam; BSP Valuation work, Maple Architect",
-    img: "https://plus.unsplash.com/premium_photo-1682431850447-0318570fcdec?q=80&w=2144&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    quote: "KEC gave me the foundation and confidence to pursue my dream career in civil engineering.",
-    linkedin: "#",
-    rating: 5
+    img: "https://plus.unsplash.com/premium_photo-1682431850447-0318570fcdec?q=80&w=2144&auto=format&fit=crop",
+    quote:
+      "KEC gave me the foundation and confidence to pursue my dream career in civil engineering.",
+    rating: 5,
   },
   {
     name: "Amisha Ramteke",
     batch: "B.Tech Civil, 2023",
     role: "Raipur Ultratech",
-    img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=2187&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    quote: "The practical exposure at KEC Bhilai prepared me for real-world construction challenges.",
-    linkedin: "#",
-    rating: 4
+    img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=2187&auto=format&fit=crop",
+    quote:
+      "The practical exposure at KEC Bhilai prepared me for real-world construction challenges.",
+    rating: 4,
   },
   {
     name: "Arpit Kumar Mishra",
     batch: "B.Tech Civil, 2023",
     role: "Kalptaru Projects KPIL",
-    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2187&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    quote: "With the right mentorship, I developed strong technical and leadership skills at KEC.",
-    linkedin: "#",
-    rating: 5
+    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2187&auto=format&fit=crop",
+    quote:
+      "With the right mentorship, I developed strong technical and leadership skills at KEC.",
+    rating: 5,
   },
   {
     name: "Aryan Dewangan",
     batch: "B.Tech Civil, 2023",
     role: "Works in PWD Adhoc",
-    img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=2187&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    quote: "The academic environment at KEC encouraged innovation and problem-solving.",
-    linkedin: "#",
-    rating: 4
+    img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=2187&auto=format&fit=crop",
+    quote:
+      "The academic environment at KEC encouraged innovation and problem-solving.",
+    rating: 4,
   },
   {
     name: "Bhavna",
     batch: "B.Tech Civil, 2023",
     role: "Sarthi Associates, Raipur",
-    img: "https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=2186&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    quote: "My journey at KEC shaped my professional and personal growth equally.",
-    linkedin: "#",
-    rating: 5
+    img: "https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=2186&auto=format&fit=crop",
+    quote:
+      "My journey at KEC shaped my professional and personal growth equally.",
+    rating: 5,
   },
   {
     name: "Fanendra Dewangan",
     batch: "B.Tech Civil, 2023",
     role: "Site Engineer, Utopia Durg",
-    img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=2187&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    quote: "KEC provided me with industry exposure that was vital for my career.",
-    linkedin: "#",
-    rating: 4
-  }
+    img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=2187&auto=format&fit=crop",
+    quote:
+      "KEC provided me with industry exposure that was vital for my career.",
+    rating: 4,
+  },
 ];
 
 const AlumniSection = () => {
   const renderStars = (rating) => {
-    return Array.from({ length: 5 }, (_, index) => (
+    return Array.from({ length: 5 }, (_, i) => (
       <Star
-        key={index}
+        key={i}
         size={14}
-        className={index < rating ? "text-yellow-400 fill-yellow-400" : "text-gray-300"}
+        className={
+          i < rating ? "text-yellow-400 fill-yellow-400" : "text-gray-300"
+        }
       />
     ));
   };
 
   return (
-    <section className="bg-gradient-to-b from-blue-50 to-white py-16 px-4">
-      <div className="max-w-7xl mx-auto">
-        {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
+    <section className="py-16 px-4 bg-gradient-to-b from-blue-50 to-white">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="text-center mb-12"
+      >
+        <div className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700 mb-4">
+          <GraduationCap className="h-4 w-4 mr-2" />
+          Alumni Success Stories
+        </div>
+        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          Where Our <span className="text-blue-600">Graduates</span> Shine
+        </h2>
+        <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          Hear from our accomplished alumni about their journey at Krishna
+          Engineering College and how it paved the way for their successful
+          careers.
+        </p>
+      </motion.div>
+
+      <div className="w-full max-w-7xl mx-auto px-4">
+        <Swiper
+          effect="coverflow"
+          grabCursor
+          centeredSlides
+          loop
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+          }}
+          slidesPerView="auto"
+          
+          spaceBetween={50}
+          coverflowEffect={{
+            rotate: 0,
+            stretch: 0,
+            depth: 100,
+            modifier: 2.5,
+          }}
+          pagination={{ clickable: true }}
+          modules={[EffectCoverflow, Autoplay, Pagination]}
+          className="alumni-swiper"
         >
-          <div className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700 mb-4">
-            <GraduationCap className="h-4 w-4 mr-2" />
-            Alumni Success Stories
-          </div>
-
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Our Alumni <span className="text-blue-600">Speak</span>
-          </h2>
-
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Hear from our graduates about their experiences at Krishna Engineering College 
-            and how it shaped their successful careers.
-          </p>
-        </motion.div>
-
-        {/* Swiper Container */}
-        <div className="relative ">
-          <Swiper
-            modules={[Navigation, Pagination, Autoplay]}
-            spaceBetween={30}
-            slidesPerView={1}
-            breakpoints={{
-              640: { slidesPerView: 1 },
-              768: { slidesPerView: 2 },
-              1024: { slidesPerView: 3 },
-            }}
-            navigation={{
-              nextEl: ".alumni-swiper-button-next",
-              prevEl: ".alumni-swiper-button-prev",
-            }}
-            pagination={{
-              clickable: true,
-              el: ".alumni-pagination",
-            }}
-            autoplay={{
-              delay: 5000,
-              disableOnInteraction: false,
-            }}
-            loop={true}
-            className="pb-12 "
-          >
-            {alumniData.map((alumni, index) => (
-              <SwiperSlide key={index}>
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6 }}
-                  className="bg-white p-6 rounded-xl  shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 h-full flex flex-col"
-                >
-                  {/* Rating */}
-                  <div className="flex justify-center mb-4">
-                    {renderStars(alumni.rating)}
-                  </div>
-
-                  {/* Quote */}
-                  <div className="relative mb-6 flex-grow">
-                    <Quote className="absolute -top-3 left-0 w-6 h-6 text-blue-200" />
-                    <p className="text-gray-700 text-sm italic pl-6">
-                      "{alumni.quote}"
-                    </p>
-                  </div>
-
-                  {/* Alumni Info */}
-                  <div className="flex items-center border-t border-gray-100 pt-4">
+          {alumniData.map((alumni, index) => (
+            <SwiperSlide
+              key={index}
+              className="!w-[260px] sm:!w-[300px] md:!w-[340px]"
+            >
+              <motion.div
+                whileHover={{
+                  y: -5,
+                  boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)",
+                }}
+                className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm h-full flex flex-col transition-all duration-300"
+              >
+                {/* Profile section with image and basic info */}
+                <div className="flex flex-col items-center text-center mb-5">
+                  <div className="relative mb-4">
                     <img
                       src={alumni.img}
                       alt={alumni.name}
-                      className="w-14 h-14 rounded-full object-cover border-2 border-blue-100"
+                      className="w-20 h-20 rounded-full object-cover border-4 border-blue-50 shadow-md"
                     />
-                    <div className="ml-4">
-                      <h3 className="font-semibold text-gray-900">{alumni.name}</h3>
-                      <p className="text-sm text-blue-600">{alumni.batch.split(',')[0]}</p>
-                      <p className="text-xs text-gray-500 mt-1">{alumni.role}</p>
-                    </div>
+                    
                   </div>
-                </motion.div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                  <h3 className="text-lg font-bold text-gray-900">
+                    {alumni.name}
+                  </h3>
+                  <p className="text-sm text-blue-600 font-medium mt-1">
+                    {alumni.batch}
+                  </p>
+                  <p className="text-xs text-gray-500 mt-1 bg-gray-50 px-3 py-1 rounded-full">
+                    {alumni.role}
+                  </p>
+                </div>
 
-          {/* Custom Navigation Buttons */}
-          <button className="alumni-swiper-button-prev absolute top-1/2 -left-4 z-10 -translate-y-1/2 bg-white rounded-full p-2 shadow-md hover:bg-blue-50 transition-colors hidden md:block">
-            <ChevronLeft className="w-5 h-5 text-blue-600" />
-          </button>
-          <button className="alumni-swiper-button-next absolute top-1/2 -right-4 z-10 -translate-y-1/2 bg-white rounded-full p-2 shadow-md hover:bg-blue-50 transition-colors hidden md:block">
-            <ChevronRight className="w-5 h-5 text-blue-600" />
-          </button>
+                {/* Rating */}
+                <div className="flex justify-center mb-4">
+                  {renderStars(alumni.rating)}
+                </div>
 
-          {/* Custom Pagination */}
-          <div className="alumni-pagination flex justify-center space-x-2 mt-6" />
-        </div>
+                {/* Quote with decorative elements */}
+                <div className="relative mb-5">
+                  <Quote className="absolute -top-2 left-0 w-5 h-5 text-blue-100" />
+                  <p className="text-gray-700 text-sm italic pl-5 leading-relaxed">
+                    "{alumni.quote}"
+                  </p>
+                </div>
 
-        {/* View All Button */}
-        <div className="text-center mt-10">
-          <button className="bg-blue-600 text-white hover:bg-blue-700 px-6 py-3 rounded-lg font-medium transition-colors shadow-sm hover:shadow-md">
-            View All Alumni Stories
-          </button>
-        </div>
+                {/* Additional info */}
+                <div className="mt-auto pt-4 border-t border-gray-100 text-xs text-gray-500 flex justify-between">
+                  <span className="flex items-center">
+                    <Briefcase className="w-3 h-3 mr-1" />
+                    {alumni.company}
+                  </span>
+                  <span className="flex items-center">
+                    <MapPin className="w-3 h-3 mr-1" />
+                    {alumni.location}
+                  </span>
+                </div>
+              </motion.div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
 
-      <style jsx global>{`
-        .alumni-pagination .swiper-pagination-bullet {
-          width: 10px;
-          height: 10px;
+      <style jsx>{`
+        .alumni-swiper {
+          padding-bottom: 50px;
+        }
+
+        .swiper-slide {
+          background-position: center;
+          background-size: cover;
+          width: 300px;
+        }
+
+        .swiper-3d .swiper-slide-shadow-left,
+        .swiper-3d .swiper-slide-shadow-right {
+          background-image: none;
+        }
+
+        .swiper-pagination-bullet {
           background: #cbd5e1;
           opacity: 0.7;
         }
-        .alumni-pagination .swiper-pagination-bullet-active {
+
+        .swiper-pagination-bullet-active {
           background: #2563eb;
           opacity: 1;
           width: 30px;
           border-radius: 5px;
         }
-        .swiper-slide {
-          height: auto;
-        }
-        .swiper-wrapper {
-         margin-bottom: 10px;
       `}</style>
     </section>
   );

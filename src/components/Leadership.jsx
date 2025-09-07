@@ -86,44 +86,93 @@ const Leadership = () => {
         </motion.div>
 
         {/* Leadership Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          {leadershipData.map((leader, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className={`bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 transition-all duration-300 hover:shadow-lg ${
-                activeProfile === index ? 'ring-2 ring-blue-500' : ''
-              }`}
-              onClick={() => setActiveProfile(index)}
-            >
-              <div className="relative">
-                <img
-                  src={leader.image}
-                  alt={leader.name}
-                  className="w-full h-48 object-contain"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 text-white">
-                  <h3 className="font-bold text-lg">{leader.name}</h3>
-                  <p className="text-blue-200 text-sm">{leader.role}</p>
-                </div>
-              </div>
-              <div className="p-6">
-                <div className="flex items-center text-sm text-gray-500 mb-3">
-                  <Calendar className="w-4 h-4 mr-1" />
-                  <span>{leader.tenure}</span>
-                </div>
-                <p className="text-gray-600 text-sm line-clamp-3">{leader.bio}</p>
-                <button className="mt-4 text-blue-600 text-sm font-medium hover:text-blue-700 transition-colors">
-                  View Profile →
-                </button>
-              </div>
-            </motion.div>
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+  {leadershipData.map((leader, index) => (
+    <motion.div
+      key={index}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      viewport={{ once: true }}
+      className={`bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 transition-all duration-300 hover:shadow-xl group ${
+        activeProfile === index ? 'ring-2 ring-blue-500 ring-opacity-50' : ''
+      }`}
+      onClick={() => setActiveProfile(index)}
+    >
+      {/* Image Container with Overlay */}
+      <div className="relative overflow-hidden">
+        <img
+          src={leader.image}
+          alt={leader.name}
+          className="w-full h-52 object-contain transition-transform duration-500 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-80"></div>
+        
+  
+       
+        
+        {/* Name and Title */}
+        <div className="absolute bottom-4 left-4 text-white">
+          <h3 className="font-bold text-xl mb-1">{leader.name}</h3>
+          <p className="text-blue-200 text-sm font-medium">{leader.role}</p>
         </div>
+      </div>
+
+      {/* Content */}
+      <div className="p-6">
+        {/* Tenure */}
+        <div className="flex items-center text-sm text-gray-500 mb-4">
+          <Calendar className="w-4 h-4 mr-2 text-blue-500" />
+          <span>{leader.tenure}</span>
+        </div>
+
+        {/* Bio */}
+        <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
+          {leader.bio}
+        </p>
+
+        {/* Qualifications */}
+        {leader.qualifications && (
+          <div className="mb-4">
+            <p className="text-xs font-medium text-gray-500 mb-1">Education</p>
+            <p className="text-sm text-gray-700">{leader.qualifications}</p>
+          </div>
+        )}
+
+       
+
+        {/* Action Button */}
+        <button className="w-full bg-blue-50 text-blue-600 text-sm font-medium py-2 rounded-lg hover:bg-blue-100 transition-colors duration-300 group-hover:bg-blue-600 group-hover:text-white flex items-center justify-center">
+          View Full Profile
+          <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        {/* Social Links (if available) */}
+        {leader.socialLinks && (
+          <div className="flex justify-center space-x-3 mt-4 pt-4 border-t border-gray-100">
+            {leader.socialLinks.linkedin && (
+              <a href={leader.socialLinks.linkedin} className="text-gray-400 hover:text-blue-600 transition-colors">
+                <Linkedin className="w-4 h-4" />
+              </a>
+            )}
+            {leader.socialLinks.twitter && (
+              <a href={leader.socialLinks.twitter} className="text-gray-400 hover:text-blue-400 transition-colors">
+                <Twitter className="w-4 h-4" />
+              </a>
+            )}
+            {leader.socialLinks.email && (
+              <a href={`mailto:${leader.socialLinks.email}`} className="text-gray-400 hover:text-red-500 transition-colors">
+                <Mail className="w-4 h-4" />
+              </a>
+            )}
+          </div>
+        )}
+      </div>
+    </motion.div>
+  ))}
+</div>
 
         {/* Detailed Profile View */}
         <AnimatePresence mode="wait">
