@@ -1,6 +1,3 @@
-
-
-
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Autoplay, Pagination } from "swiper/modules";
@@ -28,6 +25,8 @@ const alumniData = [
     quote:
       "KEC gave me the foundation and confidence to pursue my dream career in civil engineering.",
     rating: 5,
+    company: "BSP Valuation",
+    location: "Raipur, India"
   },
   {
     name: "Amisha Ramteke",
@@ -37,6 +36,8 @@ const alumniData = [
     quote:
       "The practical exposure at KEC Bhilai prepared me for real-world construction challenges.",
     rating: 4,
+    company: "Ultratech Cement",
+    location: "Raipur, India"
   },
   {
     name: "Arpit Kumar Mishra",
@@ -46,6 +47,8 @@ const alumniData = [
     quote:
       "With the right mentorship, I developed strong technical and leadership skills at KEC.",
     rating: 5,
+    company: "Kalptaru Projects",
+    location: "Mumbai, India"
   },
   {
     name: "Aryan Dewangan",
@@ -55,6 +58,8 @@ const alumniData = [
     quote:
       "The academic environment at KEC encouraged innovation and problem-solving.",
     rating: 4,
+    company: "PWD",
+    location: "Bhilai, India"
   },
   {
     name: "Bhavna",
@@ -64,6 +69,8 @@ const alumniData = [
     quote:
       "My journey at KEC shaped my professional and personal growth equally.",
     rating: 5,
+    company: "Sarthi Associates",
+    location: "Raipur, India"
   },
   {
     name: "Fanendra Dewangan",
@@ -73,6 +80,8 @@ const alumniData = [
     quote:
       "KEC provided me with industry exposure that was vital for my career.",
     rating: 4,
+    company: "Utopia Construction",
+    location: "Durg, India"
   },
 ];
 
@@ -112,7 +121,7 @@ const AlumniSection = () => {
         </p>
       </motion.div>
 
-      <div className="w-full max-w-7xl mx-auto px-4">
+      <div className="max-w-6xl mx-auto px-4">
         <Swiper
           effect="coverflow"
           grabCursor
@@ -122,30 +131,48 @@ const AlumniSection = () => {
             delay: 3000,
             disableOnInteraction: false,
           }}
-          slidesPerView="auto"
-          
-          spaceBetween={50}
+          slidesPerView={1} // Default for mobile
+          spaceBetween={30}
           coverflowEffect={{
             rotate: 0,
             stretch: 0,
             depth: 100,
             modifier: 2.5,
           }}
-          pagination={{ clickable: true }}
+          pagination={{ 
+            clickable: true,
+            dynamicBullets: true
+          }}
           modules={[EffectCoverflow, Autoplay, Pagination]}
           className="alumni-swiper"
+          breakpoints={{
+            // When window width is >= 640px (tablets)
+            640: {
+              slidesPerView: 1,
+              spaceBetween: 20,
+            },
+            // When window width is >= 768px (small desktops)
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 30,
+            },
+            // When window width is >= 1024px (desktops)
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 40,
+            },
+          }}
         >
           {alumniData.map((alumni, index) => (
             <SwiperSlide
               key={index}
-              className="!w-[260px] sm:!w-[300px] md:!w-[340px]"
             >
               <motion.div
                 whileHover={{
                   y: -5,
                   boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)",
                 }}
-                className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm h-full flex flex-col transition-all duration-300"
+                className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm h-full flex flex-col transition-all duration-300 mx-auto max-w-xs"
               >
                 {/* Profile section with image and basic info */}
                 <div className="flex flex-col items-center text-center mb-5">
@@ -206,7 +233,9 @@ const AlumniSection = () => {
         .swiper-slide {
           background-position: center;
           background-size: cover;
-          width: 300px;
+          height: auto;
+          display: flex;
+          justify-content: center;
         }
 
         .swiper-3d .swiper-slide-shadow-left,
@@ -222,8 +251,12 @@ const AlumniSection = () => {
         .swiper-pagination-bullet-active {
           background: #2563eb;
           opacity: 1;
-          width: 30px;
-          border-radius: 5px;
+        }
+
+        @media (min-width: 1024px) {
+          .swiper-slide {
+            width: 300px;
+          }
         }
       `}</style>
     </section>
