@@ -140,7 +140,7 @@ const AchievementsMarquee = () => {
         </div>
 
         {/* Stats Section */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
           {stats.map((stat, index) => (
             <StatCard
               key={index}
