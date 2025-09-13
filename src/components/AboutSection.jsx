@@ -1,6 +1,7 @@
 "use client";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import CountUp from "react-countup";
 import {
   Award,
   Users,
@@ -39,6 +40,30 @@ const itemVariants = {
 };
 
 const AboutSection = () => {
+  const [isStatsInView, setIsStatsInView] = useState(false);
+  const statsRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsStatsInView(true);
+          // Disconnect after first trigger
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.5 } // Trigger when 50% of the element is visible
+    );
+
+    if (statsRef.current) {
+      observer.observe(statsRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   const highlights = [
     {
       icon: <CheckCircle size={20} className="text-blue-600" />,
@@ -59,10 +84,10 @@ const AboutSection = () => {
   ];
 
   const stats = [
-    { icon: <GraduationCap size={24} />, value: "1000+", label: "Students" },
-    { icon: <BookOpen size={24} />, value: "15+", label: "Programs" },
-    { icon: <Award size={24} />, value: "50+", label: "Awards" },
-    { icon: <Users size={24} />, value: "100+", label: "Faculty" },
+    { icon: <GraduationCap size={24} />, value: 1000, suffix: "+", label: "Students" },
+    { icon: <BookOpen size={24} />, value: 15, suffix: "+", label: "Programs" },
+    { icon: <Award size={24} />, value: 50, suffix: "+", label: "Awards" },
+    { icon: <Users size={24} />, value: 100, suffix: "+", label: "Faculty" },
   ];
 
   const values = [
@@ -94,7 +119,6 @@ const AboutSection = () => {
       className="py-4 bg-gradient-to-b from-blue-50 to-white relative overflow-hidden"
     >
       {/* Decorative elements */}
-
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         {/* Heading */}
         <motion.div
@@ -185,8 +209,6 @@ const AboutSection = () => {
                 academic rigor and industry-aligned skills to prepare students
                 for successful careers.
               </p>
-
-             
             </div>
 
             <motion.div
@@ -222,33 +244,44 @@ const AboutSection = () => {
           </motion.div>
         </div>
 
-        {/* Stats Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6"
-        >
-          {stats.map((stat, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ delay: index * 0.1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              className="bg-gradient-to-b from-white via-blue-50 to-white rounded-2xl p-6 text-center shadow-md hover:shadow-xl transition-shadow duration-300 border border-blue-100"
-            >
-              <div className="text-blue-600 bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 shadow-sm">
-                {stat.icon}
-              </div>
-              <h3 className="text-3xl font-extrabold text-gray-800 mb-1 tracking-tight">
-                {stat.value}
-              </h3>
-              <p className="text-gray-600 text-sm font-medium">{stat.label}</p>
-            </motion.div>
-          ))}
-        </motion.div>
+        {/* Stats Section with ref for intersection observer */}
+        <div ref={statsRef}>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-6"
+          >
+            {stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="bg-gradient-to-b from-white via-blue-50 to-white rounded-2xl p-6 text-center shadow-md hover:shadow-xl transition-shadow duration-300 border border-blue-100"
+              >
+                <div className="text-blue-600 bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 shadow-sm">
+                  {stat.icon}
+                </div>
+                <h3 className="text-3xl font-extrabold text-gray-800 mb-1 tracking-tight">
+                  {isStatsInView ? (
+                    <CountUp
+                      end={stat.value}
+                      suffix={stat.suffix}
+                      duration={2}
+                      delay={index * 0.2}
+                    />
+                  ) : (
+                    "0" + (stat.suffix || "")
+                  )}
+                </h3>
+                <p className="text-gray-600 text-sm font-medium">{stat.label}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </section>
   );
