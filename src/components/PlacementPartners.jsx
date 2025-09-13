@@ -4,20 +4,20 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import { motion } from "framer-motion";
 import { Building2, ArrowRight, Award, Users, TrendingUp } from "lucide-react";
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
 
 import "swiper/css";
 import "swiper/css/navigation";
 
 const PlacementPartners = () => {
   const partners = [
-   
     {
       id: 1,
       name: "TCS",
       industry: "IT Services & Consulting",
       location: "India",
       logo: "https://brandeps.com/logo-download/T/TATA-Consultancy-Services-logo-01.png",
-     
     },
     {
       id: 2,
@@ -25,7 +25,6 @@ const PlacementPartners = () => {
       industry: "IT & Software",
       location: "India",
       logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Infosys_logo.svg/1280px-Infosys_logo.svg.png",
-      
     },
     {
       id: 3,
@@ -33,7 +32,6 @@ const PlacementPartners = () => {
       industry: "Technology & Services",
       location: "India",
       logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Wipro_new_logo.svg/250px-Wipro_new_logo.svg.png",
-      
     },
     {
       id: 4,
@@ -41,23 +39,20 @@ const PlacementPartners = () => {
       industry: "Consulting & Technology",
       location: "Global",
       logo: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Capgemini_201x_logo.svg",
-     
     },
     {
       id: 5,
       name: "Tech Mahindra",
       industry: "IT & Telecom",
       location: "India",
-      logo: "https://appexchange.salesforce.com/partners/servlet/servlet.FileDownload?file=00P4V000015GC4CUAW",
-      image: "https://1000logos.net/wp-content/uploads/2021/05/Tech-Mahindra-logo.png"
+      logo: "https://1000logos.net/wp-content/uploads/2021/05/Tech-Mahindra-logo.png",
     },
     {
       id: 6,
-      name: "HCL ",
+      name: "HCL",
       industry: "IT Services",
       location: "India",
       logo: "https://logos-world.net/wp-content/uploads/2022/07/HCL-Logo.png",
-      image: "https://1000logos.net/wp-content/uploads/2021/05/HCL-Technologies-logo.png"
     },
     {
       id: 7,
@@ -65,36 +60,34 @@ const PlacementPartners = () => {
       industry: "Consulting & IT Services",
       location: "Global",
       logo: "https://www.opentext.com/assets/images/partners/cognizant-logo-416x274.png",
-      image: "https://1000logos.net/wp-content/uploads/2021/05/Cognizant-logo.png"
     }
-    
-    
-    
   ];
 
   const stats = [
     {
-      icon: <Users className="h-6 w-6" />,
-      value: "80%",
+      icon: <Users className="h-6 w-6 text-indigo-600" />,
+      value: 80,
+      suffix: "%",
       label: "Placement Rate"
     },
     {
-      icon: <TrendingUp className="h-6 w-6" />,
-      value: "₹8 LPA",
+      icon: <TrendingUp className="h-6 w-6 text-green-600" />,
+      value: 8,
+      prefix: "₹",
+      suffix: " LPA",
       label: "Highest Package"
     },
     {
-      icon: <Award className="h-6 w-6" />,
-      value: "₹4.5 LPA",
+      icon: <Award className="h-6 w-6 text-yellow-600" />,
+      value: 4.5,
+      prefix: "₹",
+      suffix: " LPA",
       label: "Average Package"
     }
   ];
   
-
   return (
-    <section className="relative py-8 overflow-hidden">
-     
-      
+    <section className="relative py-8 overflow-hidden bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <motion.div
@@ -116,7 +109,7 @@ const PlacementPartners = () => {
           </p>
         </motion.div>
 
-        {/* Stats Section */}
+        {/* Stats Section with CountUp and color styling */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -124,17 +117,46 @@ const PlacementPartners = () => {
           viewport={{ once: true }}
           className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16"
         >
-          {stats.map((stat, index) => (
-            <div key={index} className="bg-white rounded-xl p-6 shadow-md border border-gray-100 flex items-center">
-              <div className="bg-blue-100 p-3 rounded-lg mr-4">
-                {stat.icon}
+          {stats.map((stat, index) => {
+            const { ref, inView } = useInView({
+              triggerOnce: true,
+              threshold: 0.5
+            });
+            return (
+              <div 
+                key={index} 
+                ref={ref}
+                className="bg-white rounded-xl p-6 shadow-md border border-gray-100 flex items-center space-x-4"
+              >
+                <div className="bg-blue-50 p-3 rounded-lg">
+                  {stat.icon}
+                </div>
+                <div>
+                  <div className={`text-3xl font-bold ${
+                    stat.icon.props.className.includes("text-indigo") ? "text-indigo-600" :
+                    stat.icon.props.className.includes("text-green") ? "text-green-600" :
+                    stat.icon.props.className.includes("text-yellow") ? "text-yellow-600" :
+                    "text-gray-900"
+                  }`}>
+                    {inView ? (
+                      <CountUp
+                        start={0}
+                        end={stat.value}
+                        duration={2.5}
+                        prefix={stat.prefix || ""}
+                        suffix={stat.suffix || ""}
+                        decimals={stat.value % 1 !== 0 ? 1 : 0} 
+                        separator=","
+                      />
+                    ) : (
+                      <span>{stat.prefix || ""}0{stat.suffix || ""}</span>
+                    )}
+                  </div>
+                  <div className="text-sm text-gray-600">{stat.label}</div>
+                </div>
               </div>
-              <div>
-                <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
-                <div className="text-sm text-gray-600">{stat.label}</div>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </motion.div>
 
         {/* Partners Carousel */}
@@ -169,7 +191,7 @@ const PlacementPartners = () => {
           >
             {partners.map((partner) => (
               <SwiperSlide key={partner.id}>
-                <div className="bg-white mb-2 rounded-xl p-6 h-48 flex flex-col items-center justify-center shadow-sm border border-gray-100 hover:shadow-lg hover:border-blue-100 transition-all duration-300 group">
+                <div className="bg-white mb-3 rounded-xl p-6 h-48 flex flex-col items-center justify-center shadow-sm border border-gray-100 hover:shadow-lg hover:border-blue-200 transition-all duration-300 group">
                   <div className="h-16 w-full flex items-center justify-center mb-4">
                     <img
                       src={partner.logo}
@@ -178,7 +200,7 @@ const PlacementPartners = () => {
                     />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-800 mb-1">{partner.name}</h3>
-                  <p className="text-sm text-blue-600 font-medium">{partner.hires}</p>
+                
                 </div>
               </SwiperSlide>
             ))}
@@ -192,8 +214,6 @@ const PlacementPartners = () => {
             <ArrowRight className="h-5 w-5" />
           </button>
         </motion.div>
-
-        
       </div>
     </section>
   );

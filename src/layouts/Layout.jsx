@@ -40,7 +40,7 @@ const Layout = () => {
       
       {/* Navbar */}
       <header>
-        <Navbar />
+       
       </header>
 
       <CategoryMenu />
