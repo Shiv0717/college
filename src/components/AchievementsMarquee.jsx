@@ -108,7 +108,7 @@ const AchievementsMarquee = () => {
         <div className="absolute bottom-10 left-20 w-72 h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
       </div>
       
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-2 relative z-10">
         {/* Heading */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center justify-center mb-4">
@@ -140,7 +140,7 @@ const AchievementsMarquee = () => {
         </div>
 
         {/* Stats Section */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 mt-16">
           {stats.map((stat, index) => (
             <StatCard
               key={index}
