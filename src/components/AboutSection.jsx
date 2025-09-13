@@ -1,286 +1,112 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
-import CountUp from "react-countup";
-import {
-  Award,
-  Users,
-  BookOpen,
-  GraduationCap,
-  MapPin,
-  Info,
-  TrendingUp,
-  CheckCircle,
-  Book,
-  Target,
-  Heart,
-  Clock,
-  BarChart3,
-  Shield,
-  Star,
-  Calendar,
-} from "lucide-react";
-
-// Animation Variants
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.2 },
-  },
-};
-
-const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: { duration: 0.5 },
-  },
-};
+import React from "react";
+import { ArrowRight, GraduationCap, Users, Building2, Award } from "lucide-react";
 
 const AboutSection = () => {
-  const [isStatsInView, setIsStatsInView] = useState(false);
-  const statsRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsStatsInView(true);
-          // Disconnect after first trigger
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.5 } // Trigger when 50% of the element is visible
-    );
-
-    if (statsRef.current) {
-      observer.observe(statsRef.current);
-    }
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
-  const highlights = [
-    {
-      icon: <CheckCircle size={20} className="text-blue-600" />,
-      text: "AICTE-approved & CSVTU-affiliated institution",
-    },
-    {
-      icon: <Book size={20} className="text-blue-600" />,
-      text: "B.Tech programs in CSE, Civil, Mechanical & Electrical",
-    },
-    {
-      icon: <TrendingUp size={20} className="text-blue-600" />,
-      text: "Average package ₹6 LPA, highest ₹10 LPA",
-    },
-    {
-      icon: <Users size={20} className="text-blue-600" />,
-      text: "Placement rate between 80% – 99%",
-    },
-  ];
-
-  const stats = [
-    { icon: <GraduationCap size={24} />, value: 1000, suffix: "+", label: "Students" },
-    { icon: <BookOpen size={24} />, value: 15, suffix: "+", label: "Programs" },
-    { icon: <Award size={24} />, value: 50, suffix: "+", label: "Awards" },
-    { icon: <Users size={24} />, value: 100, suffix: "+", label: "Faculty" },
-  ];
-
-  const values = [
-    {
-      icon: <Target size={20} />,
-      title: "Excellence",
-      description: "Commitment to academic and professional excellence",
-    },
-    {
-      icon: <Heart size={20} />,
-      title: "Integrity",
-      description: "Upholding ethical standards in all endeavors",
-    },
-    {
-      icon: <BarChart3 size={20} />,
-      title: "Innovation",
-      description: "Fostering creativity and innovative thinking",
-    },
-    {
-      icon: <Shield size={20} />,
-      title: "Inclusion",
-      description: "Creating an inclusive learning environment",
-    },
-  ];
-
   return (
-    <section
-      id="about"
-      className="py-4 bg-gradient-to-b from-blue-50 to-white relative overflow-hidden"
-    >
-      {/* Decorative elements */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+    <section className="py-20 px-6 md:px-12 bg-white relative overflow-hidden">
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="text-center mb-16"
-        >
-          <div className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700 mb-4">
-            <Info className="h-4 w-4 mr-2" />
-            About Us
+        <div className="mb-12 text-center md:text-left">
+          <div className="inline-flex items-center rounded-full bg-gradient-to-r from-red-600 to-orange-500 mb-4 px-4 py-1 text-sm font-medium text-white">
+            <Award className="h-4 w-4 mr-2" />
+            Premier Institution
           </div>
-
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Welcome to{" "}
-            <span className="text-blue-600">Krishna Engineering College</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+            World Class{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-500">
+              Campus
+            </span>
           </h2>
 
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Empowering students with knowledge, innovation, and values since
-            2011. Shaping the next generation of engineers and leaders.
+          <p className="text-lg text-slate-600 max-w-3xl leading-relaxed">
+            Krishna Engineering College is an aesthetically vibrant, technology-enabled campus designed
+            to support and inspire students. With modern infrastructure, research labs, and a focus on
+            innovation, KEC nurtures the next generation of engineers and leaders.
           </p>
-        </motion.div>
-
-        {/* Main Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-6 items-center">
-          {/* Left Image Block */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="relative rounded-2xl overflow-hidden shadow-xl group"
-          >
-            <img
-              src="https://www.kecbhilai.com/images/slider_img2.jpg"
-              alt="Krishna College Campus"
-              className="w-full h-[450px] object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-
-            <div className="absolute inset-0 bg-gradient-to-t from-blue-900/70 to-transparent flex items-end">
-              <div className="p-6 text-white">
-                <div className="flex items-center mb-2">
-                  <MapPin size={18} className="mr-2" />
-                  <span>Bhilai, Chhattisgarh</span>
-                </div>
-                <h3 className="text-xl font-semibold">
-                  25+ Years of Educational Excellence
-                </h3>
-              </div>
-            </div>
-
-            <div className="absolute top-6 right-6 bg-white/90 backdrop-blur-lg rounded-lg shadow-md py-2 px-4 flex items-center">
-              <Award size={20} className="text-yellow-500 mr-2" />
-              <span className="text-sm font-medium text-gray-800">
-                Approved by AICTE
-              </span>
-            </div>
-
-            {/* Floating stats */}
-            <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-lg rounded-lg shadow-md py-2 px-4">
-              <div className="flex items-center">
-                <Calendar size={16} className="text-blue-600 mr-2" />
-                <span className="text-sm font-medium text-gray-800">
-                  Est. 2011
-                </span>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Right Content */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="flex flex-col justify-center"
-          >
-            <div className="mb-6">
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">
-                Our Mission
-              </h3>
-              <p className="text-gray-700 mb-6 leading-relaxed">
-                Krishna Engineering College (KEC), established in 2011, is a
-                premier institution offering top-notch engineering education.
-                Approved by AICTE and affiliated with CSVTU, we emphasize
-                academic rigor and industry-aligned skills to prepare students
-                for successful careers.
-              </p>
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              viewport={{ once: true, margin: "-100px" }}
-              className="mb-8"
-            >
-              <h3 className="font-semibold text-gray-800 mb-4 text-lg">
-                Key Highlights:
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {highlights.map((highlight, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    className="flex items-center bg-blue-50 rounded-lg p-4 hover:bg-blue-100 transition-colors"
-                  >
-                    <div className="bg-white p-2 rounded-lg shadow-sm mr-3">
-                      {highlight.icon}
-                    </div>
-                    <span className="text-sm text-gray-700">
-                      {highlight.text}
-                    </span>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          </motion.div>
         </div>
 
-        {/* Stats Section with ref for intersection observer */}
-        <div ref={statsRef}>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6"
-          >
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                className="bg-gradient-to-b from-white via-blue-50 to-white rounded-2xl p-6 text-center shadow-md hover:shadow-xl transition-shadow duration-300 border border-blue-100"
-              >
-                <div className="text-blue-600 bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 shadow-sm">
-                  {stat.icon}
+        {/* Image + Stats Section */}
+        <div className="flex flex-col lg:flex-row gap-8 items-stretch">
+          {/* Image */}
+          <div className="lg:w-7/12 relative">
+            <div className="overflow-hidden rounded-2xl shadow-xl border-4 border-white">
+              <img
+                src="https://www.kecbhilai.com/images/slider_img2.jpg"
+                alt="Campus"
+                className="w-full h-[550px] object-cover transition-transform duration-700 hover:scale-105"
+              />
+            </div>
+          </div>
+
+          {/* Stats Box */}
+          <div className="lg:w-5/12 bg-gray-50 border border-gray-200 text-slate-900 p-8 md:p-10 rounded-2xl shadow-md flex flex-col justify-center">
+            {/* Stats Grid */}
+            <div className="grid grid-cols-2 gap-6 mb-8">
+              <div className="text-center p-4 bg-white rounded-xl shadow-sm border border-gray-100">
+                <div className="flex justify-center mb-2">
+                  <div className="p-3 bg-red-100 rounded-full">
+                    <GraduationCap className="h-8 w-8 text-red-600" />
+                  </div>
                 </div>
-                <h3 className="text-3xl font-extrabold text-gray-800 mb-1 tracking-tight">
-                  {isStatsInView ? (
-                    <CountUp
-                      end={stat.value}
-                      suffix={stat.suffix}
-                      duration={2}
-                      delay={index * 0.2}
-                    />
-                  ) : (
-                    "0" + (stat.suffix || "")
-                  )}
-                </h3>
-                <p className="text-gray-600 text-sm font-medium">{stat.label}</p>
-              </motion.div>
-            ))}
-          </motion.div>
+                <h3 className="text-4xl font-bold text-red-600 mb-1">25+</h3>
+                <p className="text-sm text-slate-600">Years of Excellence</p>
+              </div>
+
+              <div className="text-center p-4 bg-white rounded-xl shadow-sm border border-gray-100">
+                <div className="flex justify-center mb-2">
+                  <div className="p-3 bg-amber-100 rounded-full">
+                    <Users className="h-8 w-8 text-amber-600" />
+                  </div>
+                </div>
+                <h3 className="text-4xl font-bold text-amber-600 mb-1">60+</h3>
+                <p className="text-sm text-slate-600">Expert Faculty</p>
+              </div>
+
+              <div className="text-center p-4 bg-white rounded-xl shadow-sm border border-gray-100">
+                <div className="flex justify-center mb-2">
+                  <div className="p-3 bg-green-100 rounded-full">
+                    <Building2 className="h-8 w-8 text-green-600" />
+                  </div>
+                </div>
+                <h3 className="text-4xl font-bold text-green-600 mb-1">100+</h3>
+                <p className="text-sm text-slate-600">Recruiters</p>
+              </div>
+
+              <div className="text-center p-4 bg-white rounded-xl shadow-sm border border-gray-100">
+                <div className="flex justify-center mb-2">
+                  <div className="p-3 bg-purple-100 rounded-full">
+                    <svg
+                      className="h-8 w-8 text-purple-600"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <h3 className="text-4xl font-bold text-purple-600 mb-1">10k+</h3>
+                <p className="text-sm text-slate-600">Alumni Network</p>
+              </div>
+            </div>
+
+            {/* Explore More */}
+            <div className="text-center pt-4 border-t border-gray-200">
+              <a
+                href="#"
+                className="inline-flex items-center justify-center bg-gradient-to-r from-red-600 to-orange-500 text-white font-semibold py-3 px-6 rounded-full hover:shadow-lg hover:shadow-red-500/30 transition-all duration-300 group"
+              >
+                Explore Campus
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>

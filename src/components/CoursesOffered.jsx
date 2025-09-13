@@ -1,418 +1,201 @@
 "use client";
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { 
-  BookOpen, Clock, Users, Award, ChevronDown, 
-  Code, Cpu, Building, Zap, ArrowLeft, ArrowRight,
-  Target, Bookmark, Calendar, UserCheck, GraduationCap,
-  Mail, Phone, ExternalLink, Star, BarChart3
-} from "lucide-react";
+import React, { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import "swiper/css/pagination";
+import { Navigation, Autoplay } from "swiper/modules";
+import { ChevronLeft, ChevronRight, BookOpen, Clock, Award } from "lucide-react";
 
-const CoursesOffered = () => {
-  const [expandedCourse, setExpandedCourse] = useState(null);
+const courses = [
+  {
+    id: 1,
+    title: "Computer Science & Engineering",
+    code: "CSE",
+    duration: "4 Years",
+    credits: 160,
+    image: "https://www.kecbhilai.com/images/pc1.jpg",
+    description:
+      "The CSE department covers core computing topics such as software development, data structures, algorithms, and emerging areas like AI & ML.",
+  },
+  {
+    id: 2,
+    title: "Electrical Engineering",
+    code: "EEE",
+    duration: "4 Years",
+    credits: 160,
+    image: "https://www.kecbhilai.com/images/pc3.jpg",
+    description:
+      "Electrical Engineering focuses on power systems, electrical machines, renewable energy, and control systems.",
+  },
+  {
+    id: 3,
+    title: "Mechanical Engineering",
+    code: "ME",
+    duration: "4 Years",
+    credits: 160,
+    image: "https://www.kecbhilai.com/images/pc4.jpg",
+    description:
+      "Covers thermal sciences, design, manufacturing processes, and robotics with a focus on practical exposure.",
+  },
+  {
+    id: 4,
+    title: "Civil Engineering",
+    code: "CE",
+    duration: "4 Years",
+    credits: 160,
+    image: "https://www.kecbhilai.com/images/pc2.jpg",
+    description:
+      "Covers structural engineering, construction technologies, environmental design, and sustainable infrastructure.",
+  },
+  {
+    id: 5,
+    title: "Electronics & Communication",
+    code: "ECE",
+    duration: "4 Years",
+    credits: 160,
+    image: "https://images.unsplash.com/photo-1581094288338-231b058b38b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    description:
+      "Focuses on electronic circuits, communication systems, signal processing, and embedded systems.",
+  },
+  {
+    id: 6,
+    title: "Information Technology",
+    code: "IT",
+    duration: "4 Years",
+    credits: 160,
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    description:
+      "Emphasizes information systems, networking, cybersecurity, and data management technologies.",
+  },
+];
 
-  const engineeringDepartments = {
-    cse: { 
-      name: "Computer Science & Engineering", 
-      icon: <Code className="w-5 h-5" />, 
-      color: "from-blue-500 to-blue-700",
-      bgColor: "bg-blue-50",
-      textColor: "text-blue-700",
-      borderColor: "border-blue-200"
-    },
-    eee: { 
-      name: "Electrical Engineering", 
-      icon: <Zap className="w-5 h-5" />, 
-      color: "from-yellow-500 to-yellow-700",
-      bgColor: "bg-yellow-50",
-      textColor: "text-yellow-700",
-      borderColor: "border-yellow-200"
-    },
-    mech: { 
-      name: "Mechanical Engineering", 
-      icon: <Cpu className="w-5 h-5" />, 
-      color: "from-red-500 to-red-700",
-      bgColor: "bg-red-50",
-      textColor: "text-red-700",
-      borderColor: "border-red-200"
-    },
-    civil: { 
-      name: "Civil Engineering", 
-      icon: <Building className="w-5 h-5" />, 
-      color: "from-green-500 to-green-700",
-      bgColor: "bg-green-50",
-      textColor: "text-green-700",
-      borderColor: "border-green-200"
-    },
-  };
-
-  const courses = [
-    {
-      id: 1,
-      title: "Computer Science & Engineering",
-      code: "CSE",
-      department: "cse",
-      credits: 160,
-      duration: "4 Years",
-      seats: 120,
-      enrolled: 118,
-      image: "https://www.kecbhilai.com/images/pc1.jpg",
-      description: "The CSE department covers core computing topics such as software development, data structures, algorithms, and emerging areas like AI & ML.",
-      outcomes: ["Software Development", "Data Analysis", "AI & ML", "Cybersecurity"],
-      prerequisites: ["12th with PCM", "JEE Main / CG PET"],
-      instructor: "Dr. Rajesh Kumar",
-      schedule: "Full-time Program",
-      placement: "95%",
-      programs: ["B.E. CSE", "M.Tech CSE"],
-      highlights: ["Industry Collaborations", "Research Opportunities", "Hackathons"]
-    },
-    {
-      id: 2,
-      title: "Electrical Engineering",
-      code: "EEE",
-      department: "eee",
-      credits: 160,
-      duration: "4 Years",
-      seats: 60,
-      enrolled: 48,
-      image: "https://www.kecbhilai.com/images/pc3.jpg",
-      description: "Electrical Engineering focuses on power systems, electrical machines, renewable energy, and control systems.",
-      outcomes: ["Power Systems", "Electrical Machines", "Control Systems", "Renewable Energy"],
-      prerequisites: ["12th with PCM", "JEE Main / CG PET"],
-      instructor: "Dr. Sunil Verma",
-      schedule: "Full-time Program",
-      placement: "88%",
-      programs: ["B.E. EEE"],
-      highlights: ["Modern Labs", "Industry Projects", "Power Systems Simulation"]
-    },
-    {
-      id: 3,
-      title: "Mechanical Engineering",
-      code: "ME",
-      department: "mech",
-      credits: 160,
-      duration: "4 Years",
-      seats: 30,
-      enrolled: 30,
-      image: "https://www.kecbhilai.com/images/pc4.jpg",
-      description: "Covers thermal sciences, design, manufacturing processes, and robotics with a focus on practical exposure.",
-      outcomes: ["Design Engineering", "Manufacturing", "Robotics", "Thermal Systems"],
-      prerequisites: ["12th with PCM", "JEE Main / CG PET"],
-      instructor: "Dr. Anil Sharma",
-      schedule: "Full-time Program",
-      placement: "92%",
-      programs: ["B.E. Mechanical"],
-      highlights: ["CAD/CAM Labs", "Automotive Research", "Industry Partnerships"]
-    },
-    {
-      id: 4,
-      title: "Civil Engineering",
-      code: "CE",
-      department: "civil",
-      credits: 160,
-      duration: "4 Years",
-      seats: 60,
-      enrolled: 55,
-      image: "https://www.kecbhilai.com/images/pc2.jpg",
-      description: "Covers structural engineering, construction technologies, environmental design, and sustainable infrastructure.",
-      outcomes: ["Structural Design", "Construction Tech", "Environmental Engineering", "Transportation Systems"],
-      prerequisites: ["12th with PCM", "JEE Main / CG PET"],
-      instructor: "Dr. Priya Singh",
-      schedule: "Full-time Program",
-      placement: "85%",
-      programs: ["B.E. Civil"],
-      highlights: ["Structural Testing", "Concrete Technology", "GIS Applications"]
-    },
-  ];
-
-  const toggleCourseExpand = (courseId) => {
-    setExpandedCourse(expandedCourse === courseId ? null : courseId);
-  };
+const CoursesSlider = () => {
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
 
   return (
-    <div className="bg-gradient-to-br from-gray-50 to-gray-100 py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto relative">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          {/* Tagline pill */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700 mb-4 shadow-sm"
-          >
-            <GraduationCap className="h-4 w-4 mr-2" />
-            Premier Engineering Programs
-          </motion.div>
+    <section className="bg-gray-50 py-20 px-6 md:px-12 relative overflow-hidden">
+      {/* Decorative elements */}
+      <div className="absolute top-0 left-0 w-72 h-72 bg-northeastern-red/5 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-northeastern-red/5 rounded-full translate-x-1/3 translate-y-1/3"></div>
+      
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="flex flex-col md:flex-row items-start gap-12">
+          {/* Left Section */}
+          <div className="md:w-2/5">
+            <h2 className="text-4xl font-bold mb-6 leading-tight text-gray-900">
+              Explore Our <span className="text-northeastern-red">Academic Programs</span>
+            </h2>
+            <p className="text-gray-600 mb-8 text-lg">
+              Discover opportunities for learning, research, and innovation across our diverse engineering disciplines.
+            </p>
+            
+            <div className="flex items-center space-x-4 mb-10">
+              <div className="w-12 h-0.5 bg-northeastern-red"></div>
+              <span className="text-sm text-gray-500">Scroll to explore</span>
+            </div>
 
-          {/* Heading */}
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Explore Our <span className="text-blue-600">Engineering Departments</span>
-          </h2>
+            {/* Navigation */}
+            <div className="flex space-x-4">
+              <button ref={prevRef} className="w-12 h-12 flex items-center justify-center rounded-full bg-white text-northeastern-red border border-gray-200 shadow-sm hover:bg-northeastern-red hover:text-white transition-all duration-300">
+                <ChevronLeft size={24} />
+              </button>
+              <button ref={nextRef} className="w-12 h-12 flex items-center justify-center rounded-full bg-white text-northeastern-red border border-gray-200 shadow-sm hover:bg-northeastern-red hover:text-white transition-all duration-300">
+                <ChevronRight size={24} />
+              </button>
+            </div>
+          </div>
 
-          {/* Subtitle */}
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Discover our comprehensive engineering programs designed to shape future innovators 
-            and leaders through cutting-edge curriculum, industry exposure, and hands-on learning.
-          </p>
-        </motion.div>
-
-        {/* Stats Overview */}
-        
-
-        {/* Swiper Carousel */}
-        <div className="relative">
-          <Swiper
-            modules={[Navigation, Pagination, Autoplay]}
-            navigation={{
-              prevEl: ".custom-prev",
-              nextEl: ".custom-next",
-            }}
-            pagination={{ 
-              clickable: true,
-              el: '.custom-pagination',
-              type: 'bullets',
-              bulletClass: 'swiper-pagination-bullet bg-gray-300 opacity-60',
-              bulletActiveClass: 'swiper-pagination-bullet-active !bg-blue-600 !opacity-100'
-            }}
-            autoplay={{
-              delay: 6000,
-              disableOnInteraction: false,
-            }}
-            spaceBetween={30}
-            slidesPerView={1}
-            breakpoints={{
-              640: {
-                slidesPerView: 1.1,
-              },
-              1024: {
-                slidesPerView: 1.2,
-                centeredSlides: true,
-              },
-              1280: {
-                slidesPerView: 1.3,
-                centeredSlides: true,
-              },
-            }}
-            className="w-full pb-16 "
-          >
-            {courses.map((course) => {
-              const dept = engineeringDepartments[course.department];
-              const progressPercentage = (course.enrolled / course.seats) * 100;
-              
-              return (
+          {/* Right Swiper */}
+          <div className="md:w-3/5 w-full">
+            <Swiper
+              modules={[Navigation, Autoplay]}
+              navigation={{
+                prevEl: prevRef.current,
+                nextEl: nextRef.current,
+              }}
+              onInit={(swiper) => {
+                swiper.params.navigation.prevEl = prevRef.current;
+                swiper.params.navigation.nextEl = nextRef.current;
+                swiper.navigation.init();
+                swiper.navigation.update();
+              }}
+              autoplay={{
+                delay: 5000,
+                disableOnInteraction: false,
+              }}
+              spaceBetween={24}
+              loop={true}
+              breakpoints={{
+                320: { slidesPerView: 1 },
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 2.2 },
+                1280: { slidesPerView: 2.5 },
+              }}
+            >
+              {courses.map((course) => (
                 <SwiperSlide key={course.id}>
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className={`bg-white rounded-2xl  mb-4  shadow overflow-hidden border ${dept.borderColor} grid grid-cols-1 lg:grid-cols-2`}
-                  >
-                    {/* Left: Image with Department Badge */}
-                    <div className="relative h-72 lg:h-auto">
+                  <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 group">
+                    <div className="relative overflow-hidden">
                       <img
                         src={course.image}
                         alt={course.title}
-                        className="w-full h-full object-cover"
+                        className="h-48 w-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-lg">
-                        <div className="flex items-center space-x-6">
-                          <div className="text-center">
-                            <div className="text-lg font-bold text-blue-900">{course.enrolled}/{course.seats}</div>
-                            <div className="text-xs text-gray-600">Seats Filled</div>
-                          </div>
-                          <div className="text-center">
-                            <div className="text-lg font-bold text-green-900">{course.placement}</div>
-                            <div className="text-xs text-gray-600">Placement</div>
-                          </div>
-                        </div>
+                      <div className="absolute top-4 left-4 bg-northeastern-red text-white text-xs font-bold px-3 py-1 rounded-full">
+                        {course.code}
                       </div>
-                      <div className="absolute bottom-4 left-4">
-                        <span className={`px-3 py-1.5 rounded-full text-xs font-semibold ${dept.bgColor} ${dept.textColor}`}>
+                    </div>
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-northeastern-red transition-colors">
+                        {course.title}
+                      </h3>
+                      
+                      <div className="flex items-center space-x-4 mb-4">
+                        <div className="flex items-center text-sm text-gray-600">
+                          <Clock size={16} className="mr-1 text-northeastern-red" />
+                          {course.duration}
+                        </div>
+                        <div className="flex items-center text-sm text-gray-600">
+                          <Award size={16} className="mr-1 text-northeastern-red" />
                           {course.credits} Credits
-                        </span>
+                        </div>
                       </div>
+                      
+                      <p className="text-gray-600 text-sm mb-5 leading-relaxed">
+                        {course.description}
+                      </p>
+                      
+                      <button className="flex items-center text-northeastern-red font-semibold text-sm group-hover:underline">
+                        <BookOpen size={16} className="mr-2" />
+                        Program Details
+                      </button>
                     </div>
-
-                    {/* Right: Content */}
-                    <div className="p-6 flex flex-col">
-                      <div className="flex-1">
-                        <div className="flex justify-between items-start mb-4">
-                          <div>
-                            <h3 className="text-2xl font-bold text-gray-900">{course.title}</h3>
-                            <p className="text-gray-500 flex items-center gap-1 mt-1">
-                              {dept.icon}
-                              <span>{course.code} Department</span>
-                            </p>
-                          </div>
-                          <div className="flex items-center bg-gray-100 px-2 py-1 rounded-full">
-                            <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
-                            <span className="text-xs font-medium ml-1">4.8</span>
-                          </div>
-                        </div>
-
-                        <p className="text-gray-600 mb-5">{course.description}</p>
-
-                        <div className="grid grid-cols-2 gap-4 mb-5">
-                          <div className="flex items-center gap-2 text-sm text-gray-600">
-                            <Clock size={16} className="text-gray-400" />
-                            <span>{course.duration}</span>
-                          </div>
-                          <div className="flex items-center gap-2 text-sm text-gray-600">
-                            <UserCheck size={16} className="text-gray-400" />
-                            <span>{course.enrolled}/{course.seats} Enrolled</span>
-                          </div>
-                          <div className="flex items-center gap-2 text-sm text-gray-600">
-                            <Calendar size={16} className="text-gray-400" />
-                            <span>{course.schedule}</span>
-                          </div>
-                          <div className="flex items-center gap-2 text-sm text-gray-600">
-                            <Users size={16} className="text-gray-400" />
-                            <span>HOD: {course.instructor}</span>
-                          </div>
-                        </div>
-
-                        {/* Programs Offered */}
-                        <div className="mb-5">
-                          <h4 className="font-semibold text-gray-900 mb-2">Programs Offered:</h4>
-                          <div className="flex flex-wrap gap-2">
-                            {course.programs.map((program, i) => (
-                              <span key={i} className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full border border-gray-200">
-                                {program}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-
-                        {/* Enrollment Progress Bar */}
-                        <div className="mb-5">
-                          <div className="flex justify-between text-xs text-gray-500 mb-1">
-                            <span>Seat Availability</span>
-                            <span>{Math.round(progressPercentage)}% Filled</span>
-                          </div>
-                          <div className="w-full bg-gray-200 rounded-full h-2.5">
-                            <div 
-                              className={`h-2.5 rounded-full bg-gradient-to-r ${dept.color}`}
-                              style={{ width: `${progressPercentage}%` }}
-                            ></div>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Expand Button */}
-                      <div>
-                        <button
-                          onClick={() => toggleCourseExpand(course.id)}
-                          className="w-full flex items-center justify-between py-3 px-4 rounded-lg text-sm font-medium text-white bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-900 hover:to-gray-800 transition-all shadow-md"
-                        >
-                          <span>{expandedCourse === course.id ? "Hide Details" : "View Department Details"}</span>
-                          <ChevronDown
-                            className={`w-4 h-4 transition-transform ${expandedCourse === course.id ? "rotate-180" : ""}`}
-                          />
-                        </button>
-
-                        <AnimatePresence>
-                          {expandedCourse === course.id && (
-                            <motion.div
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: "auto" }}
-                              exit={{ opacity: 0, height: 0 }}
-                              transition={{ duration: 0.3 }}
-                              className="mt-4 pt-4 border-t border-gray-200"
-                            >
-                              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                  <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                                    <Target size={16} className="text-blue-600" />
-                                    Career Outcomes
-                                  </h4>
-                                  <ul className="text-sm text-gray-600 space-y-2">
-                                    {course.outcomes.map((outcome, i) => (
-                                      <li key={i} className="flex items-start">
-                                        <span className="text-green-500 mr-2 mt-1">•</span>
-                                        {outcome}
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </div>
-                                <div>
-                                  <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                                    <Bookmark size={16} className="text-blue-600" />
-                                    Eligibility
-                                  </h4>
-                                  <ul className="text-sm text-gray-600 space-y-2">
-                                    {course.prerequisites.map((prereq, i) => (
-                                      <li key={i} className="flex items-start">
-                                        <span className="text-blue-500 mr-2 mt-1">•</span>
-                                        {prereq}
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </div>
-                              </div>
-                              
-                              {/* Program Highlights */}
-                              <div className="mt-4">
-                                <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                                  <Award size={16} className="text-blue-600" />
-                                  Program Highlights
-                                </h4>
-                                <div className="flex flex-wrap gap-2">
-                                  {course.highlights.map((highlight, i) => (
-                                    <span key={i} className="px-3 py-1 bg-blue-50 text-blue-700 text-xs rounded-full border border-blue-100">
-                                      {highlight}
-                                    </span>
-                                  ))}
-                                </div>
-                              </div>
-                              
-                              <div className="flex gap-3 mt-6">
-                                <button className={`flex-1 py-3 bg-gradient-to-r ${dept.color} text-white rounded-lg font-medium hover:opacity-90 transition-all shadow-md`}>
-                                  Apply Now
-                                </button>
-                                <button className="px-4 py-3 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition-all border border-gray-200">
-                                  <ExternalLink size={16} />
-                                </button>
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    </div>
-                  </motion.div>
+                  </div>
                 </SwiperSlide>
-              );
-            })}
-          </Swiper>
-
-          {/* Custom Arrows */}
-          <button className="custom-prev absolute top-1/2 -left-4 z-10 transform -translate-y-1/2 bg-white text-gray-800 p-3 rounded-full shadow-lg hover:bg-gray-50 transition-all border border-gray-200">
-            <ArrowLeft size={20}/>
-          </button>
-          <button className="custom-next absolute top-1/2 -right-4 z-10 transform -translate-y-1/2 bg-white text-gray-800 p-3 rounded-full shadow-lg hover:bg-gray-50 transition-all border border-gray-200">
-            <ArrowRight size={20}/>
-          </button>
-
-          {/* Custom Pagination */}
-          <div className="custom-pagination flex justify-center gap-2 mt-6"></div>
+              ))}
+            </Swiper>
+          </div>
         </div>
-
-        {/* CTA Section */}
-        
       </div>
-    </div>
+
+      {/* Custom CSS for Northeastern colors */}
+      <style jsx>{`
+        :root {
+          --northeastern-red: #CC0000;
+        }
+        .text-northeastern-red {
+          color: #CC0000;
+        }
+        .bg-northeastern-red {
+          background-color: #CC0000;
+        }
+        .border-northeastern-red {
+          border-color: #CC0000;
+        }
+      `}</style>
+    </section>
   );
 };
 
-export default CoursesOffered;
+export default CoursesSlider;
