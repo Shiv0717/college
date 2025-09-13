@@ -186,11 +186,7 @@ const AboutSection = () => {
                 for successful careers.
               </p>
 
-              <p className="text-gray-700 mb-6 leading-relaxed">
-                Our state-of-the-art infrastructure, experienced faculty, and
-                industry partnerships create an environment where students can
-                thrive academically and personally.
-              </p>
+             
             </div>
 
             <motion.div

@@ -1,5 +1,6 @@
 import React from "react";
 import Marquee from "react-fast-marquee";
+import CountUp from "react-countup";
 import {
   Trophy,
   Award,
@@ -14,25 +15,23 @@ import {
   Bookmark,
   Heart,
   MapPin,
-  TrendingUp
+  TrendingUp,
 } from "lucide-react";
 
-
-  const achievements = [
-    { icon: <Building className="w-6 h-6 text-indigo-600" />, text: "AICTE Approved College" },
-    { icon: <BookOpen className="w-6 h-6 text-purple-500" />, text: "4 B.Tech Disciplines" },
-    { icon: <Briefcase className="w-6 h-6 text-blue-500" />, text: "Top Firm Placements" },
-    { icon: <Users className="w-6 h-6 text-green-500" />, text: "120 CSE Seats" },
-    { icon: <Trophy className="w-6 h-6 text-yellow-500" />, text: "₹10 LPA Placements" },
-    { icon: <MapPin className="w-6 h-6 text-red-500" />, text: "Bhilai Junwani Campus" }
-  ];
-
+const achievements = [
+  { icon: <Building className="w-6 h-6 text-indigo-600" />, text: "AICTE Approved College" },
+  { icon: <BookOpen className="w-6 h-6 text-purple-500" />, text: "4 B.Tech Disciplines" },
+  { icon: <Briefcase className="w-6 h-6 text-blue-500" />, text: "Top Firm Placements" },
+  { icon: <Users className="w-6 h-6 text-green-500" />, text: "120 CSE Seats" },
+  { icon: <Trophy className="w-6 h-6 text-yellow-500" />, text: "₹10 LPA Placements" },
+  { icon: <MapPin className="w-6 h-6 text-red-500" />, text: "Bhilai Junwani Campus" },
+];
 
 const stats = [
-  { value: "240+", label: "Total B.Tech Seats", icon: <BookOpen className="w-8 h-8" /> },
-  { value: "₹6 LPA", label: "Avg Placement Package", icon: <TrendingUp className="w-8 h-8" /> },
-  { value: "80-99%", label: "Placement Rate", icon: <Users className="w-8 h-8" /> },
-  { value: "5 acres", label: "Campus Area", icon: <Building className="w-8 h-8" /> }
+  { value: 240, suffix: "+", label: "Total B.Tech Seats", icon: <BookOpen className="w-8 h-8" />, color: "text-blue-600" },
+  { value: 6, prefix: "₹", suffix: " LPA", label: "Avg Placement Package", icon: <TrendingUp className="w-8 h-8" />, color: "text-green-600" },
+  { value: 99, suffix: "%", label: "Placement Rate", icon: <Users className="w-8 h-8" />, color: "text-yellow-600" },
+  { value: 5, suffix: " acres", label: "Campus Area", icon: <Building className="w-8 h-8" />, color: "text-purple-600" },
 ];
 
 const Pill = ({ icon, text }) => (
@@ -44,14 +43,16 @@ const Pill = ({ icon, text }) => (
   </div>
 );
 
-const StatCard = ({ value, label, icon }) => (
+const StatCard = ({ value, suffix, prefix, label, icon, color }) => (
   <div className="bg-gradient-to-br from-white to-blue-50 rounded-xl p-6 text-center border border-blue-100 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
     <div className="flex justify-center mb-3">
       <div className="p-2 rounded-full bg-blue-100 text-blue-700 group-hover:scale-110 transition-transform">
         {icon}
       </div>
     </div>
-    <div className="text-3xl font-bold text-blue-900 mb-1">{value}</div>
+    <div className={`text-3xl font-bold mb-1 ${color}`}>
+      <CountUp end={value} duration={2} prefix={prefix || ""} suffix={suffix || ""} />
+    </div>
     <div className="text-sm font-medium text-gray-600">{label}</div>
   </div>
 );
@@ -59,8 +60,6 @@ const StatCard = ({ value, label, icon }) => (
 const AchievementsMarquee = () => {
   return (
     <section className="w-full py-16 bg-gradient-to-b from-blue-50 to-white relative overflow-hidden">
-     
-      
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Heading */}
         <div className="text-center mb-12">
@@ -91,13 +90,16 @@ const AchievementsMarquee = () => {
         </div>
 
         {/* Stats Section */}
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-6  mt-12">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-6 mt-12">
           {stats.map((stat, index) => (
-            <StatCard 
+            <StatCard
               key={index}
               value={stat.value}
               label={stat.label}
+              suffix={stat.suffix}
+              prefix={stat.prefix}
               icon={stat.icon}
+              color={stat.color}
             />
           ))}
         </div>
