@@ -10,6 +10,46 @@ import { useInView } from "react-intersection-observer";
 import "swiper/css";
 import "swiper/css/navigation";
 
+// Reusable StaggeredFade for letter-by-letter fade-in animation
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.05,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+};
+
+function StaggeredFade({ text, className = "" }) {
+  return (
+    <motion.span
+      className={className}
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      style={{ display: "inline-block" }}
+    >
+      {text.split("").map((char, i) => (
+        <motion.span
+          key={i}
+          variants={itemVariants}
+          style={{ display: "inline-block" }}
+          aria-hidden="true"
+        >
+          {char === " " ? "\u00A0" : char}
+        </motion.span>
+      ))}
+    </motion.span>
+  );
+}
+
 const PlacementPartners = () => {
   const partners = [
     {
@@ -102,10 +142,14 @@ const PlacementPartners = () => {
             Industry Connections
           </div>
           <h2 className="text-4xl font-bold text-blue-900 mb-4">
-            Our <span className="text-blue-600">Placement Partners</span>
+            Our{" "}
+            <StaggeredFade
+              text="Placement Partners"
+              className="text-blue-600 inline-block"
+            />
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            We partner with leading companies to provide exceptional career opportunities for our students
+            <StaggeredFade text="We partner with leading companies to provide exceptional career opportunities for our students" />
           </p>
         </motion.div>
 
@@ -142,7 +186,7 @@ const PlacementPartners = () => {
                       <CountUp
                         start={0}
                         end={stat.value}
-                        duration={2.5}
+                        duration={30}
                         prefix={stat.prefix || ""}
                         suffix={stat.suffix || ""}
                         decimals={stat.value % 1 !== 0 ? 1 : 0} 
@@ -200,7 +244,6 @@ const PlacementPartners = () => {
                     />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-800 mb-1">{partner.name}</h3>
-                
                 </div>
               </SwiperSlide>
             ))}

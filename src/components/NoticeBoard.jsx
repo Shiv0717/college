@@ -3,6 +3,39 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronRight, CalendarDays, Clock } from "lucide-react";
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15, // delay between each child
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4 },
+  },
+};
+
+const textContainerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const textItemVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+};
+
 const NewsEvents = () => {
   const [activeNews, setActiveNews] = useState(0);
 
@@ -122,32 +155,48 @@ const NewsEvents = () => {
                   {news[activeNews].date}
                 </div>
 
-                {/* Text overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-                  <h4 className="text-2xl font-bold text-white leading-tight mb-2">
+                {/* Text overlay with staggered animation */}
+                <motion.div
+                  className="absolute bottom-0 left-0 right-0 p-6 z-20"
+                  variants={textContainerVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.3 }}
+                >
+                  <motion.h4
+                    className="text-2xl font-bold text-white leading-tight mb-2"
+                    variants={textItemVariants}
+                  >
                     {news[activeNews].title}
-                  </h4>
-                  <p className="text-gray-200 mb-4 line-clamp-2">
+                  </motion.h4>
+                  <motion.p
+                    className="text-gray-200 mb-4 line-clamp-2"
+                    variants={textItemVariants}
+                  >
                     {news[activeNews].desc}
-                  </p>
-
-                  <button className="inline-flex items-center text-white font-medium group-hover:text-blue-300 transition-colors">
+                  </motion.p>
+                  <motion.button
+                    className="inline-flex items-center text-white font-medium group-hover:text-blue-300 transition-colors"
+                    variants={textItemVariants}
+                  >
                     Read full story
                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </button>
-                </div>
+                  </motion.button>
+                </motion.div>
               </div>
             </motion.div>
 
-            {/* News List */}
-            <div className="space-y-6">
+            {/* News List with stagger animation */}
+            <motion.div
+              className="space-y-6"
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+            >
               {news.map((item, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  viewport={{ once: true }}
+                  variants={itemVariants}
                   onClick={() => setActiveNews(index)}
                   className={`p-5 rounded-xl cursor-pointer transition-all ${
                     activeNews === index
@@ -178,7 +227,7 @@ const NewsEvents = () => {
                   </div>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </motion.div>
       </div>

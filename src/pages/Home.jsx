@@ -14,15 +14,11 @@ const Home = () => {
       <Herosection />
       <CoursesOffered />
       <AboutSection />
+      <PlacementPartners />
       {/* <AchievementsMarquee /> */}
-      {/*  */}
-     
       {/*
-      
        <Leadership />
        <AboutSection />
-      <PlacementPartners />
-      
       */}
       <NoticeBoard />
       <AlumniSection />
