@@ -418,55 +418,87 @@ const UniversityMenu = () => {
                     </Link>
 
                     {/* Mega Dropdown Submenu - Centered */}
-                    {category.submenu && activeMenu === category.name && (
-                      <motion.div 
-                        className="absolute left-1/2 transform -translate-x-1/2 mt-1 w-[600px] rounded-xl shadow-2xl bg-white ring-1 ring-gray-200 z-50 overflow-hidden"
-                        onMouseEnter={() => setActiveMenu(category.name)}
-                        onMouseLeave={() => setActiveMenu(null)}
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <div className={`py-4 px-6 bg-gradient-to-r ${category.gradient} text-white`}>
-                          <div className="flex items-center">
-                            <IconComponent size={24} className="mr-3 " />
-                            <div>
-                              <h3 className="text-xl font-bold">{category.name}</h3>
-                              <p className="text-sm opacity-90">{category.description}</p>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="p-6 grid grid-cols-2 gap-4">
-                          {category.submenu.map((item) => {
-                            const ItemIcon = item.icon;
-                            return (
-                              <Link
-                                key={item.name}
-                                to={item.path}
-                                className={`flex items-start p-4 rounded-lg transition-all duration-200 ${hoveredItem === item.name ? 'bg-gray-50 transform scale-[1.02] shadow-md' : 'hover:bg-gray-50'}`}
-                                onClick={closeAllMenus}
-                                onMouseEnter={() => setHoveredItem(item.name)}
-                                onMouseLeave={() => setHoveredItem(null)}
-                              >
-                                <div className={`flex-shrink-0 h-10 w-10 rounded-lg ${category.bgColor} bg-opacity-10 flex items-center justify-center mr-4`}>
-                                  <ItemIcon size={18} className='text-white' />
-                                </div>
-                                <div>
-                                  <div className="flex items-center">
-                                    <h4 className="font-semibold text-gray-900">{item.name}</h4>
-                                    {item.highlight && (
-                                      <span className="ml-2 bg-emerald-500 text-white text-xs px-2 py-1 rounded-full">Featured</span>
-                                    )}
-                                  </div>
-                                  <p className="text-sm text-gray-600 mt-1">{item.description}</p>
-                                </div>
-                              </Link>
-                            );
-                          })}
-                        </div>
-                      </motion.div>
-                    )}
+                   {category.submenu && activeMenu === category.name && (
+  <motion.div
+    className="absolute left-1/2 transform -translate-x-1/2 mt-1 w-[600px] rounded-xl shadow-2xl bg-white ring-1 ring-gray-200 z-50 overflow-hidden"
+    onMouseEnter={() => setActiveMenu(category.name)}
+    onMouseLeave={() => setActiveMenu(null)}
+    initial={{ opacity: 0, y: -20, scale: 0.95 }}
+    animate={{ opacity: 1, y: 0, scale: 1 }}
+    exit={{ opacity: 0, y: -20, scale: 0.95 }}
+    transition={{ duration: 0.3, ease: "easeInOut" }}
+  >
+    {/* Header */}
+    <div className={`py-4 px-6 bg-gradient-to-r ${category.gradient} text-white`}>
+      <div className="flex items-center">
+        <IconComponent size={24} className="mr-3 " />
+        <div>
+          <h3 className="text-xl font-bold">{category.name}</h3>
+          <p className="text-sm opacity-90">{category.description}</p>
+        </div>
+      </div>
+    </div>
+
+    {/* Menu Items with staggered animation */}
+    <motion.div
+      className="p-6 grid grid-cols-2 gap-4"
+      initial="hidden"
+      animate="visible"
+      exit="hidden"
+      variants={{
+        hidden: {},
+        visible: {
+          transition: {
+            staggerChildren: 0.05,
+          },
+        },
+      }}
+    >
+      {category.submenu.map((item) => {
+        const ItemIcon = item.icon;
+        return (
+          <motion.div
+            key={item.name}
+            variants={{
+              hidden: { opacity: 0, y: 10 },
+              visible: { opacity: 1, y: 0 },
+            }}
+          >
+            <Link
+              to={item.path}
+              className={`flex items-start p-4 rounded-lg transition-all duration-200 ${
+                hoveredItem === item.name
+                  ? "bg-gray-50 transform scale-[1.02] shadow-md"
+                  : "hover:bg-gray-50"
+              }`}
+              onClick={closeAllMenus}
+              onMouseEnter={() => setHoveredItem(item.name)}
+              onMouseLeave={() => setHoveredItem(null)}
+            >
+              <div
+                className={`flex-shrink-0 h-10 w-10 rounded-lg ${category.bgColor} bg-opacity-10 flex items-center justify-center mr-4`}
+              >
+                <ItemIcon size={18} className="text-white" />
+              </div>
+              <div>
+                <div className="flex items-center">
+                  <h4 className="font-semibold text-gray-900">{item.name}</h4>
+                  {item.highlight && (
+                    <span className="ml-2 bg-emerald-500 text-white text-xs px-2 py-1 rounded-full">
+                      Featured
+                    </span>
+                  )}
+                </div>
+                <p className="text-sm text-gray-600 mt-1">{item.description}</p>
+              </div>
+            </Link>
+          </motion.div>
+        );
+      })}
+    </motion.div>
+  </motion.div>
+)}
+
                   </div>
                 );
               })}

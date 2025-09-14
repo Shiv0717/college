@@ -1,113 +1,189 @@
 "use client";
 import React from "react";
-import { ArrowRight, GraduationCap, Users, Building2, Award } from "lucide-react";
+import { Camera, ArrowRight, BookOpen, Users, Award } from "lucide-react";
+import { motion } from "framer-motion";
 
 const AboutSection = () => {
+  // Variants for columns
+  const columnVariant = (direction = "up") => ({
+    hidden: { opacity: 0, y: direction === "up" ? 50 : -50, x: direction === "left" ? -50 : direction === "right" ? 50 : 0 },
+    visible: { opacity: 1, y: 0, x: 0, transition: { duration: 0.8 } },
+  });
+
   return (
-    <section className="py-20 px-6 md:px-12 bg-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto relative z-10">
-        {/* Heading */}
-        <div className="mb-12 text-center md:text-left">
-          <div className="inline-flex items-center rounded-full bg-gradient-to-r from-red-600 to-orange-500 mb-4 px-4 py-1 text-sm font-medium text-white">
-            <Award className="h-4 w-4 mr-2" />
-            Premier Institution
+    <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Header Section */}
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="inline-flex items-center justify-center mb-4">
+            <div className="w-12 h-0.5 bg-blue-600 mr-4"></div>
+            <Camera className="text-blue-600" size={24} />
+            <div className="w-12 h-0.5 bg-blue-600 ml-4"></div>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-            World Class{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-500">
-              Campus
-            </span>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Campus <span className="text-blue-600">Gallery</span>
           </h2>
-
-          <p className="text-lg text-slate-600 max-w-3xl leading-relaxed">
-            Krishna Engineering College is an aesthetically vibrant, technology-enabled campus designed
-            to support and inspire students. With modern infrastructure, research labs, and a focus on
-            innovation, KEC nurtures the next generation of engineers and leaders.
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+            Explore the vibrant life and beautiful facilities of our campus
+            through these captured moments
           </p>
-        </div>
+        </motion.div>
 
-        {/* Image + Stats Section */}
-        <div className="flex flex-col lg:flex-row gap-8 items-stretch">
-          {/* Image */}
-          <div className="lg:w-7/12 relative">
-            <div className="overflow-hidden rounded-2xl shadow-xl border-4 border-white">
+        {/* Gallery Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          {/* Left Column */}
+          <motion.div
+            className="lg:col-span-2 space-y-6"
+            variants={columnVariant("left")}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.4 }}
+          >
+            <div className="text-center mb-4">
+              <div className="w-12 h-12 mx-auto flex items-center justify-center rounded-full bg-blue-100 text-blue-600 mb-3">
+                <BookOpen size={24} />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-800 mb-1">
+                Academic Excellence
+              </h3>
+              <p className="text-gray-600 text-xs">Learning environments</p>
+            </div>
+
+            <div className="space-y-4">
+              <motion.div className="relative group overflow-hidden rounded-xl shadow-lg" whileHover={{ scale: 1.05 }}>
+                <img
+                  src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600"
+                  alt="Auditorium"
+                  className="w-full h-48 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                  <p className="text-white text-xs">Auditorium</p>
+                </div>
+              </motion.div>
+
+              <motion.div className="relative group overflow-hidden rounded-xl shadow-lg" whileHover={{ scale: 1.05 }}>
+                <img
+                  src="https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=800"
+                  alt="Science Lab"
+                  className="w-full aspect-square object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                  <p className="text-white text-xs">Physics Laboratory</p>
+                </div>
+              </motion.div>
+
+              <div className="bg-white p-4 rounded-xl shadow-md text-center">
+                <div className="text-2xl font-bold text-blue-600">50K+</div>
+                <div className="text-xs text-gray-600 mt-1">Books in Library</div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Middle Column */}
+          <motion.div
+            className="lg:col-span-8 space-y-6"
+            variants={columnVariant("up")}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.4 }}
+          >
+            <div className="text-center mb-4">
+              <div className="w-12 h-12 mx-auto flex items-center justify-center rounded-full bg-blue-100 text-blue-600 mb-3">
+                <Users size={24} />
+              </div>
+              <h3 className="text-2xl font-semibold text-gray-800 mb-1">
+                Campus Life
+              </h3>
+              <p className="text-gray-600">Where learning meets experience</p>
+            </div>
+
+            <motion.div className="relative group overflow-hidden rounded-2xl shadow-lg" whileHover={{ scale: 1.03 }}>
               <img
-                src="https://www.kecbhilai.com/images/slider_img2.jpg"
-                alt="Campus"
-                className="w-full h-[550px] object-cover transition-transform duration-700 hover:scale-105"
+                src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=1000"
+                alt="Campus Overview"
+                className="w-full h-64 object-cover"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                <div>
+                  <p className="text-blue-300 text-sm mb-1">Main Campus</p>
+                  <h4 className="text-white text-xl font-semibold">Aerial View</h4>
+                </div>
+              </div>
+            </motion.div>
+
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { src: "https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=600", label: "Basketball" },
+                { src: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600", label: "Graduation" },
+                { src: "https://images.unsplash.com/photo-1591123120675-6f7f1aae0e5b?w=600", label: "Study Area" },
+                { src: "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=600", label: "Collaboration" },
+              ].map((img, idx) => (
+                <motion.div key={idx} className="relative group overflow-hidden rounded-xl shadow-lg" whileHover={{ scale: 1.05 }}>
+                  <img src={img.src} alt={img.label} className="w-full h-40 object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                    <p className="text-white text-xs">{img.label}</p>
+                  </div>
+                </motion.div>
+              ))}
             </div>
-          </div>
+          </motion.div>
 
-          {/* Stats Box */}
-          <div className="lg:w-5/12 bg-gray-50 border border-gray-200 text-slate-900 p-8 md:p-10 rounded-2xl shadow-md flex flex-col justify-center">
-            {/* Stats Grid */}
-            <div className="grid grid-cols-2 gap-6 mb-8">
-              <div className="text-center p-4 bg-white rounded-xl shadow-sm border border-gray-100">
-                <div className="flex justify-center mb-2">
-                  <div className="p-3 bg-red-100 rounded-full">
-                    <GraduationCap className="h-8 w-8 text-red-600" />
-                  </div>
-                </div>
-                <h3 className="text-4xl font-bold text-red-600 mb-1">25+</h3>
-                <p className="text-sm text-slate-600">Years of Excellence</p>
+          {/* Right Column */}
+          <motion.div
+            className="lg:col-span-2 space-y-6"
+            variants={columnVariant("right")}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.4 }}
+          >
+            <div className="text-center mb-4">
+              <div className="w-12 h-12 mx-auto flex items-center justify-center rounded-full bg-blue-100 text-blue-600 mb-3">
+                <Award size={24} />
               </div>
-
-              <div className="text-center p-4 bg-white rounded-xl shadow-sm border border-gray-100">
-                <div className="flex justify-center mb-2">
-                  <div className="p-3 bg-amber-100 rounded-full">
-                    <Users className="h-8 w-8 text-amber-600" />
-                  </div>
-                </div>
-                <h3 className="text-4xl font-bold text-amber-600 mb-1">60+</h3>
-                <p className="text-sm text-slate-600">Expert Faculty</p>
-              </div>
-
-              <div className="text-center p-4 bg-white rounded-xl shadow-sm border border-gray-100">
-                <div className="flex justify-center mb-2">
-                  <div className="p-3 bg-green-100 rounded-full">
-                    <Building2 className="h-8 w-8 text-green-600" />
-                  </div>
-                </div>
-                <h3 className="text-4xl font-bold text-green-600 mb-1">100+</h3>
-                <p className="text-sm text-slate-600">Recruiters</p>
-              </div>
-
-              <div className="text-center p-4 bg-white rounded-xl shadow-sm border border-gray-100">
-                <div className="flex justify-center mb-2">
-                  <div className="p-3 bg-purple-100 rounded-full">
-                    <svg
-                      className="h-8 w-8 text-purple-600"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                      />
-                    </svg>
-                  </div>
-                </div>
-                <h3 className="text-4xl font-bold text-purple-600 mb-1">10k+</h3>
-                <p className="text-sm text-slate-600">Alumni Network</p>
-              </div>
+              <h3 className="text-lg font-semibold text-gray-800 mb-1">Facilities</h3>
+              <p className="text-gray-600 text-xs">Modern amenities</p>
             </div>
 
-            {/* Explore More */}
-            <div className="text-center pt-4 border-t border-gray-200">
-              <a
-                href="#"
-                className="inline-flex items-center justify-center bg-gradient-to-r from-red-600 to-orange-500 text-white font-semibold py-3 px-6 rounded-full hover:shadow-lg hover:shadow-red-500/30 transition-all duration-300 group"
-              >
-                Explore Campus
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </a>
+            <motion.div className="relative group overflow-hidden rounded-xl shadow-lg" whileHover={{ scale: 1.05 }}>
+              <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600" alt="Auditorium" className="w-full h-48 object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                <p className="text-white text-xs">Auditorium</p>
+              </div>
+            </motion.div>
+
+            <motion.div className="relative group overflow-hidden rounded-xl shadow-lg" whileHover={{ scale: 1.05 }}>
+              <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600" alt="Sports Complex" className="w-full aspect-square object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                <p className="text-white text-xs">Sports Complex</p>
+              </div>
+            </motion.div>
+
+            <div className="bg-white p-4 rounded-xl shadow-md text-center">
+              <div className="text-xl font-bold text-blue-600">25+</div>
+              <div className="text-xs text-gray-600 mt-1">Facilities</div>
             </div>
-          </div>
+          </motion.div>
         </div>
+
+        {/* Call to Action */}
+        <motion.div
+          className="text-center mt-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.6 }}
+        >
+          <button className="group inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg">
+            Explore Full Gallery
+            <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
+          </button>
+        </motion.div>
       </div>
     </section>
   );

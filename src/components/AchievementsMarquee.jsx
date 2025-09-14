@@ -1,313 +1,276 @@
-import React from "react";
-import { motion } from "framer-motion";
+"use client";
+import React, { useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
 import CountUp from "react-countup";
-import {
-  Trophy,
-  Award,
-  Users,
-  BookOpen,
-  GraduationCap,
-  Building,
-  Calendar,
-  Target,
-  Star,
-  Briefcase,
-  Bookmark,
-  Heart,
-  MapPin,
-  TrendingUp,
-} from "lucide-react";
+import { GraduationCap, Users, Award, Building2, BookOpen, Globe, ChevronRight, ZoomIn, X } from "lucide-react";
 
-const achievements = [
-  { icon: <Building className="w-6 h-6" />, text: "AICTE Approved College" },
-  { icon: <BookOpen className="w-6 h-6" />, text: "4 B.Tech Disciplines" },
-  { icon: <Briefcase className="w-6 h-6" />, text: "Top Firm Placements" },
-  { icon: <Users className="w-6 h-6" />, text: "120 CSE Seats" },
-  { icon: <Trophy className="w-6 h-6" />, text: "₹10 LPA Placements" },
-  { icon: <MapPin className="w-6 h-6" />, text: "Bhilai Junwani Campus" },
-];
+const AboutSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [selectedImage, setSelectedImage] = useState(null);
 
-const stats = [
-  { 
-    value: 240, 
-    suffix: "+", 
-    label: "Total B.Tech Seats", 
-    icon: <BookOpen className="w-8 h-8" />, 
-    color: "text-blue-600",
-    bgColor: "bg-blue-100",
-    borderColor: "border-blue-200"
-  },
-  { 
-    value: 6, 
-    prefix: "₹", 
-    suffix: " LPA", 
-    label: "Avg Placement Package", 
-    icon: <TrendingUp className="w-8 h-8" />, 
-    color: "text-emerald-600",
-    bgColor: "bg-emerald-100",
-    borderColor: "border-emerald-200"
-  },
-  { 
-    value: 99, 
-    suffix: "%", 
-    label: "Placement Rate", 
-    icon: <Users className="w-8 h-8" />, 
-    color: "text-amber-600",
-    bgColor: "bg-amber-100",
-    borderColor: "border-amber-200"
-  },
-  { 
-    value: 5, 
-    suffix: " acres", 
-    label: "Campus Area", 
-    icon: <Building className="w-8 h-8" />, 
-    color: "text-red-600",
-    bgColor: "bg-red-100",
-    borderColor: "border-red-200"
-  },
-];
+  const stats = [
+    { 
+      id: 1, 
+      value: 50, 
+      suffix: "+", 
+      label: "Years of Excellence", 
+      icon: Award,
+      color: "text-blue-600"
+    },
+    { 
+      id: 2, 
+      value: 15000, 
+      suffix: "+", 
+      label: "Alumni Network", 
+      icon: Users,
+      color: "text-green-600"
+    },
+    { 
+      id: 3, 
+      value: 200, 
+      suffix: "+", 
+      label: "Expert Faculty", 
+      icon: GraduationCap,
+      color: "text-amber-600"
+    },
+    { 
+      id: 4, 
+      value: 100, 
+      suffix: "+", 
+      label: "Programs Offered", 
+      icon: BookOpen,
+      color: "text-purple-600"
+    },
+  ];
 
-// Animation variants
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2
-    }
-  }
-};
+  const galleryImages = [
+    {
+      src: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      alt: "University Campus Overview",
+      title: "Main Campus",
+      description: "Our beautiful 50-acre campus with state-of-the-art facilities"
+    },
+    {
+      src: "https://www.kecbhilai.com/images/pc2.jpg",
+      alt: "University Library",
+      title: "Central Library",
+      description: "Home to over 100,000 books and digital resources"
+    },
+    
+    {
+      src: "https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      alt: "Sports Complex",
+      title: "Athletics Center",
+      description: "Modern sports facilities for holistic development"
+    },
+  ];
 
-const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.5
-    }
-  }
-};
-
-const marqueeVariants = {
-  animate: {
-    x: ["0%", "-50%"],
-    transition: {
-      x: {
-        repeat: Infinity,
-        repeatType: "loop",
-        duration: 20,
-        ease: "linear",
-      }
-    }
-  }
-};
-
-const Pill = ({ icon, text }) => (
-  <motion.div 
-    className="flex items-center gap-3 rounded-full bg-gradient-to-r from-blue-50/80 to-indigo-50/80 px-6 py-3 border border-blue-200/50 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group mx-2 backdrop-blur-sm"
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
-  >
-    <span className="text-blue-600 transition-transform group-hover:scale-110 group-hover:text-blue-700">{icon}</span>
-    <span className="text-sm font-semibold text-gray-800 whitespace-nowrap">
-      {text}
-    </span>
-  </motion.div>
-);
-
-const StatCard = ({ value, suffix, prefix, label, icon, color, bgColor, borderColor }) => (
-  <motion.div 
-    className={`bg-gradient-to-br from-white to-gray-50 rounded-xl p-6 text-center border ${borderColor} hover:shadow-lg transition-all duration-500 hover:-translate-y-2 group`}
-    variants={itemVariants}
-    whileHover={{ scale: 1.03 }}
-  >
-    <div className="flex justify-center mb-3">
-      <motion.div 
-        className={`p-3 rounded-full ${bgColor} ${color} transition-all duration-500 group-hover:scale-110 group-hover:rotate-3`}
-        whileHover={{ rotate: 360 }}
-        transition={{ duration: 0.7 }}
-      >
-        {icon}
-      </motion.div>
-    </div>
-    <div className={`text-4xl font-bold mb-1 ${color}`}>
-      <CountUp 
-        end={value} 
-        duration={13} 
-        prefix={prefix || ""} 
-        suffix={suffix || ""} 
-        enableScrollSpy
-        scrollSpyDelay={200}
-        scrollSpyOnce
-      />
-    </div>
-    <div className="text-sm font-medium text-gray-600 mt-2">{label}</div>
-  </motion.div>
-);
-
-const AchievementsMarquee = () => {
   return (
-    <section className="w-full py-16 bg-gradient-to-b from-blue-50/30 to-white/50 relative overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute top-0 left-0 w-full h-full opacity-10">
-        <motion.div 
-          className="absolute top-10 left-10 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            x: [0, 30, 0],
-            y: [0, -50, 0],
-          }}
-          transition={{
-            duration: 7,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        ></motion.div>
-        <motion.div 
-          className="absolute top-10 right-10 w-72 h-72 bg-indigo-400 rounded-full mix-blend-multiply filter blur-xl"
-          animate={{
-            scale: [1, 1.1, 1],
-            x: [0, -20, 0],
-            y: [0, 30, 0],
-          }}
-          transition={{
-            duration: 9,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1
-          }}
-        ></motion.div>
-        <motion.div 
-          className="absolute bottom-10 left-20 w-72 h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl"
-          animate={{
-            scale: [1, 1.3, 1],
-            x: [0, 40, 0],
-            y: [0, -30, 0],
-          }}
-          transition={{
-            duration: 11,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2
-          }}
-        ></motion.div>
-      </div>
-      
-      <div className="max-w-7xl mx-auto px-2 relative z-10">
-        {/* Heading */}
-        <motion.div 
-          className="text-center mb-12"
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-        >
-          <motion.div 
-            className="inline-flex items-center justify-center mb-4"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-            viewport={{ once: true }}
+    <section ref={ref} className="py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex flex-col lg:flex-row gap-12 items-start">
+          
+          {/* Left Column - Enhanced Gallery */}
+          <motion.div
+            className="lg:w-1/2"
+            initial={{ opacity: 0, x: -50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7 }}
           >
-            <motion.div 
-              className="w-3 h-3 bg-blue-600 rounded-full mr-2"
-              animate={{ scale: [1, 1.5, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            ></motion.div>
-            <motion.div 
-              className="w-3 h-3 bg-blue-600 rounded-full mr-2"
-              animate={{ scale: [1, 1.5, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity, delay: 0.2 }}
-            ></motion.div>
-            <motion.div 
-              className="w-3 h-3 bg-blue-600 rounded-full"
-              animate={{ scale: [1, 1.5, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity, delay: 0.4 }}
-            ></motion.div>
-          </motion.div>
-          <motion.h2 
-            className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-indigo-700">
-              KRISHNA ENGINEERING COLLEGE
-            </span>
-          </motion.h2>
-          <motion.div 
-            className="w-32 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto mb-4 rounded-full"
-            initial={{ width: 0 }}
-            whileInView={{ width: 128 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            viewport={{ once: true }}
-          ></motion.div>
-          <motion.p 
-            className="text-xl text-gray-700 max-w-3xl mx-auto font-medium"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.7, delay: 0.7 }}
-            viewport={{ once: true }}
-          >
-            Excellence in Engineering Education & Innovation
-          </motion.p>
-        </motion.div>
-
-        {/* Main Marquee */}
-        <motion.div 
-          className="relative mb-8"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-white to-transparent z-10"></div>
-          <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-white to-transparent z-10"></div>
-
-          <div className="overflow-hidden py-4">
-            <motion.div 
-              className="flex whitespace-nowrap"
-              variants={marqueeVariants}
-              animate="animate"
+            {/* Main featured image */}
+            <motion.div
+              className="relative rounded-2xl overflow-hidden shadow-xl mb-6 group cursor-pointer"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              whileHover={{ scale: 1.02 }}
+              onClick={() => setSelectedImage(galleryImages[0])}
             >
-              {achievements.map((a, i) => (
-                <Pill key={`marquee1-${i}`} icon={a.icon} text={a.text} />
-              ))}
-              {/* Duplicate for seamless loop */}
-              {achievements.map((a, i) => (
-                <Pill key={`marquee2-${i}`} icon={a.icon} text={a.text} />
-              ))}
+              <img
+                src={galleryImages[0].src}
+                alt={galleryImages[0].alt}
+                className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+                <div className="text-white">
+                  <h3 className="text-xl font-bold mb-1">{galleryImages[0].title}</h3>
+                  <p className="text-blue-200 text-sm">{galleryImages[0].description}</p>
+                </div>
+              </div>
+              <div className="absolute top-4 right-4 bg-black/50 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                <ZoomIn size={20} />
+              </div>
             </motion.div>
-          </div>
-        </motion.div>
 
-        {/* Stats Section */}
-        <motion.div 
-          className="grid grid-cols-2 lg:grid-cols-4 gap-2 mt-16"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          {stats.map((stat, index) => (
-            <StatCard
-              key={index}
-              value={stat.value}
-              label={stat.label}
-              suffix={stat.suffix}
-              prefix={stat.prefix}
-              icon={stat.icon}
-              color={stat.color}
-              bgColor={stat.bgColor}
-              borderColor={stat.borderColor}
-            />
-          ))}
-        </motion.div>
+            {/* Gallery grid */}
+            <div className="grid grid-cols-2 gap-4">
+              {galleryImages.slice(1).map((image, idx) => (
+                <motion.div
+                  key={idx}
+                  className="relative rounded-xl overflow-hidden shadow-md group cursor-pointer h-40"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.7, delay: 0.2 + idx * 0.1 }}
+                  whileHover={{ y: -5 }}
+                  onClick={() => setSelectedImage(image)}
+                >
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <div className="text-white">
+                      <h3 className="text-sm font-semibold">{image.title}</h3>
+                    </div>
+                  </div>
+                  <div className="absolute top-2 right-2 bg-black/50 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                    <ZoomIn size={16} />
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            <motion.div
+              className="relative rounded-2xl overflow-hidden shadow-xl mt-3 mb-6 group cursor-pointer"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              whileHover={{ scale: 1.02 }}
+              onClick={() => setSelectedImage(galleryImages[0])}
+            >
+              <img
+                src={galleryImages[0].src}
+                alt={galleryImages[0].alt}
+                className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+                <div className="text-white">
+                  <h3 className="text-xl font-bold mb-1">{galleryImages[0].title}</h3>
+                  <p className="text-blue-200 text-sm">{galleryImages[0].description}</p>
+                </div>
+              </div>
+              <div className="absolute top-4 right-4 bg-black/50 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                <ZoomIn size={20} />
+              </div>
+            </motion.div>
+
+            {/* Gallery stats and CTA */}
+            <motion.div
+              className="mt-6 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl p-5 text-white flex items-center justify-between"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.4 }}
+            >
+              <div className="flex items-center">
+                <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center mr-4">
+                  <Globe size={24} />
+                </div>
+                <div>
+                  <div className="font-bold text-xl">25+ Global Partnerships</div>
+                  <div className="text-blue-100 text-sm">Collaborating with top institutions worldwide</div>
+                </div>
+              </div>
+              <button className="bg-white text-blue-600 font-medium py-2 px-4 rounded-lg flex items-center text-sm group hover:bg-blue-50 transition-colors">
+                Virtual Tour
+                <ChevronRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </motion.div>
+          </motion.div>
+
+          {/* Right Column - Content */}
+          <motion.div
+            className="lg:w-1/2"
+            initial={{ opacity: 0, x: 50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          >
+            <div className="mb-6">
+              <div className="inline-flex items-center text-blue-600 font-medium text-sm uppercase tracking-wide mb-4 py-1 px-4 bg-blue-100 rounded-full">
+                <Building2 size={16} className="mr-2" />
+                About Our University
+              </div>
+              <h2 className="text-4xl md:text-4xl font-bold text-gray-900 mb-6">
+  <span className="text-blue-600">Krishna</span> Engineering College
+</h2>
+              <p className="text-gray-600 text-lg leading-relaxed mb-8">
+                Founded with a vision to transform education and empower future leaders, 
+                our university has been at the forefront of academic excellence for over five decades. 
+                We provide a vibrant learning environment that fosters innovation, critical thinking, 
+                and global perspectives.
+              </p>
+            </div>
+
+            {/* Stats Grid */}
+            <div className="grid grid-cols-2 gap-6">
+              {stats.map((stat, idx) => (
+                <motion.div
+                  key={stat.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 0.4 + idx * 0.1, duration: 0.6 }}
+                  className="bg-gray-50 rounded-xl p-6 border border-gray-200 hover:shadow-md transition-all group"
+                >
+                  <div className="flex items-center mb-4">
+                    <div className={`w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center ${stat.color} group-hover:scale-110 transition-transform`}>
+                      <stat.icon size={24} />
+                    </div>
+                  </div>
+                  <h3 className={`text-3xl font-bold ${stat.color} mb-2`}>
+                    {isInView && (
+                      <CountUp end={stat.value} duration={2.5} suffix={stat.suffix} />
+                    )}
+                  </h3>
+                  <p className="text-gray-600 text-sm">{stat.label}</p>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Additional Info */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.8, duration: 0.6 }}
+              className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-100"
+            >
+              <h4 className="font-semibold text-gray-800 mb-2">Our Mission</h4>
+              <p className="text-gray-600 text-sm">
+                To provide quality education that prepares students for global challenges, 
+                foster research and innovation, and contribute to societal development through 
+                ethical practices and inclusive values.
+              </p>
+            </motion.div>
+          </motion.div>
+        </div>
       </div>
+
+      {/* Image Modal */}
+      {selectedImage && (
+        <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4" onClick={() => setSelectedImage(null)}>
+          <div className="relative max-w-4xl w-full max-h-[90vh]">
+            <button 
+              className="absolute -top-12 right-0 text-white p-2 z-10"
+              onClick={() => setSelectedImage(null)}
+            >
+              <X size={24} />
+            </button>
+            <div className="bg-white rounded-lg overflow-hidden">
+              <img
+                src={selectedImage.src}
+                alt={selectedImage.alt}
+                className="w-full h-auto max-h-[70vh] object-contain"
+              />
+              <div className="p-4 bg-white">
+                <h3 className="text-xl font-bold text-gray-900">{selectedImage.title}</h3>
+                <p className="text-gray-600">{selectedImage.description}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
 
-export default AchievementsMarquee;
+export default AboutSection;

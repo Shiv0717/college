@@ -1,155 +1,165 @@
 "use client";
 import React from "react";
+import { motion } from "framer-motion";
+import { Quote, Award, Calendar, UserCheck } from "lucide-react";
 
 const leaders = [
   {
     name: "Mr. Anand Kumar Tripathi",
     role: "Chairman & Managing Director",
     image: "https://krishnasoftwaresolutions.com/img/chairman.png",
+    bio: "A visionary educationist with over 25 years of experience in academic excellence and institutional development.",
+    quote: "Education is not just about degrees, but about shaping character and building futures.",
+    tenure: "2011 - Present",
     achievements: [
       "Chairman – Krishna Engineering College",
       "Vice Chairman – Krishna Education Society",
-      "Vice President – KPS Group",
-    ],
-    bio: "A visionary educationist and leader with over 25 years of experience in academic excellence and institutional development.",
-    quote:
-      "Education is not just about degrees, but about shaping character and building futures.",
-    tenure: "2011 - Present",
+      "Vice President – KPS Group"
+    ]
   },
   {
     name: "Mr. M. M. Tripathi",
     role: "Chairman, Krishna Education Society",
     image: "https://www.kecbhilai.com/images/MANAGEMENT%20&%20HIGHER%20AUTHORITIES/mmtripathi.jpg",
-    achievements: [
-      "Chairman – Krishna Education Society",
-      "Founder visionary of KEC's managing body",
-    ],
-    bio: "As the head of the governing body, Mr. M. M. Tripathi leads the Krishna Education Society, overseeing the strategic vision and expansion.",
+    bio: "As the head of the governing body, leads the Krishna Education Society with strategic vision and expansion.",
     quote: "There is no purifier greater than knowledge.",
     tenure: "2005 - Present",
+    achievements: [
+      "Chairman – Krishna Education Society",
+      "Founder visionary of KEC's managing body"
+    ]
   },
   {
     name: "Mr. Pramod Kumar Tripathi",
     role: "Secretary, Krishna Education Society",
     image: "https://www.kecbhilai.com/images/MANAGEMENT%20&%20HIGHER%20AUTHORITIES/pramodtripathi.jpg",
+    bio: "Handles critical administrative functions and governance decisions with dedication and expertise.",
+    quote: "Dedication to service and education is the true path to progress.",
+    tenure: "2010 - Present",
     achievements: [
       "Secretary – Krishna Education Society",
-      "Governance and administrative leadership",
-    ],
-    bio: "In his role as Secretary, Mr. Pramod Kumar Tripathi handles critical administrative functions and governance decisions.",
-    quote:
-      "Dedication to service and education is the true path to progress.",
-    tenure: "2010 - Present",
+      "Governance and administrative leadership"
+    ]
   },
 ];
 
 const Leadership = () => {
   return (
-    <section className="py-16 px-6 md:px-12 bg-gradient-to-b from-slate-50 to-white">
-      <div className="max-w-7xl mx-auto">
-        {/* Heading */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between mb-12">
-          <div>
-            <h2 className="text-4xl font-bold text-slate-900 mb-2">
-              Our <span className="text-emerald-700">Leadership</span>
-            </h2>
-            <p className="text-slate-600 max-w-xl">
-              Meet the visionary leaders who guide our institution with wisdom,
-              dedication, and a commitment to excellence.
-            </p>
+    <section className="">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Section Heading */}
+        {/* <motion.div
+          className="mb-16 text-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
+        >
+          <div className="inline-flex items-center text-blue-600 font-medium text-sm uppercase tracking-wide mb-4 py-2 px-4 bg-blue-100 rounded-full">
+            <UserCheck size={16} className="mr-2" />
+            Leadership Team
           </div>
-          <a
-            href="#"
-            className="mt-4 md:mt-0 inline-flex items-center text-emerald-700 font-medium hover:text-emerald-800 transition-colors group"
-          >
-            Explore all leaders
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 ml-1 group-hover:translate-x-1 transition-transform"
-              viewBox="0 0 20 20"
-              fill="currentColor"
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Our <span className="text-blue-600">Visionary Leaders</span>
+          </h2>
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+            Meet the exceptional leaders guiding Krishna Engineering College with wisdom, dedication, and innovation.
+          </p>
+        </motion.div> */}
+
+        {/* Leaders Grid */}
+        <div className="space-y-20">
+          {leaders.map((leader, index) => (
+            <motion.div
+              key={index}
+              className={`flex flex-col items-center md:items-start md:flex-row ${
+                index % 2 !== 0 ? "md:flex-row-reverse" : ""
+              } gap-8 md:gap-12`}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: index * 0.2 }}
+              viewport={{ once: true }}
             >
-              <path
-                fillRule="evenodd"
-                d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </a>
-        </div>
-
-        {/* Leaders List */}
-        <div className="space-y-10">
-          {leaders.map((leader, idx) => (
-            <div
-              key={idx}
-              className="flex flex-col md:flex-row items-start p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-slate-100"
-            >
-              {/* Left: Text */}
-              <div className="md:flex-1">
-                <div className="flex items-start justify-between">
-                  <div>
-                    <h3 className="text-xl font-bold text-slate-900 mb-1">
-                      {leader.name}
-                    </h3>
-                    <p className="text-sm font-medium text-emerald-700 mb-2">
-                      {leader.role}
-                    </p>
-                  </div>
-                  <span className="text-xs font-medium bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full">
-                    {leader.tenure}
-                  </span>
-                </div>
-
-                <p className="text-slate-600 mb-4 mt-3">{leader.bio}</p>
-
-                <div className="bg-emerald-50 p-4 rounded-lg border-l-4 border-emerald-500 mb-4">
-                  <p className="italic text-slate-700">"{leader.quote}"</p>
-                </div>
-
-                <div className="mt-4">
-                  <h4 className="text-sm font-semibold text-slate-700 mb-2">
-                    Key Roles & Achievements
-                  </h4>
-                  <ul className="space-y-1">
-                    {leader.achievements.map((achievement, i) => (
-                      <li
-                        key={i}
-                        className="text-sm text-slate-600 flex items-start"
-                      >
-                        <svg
-                          className="h-4 w-4 text-emerald-500 mr-2 mt-0.5 flex-shrink-0"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                        {achievement}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
-              {/* Right: Image */}
-              <div className="mt-6 md:mt-0 md:ml-8 flex-shrink-0">
+              {/* Image */}
+              <motion.div
+                className="flex-shrink-0 w-full md:w-2/5 relative"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
                 <div className="relative">
                   <img
                     src={leader.image}
                     alt={leader.name}
-                    className="w-32 h-32 md:w-40 md:h-40 object-cover rounded-lg shadow-md"
+                    className="w-full h-80 object-contain rounded-2xl shadow-xl"
                   />
-                  <div className="absolute inset-0 border-2 border-white rounded-lg opacity-20"></div>
+                  <div className="absolute -bottom-4 -right-4 bg-blue-600 text-white p-3 rounded-xl shadow-lg">
+                    <div className="flex items-center text-sm">
+                      <Calendar size={16} className="mr-2" />
+                      {leader.tenure}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+
+              {/* Content */}
+              <motion.div
+                className="w-full md:w-3/5"
+                initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.7, delay: index * 0.2 + 0.2 }}
+                viewport={{ once: true }}
+              >
+                <div className="bg-white p-8 rounded-2xl shadow-md border border-gray-100">
+                  <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+                    {leader.name}
+                  </h3>
+                  <p className="text-blue-700 font-semibold mb-4">{leader.role}</p>
+                  
+                  <p className="text-gray-700 mb-6 leading-relaxed">{leader.bio}</p>
+
+                  {/* Achievements */}
+                  <div className="mb-6">
+                    <h4 className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-3 flex items-center">
+                      <Award size={16} className="mr-2 text-blue-600" />
+                      Key Roles & Achievements
+                    </h4>
+                    <ul className="space-y-2">
+                      {leader.achievements.map((achievement, i) => (
+                        <motion.li
+                          key={i}
+                          className="text-gray-600 text-sm flex items-start"
+                          initial={{ opacity: 0, x: 20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.5, delay: i * 0.1 + index * 0.3 }}
+                          viewport={{ once: true }}
+                        >
+                          <span className="w-1.5 h-1.5 bg-blue-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          {achievement}
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Quote */}
+                  <motion.blockquote
+                    className="p-4 bg-blue-50 rounded-xl border-l-4 border-blue-600"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.7, delay: index * 0.2 + 0.4 }}
+                    viewport={{ once: true }}
+                  >
+                    <div className="flex">
+                      <Quote className="text-blue-600 mr-3 flex-shrink-0" size={20} />
+                      <p className="text-blue-800 italic">"{leader.quote}"</p>
+                    </div>
+                  </motion.blockquote>
+                </div>
+              </motion.div>
+            </motion.div>
           ))}
         </div>
+
+       
       </div>
     </section>
   );
