@@ -16,6 +16,28 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 
+// ✅ Framer Motion Variants
+const containerVariant = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const cardVariant = {
+  hidden: { opacity: 0, y: 30 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+};
+
 const alumniData = [
   {
     name: "Sakshi",
@@ -26,7 +48,7 @@ const alumniData = [
       "KEC gave me the foundation and confidence to pursue my dream career in civil engineering.",
     rating: 5,
     company: "BSP Valuation",
-    location: "Raipur, India"
+    location: "Raipur, India",
   },
   {
     name: "Amisha Ramteke",
@@ -37,7 +59,7 @@ const alumniData = [
       "The practical exposure at KEC Bhilai prepared me for real-world construction challenges.",
     rating: 4,
     company: "Ultratech Cement",
-    location: "Raipur, India"
+    location: "Raipur, India",
   },
   {
     name: "Arpit Kumar Mishra",
@@ -48,7 +70,7 @@ const alumniData = [
       "With the right mentorship, I developed strong technical and leadership skills at KEC.",
     rating: 5,
     company: "Kalptaru Projects",
-    location: "Mumbai, India"
+    location: "Mumbai, India",
   },
   {
     name: "Aryan Dewangan",
@@ -59,7 +81,7 @@ const alumniData = [
       "The academic environment at KEC encouraged innovation and problem-solving.",
     rating: 4,
     company: "PWD",
-    location: "Bhilai, India"
+    location: "Bhilai, India",
   },
   {
     name: "Bhavna",
@@ -70,7 +92,7 @@ const alumniData = [
       "My journey at KEC shaped my professional and personal growth equally.",
     rating: 5,
     company: "Sarthi Associates",
-    location: "Raipur, India"
+    location: "Raipur, India",
   },
   {
     name: "Fanendra Dewangan",
@@ -81,7 +103,7 @@ const alumniData = [
       "KEC provided me with industry exposure that was vital for my career.",
     rating: 4,
     company: "Utopia Construction",
-    location: "Durg, India"
+    location: "Durg, India",
   },
 ];
 
@@ -100,6 +122,7 @@ const AlumniSection = () => {
 
   return (
     <section className="py-16 px-4 bg-gradient-to-b from-blue-50 to-white">
+      {/* Header Animation */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -121,110 +144,104 @@ const AlumniSection = () => {
         </p>
       </motion.div>
 
+      {/* Swiper with motion container */}
       <div className="max-w-6xl mx-auto px-4">
-        <Swiper
-          effect="coverflow"
-          grabCursor
-          centeredSlides
-          loop
-          autoplay={{
-            delay: 3000,
-            disableOnInteraction: false,
-          }}
-          slidesPerView={1} // Default for mobile
-          spaceBetween={30}
-          coverflowEffect={{
-            rotate: 0,
-            stretch: 0,
-            depth: 100,
-            modifier: 2.5,
-          }}
-          pagination={{ 
-            clickable: true,
-            dynamicBullets: true
-          }}
-          modules={[EffectCoverflow, Autoplay, Pagination]}
-          className="alumni-swiper"
-          breakpoints={{
-            // When window width is >= 640px (tablets)
-            640: {
-              slidesPerView: 1,
-              spaceBetween: 20,
-            },
-            // When window width is >= 768px (small desktops)
-            768: {
-              slidesPerView: 2,
-              spaceBetween: 30,
-            },
-            // When window width is >= 1024px (desktops)
-            1024: {
-              slidesPerView: 3,
-              spaceBetween: 40,
-            },
-          }}
+        <motion.div
+          variants={containerVariant}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
         >
-          {alumniData.map((alumni, index) => (
-            <SwiperSlide
-              key={index}
-            >
-              <motion.div
-                whileHover={{
-                  y: -5,
-                  boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)",
-                }}
-                className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm h-full flex flex-col transition-all duration-300 mx-auto max-w-xs"
-              >
-                {/* Profile section with image and basic info */}
-                <div className="flex flex-col items-center text-center mb-5">
-                  <div className="relative mb-4">
-                    <img
-                      src={alumni.img}
-                      alt={alumni.name}
-                      className="w-20 h-20 rounded-full object-cover border-4 border-blue-50 shadow-md"
-                    />
-                    
+          <Swiper
+            effect="coverflow"
+            grabCursor
+            centeredSlides
+            loop
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+            }}
+            slidesPerView={1}
+            spaceBetween={30}
+            coverflowEffect={{
+              rotate: 0,
+              stretch: 0,
+              depth: 100,
+              modifier: 2.5,
+            }}
+            pagination={{
+              clickable: true,
+              dynamicBullets: true,
+            }}
+            modules={[EffectCoverflow, Autoplay, Pagination]}
+            className="alumni-swiper"
+            breakpoints={{
+              640: { slidesPerView: 1, spaceBetween: 20 },
+              768: { slidesPerView: 2, spaceBetween: 30 },
+              1024: { slidesPerView: 3, spaceBetween: 40 },
+            }}
+          >
+            {alumniData.map((alumni, index) => (
+              <SwiperSlide key={index}>
+                <motion.div
+                  variants={cardVariant}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true, amount: 0.3 }}
+                  whileHover={{
+                    y: -5,
+                    boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)",
+                  }}
+                  className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm h-full flex flex-col transition-all duration-300 mx-auto max-w-xs"
+                >
+                  <div className="flex flex-col items-center text-center mb-5">
+                    <div className="relative mb-4">
+                      <img
+                        src={alumni.img}
+                        alt={alumni.name}
+                        className="w-20 h-20 rounded-full object-cover border-4 border-blue-50 shadow-md"
+                      />
+                    </div>
+                    <h3 className="text-lg font-bold text-gray-900">
+                      {alumni.name}
+                    </h3>
+                    <p className="text-sm text-blue-600 font-medium mt-1">
+                      {alumni.batch}
+                    </p>
+                    <p className="text-xs text-gray-500 mt-1 bg-gray-50 px-3 py-1 rounded-full">
+                      {alumni.role}
+                    </p>
                   </div>
-                  <h3 className="text-lg font-bold text-gray-900">
-                    {alumni.name}
-                  </h3>
-                  <p className="text-sm text-blue-600 font-medium mt-1">
-                    {alumni.batch}
-                  </p>
-                  <p className="text-xs text-gray-500 mt-1 bg-gray-50 px-3 py-1 rounded-full">
-                    {alumni.role}
-                  </p>
-                </div>
 
-                {/* Rating */}
-                <div className="flex justify-center mb-4">
-                  {renderStars(alumni.rating)}
-                </div>
+                  <div className="flex justify-center mb-4">
+                    {renderStars(alumni.rating)}
+                  </div>
 
-                {/* Quote with decorative elements */}
-                <div className="relative mb-5">
-                  <Quote className="absolute -top-2 left-0 w-5 h-5 text-blue-100" />
-                  <p className="text-gray-700 text-sm italic pl-5 leading-relaxed">
-                    "{alumni.quote}"
-                  </p>
-                </div>
+                  <div className="relative mb-5">
+                    <Quote className="absolute -top-2 left-0 w-5 h-5 text-blue-100" />
+                    <p className="text-gray-700 text-sm italic pl-5 leading-relaxed">
+                      "{alumni.quote}"
+                    </p>
+                  </div>
 
-                {/* Additional info */}
-                <div className="mt-auto pt-4 border-t border-gray-100 text-xs text-gray-500 flex justify-between">
-                  <span className="flex items-center">
-                    <Briefcase className="w-3 h-3 mr-1" />
-                    {alumni.company}
-                  </span>
-                  <span className="flex items-center">
-                    <MapPin className="w-3 h-3 mr-1" />
-                    {alumni.location}
-                  </span>
-                </div>
-              </motion.div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+                  <div className="mt-auto pt-4 border-t border-gray-100 text-xs text-gray-500 flex justify-between">
+                    <span className="flex items-center">
+                      <Briefcase className="w-3 h-3 mr-1" />
+                      {alumni.company}
+                    </span>
+                    <span className="flex items-center">
+                      <MapPin className="w-3 h-3 mr-1" />
+                      {alumni.location}
+                    </span>
+                  </div>
+                </motion.div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </motion.div>
       </div>
 
+      {/* Swiper Custom Styles */}
       <style jsx>{`
         .alumni-swiper {
           padding-bottom: 50px;
@@ -246,11 +263,13 @@ const AlumniSection = () => {
         .swiper-pagination-bullet {
           background: #cbd5e1;
           opacity: 0.7;
+          transition: transform 0.3s ease;
         }
 
         .swiper-pagination-bullet-active {
           background: #2563eb;
           opacity: 1;
+          transform: scale(1.3);
         }
 
         @media (min-width: 1024px) {
