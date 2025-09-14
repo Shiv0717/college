@@ -1,42 +1,35 @@
 import React from "react";
 
-const AboutSectionDarkCard = () => {
+const AchievementsMarquee = () => {
   return (
-    <section className="w-full h-auto md:h-[500px] flex flex-col md:flex-row overflow-hidden">
-      {/* Left Side: Image (60%) */}
-      <div className="w-full md:w-3/5 h-64 md:h-auto">
+    <div>
+      <div className="my-10 ml-20 w-[50%]">
+        <h1 className="text-4xl font-bold text-gray-900">
+          About Krishna Engineering College
+        </h1>
+        <p className="text-xl mt-6 text-gray-700 leading-relaxed">
+          Krishna Engineering College (KEC), Bhilai, is a premier institution 
+          committed to delivering quality education in engineering and technology. 
+          With state-of-the-art infrastructure, experienced faculty, and strong 
+          industry collaborations, KEC empowers students to innovate, lead, 
+          and excel in their chosen fields.
+        </p>
+        <p className="text-xl mt-4 text-gray-700 leading-relaxed">
+          Our vision is to shape not only successful professionals but also 
+          responsible leaders who can meet global challenges with confidence 
+          and integrity.
+        </p>
+      </div>
+
+      <div className="max-w-7xl mx-auto">
         <img
-          src="https://www.kecbhilai.com/images/blog_01.jpg"
-          alt="Krishna Engineering College"
-          className="w-full h-full object-cover"
+          src="https://www.kecbhilai.com/images/campus.jpg"
+          className="rounded-3xl shadow-lg"
+          alt="Krishna Engineering College Campus"
         />
       </div>
-
-      {/* Right Side: Card (40%) */}
-      <div className="w-full md:w-2/5 bg-gray-900 text-white flex items-center justify-center p-8">
-        <div className="space-y-6 max-w-md">
-          <h2 className="text-3xl font-bold leading-snug">
-            About <span className="text-green-400">Krishna Engineering College</span>
-          </h2>
-
-          <p className="text-gray-300 text-sm leading-relaxed">
-            Krishna Engineering College (KEC), Bhilai, is committed to academic excellence, innovation,
-            and producing future-ready engineers with values and global competence.
-          </p>
-
-          <ul className="space-y-2 text-sm text-gray-300">
-            <li>🎓 35+ Years of Academic Excellence</li>
-            <li>🏢 State-of-the-art Infrastructure</li>
-            <li>🌐 Industry-Oriented Curriculum</li>
-          </ul>
-
-          <button className="mt-4 px-5 py-2 bg-green-500 text-white font-medium rounded-full hover:bg-green-600 transition">
-            Learn More
-          </button>
-        </div>
-      </div>
-    </section>
+    </div>
   );
 };
 
-export default AboutSectionDarkCard;
+export default AchievementsMarquee;

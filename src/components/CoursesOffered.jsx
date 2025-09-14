@@ -15,7 +15,7 @@ const courses = [
     credits: 160,
     image: "https://www.kecbhilai.com/images/pc1.jpg",
     description:
-      "The CSE department covers core computing topics such as software development, data structures, algorithms, and emerging areas like AI & ML.",
+      "The CSE department covers core computing topics such as software development.",
     color: "bg-orange-500 text-orange-500", // custom color
   },
   {
@@ -144,7 +144,7 @@ const CoursesSlider = () => {
                 320: { slidesPerView: 1 },
                 768: { slidesPerView: 2 },
                 1024: { slidesPerView: 1 },
-                1280: { slidesPerView: 2 },
+                1280: { slidesPerView: 1.5 },
               }}
             >
               {courses.map((course) => (

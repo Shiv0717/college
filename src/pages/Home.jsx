@@ -14,16 +14,18 @@ const Home = () => {
       <Herosection />
       <CoursesOffered />
       <AboutSection />
-     
+      {/* <AchievementsMarquee /> */}
       {/*  */}
      
       {/*
-       <AchievementsMarquee />
+      
        <Leadership />
        <AboutSection />
       <PlacementPartners />
-      <AlumniSection /> */}
+      
+      */}
       <NoticeBoard />
+      <AlumniSection />
     </div>
   );
 };
