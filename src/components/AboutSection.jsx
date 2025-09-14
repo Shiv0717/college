@@ -1,57 +1,12 @@
 "use client";
-
 import React from "react";
 import { Camera, ArrowRight, BookOpen, Users, Award } from "lucide-react";
 import { motion } from "framer-motion";
 
-// StaggeredFade component for staggered letter fade-in animation
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.05,
-      delayChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-};
-
-function StaggeredFade({ text, className = "" }) {
-  return (
-    <motion.span
-      className={className}
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      style={{ display: "inline-block" }}
-    >
-      {text.split("").map((char, i) => (
-        <motion.span
-          key={i}
-          variants={itemVariants}
-          style={{ display: "inline-block" }}
-          aria-hidden="true"
-        >
-          {char === " " ? "\u00A0" : char}
-        </motion.span>
-      ))}
-    </motion.span>
-  );
-}
-
 const AboutSection = () => {
   // Variants for columns
   const columnVariant = (direction = "up") => ({
-    hidden: {
-      opacity: 0,
-      y: direction === "up" ? 50 : direction === "down" ? -50 : 0,
-      x: direction === "left" ? -50 : direction === "right" ? 50 : 0,
-    },
+    hidden: { opacity: 0, y: direction === "up" ? 50 : -50, x: direction === "left" ? -50 : direction === "right" ? 50 : 0 },
     visible: { opacity: 1, y: 0, x: 0, transition: { duration: 0.8 } },
   });
 
@@ -71,17 +26,12 @@ const AboutSection = () => {
             <Camera className="text-blue-600" size={24} />
             <div className="w-12 h-0.5 bg-blue-600 ml-4"></div>
           </div>
-
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Campus{" "}
-            <StaggeredFade
-              text="Gallery"
-              className="text-blue-600 inline-block"
-            />
+            Campus <span className="text-blue-600">Gallery</span>
           </h2>
-
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            <StaggeredFade text="Explore the vibrant life and beautiful facilities of our campus through these captured moments" />
+            Explore the vibrant life and beautiful facilities of our campus
+            through these captured moments
           </p>
         </motion.div>
 
@@ -106,10 +56,7 @@ const AboutSection = () => {
             </div>
 
             <div className="space-y-4">
-              <motion.div
-                className="relative group overflow-hidden rounded-xl shadow-lg"
-                whileHover={{ scale: 1.05 }}
-              >
+              <motion.div className="relative group overflow-hidden rounded-xl shadow-lg" whileHover={{ scale: 1.05 }}>
                 <img
                   src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600"
                   alt="Auditorium"
@@ -120,10 +67,7 @@ const AboutSection = () => {
                 </div>
               </motion.div>
 
-              <motion.div
-                className="relative group overflow-hidden rounded-xl shadow-lg"
-                whileHover={{ scale: 1.05 }}
-              >
+              <motion.div className="relative group overflow-hidden rounded-xl shadow-lg" whileHover={{ scale: 1.05 }}>
                 <img
                   src="https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=800"
                   alt="Science Lab"
@@ -159,10 +103,7 @@ const AboutSection = () => {
               <p className="text-gray-600">Where learning meets experience</p>
             </div>
 
-            <motion.div
-              className="relative group overflow-hidden rounded-2xl shadow-lg"
-              whileHover={{ scale: 1.03 }}
-            >
+            <motion.div className="relative group overflow-hidden rounded-2xl shadow-lg" whileHover={{ scale: 1.03 }}>
               <img
                 src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=1000"
                 alt="Campus Overview"
@@ -178,33 +119,13 @@ const AboutSection = () => {
 
             <div className="grid grid-cols-2 gap-4">
               {[
-                {
-                  src: "https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=600",
-                  label: "Basketball",
-                },
-                {
-                  src: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600",
-                  label: "Graduation",
-                },
-                {
-                  src: "https://images.unsplash.com/photo-1591123120675-6f7f1aae0e5b?w=600",
-                  label: "Study Area",
-                },
-                {
-                  src: "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=600",
-                  label: "Collaboration",
-                },
+                { src: "https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=600", label: "Basketball" },
+                { src: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600", label: "Graduation" },
+                { src: "https://images.unsplash.com/photo-1591123120675-6f7f1aae0e5b?w=600", label: "Study Area" },
+                { src: "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=600", label: "Collaboration" },
               ].map((img, idx) => (
-                <motion.div
-                  key={idx}
-                  className="relative group overflow-hidden rounded-xl shadow-lg"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <img
-                    src={img.src}
-                    alt={img.label}
-                    className="w-full h-40 object-cover"
-                  />
+                <motion.div key={idx} className="relative group overflow-hidden rounded-xl shadow-lg" whileHover={{ scale: 1.05 }}>
+                  <img src={img.src} alt={img.label} className="w-full h-40 object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
                     <p className="text-white text-xs">{img.label}</p>
                   </div>
@@ -225,35 +146,19 @@ const AboutSection = () => {
               <div className="w-12 h-12 mx-auto flex items-center justify-center rounded-full bg-blue-100 text-blue-600 mb-3">
                 <Award size={24} />
               </div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-1">
-                Facilities
-              </h3>
+              <h3 className="text-lg font-semibold text-gray-800 mb-1">Facilities</h3>
               <p className="text-gray-600 text-xs">Modern amenities</p>
             </div>
 
-            <motion.div
-              className="relative group overflow-hidden rounded-xl shadow-lg"
-              whileHover={{ scale: 1.05 }}
-            >
-              <img
-                src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600"
-                alt="Auditorium"
-                className="w-full h-48 object-cover"
-              />
+            <motion.div className="relative group overflow-hidden rounded-xl shadow-lg" whileHover={{ scale: 1.05 }}>
+              <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600" alt="Auditorium" className="w-full h-48 object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
                 <p className="text-white text-xs">Auditorium</p>
               </div>
             </motion.div>
 
-            <motion.div
-              className="relative group overflow-hidden rounded-xl shadow-lg"
-              whileHover={{ scale: 1.05 }}
-            >
-              <img
-                src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600"
-                alt="Sports Complex"
-                className="w-full aspect-square object-cover"
-              />
+            <motion.div className="relative group overflow-hidden rounded-xl shadow-lg" whileHover={{ scale: 1.05 }}>
+              <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600" alt="Sports Complex" className="w-full aspect-square object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
                 <p className="text-white text-xs">Sports Complex</p>
               </div>

@@ -78,7 +78,13 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white text-blue-900 shadow-md sticky top-0 z-50 border-b border-gray-200">
+    <motion.nav
+    initial={{ opacity: 0, y: -20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+
+   
+     className="bg-white text-blue-900 shadow-md sticky top-0 z-50 border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main navigation bar */}
         <div className="flex items-center justify-between h-16 md:h-20">
@@ -287,7 +293,7 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </motion.nav>
   );
 };
 
