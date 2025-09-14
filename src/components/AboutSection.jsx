@@ -170,20 +170,6 @@ const AboutSection = () => {
             </div>
           </motion.div>
         </div>
-
-        {/* Call to Action */}
-        <motion.div
-          className="text-center mt-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.6 }}
-        >
-          <button className="group inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg">
-            Explore Full Gallery
-            <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
-          </button>
-        </motion.div>
       </div>
     </section>
   );

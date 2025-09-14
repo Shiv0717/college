@@ -6,7 +6,6 @@ import "swiper/css/navigation";
 import { Navigation, Autoplay } from "swiper/modules";
 import { ChevronLeft, ChevronRight, BookOpen, Clock, Award } from "lucide-react";
 
-
 const courses = [
   {
     id: 1,
@@ -17,6 +16,7 @@ const courses = [
     image: "https://www.kecbhilai.com/images/pc1.jpg",
     description:
       "The CSE department covers core computing topics such as software development, data structures, algorithms, and emerging areas like AI & ML.",
+    color: "bg-orange-500 text-orange-500", // custom color
   },
   {
     id: 2,
@@ -27,6 +27,7 @@ const courses = [
     image: "https://www.kecbhilai.com/images/pc3.jpg",
     description:
       "Electrical Engineering focuses on power systems, electrical machines, renewable energy, and control systems.",
+    color: "bg-yellow-500 text-yellow-500",
   },
   {
     id: 3,
@@ -37,6 +38,7 @@ const courses = [
     image: "https://www.kecbhilai.com/images/pc4.jpg",
     description:
       "Covers thermal sciences, design, manufacturing processes, and robotics with a focus on practical exposure.",
+    color: "bg-green-500 text-green-500",
   },
   {
     id: 4,
@@ -47,6 +49,7 @@ const courses = [
     image: "https://www.kecbhilai.com/images/pc2.jpg",
     description:
       "Covers structural engineering, construction technologies, environmental design, and sustainable infrastructure.",
+    color: "bg-blue-500 text-blue-500",
   },
   {
     id: 5,
@@ -54,9 +57,11 @@ const courses = [
     code: "ECE",
     duration: "4 Years",
     credits: 160,
-    image: "https://images.unsplash.com/photo-1581094288338-231b058b38b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1581094288338-231b058b38b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
     description:
       "Focuses on electronic circuits, communication systems, signal processing, and embedded systems.",
+    color: "bg-purple-500 text-purple-500",
   },
   {
     id: 6,
@@ -64,9 +69,11 @@ const courses = [
     code: "IT",
     duration: "4 Years",
     credits: 160,
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
     description:
       "Emphasizes information systems, networking, cybersecurity, and data management technologies.",
+    color: "bg-pink-500 text-pink-500",
   },
 ];
 
@@ -77,31 +84,37 @@ const CoursesSlider = () => {
   return (
     <section className="bg-gray-50 py-20 px-6 md:px-12 relative overflow-hidden">
       {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-72 h-72 bg-custom-orange/5 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-custom-orange/5 rounded-full translate-x-1/3 translate-y-1/3"></div>
-      
+      <div className="absolute top-0 left-0 w-72 h-72 bg-orange-100 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-orange-100 rounded-full translate-x-1/3 translate-y-1/3"></div>
+
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="flex flex-col md:flex-row items-start gap-12">
           {/* Left Section */}
           <div className="md:w-2/5">
             <h2 className="text-4xl font-bold mb-6 leading-tight text-gray-900">
-              Explore Our <span className="text-custom-orange">Academic Programs</span>
+              Explore Our <span className="text-orange-500">Academic Programs</span>
             </h2>
             <p className="text-gray-600 mb-8 text-lg">
               Discover opportunities for learning, research, and innovation across our diverse engineering disciplines.
             </p>
-            
+
             <div className="flex items-center space-x-4 mb-10">
-              <div className="w-12 h-0.5 bg-custom-orange"></div>
+              <div className="w-12 h-0.5 bg-orange-500"></div>
               <span className="text-sm text-gray-500">Scroll to explore</span>
             </div>
 
             {/* Navigation */}
             <div className="flex space-x-4">
-              <button ref={prevRef} className="w-12 h-12 flex items-center justify-center rounded-full bg-white text-custom-orange border border-gray-200 shadow-sm hover:bg-custom-orange hover:text-white transition-all duration-300">
+              <button
+                ref={prevRef}
+                className="w-12 h-12 flex items-center justify-center rounded-full bg-white text-orange-500 border border-gray-200 shadow-sm hover:bg-orange-500 hover:text-white transition-all duration-300"
+              >
                 <ChevronLeft size={24} />
               </button>
-              <button ref={nextRef} className="w-12 h-12 flex items-center justify-center rounded-full bg-white text-custom-orange border border-gray-200 shadow-sm hover:bg-custom-orange hover:text-white transition-all duration-300">
+              <button
+                ref={nextRef}
+                className="w-12 h-12 flex items-center justify-center rounded-full bg-white text-orange-500 border border-gray-200 shadow-sm hover:bg-orange-500 hover:text-white transition-all duration-300"
+              >
                 <ChevronRight size={24} />
               </button>
             </div>
@@ -143,31 +156,31 @@ const CoursesSlider = () => {
                         alt={course.title}
                         className="h-48 w-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute top-4 left-4 bg-custom-orange text-white text-xs font-bold px-3 py-1 rounded-full">
+                      <div className={`absolute top-4 left-4 ${course.color.split(" ")[0]} text-white text-xs font-bold px-3 py-1 rounded-full`}>
                         {course.code}
                       </div>
                     </div>
                     <div className="p-6">
-                      <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-custom-orange transition-colors">
+                      <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-orange-500 transition-colors">
                         {course.title}
                       </h3>
-                      
+
                       <div className="flex items-center space-x-4 mb-4">
-                        <div className="flex items-center text-sm text-gray-600">
-                          <Clock size={16} className="mr-1 text-custom-orange" />
+                        <div className={`flex items-center text-sm text-gray-600`}>
+                          <Clock size={16} className={`mr-1 ${course.color.split(" ")[1]}`} />
                           {course.duration}
                         </div>
                         <div className="flex items-center text-sm text-gray-600">
-                          <Award size={16} className="mr-1 text-custom-orange" />
+                          <Award size={16} className={`mr-1 ${course.color.split(" ")[1]}`} />
                           {course.credits} Credits
                         </div>
                       </div>
-                      
+
                       <p className="text-gray-600 text-sm mb-5 leading-relaxed">
                         {course.description}
                       </p>
-                      
-                      <button className="flex items-center text-custom-orange font-semibold text-sm group-hover:underline">
+
+                      <button className={`flex items-center font-semibold text-sm ${course.color.split(" ")[1]} hover:underline`}>
                         <BookOpen size={16} className="mr-2" />
                         Program Details
                       </button>
@@ -179,22 +192,6 @@ const CoursesSlider = () => {
           </div>
         </div>
       </div>
-
-      {/* Custom CSS for Orange color */}
-      <style jsx>{`
-        :root {
-          --custom-orange: #F97316;
-        }
-        .text-custom-orange {
-          color: var(--custom-orange);
-        }
-        .bg-custom-orange {
-          background-color: var(--custom-orange);
-        }
-        .border-custom-orange {
-          border-color: var(--custom-orange);
-        }
-      `}</style>
     </section>
   );
 };
