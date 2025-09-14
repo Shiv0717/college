@@ -1,22 +1,79 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Autoplay, Pagination } from "swiper/modules";
-import { motion } from "framer-motion";
-import { GraduationCap, Star } from "lucide-react";
-import {
-  Linkedin,
-  Quote,
-  ChevronLeft,
-  ChevronRight,
-  Briefcase,
-  MapPin,
-} from "lucide-react";
+import { motion, useAnimation, useInView } from "framer-motion";
+import { GraduationCap, Star, Quote, Briefcase, MapPin } from "lucide-react";
 // Swiper styles
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 
-// ✅ Framer Motion Variants
+// StaggeredFade component for letter-by-letter or block animation
+const StaggeredFade = ({ text, className = "", split = true }) => {
+  const ref = useRef(null);
+  const controls = useAnimation();
+  const isInView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (isInView) controls.start("visible");
+  }, [controls, isInView]);
+
+  const container = split
+    ? {
+        hidden: { opacity: 0 },
+        visible: {
+          opacity: 1,
+          transition: { staggerChildren: 0.05 },
+        },
+      }
+    : {
+        hidden: { opacity: 0, y: 10 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+      };
+
+  const child = split
+    ? { hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }
+    : {};
+
+  if (split) {
+    const letters = text.split("");
+    return (
+      <motion.div
+        ref={ref}
+        variants={container}
+        initial="hidden"
+        animate={controls}
+        className={className}
+        aria-label={text}
+      >
+        {letters.map((letter, index) => (
+          <motion.span
+            key={index}
+            variants={child}
+            aria-hidden="true"
+            className={letter === " " ? "mr-1 inline-block" : "inline-block"}
+          >
+            {letter}
+          </motion.span>
+        ))}
+      </motion.div>
+    );
+  }
+
+  return (
+    <motion.p
+      ref={ref}
+      variants={container}
+      initial="hidden"
+      animate={controls}
+      className={className}
+    >
+      {text}
+    </motion.p>
+  );
+};
+
+// Variants for alumni cards animation
 const containerVariant = {
   hidden: {},
   show: {
@@ -121,28 +178,39 @@ const AlumniSection = () => {
   };
 
   return (
-    <section className="py-16 px-4 bg-gradient-to-b from-blue-50 to-white">
+    <section className="py-16 px-4 bg-white">
       {/* Header Animation */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-        className="text-center mb-12"
-      >
-        <div className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700 mb-4">
+      <div className="text-center mb-12">
+        {/* Animate Badge Separately */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700 mb-6"
+        >
           <GraduationCap className="h-4 w-4 mr-2" />
           Alumni Success Stories
+        </motion.div>
+
+        {/* Animate Heading */}
+        <div className="overflow-hidden">
+          <StaggeredFade
+            text="Where Our Graduates Shine"
+            className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
+            split={true}
+          />
         </div>
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-          Where Our <span className="text-blue-600">Graduates</span> Shine
-        </h2>
-        <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-          Hear from our accomplished alumni about their journey at Krishna
-          Engineering College and how it paved the way for their successful
-          careers.
-        </p>
-      </motion.div>
+
+        {/* Animate Paragraph */}
+        <div className="overflow-hidden">
+          <StaggeredFade
+            text="Hear from our accomplished alumni about their journey at Krishna Engineering College and how it paved the way for their successful careers."
+            className="text-lg text-gray-600 max-w-3xl mx-auto"
+            split={false}
+          />
+        </div>
+      </div>
 
       {/* Swiper with motion container */}
       <div className="max-w-6xl mx-auto px-4">

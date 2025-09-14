@@ -54,11 +54,12 @@ const PlacementPartners = () => {
   const partners = [
     {
       id: 1,
-      name: "TCS",
-      industry: "IT Services & Consulting",
+      name: "Tech Mahindra",
+      industry: "IT & Telecom",
       location: "India",
-      logo: "https://brandeps.com/logo-download/T/TATA-Consultancy-Services-logo-01.png",
+      logo: "https://1000logos.net/wp-content/uploads/2021/05/Tech-Mahindra-logo.png",
     },
+    
     {
       id: 2,
       name: "Infosys",
