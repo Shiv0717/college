@@ -1,424 +1,320 @@
 "use client";
-import React, { useRef, useEffect } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/navigation";
-import { Navigation, Autoplay } from "swiper/modules";
-import { ChevronLeft, ChevronRight, BookOpen, Clock, Award } from "lucide-react";
-import { useInView } from "framer-motion";
-import { motion, useAnimation } from "framer-motion";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { ArrowRight, ChevronRight, Users, BookOpen } from "lucide-react";
 
-const courses = [
-  {
-    id: 1,
-    title: "Computer Science & Engineering",
-    code: "CSE",
-    duration: "4 Years",
-    credits: 160,
-    image: "https://www.kecbhilai.com/images/pc1.jpg",
-    description:
-      "The CSE department covers core computing topics such as software development.",
-    color: "bg-orange-500 text-orange-500",
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15 },
   },
-  {
-    id: 2,
-    title: "Electrical Engineering",
-    code: "EEE",
-    duration: "4 Years",
-    credits: 160,
-    image: "https://www.kecbhilai.com/images/pc3.jpg",
-    description:
-      "Electrical Engineering focuses on power systems, electrical machines, renewable energy, and control systems.",
-    color: "bg-yellow-500 text-yellow-500",
-  },
-  {
-    id: 3,
-    title: "Mechanical Engineering",
-    code: "ME",
-    duration: "4 Years",
-    credits: 160,
-    image: "https://www.kecbhilai.com/images/pc4.jpg",
-    description:
-      "Covers thermal sciences, design, manufacturing processes, and robotics with a focus on practical exposure.",
-    color: "bg-green-500 text-green-500",
-  },
-  {
-    id: 4,
-    title: "Civil Engineering",
-    code: "CE",
-    duration: "4 Years",
-    credits: 160,
-    image: "https://www.kecbhilai.com/images/pc2.jpg",
-    description:
-      "Covers structural engineering, construction technologies, environmental design, and sustainable infrastructure.",
-    color: "bg-blue-500 text-blue-500",
-  },
-  {
-    id: 5,
-    title: "Electronics & Communication",
-    code: "ECE",
-    duration: "4 Years",
-    credits: 160,
-    image:
-      "https://images.unsplash.com/photo-1581094288338-231b058b38b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-    description:
-      "Focuses on electronic circuits, communication systems, signal processing, and embedded systems.",
-    color: "bg-purple-500 text-purple-500",
-  },
-  {
-    id: 6,
-    title: "Information Technology",
-    code: "IT",
-    duration: "4 Years",
-    credits: 160,
-    image:
-      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-    description:
-      "Emphasizes information systems, networking, cybersecurity, and data management technologies.",
-    color: "bg-pink-500 text-pink-500",
-  },
-];
-
-// Helper component for animating letters
-const AnimatedText = ({ text, className, delay = 0 }) => {
-  const letters = Array.from(text);
-
-  const container = {
-    hidden: { opacity: 0 },
-    visible: (i = 1) => ({
-      opacity: 1,
-      transition: { staggerChildren: 0.03, delayChildren: delay },
-    }),
-  };
-
-  const child = {
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        damping: 12,
-        stiffness: 200,
-      },
-    },
-    hidden: {
-      opacity: 0,
-      y: 20,
-      transition: {
-        type: "spring",
-        damping: 12,
-        stiffness: 200,
-      },
-    },
-  };
-
-  return (
-    <motion.div
-      style={{ display: "flex", overflow: "hidden" }}
-      variants={container}
-      initial="hidden"
-      animate="visible"
-      className={className}
-    >
-      {letters.map((letter, index) => (
-        <motion.span key={index} variants={child}>
-          {letter === " " ? "\u00A0" : letter}
-        </motion.span>
-      ))}
-    </motion.div>
-  );
 };
 
-// New StaggeredFade component (letter fade-in one-by-one)
-const StaggeredFade = ({ text, className = "" }) => {
-  const letters = text.split("");
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-  const controls = useAnimation();
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4 },
+  },
+};
 
-  useEffect(() => {
-    if (isInView) {
-      controls.start("visible");
-    }
-  }, [controls, isInView]);
+const textContainerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.15 } },
+};
 
-  const container = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.05,
-      },
+const textItemVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+};
+
+// Slide animations
+const slideFromLeft = {
+  hidden: { opacity: 0, x: -50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
+const slideFromRight = {
+  hidden: { opacity: 0, x: 50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
+const DepartmentsSection = () => {
+  const [activeDept, setActiveDept] = useState(0);
+
+  const departments = [
+    {
+      img: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80",
+      title: "Computer Science & Engineering",
+      desc: "Our CSE department offers cutting-edge programs in AI, Machine Learning, and Software Development with state-of-the-art laboratories and industry collaborations.",
+      students: "480",
+      courses: "12",
+      iconImg: "https://cdn-icons-png.flaticon.com/512/2103/2103793.png",
+      category: "Technology",
     },
-  };
+    {
+      img: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80",
+      title: "Mechanical Engineering",
+      desc: "The ME department focuses on robotics, automotive systems, and advanced manufacturing with hands-on training in our fully-equipped workshops.",
+      students: "420",
+      courses: "10",
+      iconImg: "https://cdn-icons-png.flaticon.com/512/427/427735.png",
+      category: "Innovation",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80",
+      title: "Civil Engineering",
+      desc: "Our Civil Engineering program emphasizes sustainable infrastructure, structural design, and urban planning with modern surveying equipment and software.",
+      students: "380",
+      courses: "9",
+      iconImg: "https://cdn-icons-png.flaticon.com/512/684/684809.png",
+      category: "Infrastructure",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1562408590-e32931084e23?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80",
+      title: "Electrical Engineering",
+      desc: "The EE department offers specializations in power systems, electronics, and renewable energy with advanced laboratories and research opportunities.",
+      students: "350",
+      courses: "11",
+      iconImg: "https://cdn-icons-png.flaticon.com/512/3565/3565418.png",
+      category: "Energy",
+    },
+  ];
 
-  const child = {
-    hidden: { opacity: 0, y: 10 },
-    visible: { opacity: 1, y: 0 },
-  };
+  const heading = "Explore Our Engineering Departments";
 
   return (
-    <motion.div
-      ref={ref}
-      className={`inline-flex overflow-hidden ${className}`}
-      variants={container}
-      initial="hidden"
-      animate={controls}
-    >
-      {letters.map((letter, index) => (
-        <motion.span
-          key={index}
-          variants={child}
-          style={{ display: "inline-block" }}
+    <section className="w-full bg-gradient-to-b from-gray-50 to-emerald-50 py-12 md:py-16 px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <motion.div
+          className="flex flex-col lg:flex-row justify-between items-start gap-6 mb-12"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={containerVariants}
         >
-          {letter === " " ? "\u00A0" : letter}
-        </motion.span>
-      ))}
-    </motion.div>
-  );
-};
+          <div className="lg:w-2/5">
 
-const CoursesSlider = () => {
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
-  const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
-  const controls = useAnimation();
-
-  useEffect(() => {
-    if (isInView) {
-      controls.start("visible");
-    }
-  }, [controls, isInView]);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.25,
-        delayChildren: 0.4,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 40, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        damping: 14,
-        stiffness: 80,
-      },
-    },
-  };
-
-  const slideInVariants = {
-    hidden: { x: 100, opacity: 0 },
-    visible: {
-      x: 0,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        damping: 15,
-        stiffness: 100,
-        delay: 0.5,
-      },
-    },
-  };
-
-  return (
-    <section
-      ref={sectionRef}
-      className="bg-gray-50 py-20 px-6 md:px-12 relative overflow-hidden"
+          <motion.h3
+      className="text-emerald-600 font-semibold uppercase tracking-wide text-sm mb-4"
+      variants={textItemVariants}
+      style={{ fontFamily: "'Poppins', sans-serif" }}
     >
-      {/* Decorative elements with animation */}
-      <motion.div
-        initial={{ scale: 0, opacity: 0 }}
-        animate={isInView ? { scale: 1, opacity: 1 } : {}}
-        transition={{ duration: 1, delay: 0.2 }}
-        className="absolute top-0 left-0 w-72 h-72 bg-orange-100 rounded-full -translate-x-1/2 -translate-y-1/2"
-      ></motion.div>
-      <motion.div
-        initial={{ scale: 0, opacity: 0 }}
-        animate={isInView ? { scale: 1, opacity: 1 } : {}}
-        transition={{ duration: 1, delay: 0.4 }}
-        className="absolute bottom-0 right-0 w-96 h-96 bg-orange-100 rounded-full translate-x-1/3 translate-y-1/3"
-      ></motion.div>
+      Excellence in Engineering Education
+    </motion.h3>
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="flex flex-col md:flex-row items-start gap-12">
-          {/* Left Section */}
+    <motion.h2
+      className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 leading-tight text-gray-900"
+      variants={textItemVariants}
+      style={{ fontFamily: "'Dancing Script', cursive" }}
+    >
+      {heading}
+    </motion.h2>
+
+    {/* Subheading Added */}
+   
+
+    <motion.p
+      className="mt-2 text-gray-600 text-base sm:text-lg"
+      variants={textItemVariants}
+      style={{ fontFamily: "'Poppins', sans-serif" }}
+    >
+      Discover our comprehensive engineering programs designed to shape
+      the innovators and leaders of tomorrow.
+    </motion.p>
+  </div>
+          {/* Navigation Dots - Mobile only */}
+          <motion.div
+            className="flex lg:hidden justify-center items-center space-x-2 mt-4"
+            variants={textItemVariants}
+          >
+            {departments.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveDept(index)}
+                className={`w-3 h-3 rounded-full transition-all ${
+                  activeDept === index
+                    ? "bg-emerald-700 scale-110"
+                    : "bg-gray-300 hover:bg-gray-400"
+                }`}
+                aria-label={`View department ${index + 1}`}
+              />
+            ))}
+          </motion.div>
+        </motion.div>
+
+        {/* Departments Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Featured Department */}
           <motion.div
             initial="hidden"
-            animate={controls}
-            variants={containerVariants}
-            className="md:w-2/5"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={slideFromLeft}
+            className="lg:col-span-2"
           >
             <motion.div
-              variants={itemVariants}
-              className="text-4xl font-bold mb-6 leading-tight text-gray-900"
+              key={activeDept}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer relative group w-full"
             >
-              <StaggeredFade text="Explore Our " />
-              <StaggeredFade text="Academic Programs" className="text-orange-500" delay={0.2} />
-            </motion.div>
+              <div className="relative aspect-video md:aspect-[16/9] rounded-2xl overflow-hidden">
+                <img
+                  src={departments[activeDept].img}
+                  alt={departments[activeDept].title}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
 
-            {/* Added StaggeredFade here */}
-            <motion.div variants={itemVariants} className="mb-6 text-lg text-gray-700">
-              <StaggeredFade text="Welcome to our Engineering Programs" />
-            </motion.div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90" />
 
-            <motion.p variants={itemVariants} className="text-gray-600 mb-8 text-lg">
-              Discover opportunities for learning, research, and innovation across our diverse engineering disciplines.
-            </motion.p>
+                {/* Category Tag */}
+                <div className="absolute top-4 left-4 z-20 flex items-center">
+                  <span className="px-3 py-1 bg-emerald-700 text-white text-xs sm:text-sm font-medium rounded-full shadow-md flex items-center">
+                    <img
+                      src={departments[activeDept].iconImg}
+                      alt={departments[activeDept].category}
+                      className="w-4 h-4 mr-2 object-contain"
+                    />
+                    <span style={{ fontFamily: "'Poppins', sans-serif" }}>
+                      {departments[activeDept].category}
+                    </span>
+                  </span>
+                </div>
 
-            <motion.div variants={itemVariants} className="flex items-center space-x-4 mb-10">
-              <div className="w-12 h-0.5 bg-orange-500"></div>
-             
-              <StaggeredFade text="Scroll to explore" className="text-sm text-gray-500" delay={0.2} />
-            </motion.div>
+                {/* Student Count */}
+                <div className="absolute top-4 right-4 z-20 flex items-center text-white/90 text-xs sm:text-sm bg-emerald-800/80 px-3 py-1 rounded-full">
+                  <Users className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
+                  {departments[activeDept].students} Students
+                </div>
 
-            {/* Navigation */}
-            <motion.div variants={itemVariants} className="flex space-x-4">
-              <button
-                ref={prevRef}
-                className="w-12 h-12 flex items-center justify-center rounded-full bg-white text-orange-500 border border-gray-200 shadow-sm hover:bg-orange-500 hover:text-white transition-all duration-300"
-              >
-                <ChevronLeft size={24} />
-              </button>
-              <button
-                ref={nextRef}
-                className="w-12 h-12 flex items-center justify-center rounded-full bg-white text-orange-500 border border-gray-200 shadow-sm hover:bg-orange-500 hover:text-white transition-all duration-300"
-              >
-                <ChevronRight size={24} />
-              </button>
+                {/* Text */}
+                <motion.div
+                  className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 z-20"
+                  variants={textContainerVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.3 }}
+                >
+                  <motion.h3
+                    className="text-lg sm:text-xl md:text-2xl font-bold text-white leading-tight mb-2"
+                    variants={textItemVariants}
+                    style={{ fontFamily: "'Poppins', sans-serif" }}
+                  >
+                    {departments[activeDept].title}
+                  </motion.h3>
+                  <motion.p
+                    className="text-sm sm:text-base text-gray-200 mb-4 line-clamp-2"
+                    variants={textItemVariants}
+                    style={{ fontFamily: "'Poppins', sans-serif" }}
+                  >
+                    {departments[activeDept].desc}
+                  </motion.p>
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                    <motion.span
+                      className="inline-flex items-center text-emerald-300 text-sm font-medium bg-emerald-900/30 px-3 py-1 rounded-full"
+                      variants={textItemVariants}
+                    >
+                      <BookOpen className="w-4 h-4 mr-1" />
+                      {departments[activeDept].courses} Courses
+                    </motion.span>
+                    <motion.button
+                      className="inline-flex items-center text-white font-medium group-hover:text-emerald-300 transition-colors text-sm sm:text-base"
+                      variants={textItemVariants}
+                      style={{ fontFamily: "'Poppins', sans-serif" }}
+                    >
+                      Explore department
+                      <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+                    </motion.button>
+                  </div>
+                </motion.div>
+              </div>
             </motion.div>
           </motion.div>
 
-          {/* Right Swiper */}
+          {/* Departments List */}
           <motion.div
             initial="hidden"
-            animate={controls}
-            variants={slideInVariants}
-            className="md:w-3/5 w-full"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={slideFromRight}
+            className="space-y-4"
           >
-            <Swiper
-              modules={[Navigation, Autoplay]}
-              navigation={{
-                prevEl: prevRef.current,
-                nextEl: nextRef.current,
-              }}
-              onInit={(swiper) => {
-                swiper.params.navigation.prevEl = prevRef.current;
-                swiper.params.navigation.nextEl = nextRef.current;
-                swiper.navigation.init();
-                swiper.navigation.update();
-              }}
-              autoplay={{
-                delay: 5000,
-                disableOnInteraction: false,
-              }}
-              spaceBetween={24}
-              loop={true}
-              breakpoints={{
-                320: { slidesPerView: 1 },
-                768: { slidesPerView: 2 },
-                1024: { slidesPerView: 1 },
-                1280: { slidesPerView: 1.5 },
-              }}
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              className="space-y-4"
             >
-              {courses.map((course, index) => (
-                <SwiperSlide key={course.id}>
-                  <motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{
-                      duration: 0.6,
-                      delay: index * 0.1,
-                      ease: "easeOut",
-                    }}
-                    className="bg-white mb-3 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 group"
-                  >
-                    <div className="relative overflow-hidden">
-                      <motion.img
-                        src={course.image}
-                        alt={course.title}
-                        className="h-48 w-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.3 }}
+              {departments.map((dept, index) => (
+                <motion.div
+                  key={index}
+                  variants={itemVariants}
+                  onClick={() => setActiveDept(index)}
+                  className={`p-4 sm:p-5 rounded-xl cursor-pointer transition-all ${
+                    activeDept === index
+                      ? "bg-emerald-50 border-l-4 border-emerald-700 shadow-sm"
+                      : "bg-white hover:bg-gray-50 shadow-sm"
+                  }`}
+                  whileHover={{ y: -5 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div className="flex items-start">
+                    <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-lg overflow-hidden mr-3 sm:mr-4 shadow-sm flex items-center justify-center bg-white p-2">
+                      <img
+                        src={dept.iconImg}
+                        alt={dept.category}
+                        className="w-full h-full object-contain"
                       />
-                      <motion.div
-                        initial={{ scale: 0 }}
-                        whileInView={{ scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 + index * 0.1, type: "spring" }}
-                        className={`absolute top-4 left-4 ${course.color.split(" ")[0]} text-white text-xs font-bold px-3 py-1 rounded-full`}
-                      >
-                        {course.code}
-                      </motion.div>
                     </div>
-                    <div className="p-6">
-                      <motion.h3
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.3 + index * 0.1 }}
-                        className="text-xl font-bold text-gray-900 mb-3 group-hover:text-orange-500 transition-colors"
+                    <div className="flex-1 min-w-0">
+                      <div
+                        className="flex items-center text-xs text-emerald-700 font-medium mb-1"
+                        style={{ fontFamily: "'Poppins', sans-serif" }}
                       >
-                        {course.title}
-                      </motion.h3>
-
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.4 + index * 0.1 }}
-                        className="flex items-center space-x-4 mb-4"
+                        {dept.category}
+                      </div>
+                      <h4
+                        className="font-semibold text-gray-800 text-sm mb-1 line-clamp-2"
+                        style={{ fontFamily: "'Poppins', sans-serif" }}
                       >
-                        <div className={`flex items-center text-sm text-gray-600`}>
-                          <Clock size={16} className={`mr-1 ${course.color.split(" ")[1]}`} />
-                          {course.duration}
-                        </div>
-                        <div className="flex items-center text-sm text-gray-600">
-                          <Award size={16} className={`mr-1 ${course.color.split(" ")[1]}`} />
-                          {course.credits} Credits
-                        </div>
-                      </motion.div>
-
-                      <motion.p
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.5 + index * 0.1 }}
-                        className="text-gray-600 text-sm mb-5 leading-relaxed"
+                        {dept.title}
+                      </h4>
+                      <div
+                        className="flex items-center text-emerald-700 text-xs font-medium mt-2"
+                        style={{ fontFamily: "'Poppins', sans-serif" }}
                       >
-                        {course.description}
-                      </motion.p>
-
-                      <motion.button
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.6 + index * 0.1 }}
-                        whileHover={{ x: 5 }}
-                        className={`flex items-center font-semibold text-sm ${course.color.split(" ")[1]} hover:underline`}
-                      >
-                        <BookOpen size={16} className="mr-2" />
-                        Program Details
-                      </motion.button>
+                        View details <ChevronRight className="w-3 h-3 ml-1" />
+                      </div>
                     </div>
-                  </motion.div>
-                </SwiperSlide>
+                  </div>
+                </motion.div>
               ))}
-            </Swiper>
+            </motion.div>
           </motion.div>
         </div>
       </div>
+
+      {/* Google Fonts */}
+      <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
     </section>
   );
 };
 
-export default CoursesSlider;
+export default DepartmentsSection;

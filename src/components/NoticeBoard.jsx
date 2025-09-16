@@ -1,233 +1,293 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, ChevronRight, CalendarDays, Clock } from "lucide-react";
+import { Calendar, MapPin, Clock, ArrowRight } from "lucide-react";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
+const headingFont = {
+  fontFamily: "'Dancing Script', cursive",
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
+const bodyFont = {
+  fontFamily: "'Poppins', sans-serif",
+};
+
+const letterAnimationHeading = {
+  initial: { opacity: 0, y: 20 },
+  animate: (i) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.4 },
-  },
-};
-
-const textContainerVariants = {
-  hidden: {},
-  visible: {
     transition: {
-      staggerChildren: 0.15,
+      delay: i * 0.06,
+      duration: 0.5,
+      ease: "easeOut",
     },
+  }),
+};
+
+const fadeSlide = (direction = "left") => ({
+  hidden: { opacity: 0, x: direction === "left" ? -40 : 40 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.7, ease: "easeOut" },
+  },
+});
+
+// Variants for staggered card animation
+const staggerContainer = {
+  hidden: { opacity: 1 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.2 },
   },
 };
 
-const textItemVariants = {
-  hidden: { opacity: 0, y: 10 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+const cardVariant = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
 };
 
-const NewsEvents = () => {
-  const [activeNews, setActiveNews] = useState(0);
+const featuredEvents = [
+  {
+    id: 1,
+    date: "May 11, 2025",
+    time: "10:00 AM - 4:00 PM",
+    title: "Annual Green Technology Summit",
+    description:
+      "Join industry leaders for a day of innovation and networking focused on sustainable technology solutions.",
+    image: "https://framerusercontent.com/images/3mNtGqXBqR5iT2lsSC3gChzyUHo.png",
+    location: "Convention Center, New York",
+    reverse: false,
+  },
+  {
+    id: 2,
+    date: "June 5, 2025",
+    time: "9:00 AM - 5:00 PM",
+    title: "Clean Energy Innovation Conference",
+    description:
+      "Explore the latest breakthroughs and opportunities in renewable energy and sustainable infrastructure.",
+    image: "https://framerusercontent.com/images/3mNtGqXBqR5iT2lsSC3gChzyUHo.png",
+    location: "Tech Hub, San Francisco",
+    reverse: true,
+  },
+];
 
-  const news = [
-    {
-      img: "https://www.kecbhilai.com/images/slider_img2.jpg",
-      title: "Welcome Address to B.Tech Batch of 2025–26",
-      desc: "KEC Bhilai held an induction program to welcome the newest B.Tech cohort to college life with orientation sessions and campus tours.",
-      date: "August 2025",
-      category: "Orientation",
-    },
-    {
-      img: "https://www.kecbhilai.com/images/slider_img2.jpg",
-      title: "Visit by Dr. Prashant Mathur",
-      desc: "Dr. Prashant Mathur, CEO of IIT Bhilai Innovation and Technology Park, visited KEC to foster academic collaboration and research partnerships.",
-      date: "Late 2025",
-      category: "Guest Visit",
-    },
-    {
-      img: "https://www.kecbhilai.com/images/slider_img2.jpg",
-      title: "Admissions Open for 2025 with Scholarships",
-      desc: "KEC announced admissions for 2025 with 100% scholarship seats including aid up to ₹1 lakh for deserving students.",
-      date: "4 months ago (2025)",
-      category: "Admission Notice",
-    },
-    {
-      img: "https://www.kecbhilai.com/images/slider_img2.jpg",
-      title: "Celebrating 79th Independence Day",
-      desc: "KEC Bhilai celebrated India's 79th Independence Day with patriotic fervor and campus-wide events including flag hoisting and cultural programs.",
-      date: "August 15, 2025",
-      category: "Celebration",
-    },
-  ];
+const upcomingEvents = [
+  {
+    id: 3,
+    date: "July 20, 2025",
+    time: "2:00 PM - 6:00 PM",
+    title: "Sustainable Business Workshop",
+    description:
+      "Hands-on workshop for businesses looking to implement eco-friendly practices and reduce carbon footprint.",
+    image: "https://framerusercontent.com/images/3mNtGqXBqR5iT2lsSC3gChzyUHo.png",
+    location: "Business Center, Chicago",
+  },
+  {
+    id: 4,
+    date: "August 15, 2025",
+    time: "11:00 AM - 3:00 PM",
+    title: "Climate Action Networking Event",
+    description:
+      "Connect with like-minded professionals and organizations committed to environmental sustainability.",
+    image: "https://framerusercontent.com/images/3mNtGqXBqR5iT2lsSC3gChzyUHo.png",
+    location: "Eco Campus, Seattle",
+  },
+  {
+    id: 5,
+    date: "September 10, 2025",
+    time: "1:00 PM - 5:00 PM",
+    title: "Green Finance Symposium",
+    description:
+      "Learn about investment opportunities and financial strategies supporting sustainable development.",
+    image: "https://framerusercontent.com/images/3mNtGqXBqR5iT2lsSC3gChzyUHo.png",
+    location: "Financial District, Boston",
+  },
+];
+
+const Events = () => {
+  const heading = "Upcoming Events & Conferences";
 
   return (
-    <section className="w-full bg-gradient-to-b from-gray-50 to-blue-50 py-16 px-4">
+    <section
+      id="events"
+      className=" py-24 px-6 sm:px-8 lg:px-20"
+      style={bodyFont}
+    >
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start gap-6 mb-12">
-          <div className="md:w-2/5">
-            <motion.h2
-              className="text-3xl sm:text-4xl font-bold mb-4 leading-tight text-gray-900"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-            >
-              Explore Our{" "}
-              <span className="text-blue-600">Latest Updates</span>
-            </motion.h2>
-            <motion.p
-              className="text-gray-600 text-base sm:text-lg"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              viewport={{ once: true }}
-            >
-              Stay updated with the latest happenings, achievements, and
-              announcements at Krishna Engineering College.
-            </motion.p>
-          </div>
-        </div>
+        {/* Animated Heading */}
 
-        {/* Navigation Dots */}
-        <div className="flex justify-center sm:justify-start items-center mb-6 space-x-2">
-          {news.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveNews(index)}
-              className={`w-3 h-3 rounded-full transition-all ${
-                activeNews === index
-                  ? "bg-blue-600 scale-110"
-                  : "bg-gray-300 hover:bg-gray-400"
+        <motion.h3
+          className="font-semibold uppercase tracking-wide text-sm mb-4 text-emerald-600 "
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          Experience Knowledge, Innovation & Collaboration
+        </motion.h3>
+
+
+        <motion.h2
+  className="text-5xl sm:text-6xl leading-tight mb-6"
+  style={headingFont}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true, amount: 0.6 }}
+>
+  {heading.split(" ").map((word, wi) => (
+    <span key={wi} className="inline-block mr-2">
+      {word.split("").map((char, i) => (
+        <motion.span
+          key={i}
+          custom={i}
+          variants={letterAnimationHeading}
+          style={{ display: "inline-block" }}
+          className={word === "Events" ? "text-emerald-600" : ""}
+        >
+          {char}
+        </motion.span>
+      ))}
+    </span>
+  ))}
+</motion.h2>
+
+
+
+        {/* Paragraph */}
+        <motion.p
+          className="text-gray-600 max-w-2xl mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          Stay connected with the latest events and conferences that bring
+          together experts, innovators, and thought leaders to shape a
+          sustainable future. Explore upcoming programs and secure your spot
+          today.
+        </motion.p>
+
+        {/* Featured Events */}
+        <div className="space-y-24 mb-4">
+          {featuredEvents.map(({ id, date, time, title, description, image, location, reverse }) => (
+            <div
+              key={id}
+              className={`flex flex-col lg:flex-row items-center gap-12 ${
+                reverse ? "lg:flex-row-reverse" : ""
               }`}
-              aria-label={`View news ${index + 1}`}
-            />
+            >
+              {/* Content */}
+              <motion.div
+                className="lg:w-1/2 text-gray-800"
+                variants={fadeSlide(reverse ? "right" : "left")}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.4 }}
+              >
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="flex items-center text-emerald-600 font-semibold text-sm">
+                    <div className="flex items-center p-2 bg-emerald-100 rounded-2xl font-semibold text-sm">
+                      <Clock className="w-4 h-4 mr-1" />
+                      {time}
+                    </div>
+                    <Calendar className="w-4 h-4 ml-3 mr-1" />
+                    {date}
+                  </div>
+                </div>
+                <h3 className="text-3xl font-extrabold mb-5">{title}</h3>
+                <p className="text-lg leading-relaxed mb-6">{description}</p>
+                <div className="flex items-center text-emerald-700 font-medium">
+                  <MapPin className="w-4 h-4 mr-2" />
+                  {location}
+                </div>
+                <button className="mt-6 inline-flex items-center px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors duration-300">
+                  Register Now
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </button>
+              </motion.div>
+
+              {/* Image with overlay */}
+              <motion.div
+                className="relative lg:w-1/2 w-full rounded-xl overflow-hidden shadow-2xl"
+                variants={fadeSlide(reverse ? "left" : "right")}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.4 }}
+              >
+                <img
+                  src={image}
+                  alt={title}
+                  className="w-full h-72 sm:h-96 object-cover transition-transform duration-500 ease-in-out hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
+                <div className="absolute top-4 right-4 bg-emerald-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                  Featured Event
+                </div>
+              </motion.div>
+            </div>
           ))}
         </div>
 
-        {/* News Layout */}
+        {/* Upcoming Events Cards with Stagger */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
         >
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Featured News */}
+          {upcomingEvents.map(({ id, date, time, title, description, image, location }) => (
             <motion.div
-              key={activeNews}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              className="lg:col-span-2 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer relative group w-full"
+              key={id}
+              className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col"
+              variants={cardVariant}
+              whileHover={{ y: -5 }}
             >
-              <div className="relative aspect-video rounded-2xl overflow-hidden">
+              <div className="relative overflow-hidden">
                 <img
-                  src={news[activeNews].img}
-                  alt={news[activeNews].title}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  src={image}
+                  alt={title}
+                  className="w-full h-48 object-cover transition-transform duration-500 ease-in-out hover:scale-110"
+                  loading="lazy"
                 />
-
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90" />
-
-                <div className="absolute top-4 left-4 z-20">
-                  <span className="px-3 py-1 bg-blue-600 text-white text-xs sm:text-sm font-medium rounded-full shadow-md">
-                    {news[activeNews].category}
-                  </span>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
+                <div className="absolute top-4 left-4 bg-white text-emerald-600 px-3 py-1 rounded-full text-sm font-medium flex items-center">
+                  <Calendar className="w-3 h-3 mr-1" />
+                  {date}
                 </div>
-
-                <div className="absolute top-4 right-4 z-20 flex items-center text-white/90 text-xs sm:text-sm">
-                  <CalendarDays className="w-4 h-4 mr-1" />
-                  {news[activeNews].date}
+              </div>
+              <div className="p-6 flex flex-col flex-grow">
+                <div className="flex items-center text-sm text-emerald-600 mb-3">
+                  <Clock className="w-4 h-4 mr-1" />
+                  {time}
                 </div>
-
-                <motion.div
-                  className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 z-20"
-                  variants={textContainerVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.3 }}
-                >
-                  <motion.h4
-                    className="text-lg sm:text-xl md:text-2xl font-bold text-white leading-tight mb-2"
-                    variants={textItemVariants}
-                  >
-                    {news[activeNews].title}
-                  </motion.h4>
-                  <motion.p
-                    className="text-sm sm:text-base text-gray-200 mb-3 line-clamp-2"
-                    variants={textItemVariants}
-                  >
-                    {news[activeNews].desc}
-                  </motion.p>
-                  <motion.button
-                    className="inline-flex items-center text-white font-medium group-hover:text-blue-300 transition-colors text-sm sm:text-base"
-                    variants={textItemVariants}
-                  >
-                    Read full story
-                    <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
-                  </motion.button>
-                </motion.div>
+                <h4 className="text-xl font-semibold mb-3 text-gray-800">{title}</h4>
+                <p className="text-gray-600 mb-4 flex-grow">{description}</p>
+                <div className="flex items-center text-sm text-emerald-700 mb-4">
+                  <MapPin className="w-4 h-4 mr-1" />
+                  {location}
+                </div>
+                <button className="w-full py-2 bg-emerald-50 text-emerald-600 rounded-lg hover:bg-emerald-100 transition-colors duration-300 flex items-center justify-center">
+                  Learn More
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </button>
               </div>
             </motion.div>
-
-            {/* News List */}
-            <motion.div
-              className="space-y-4"
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              {news.map((item, index) => (
-                <motion.div
-                  key={index}
-                  variants={itemVariants}
-                  onClick={() => setActiveNews(index)}
-                  className={`p-4 sm:p-5 rounded-xl cursor-pointer transition-all ${
-                    activeNews === index
-                      ? "bg-blue-50 border-l-4 border-blue-600 shadow-sm"
-                      : "bg-white hover:bg-gray-50 shadow-sm"
-                  }`}
-                >
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-lg overflow-hidden mr-4 shadow-sm">
-                      <img
-                        src={item.img}
-                        alt={item.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center text-xs text-gray-500 mb-1">
-                        <Clock className="w-3 h-3 mr-1" />
-                        {item.date}
-                      </div>
-                      <h4 className="font-semibold text-gray-800 text-sm mb-1 line-clamp-2">
-                        {item.title}
-                      </h4>
-                      <div className="flex items-center text-blue-600 text-xs font-medium mt-2">
-                        Read more <ChevronRight className="w-3 h-3 ml-1" />
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
+          ))}
         </motion.div>
+
+       
       </div>
+
+      {/* Add Google Fonts */}
+      <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
     </section>
   );
 };
 
-export default NewsEvents;
+export default Events;

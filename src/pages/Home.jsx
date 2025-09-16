@@ -14,13 +14,9 @@ const Home = () => {
       <Herosection />
       <CoursesOffered />
       <AchievementsMarquee />
+      <Leadership />
       <AboutSection />
       <PlacementPartners />
-      <Leadership />
-      {/*
-       
-       <AboutSection />
-      */}
       <NoticeBoard />
       <AlumniSection />
     </div>

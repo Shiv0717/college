@@ -1,196 +1,297 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
-import { 
-  Users, 
-  Award, 
-  Target, 
-  Heart, 
-  Star, 
-  TrendingUp,
-  ChevronRight,
-  Quote,
+"use client";
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import {
   Linkedin,
-  Mail
-} from 'lucide-react';
+  Mail,
+  Award,
+  Quote,
+  ChevronRight,
+  Users,
+  BookOpen,
+  Star,
+} from "lucide-react";
 
-const LeadershipSection = () => {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-
-  // Transform values for sticky section
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [1, 1, 1, 0.8]);
-  const scale = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [1, 1, 1, 0.98]);
-
-  const leadershipData = [
-    {
-      name: "Dr. Rajesh Sharma",
-      position: "Principal & Director",
-      bio: "With over 25 years of experience in technical education, Dr. Sharma has been instrumental in shaping the vision of Krishna Engineering College.",
-      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
-      quote: "Our mission is to create engineers who can solve real-world problems with innovation and integrity.",
-      delay: 0.1
-    },
-    {
-      name: "Prof. Sunita Verma",
-      position: "Dean of Academics",
-      bio: "A renowned scholar in Computer Science, Prof. Verma has published over 50 research papers and led numerous curriculum development initiatives.",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
-      quote: "Education is not just about acquiring knowledge, but about learning how to think critically and creatively.",
-      delay: 0.2
-    },
-    {
-      name: "Dr. Amit Patel",
-      position: "Head of Placements",
-      bio: "Dr. Patel has established strong industry connections that have resulted in placement opportunities with top companies for our students.",
-      image: "https://images.unsplash.com/photo-1552058544-f2b08422138a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
-      quote: "We prepare students not just for jobs, but for fulfilling careers where they can make meaningful contributions.",
-      delay: 0.3
-    }
-  ];
-
-  return (
-    <section ref={containerRef} className="min-h-screen py-20 bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500 rounded-full mix-blend-overlay filter blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-48 h-48 bg-amber-500 rounded-full mix-blend-overlay filter blur-3xl animate-pulse animation-delay-2000"></div>
-      </div>
-      
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="flex flex-col lg:flex-row gap-12">
-          {/* Sticky left side */}
-          <motion.div 
-            className="lg:w-2/5 lg:sticky lg:top-24 self-start"
-            style={{ y, opacity, scale }}
-          >
-            <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
-              <div className="inline-flex items-center justify-center text-blue-600 font-medium text-sm uppercase tracking-wide mb-6 py-2 px-5 bg-blue-100 rounded-full">
-                <Star size={16} className="mr-2" />
-                Leadership Philosophy
-              </div>
-              
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600">Leadership</span> Team
-              </h2>
-              
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                At Krishna Engineering College, our leadership is committed to excellence, innovation, 
-                and creating an environment where both students and faculty can thrive.
-              </p>
-
-              <div className="space-y-6">
-                <div className="flex items-start">
-                  <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center mr-4 flex-shrink-0">
-                    <Target className="text-blue-600" size={24} />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-gray-900 mb-1">Visionary Approach</h3>
-                    <p className="text-gray-600">Guiding the institution with a clear vision for the future of engineering education.</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center mr-4 flex-shrink-0">
-                    <Award className="text-amber-600" size={24} />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-gray-900 mb-1">Academic Excellence</h3>
-                    <p className="text-gray-600">Fostering an environment of rigorous academic standards and continuous improvement.</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center mr-4 flex-shrink-0">
-                    <Users className="text-green-600" size={24} />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-gray-900 mb-1">Student Success</h3>
-                    <p className="text-gray-600">Dedicated to nurturing talent and ensuring every student reaches their full potential.</p>
-                  </div>
-                </div>
-              </div>
-
-              <button className="mt-10 w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-medium py-3 px-6 rounded-xl flex items-center justify-center group hover:shadow-lg transition-all duration-300">
-                Meet Our Entire Team
-                <ChevronRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
-              </button>
-            </div>
-          </motion.div>
-
-          {/* Scrollable right side with animations */}
-          <div className="lg:w-3/5">
-            <div className="space-y-12">
-              {leadershipData.map((leader, index) => (
-                <LeaderCard key={index} leader={leader} index={index} />
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+// Fonts
+const headingFont = {
+  fontFamily: "'Dancing Script', cursive",
 };
 
-const LeaderCard = ({ leader, index }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+const bodyFont = {
+  fontFamily: "'Poppins', sans-serif",
+};
+
+// Data
+const leaders = [
+  {
+    name: "Dr. Ramesh Sharma",
+    title: "Chairman & Founder",
+    image:
+      "https://plus.unsplash.com/premium_photo-1661331801637-790d837bbaed?q=80&w=2070&auto=format&fit=crop",
+    bio: "With a vision to revolutionize technical education, Dr. Sharma brings over 30 years of academic leadership and innovation.",
+    quote:
+      "Education is not the filling of a pail, but the lighting of a fire.",
+    achievements: [
+      "30+ years in academia",
+      "Published 50+ research papers",
+      "Recipient of National Education Award",
+    ],
+    social: { linkedin: "#", email: "r.sharma@example.com" },
+  },
+  {
+    name: "Ms. Priya Verma",
+    title: "Director of Academics",
+    image:
+      "https://plus.unsplash.com/premium_photo-1661755549658-8ac0cf1c6285?q=80&w=2832&auto=format&fit=crop",
+    bio: "A passionate educator and strategist, Ms. Verma drives our academic excellence and curriculum design with precision.",
+    quote:
+      "The future belongs to those who believe in the beauty of their dreams.",
+    achievements: [
+      "Curriculum development expert",
+      "15 years in educational leadership",
+      "International conference speaker",
+    ],
+    social: { linkedin: "#", email: "p.verma@example.com" },
+  },
+  {
+    name: "Mr. Arjun Malhotra",
+    title: "Head of Administration",
+    image:
+      "https://plus.unsplash.com/premium_photo-1661389874769-f5fd0b5b4754?q=80&w=2832&auto=format&fit=crop",
+    bio: "Mr. Malhotra ensures smooth operations and student success through efficient and empathetic leadership.",
+    quote: "Excellence is not a skill, it's an attitude.",
+    achievements: [
+      "Operational efficiency specialist",
+      "Student success advocate",
+      "20 years in administrative leadership",
+    ],
+    social: { linkedin: "#", email: "a.malhotra@example.com" },
+  },
+];
+
+// Stats data
+const stats = [
+  {
+    value: "65+",
+    label: "Years Combined Experience",
+    icon: <Users className="w-5 h-5" />,
+  },
+  {
+    value: "100+",
+    label: "Research Publications",
+    icon: <BookOpen className="w-5 h-5" />,
+  },
+  { value: "15+", label: "National Awards", icon: <Star className="w-5 h-5" /> },
+];
+
+// 🔥 Fade-up animation
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, delay: i * 0.15, ease: "easeOut" },
+  }),
+};
+
+// 🔠 Letter stagger animation
+const letterAnimationHeading = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.05, delay: i * 0.03 },
+  }),
+};
+
+const LeadershipSection = () => {
+  const [activeLeader, setActiveLeader] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const heading = "Our Visionary Leaders";
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   return (
-    <motion.div
-      ref={ref}
-      className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 overflow-hidden"
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: leader.delay }}
+    <section
+      id="leadership"
+      className="bg-gradient-to-b from-gray-50 to-white py-24 px-4 sm:px-6 lg:px-20"
+      style={bodyFont}
     >
-      <div className="flex flex-col md:flex-row gap-8">
-        <div className="md:w-1/3">
-          <div className="relative">
-            <img
-              src={leader.image}
-              alt={leader.name}
-              className="w-full h-72 object-cover rounded-xl shadow-md"
-            />
-            <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full flex items-center justify-center text-white shadow-lg">
-              <Quote size={24} />
-            </div>
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+        {/* Sticky Left Column */}
+        <motion.div
+          className={`lg:sticky h-fit self-start p-6 bg-white rounded-2xl shadow-lg ${
+            isMobile ? "" : "top-28"
+          }`}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeUp}
+        >
+          <motion.h2
+            className="text-emerald-600 font-semibold uppercase tracking-wide text-sm mb-4"
+            variants={fadeUp}
+          >
+            Leadership Excellence
+          </motion.h2>
+
+          {/* Letter staggered heading */}
+          <div
+            className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 leading-tight"
+            style={headingFont}
+          >
+            {heading.split("").map((char, i) => (
+              <motion.span
+                key={i}
+                custom={i}
+                variants={letterAnimationHeading}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.6 }}
+                style={{ display: "inline-block" }}
+              >
+                {char === " " ? "\u00A0" : char}
+              </motion.span>
+            ))}
           </div>
-          
-          <div className="flex space-x-4 mt-6 justify-center">
-            <button className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition-colors">
-              <Linkedin size={18} />
-            </button>
-            <button className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center text-amber-600 hover:bg-amber-600 hover:text-white transition-colors">
-              <Mail size={18} />
-            </button>
-          </div>
-        </div>
-        
-        <div className="md:w-2/3">
-          <h3 className="text-2xl font-bold text-gray-900 mb-2">{leader.name}</h3>
-          <div className="inline-flex items-center text-blue-600 font-medium mb-6 py-1 px-3 bg-blue-100 rounded-full text-sm">
-            {leader.position}
-          </div>
-          
-          <p className="text-gray-600 mb-6 leading-relaxed">{leader.bio}</p>
-          
-          <div className="bg-gray-50 p-5 rounded-xl mb-6 border-l-4 border-amber-500">
-            <p className="text-gray-700 italic">"{leader.quote}"</p>
-          </div>
-          
-          <div className="flex flex-wrap gap-3">
-            <span className="text-xs font-medium py-1 px-3 bg-blue-100 text-blue-700 rounded-full">Strategic Planning</span>
-            <span className="text-xs font-medium py-1 px-3 bg-green-100 text-green-700 rounded-full">Curriculum Development</span>
-            <span className="text-xs font-medium py-1 px-3 bg-amber-100 text-amber-700 rounded-full">Industry Relations</span>
-            <span className="text-xs font-medium py-1 px-3 bg-purple-100 text-purple-700 rounded-full">Research Leadership</span>
-          </div>
+
+          <motion.p
+            className="text-gray-600 text-base leading-relaxed mb-6"
+            variants={fadeUp}
+          >
+            Behind every successful institution is a team of dedicated
+            individuals. Our leadership blends experience, innovation, and
+            empathy to guide our institution toward excellence.
+          </motion.p>
+
+          {/* Stats */}
+          <motion.div
+            className="space-y-4 py-4 border-t border-gray-100"
+            variants={fadeUp}
+          >
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">
+              Our Impact
+            </h3>
+            {stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                className="flex items-center p-3 bg-emerald-50 rounded-lg"
+                variants={fadeUp}
+                custom={index}
+                whileHover={{ scale: 1.02 }}
+              >
+                <div className="flex items-center justify-center w-10 h-10 bg-emerald-100 text-emerald-600 rounded-full mr-3">
+                  {stat.icon}
+                </div>
+                <div>
+                  <div className="text-lg font-bold text-emerald-700">
+                    {stat.value}
+                  </div>
+                  <div className="text-xs text-gray-600">{stat.label}</div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
+
+        {/* Right Column - Leadership Cards */}
+        <div className="lg:col-span-2 space-y-16">
+          {leaders.map((leader, index) => (
+            <motion.div
+              key={index}
+              id={`leader-${index}`}
+              className="flex flex-col lg:flex-row gap-8 group scroll-mt-24"
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              custom={index}
+            >
+              {/* Image */}
+              <motion.div
+                className="lg:w-2/5 overflow-hidden rounded-2xl shadow-lg"
+                variants={fadeUp}
+              >
+                <img
+                  src={leader.image}
+                  alt={leader.name}
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                />
+              </motion.div>
+
+              {/* Content */}
+              <motion.div
+                className="lg:w-3/5 flex flex-col justify-center"
+                variants={fadeUp}
+              >
+                <motion.h4
+                  className="text-2xl font-bold text-gray-800 mb-2"
+                  variants={fadeUp}
+                >
+                  {leader.name}
+                </motion.h4>
+                <motion.p
+                  className="text-emerald-600 font-medium mb-4"
+                  variants={fadeUp}
+                >
+                  {leader.title}
+                </motion.p>
+                <motion.p
+                  className="text-gray-600 mb-4 leading-relaxed"
+                  variants={fadeUp}
+                >
+                  {leader.bio}
+                </motion.p>
+
+                {/* Quote */}
+                <motion.div
+                  className="bg-emerald-50 rounded-lg p-4 mb-4 border-l-4 border-emerald-500"
+                  variants={fadeUp}
+                >
+                  <Quote className="w-4 h-4 text-emerald-600 mb-1" />
+                  <p className="text-sm text-emerald-700 italic">
+                    "{leader.quote}"
+                  </p>
+                </motion.div>
+
+                {/* Achievements */}
+                <motion.div className="space-y-2" variants={fadeUp}>
+                  <div className="flex items-center text-sm text-emerald-700 font-medium">
+                    <Award className="w-4 h-4 mr-2" />
+                    Key Achievements
+                  </div>
+                  <ul className="text-sm text-gray-600 space-y-1">
+                    {leader.achievements.map((achievement, i) => (
+                      <motion.li
+                        key={i}
+                        className="flex items-start"
+                        whileHover={{ x: 5 }}
+                        variants={fadeUp}
+                        custom={i}
+                      >
+                        <ChevronRight className="w-4 h-4 text-emerald-500 mr-1 mt-0.5 flex-shrink-0" />
+                        <span>{achievement}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </motion.div>
+              </motion.div>
+            </motion.div>
+          ))}
         </div>
       </div>
-    </motion.div>
+
+      {/* Fonts */}
+      <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
+    </section>
   );
 };
 
