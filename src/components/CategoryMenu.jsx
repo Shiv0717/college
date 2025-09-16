@@ -24,15 +24,15 @@ import {
   Mic,
   BarChart3,
   Star,
-  Trophy
+  Trophy,
 } from "lucide-react";
 
 // Affiliations data
 const affiliations = [
-  { Icon: Award, label: "Best Result" },
-  { Icon: Star, label: "Quality Education" },
-  { Icon: Trophy, label: "Placement" },
-  { Icon: GraduationCap, label: "Mentor" },
+  { Icon: Award, label: "Best Result", color: "text-yellow-500" },
+  { Icon: Star, label: "Quality Education", color: "text-green-500" },
+  { Icon: Trophy, label: "Placement", color: "text-red-500" },
+  { Icon: GraduationCap, label: "Mentor", color: "text-purple-500" },
 ];
 
 // Main categories with expanded details
@@ -41,7 +41,7 @@ const mainCategories = [
     name: "Home",
     path: "/",
     icon: Home,
-    description: "Welcome to Krishna Engineering College"
+    description: "Welcome to Krishna Engineering College",
   },
   {
     name: "About",
@@ -49,37 +49,37 @@ const mainCategories = [
     icon: Users,
     description: "Discover our history and leadership",
     submenu: [
-      { 
-        name: "About College", 
+      {
+        name: "About College",
         path: "/about",
         icon: Building,
-        description: "Our journey and achievements" 
+        description: "Our journey and achievements",
       },
-      { 
-        name: "Principal's Message", 
+      {
+        name: "Principal's Message",
         path: "/principal",
         icon: Mic,
-        description: "Words from our leadership" 
+        description: "Words from our leadership",
       },
-      { 
-        name: "HOD", 
+      {
+        name: "HOD",
         path: "/hod",
         icon: Users,
-        description: "Heads of Departments" 
+        description: "Heads of Departments",
       },
-      { 
-        name: "Mission & Vision", 
+      {
+        name: "Mission & Vision",
         path: "/mission",
         icon: Award,
-        description: "Our guiding principles" 
+        description: "Our guiding principles",
       },
-      { 
-        name: "Governance", 
+      {
+        name: "Governance",
         path: "/governance",
         icon: Library,
-        description: "Management structure" 
-      }
-    ]
+        description: "Management structure",
+      },
+    ],
   },
   {
     name: "Academics",
@@ -87,31 +87,31 @@ const mainCategories = [
     icon: BookOpen,
     description: "Programs and departments",
     submenu: [
-      { 
-        name: "Departments", 
+      {
+        name: "Departments",
         path: "/departments",
         icon: BookOpen,
-        description: "Explore our academic departments" 
+        description: "Explore our academic departments",
       },
-      { 
-        name: "Courses", 
+      {
+        name: "Courses",
         path: "/courses",
         icon: GraduationCap,
-        description: "Programs we offer" 
+        description: "Programs we offer",
       },
-      { 
-        name: "Faculty", 
+      {
+        name: "Faculty",
         path: "/faculty",
         icon: Users,
-        description: "Meet our professors" 
+        description: "Meet our professors",
       },
-      { 
-        name: "Research", 
+      {
+        name: "Research",
         path: "/research",
         icon: Beaker,
-        description: "Innovation and projects" 
-      }
-    ]
+        description: "Innovation and projects",
+      },
+    ],
   },
   {
     name: "Admission",
@@ -119,25 +119,25 @@ const mainCategories = [
     icon: GraduationCap,
     description: "Join our institution",
     submenu: [
-      { 
-        name: "Process", 
+      {
+        name: "Process",
         path: "/admission#process",
         icon: BarChart3,
-        description: "Step-by-step guide" 
+        description: "Step-by-step guide",
       },
-      { 
-        name: "Requirements", 
+      {
+        name: "Requirements",
         path: "/admission#requirements",
         icon: Bookmark,
-        description: "Eligibility criteria" 
+        description: "Eligibility criteria",
       },
-      { 
-        name: "Scholarships", 
+      {
+        name: "Scholarships",
         path: "/admission#scholarships",
         icon: Award,
-        description: "Financial assistance" 
-      }
-    ]
+        description: "Financial assistance",
+      },
+    ],
   },
   {
     name: "Campus",
@@ -145,25 +145,25 @@ const mainCategories = [
     icon: Building,
     description: "Our facilities and infrastructure",
     submenu: [
-      { 
-        name: "Facilities", 
+      {
+        name: "Facilities",
         path: "/facilities",
         icon: Building,
-        description: "Campus amenities" 
+        description: "Campus amenities",
       },
-      { 
-        name: "Infrastructure", 
+      {
+        name: "Infrastructure",
         path: "/infrastructure",
         icon: MapPin,
-        description: "Our campus layout" 
+        description: "Our campus layout",
       },
-      { 
-        name: "Gallery", 
+      {
+        name: "Gallery",
         path: "/gallery",
         icon: Image,
-        description: "Campus visuals" 
-      }
-    ]
+        description: "Campus visuals",
+      },
+    ],
   },
   {
     name: "Placements",
@@ -171,25 +171,25 @@ const mainCategories = [
     icon: Briefcase,
     description: "Career opportunities",
     submenu: [
-      { 
-        name: "Placement Stats", 
+      {
+        name: "Placement Stats",
         path: "/placements#stats",
         icon: BarChart3,
-        description: "Our success records" 
+        description: "Our success records",
       },
-      { 
-        name: "Recruiters", 
+      {
+        name: "Recruiters",
         path: "/placements#recruiters",
         icon: Briefcase,
-        description: "Our industry partners" 
+        description: "Our industry partners",
       },
-      { 
-        name: "Training", 
+      {
+        name: "Training",
         path: "/placements#training",
         icon: School,
-        description: "Career preparation" 
-      }
-    ]
+        description: "Career preparation",
+      },
+    ],
   },
   {
     name: "Connect",
@@ -197,44 +197,44 @@ const mainCategories = [
     icon: Bookmark,
     description: "More ways to engage",
     submenu: [
-      { 
-        name: "Notices", 
+      {
+        name: "Notices",
         path: "/notice",
         icon: Newspaper,
-        description: "Latest announcements" 
+        description: "Latest announcements",
       },
-      { 
-        name: "Events", 
+      {
+        name: "Events",
         path: "/event",
         icon: Calendar,
-        description: "Upcoming activities" 
+        description: "Upcoming activities",
       },
-      { 
-        name: "Press", 
+      {
+        name: "Press",
         path: "/press",
         icon: Bookmark,
-        description: "Media coverage" 
+        description: "Media coverage",
       },
-      { 
-        name: "Alumni", 
+      {
+        name: "Alumni",
         path: "/alumni",
         icon: School,
-        description: "Our graduates network" 
+        description: "Our graduates network",
       },
-      { 
-        name: "Affiliation", 
+      {
+        name: "Affiliation",
         path: "/affiliation",
         icon: Award,
-        description: "Accreditations" 
+        description: "Accreditations",
       },
-      { 
-        name: "Contact", 
+      {
+        name: "Contact",
         path: "/contact",
         icon: Phone,
-        description: "Get in touch with us" 
-      }
-    ]
-  }
+        description: "Get in touch with us",
+      },
+    ],
+  },
 ];
 
 const UniversityMenu = () => {
@@ -253,8 +253,8 @@ const UniversityMenu = () => {
       }
     };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const closeAllMenus = () => {
@@ -270,17 +270,17 @@ const UniversityMenu = () => {
       height: 0,
       transition: {
         duration: 0.3,
-        ease: "easeInOut"
-      }
+        ease: "easeInOut",
+      },
     },
     open: {
       opacity: 1,
       height: "auto",
       transition: {
         duration: 0.4,
-        ease: "easeInOut"
-      }
-    }
+        ease: "easeInOut",
+      },
+    },
   };
 
   const subMenuVariants = {
@@ -289,22 +289,22 @@ const UniversityMenu = () => {
       height: 0,
       transition: {
         duration: 0.2,
-        ease: "easeInOut"
-      }
+        ease: "easeInOut",
+      },
     },
     open: {
       opacity: 1,
       height: "auto",
       transition: {
         duration: 0.3,
-        ease: "easeInOut"
-      }
-    }
+        ease: "easeInOut",
+      },
+    },
   };
 
   const chevronVariants = {
     closed: { rotate: 0 },
-    open: { rotate: 180 }
+    open: { rotate: 180 },
   };
 
   return (
@@ -315,27 +315,36 @@ const UniversityMenu = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             <div className="flex items-center">
-              <img 
-                src="/images/2025-08-27 19.10.46.jpg" 
-                className="w-14 h-14 rounded-full p-1 object-cover border border-gray-200" 
+              <img
+                src="/images/2025-08-27 19.10.46.jpg"
+                className="w-14 h-14 rounded-full p-1 object-cover border border-gray-200"
                 alt="Krishna Engineering College Logo"
               />
-              <div className="ml-3">
-                <h1 className="text-lg md:text-xl font-bold text-gray-900">KRISHNA</h1>
-                <p className="text-xs text-gray-600 -mt-1">ENGINEERING COLLEGE</p> 
-                <span className="text-xs text-blue-700 font-medium md:text-sm">Managed By KPS GROUP</span> 
+              <div className="ml-3" style={{ fontFamily: 'Roboto Slab, serif' }}>
+                <h1 className="text-lg md:text-xl font-bold text-gray-900">
+                  KRISHNA
+                </h1>
+                <p className="text-xs text-gray-600 -mt-1">
+                  ENGINEERING COLLEGE
+                </p>
+                <span className="text-xs text-blue-700 font-medium md:text-sm">
+                  Managed By KPS GROUP
+                </span>
               </div>
             </div>
           </div>
-          
+
           {/* Affiliations - Right Side */}
-          <div className="hidden md:flex items-center space-x-4 lg:space-x-6">
+          <div className="hidden md:flex items-center space-x-4 lg:space-x-6" style={{ fontFamily: 'Roboto Slab, serif' }}>
             {affiliations.map((affiliation, index) => {
               const IconComponent = affiliation.Icon;
               return (
                 <div key={index} className="flex items-center group">
-                  <div className="p-2 rounded-full bg-gray-100 group-hover:bg-blue-50 transition-colors text-blue-700">
-                    <IconComponent size={16} />
+                  <div className="p-2 rounded-full bg-gray-100 group-hover:bg-blue-50 transition-colors">
+                    <IconComponent
+                      size={16}
+                      className={`${affiliation.color} transition-colors duration-300 group-hover:text-blue-700`}
+                    />
                   </div>
                   <span className="ml-2 text-sm font-medium text-gray-700 hidden lg:inline">
                     {affiliation.label}
@@ -369,11 +378,12 @@ const UniversityMenu = () => {
             <div className="flex space-x-1">
               {mainCategories.map((category) => {
                 const IconComponent = category.icon;
-                
+
                 return (
                   <div
                     key={category.name}
                     className="relative group"
+                    style={{ fontFamily: "Roboto Slab, serif" }}
                     onMouseEnter={() => setActiveMenu(category.name)}
                     onMouseLeave={() => {
                       setActiveMenu(null);
@@ -387,27 +397,33 @@ const UniversityMenu = () => {
                       <IconComponent size={18} className="mr-1" />
                       {category.name}
                       {category.submenu && (
-                        <ChevronDown size={16} className="ml-1 transition-transform group-hover:rotate-180" />
+                        <ChevronDown
+                          size={16}
+                          className="ml-1 transition-transform group-hover:rotate-180"
+                        />
                       )}
                     </Link>
 
                     {/* Mega Menu Dropdown */}
                     {category.submenu && activeMenu === category.name && (
-  <motion.div
-    className="absolute top-full left-1/2 transform -translate-x-1/2 min-w-[600px] max-w-[90vw] rounded-b-lg shadow-xl bg-white border border-gray-200 z-50 overflow-hidden"
-    initial={{ opacity: 0, y: -10 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -10 }}
-    transition={{ duration: 0.2 }}
-  >
-
+                      <motion.div
+                        className="absolute top-full left-1/2 transform -translate-x-1/2 min-w-[600px] max-w-[90vw] rounded-b-lg shadow-xl bg-white border border-gray-200 z-50 overflow-hidden"
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.2 }}
+                      >
                         {/* Mega Menu Header */}
                         <div className="bg-blue-800 text-white py-4 px-6">
                           <div className="flex items-center">
                             <IconComponent size={24} className="mr-3" />
                             <div>
-                              <h3 className="text-xl font-bold">{category.name}</h3>
-                              <p className="text-sm opacity-90">{category.description}</p>
+                              <h3 className="text-xl font-bold">
+                                {category.name}
+                              </h3>
+                              <p className="text-sm opacity-90">
+                                {category.description}
+                              </p>
                             </div>
                           </div>
                         </div>
@@ -435,11 +451,18 @@ const UniversityMenu = () => {
                                   onMouseLeave={() => setHoveredItem(null)}
                                 >
                                   <div className="flex-shrink-0 h-10 w-10 rounded-lg bg-blue-100 flex items-center justify-center mr-3">
-                                    <ItemIcon size={18} className="text-blue-700" />
+                                    <ItemIcon
+                                      size={18}
+                                      className="text-blue-700"
+                                    />
                                   </div>
                                   <div>
-                                    <h4 className="font-semibold text-gray-900">{item.name}</h4>
-                                    <p className="text-sm text-gray-600 mt-1">{item.description}</p>
+                                    <h4 className="font-semibold text-gray-900">
+                                      {item.name}
+                                    </h4>
+                                    <p className="text-sm text-gray-600 mt-1">
+                                      {item.description}
+                                    </p>
                                   </div>
                                 </Link>
                               </motion.div>
@@ -459,7 +482,7 @@ const UniversityMenu = () => {
       {/* Mobile Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div 
+          <motion.div
             className="md:hidden bg-white border-t border-gray-200"
             initial="closed"
             animate="open"
@@ -468,20 +491,24 @@ const UniversityMenu = () => {
           >
             {/* Mobile Affiliations */}
             <div className="px-4 py-3 border-b border-gray-200 bg-gray-50">
-              <h3 className="text-sm font-semibold text-gray-700 mb-2">RECOGNITIONS & AWARDS</h3>
+              <h3 className="text-sm font-semibold text-gray-700 mb-2">
+                RECOGNITIONS & AWARDS
+              </h3>
               <div className="grid grid-cols-2 gap-2">
                 {affiliations.map((affiliation, index) => {
                   const IconComponent = affiliation.Icon;
                   return (
-                    <motion.div 
-                      key={index} 
+                    <motion.div
+                      key={index}
                       className="flex items-center p-2 bg-white rounded-lg border border-gray-200"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.1 }}
                     >
                       <IconComponent size={16} className="mr-2 text-blue-700" />
-                      <span className="text-xs text-gray-700">{affiliation.label}</span>
+                      <span className="text-xs text-gray-700">
+                        {affiliation.label}
+                      </span>
                     </motion.div>
                   );
                 })}
@@ -491,27 +518,43 @@ const UniversityMenu = () => {
             <div className="py-2 space-y-1">
               {mainCategories.map((category) => {
                 const IconComponent = category.icon;
-                const hasSubmenu = category.submenu && category.submenu.length > 0;
-                
+                const hasSubmenu =
+                  category.submenu && category.submenu.length > 0;
+
                 return (
-                  <div key={category.name} className="border-b border-gray-100 last:border-b-0">
-                    <div 
-                      className={`flex items-center justify-between px-4 py-3 ${hasSubmenu ? 'cursor-pointer' : ''}`}
-                      onClick={() => hasSubmenu && setMobileSubmenu(mobileSubmenu === category.name ? null : category.name)}
+                  <div
+                    key={category.name}
+                    className="border-b border-gray-100 last:border-b-0"
+                  >
+                    <div
+                      className={`flex items-center justify-between px-4 py-3 ${
+                        hasSubmenu ? "cursor-pointer" : ""
+                      }`}
+                      onClick={() =>
+                        hasSubmenu &&
+                        setMobileSubmenu(
+                          mobileSubmenu === category.name ? null : category.name
+                        )
+                      }
                     >
                       <Link
                         to={category.path}
                         className="flex items-center font-medium text-gray-700"
                         onClick={!hasSubmenu ? closeAllMenus : undefined}
                       >
-                        <IconComponent size={20} className="mr-3 text-blue-700" />
+                        <IconComponent
+                          size={20}
+                          className="mr-3 text-blue-700"
+                        />
                         {category.name}
                       </Link>
-                      
+
                       {hasSubmenu && (
                         <motion.div
                           variants={chevronVariants}
-                          animate={mobileSubmenu === category.name ? "open" : "closed"}
+                          animate={
+                            mobileSubmenu === category.name ? "open" : "closed"
+                          }
                           transition={{ duration: 0.2 }}
                         >
                           <ChevronDown size={16} className="text-gray-500" />
@@ -544,7 +587,10 @@ const UniversityMenu = () => {
                                     className="flex items-center py-2 text-sm text-gray-700 hover:text-blue-700 transition-colors"
                                     onClick={closeAllMenus}
                                   >
-                                    <ItemIcon size={16} className="mr-3 text-gray-500" />
+                                    <ItemIcon
+                                      size={16}
+                                      className="mr-3 text-gray-500"
+                                    />
                                     {item.name}
                                   </Link>
                                 </motion.div>
