@@ -134,7 +134,7 @@ const LeadershipSection = () => {
           variants={fadeUp}
         >
           <motion.h2
-            className="text-emerald-600 font-semibold uppercase tracking-wide text-sm mb-4"
+            className="text-blue-600 font-semibold uppercase tracking-wide text-sm mb-4"
             variants={fadeUp}
           >
             Leadership Excellence
@@ -180,16 +180,16 @@ const LeadershipSection = () => {
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
-                className="flex items-center p-3 bg-emerald-50 rounded-lg"
+                className="flex items-center p-3 bg-blue-50 rounded-lg"
                 variants={fadeUp}
                 custom={index}
                 whileHover={{ scale: 1.02 }}
               >
-                <div className="flex items-center justify-center w-10 h-10 bg-emerald-100 text-emerald-600 rounded-full mr-3">
+                <div className="flex items-center justify-center w-10 h-10 bg-blue-100 text-blue-600 rounded-full mr-3">
                   {stat.icon}
                 </div>
                 <div>
-                  <div className="text-lg font-bold text-emerald-700">
+                  <div className="text-lg font-bold text-blue-700">
                     {stat.value}
                   </div>
                   <div className="text-xs text-gray-600">{stat.label}</div>
@@ -236,7 +236,7 @@ const LeadershipSection = () => {
                   {leader.name}
                 </motion.h4>
                 <motion.p
-                  className="text-emerald-600 font-medium mb-4"
+                  className="text-blue-600 font-medium mb-4"
                   variants={fadeUp}
                 >
                   {leader.title}
@@ -250,18 +250,18 @@ const LeadershipSection = () => {
 
                 {/* Quote */}
                 <motion.div
-                  className="bg-emerald-50 rounded-lg p-4 mb-4 border-l-4 border-emerald-500"
+                  className="bg-blue-50 rounded-lg p-4 mb-4 border-l-4 border-blue-500"
                   variants={fadeUp}
                 >
-                  <Quote className="w-4 h-4 text-emerald-600 mb-1" />
-                  <p className="text-sm text-emerald-700 italic">
+                  <Quote className="w-4 h-4 text-blue-600 mb-1" />
+                  <p className="text-sm text-blue-700 italic">
                     "{leader.quote}"
                   </p>
                 </motion.div>
 
                 {/* Achievements */}
                 <motion.div className="space-y-2" variants={fadeUp}>
-                  <div className="flex items-center text-sm text-emerald-700 font-medium">
+                  <div className="flex items-center text-sm text-blue-700 font-medium">
                     <Award className="w-4 h-4 mr-2" />
                     Key Achievements
                   </div>
@@ -274,7 +274,7 @@ const LeadershipSection = () => {
                         variants={fadeUp}
                         custom={i}
                       >
-                        <ChevronRight className="w-4 h-4 text-emerald-500 mr-1 mt-0.5 flex-shrink-0" />
+                        <ChevronRight className="w-4 h-4 text-blue-500 mr-1 mt-0.5 flex-shrink-0" />
                         <span>{achievement}</span>
                       </motion.li>
                     ))}

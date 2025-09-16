@@ -118,7 +118,7 @@ const Events = () => {
         {/* Animated Heading */}
 
         <motion.h3
-          className="font-semibold uppercase tracking-wide text-sm mb-4 text-emerald-600 "
+          className="font-semibold uppercase tracking-wide text-sm mb-4 text-blue-600 "
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -143,7 +143,7 @@ const Events = () => {
           custom={i}
           variants={letterAnimationHeading}
           style={{ display: "inline-block" }}
-          className={word === "Events" ? "text-emerald-600" : ""}
+          className={word === "Events" ? "text-blue-600" : ""}
         >
           {char}
         </motion.span>
@@ -186,8 +186,8 @@ const Events = () => {
                 viewport={{ once: true, amount: 0.4 }}
               >
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="flex items-center text-emerald-600 font-semibold text-sm">
-                    <div className="flex items-center p-2 bg-emerald-100 rounded-2xl font-semibold text-sm">
+                  <div className="flex items-center text-blue-600 font-semibold text-sm">
+                    <div className="flex items-center p-2 bg-blue-100 rounded-2xl font-semibold text-sm">
                       <Clock className="w-4 h-4 mr-1" />
                       {time}
                     </div>
@@ -197,11 +197,11 @@ const Events = () => {
                 </div>
                 <h3 className="text-3xl font-extrabold mb-5">{title}</h3>
                 <p className="text-lg leading-relaxed mb-6">{description}</p>
-                <div className="flex items-center text-emerald-700 font-medium">
+                <div className="flex items-center text-blue-700 font-medium">
                   <MapPin className="w-4 h-4 mr-2" />
                   {location}
                 </div>
-                <button className="mt-6 inline-flex items-center px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors duration-300">
+                <button className="mt-6 inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300">
                   Register Now
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </button>
@@ -222,7 +222,7 @@ const Events = () => {
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
-                <div className="absolute top-4 right-4 bg-emerald-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
                   Featured Event
                 </div>
               </motion.div>
@@ -253,23 +253,23 @@ const Events = () => {
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
-                <div className="absolute top-4 left-4 bg-white text-emerald-600 px-3 py-1 rounded-full text-sm font-medium flex items-center">
+                <div className="absolute top-4 left-4 bg-white text-blue-600 px-3 py-1 rounded-full text-sm font-medium flex items-center">
                   <Calendar className="w-3 h-3 mr-1" />
                   {date}
                 </div>
               </div>
               <div className="p-6 flex flex-col flex-grow">
-                <div className="flex items-center text-sm text-emerald-600 mb-3">
+                <div className="flex items-center text-sm text-blue-600 mb-3">
                   <Clock className="w-4 h-4 mr-1" />
                   {time}
                 </div>
                 <h4 className="text-xl font-semibold mb-3 text-gray-800">{title}</h4>
                 <p className="text-gray-600 mb-4 flex-grow">{description}</p>
-                <div className="flex items-center text-sm text-emerald-700 mb-4">
+                <div className="flex items-center text-sm text-blue-700 mb-4">
                   <MapPin className="w-4 h-4 mr-1" />
                   {location}
                 </div>
-                <button className="w-full py-2 bg-emerald-50 text-emerald-600 rounded-lg hover:bg-emerald-100 transition-colors duration-300 flex items-center justify-center">
+                <button className="w-full py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors duration-300 flex items-center justify-center">
                   Learn More
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </button>

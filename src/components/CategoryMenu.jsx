@@ -23,18 +23,16 @@ import {
   Library,
   Mic,
   BarChart3,
-  HeartHandshake,
   Star,
-  Trophy,
-  ChevronRight
+  Trophy
 } from "lucide-react";
 
 // Affiliations data
 const affiliations = [
-  { Icon: Award, label: "Best Result", color: "text-red-500" },
-  { Icon: Star, label: "Quality Education", color: "text-blue-500" },
-  { Icon: Trophy, label: "Placement", color: "text-amber-500" },
-  { Icon: GraduationCap, label: "Mentor", color: "text-purple-500" },
+  { Icon: Award, label: "Best Result" },
+  { Icon: Star, label: "Quality Education" },
+  { Icon: Trophy, label: "Placement" },
+  { Icon: GraduationCap, label: "Mentor" },
 ];
 
 // Main categories with expanded details
@@ -43,20 +41,12 @@ const mainCategories = [
     name: "Home",
     path: "/",
     icon: Home,
-    color: "text-teal-600",
-    bgColor: "bg-teal-500",
-    gradient: "from-teal-500 to-teal-600",
-    hoverGradient: "hover:from-teal-600 hover:to-teal-700",
     description: "Welcome to Krishna Engineering College"
   },
   {
     name: "About",
     path: "/about",
     icon: Users,
-    color: "text-indigo-600",
-    bgColor: "bg-indigo-500",
-    gradient: "from-indigo-500 to-indigo-600",
-    hoverGradient: "hover:from-indigo-600 hover:to-indigo-700",
     description: "Discover our history and leadership",
     submenu: [
       { 
@@ -95,10 +85,6 @@ const mainCategories = [
     name: "Academics",
     path: "/departments",
     icon: BookOpen,
-    color: "text-purple-600",
-    bgColor: "bg-purple-500",
-    gradient: "from-purple-500 to-purple-600",
-    hoverGradient: "hover:from-purple-600 hover:to-purple-700",
     description: "Programs and departments",
     submenu: [
       { 
@@ -131,12 +117,7 @@ const mainCategories = [
     name: "Admission",
     path: "/admission",
     icon: GraduationCap,
-    color: "text-emerald-600",
-    bgColor: "bg-emerald-500",
-    gradient: "from-emerald-500 to-emerald-600",
-    hoverGradient: "hover:from-emerald-600 hover:to-emerald-700",
     description: "Join our institution",
-    highlight: true,
     submenu: [
       { 
         name: "Process", 
@@ -155,13 +136,6 @@ const mainCategories = [
         path: "/admission#scholarships",
         icon: Award,
         description: "Financial assistance" 
-      },
-      { 
-        name: "Apply Now", 
-        path: "/apply",
-        icon: HeartHandshake,
-        description: "Start your application",
-        highlight: true
       }
     ]
   },
@@ -169,10 +143,6 @@ const mainCategories = [
     name: "Campus",
     path: "/facilities",
     icon: Building,
-    color: "text-amber-600",
-    bgColor: "bg-amber-500",
-    gradient: "from-amber-500 to-amber-600",
-    hoverGradient: "hover:from-amber-600 hover:to-amber-700",
     description: "Our facilities and infrastructure",
     submenu: [
       { 
@@ -199,10 +169,6 @@ const mainCategories = [
     name: "Placements",
     path: "/placements",
     icon: Briefcase,
-    color: "text-blue-600",
-    bgColor: "bg-blue-500",
-    gradient: "from-blue-500 to-blue-600",
-    hoverGradient: "hover:from-blue-600 hover:to-blue-700",
     description: "Career opportunities",
     submenu: [
       { 
@@ -229,10 +195,6 @@ const mainCategories = [
     name: "Connect",
     path: "#",
     icon: Bookmark,
-    color: "text-gray-600",
-    bgColor: "bg-gray-500",
-    gradient: "from-gray-500 to-gray-600",
-    hoverGradient: "hover:from-gray-600 hover:to-gray-700",
     description: "More ways to engage",
     submenu: [
       { 
@@ -346,45 +308,65 @@ const UniversityMenu = () => {
   };
 
   return (
-    <div className="bg-white shadow-lg border-b border-gray-100 sticky top-0 z-50">
-      {/* Affiliations Bar - Desktop */}
-      <div className="hidden lg:block bg-gray-50 border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex items-center justify-center py-2">
-            <div className="flex items-center space-x-6">
-              {affiliations.map((affiliation, index) => {
-                const IconComponent = affiliation.Icon;
-                return (
-                  <div key={index} className="flex items-center group">
-                    <div className={`p-2 rounded-full bg-white shadow-sm group-hover:shadow-md transition-shadow ${affiliation.color}`}>
-                      <IconComponent size={16} />
-                    </div>
-                    <span className="ml-2 text-sm font-medium text-gray-700">{affiliation.label}</span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </div>
-
+    <div className="bg-white shadow-md border-b border-gray-100 sticky top-0 z-50">
+      {/* Top Bar with Logo and Affiliations */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between py-1">
+        <div className="flex items-center justify-between py-3">
           {/* Logo */}
           <div className="flex-shrink-0">
             <div className="flex items-center">
-              <img src="/images/2025-08-27 19.10.46.jpg" className="w-14 h-14 rounded-full p-1 object-cover"></img>
-              <div className=" sm:block ml-3">
+              <img 
+                src="/images/2025-08-27 19.10.46.jpg" 
+                className="w-14 h-14 rounded-full p-1 object-cover border border-gray-200" 
+                alt="Krishna Engineering College Logo"
+              />
+              <div className="ml-3">
                 <h1 className="text-lg md:text-xl font-bold text-gray-900">KRISHNA</h1>
                 <p className="text-xs text-gray-600 -mt-1">ENGINEERING COLLEGE</p> 
-                <span className="text-xs text-blue-600 font-medium md:text-sm">Managed By KPS GROUP</span> 
+                <span className="text-xs text-blue-700 font-medium md:text-sm">Managed By KPS GROUP</span> 
               </div>
             </div>
           </div>
           
-          {/* Desktop Menu Items - Centered */}
-          <div className="hidden lg:flex items-center justify-center flex-1 mx-4">
-            <div className="flex space-x-1 justify-center">
+          {/* Affiliations - Right Side */}
+          <div className="hidden md:flex items-center space-x-4 lg:space-x-6">
+            {affiliations.map((affiliation, index) => {
+              const IconComponent = affiliation.Icon;
+              return (
+                <div key={index} className="flex items-center group">
+                  <div className="p-2 rounded-full bg-gray-100 group-hover:bg-blue-50 transition-colors text-blue-700">
+                    <IconComponent size={16} />
+                  </div>
+                  <span className="ml-2 text-sm font-medium text-gray-700 hidden lg:inline">
+                    {affiliation.label}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Mobile menu button */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:bg-gray-100 transition-colors"
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop Navigation Menu with Mega Menu */}
+      <div className="hidden md:block border-t border-gray-100 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="flex justify-center">
+            <div className="flex space-x-1">
               {mainCategories.map((category) => {
                 const IconComponent = category.icon;
                 
@@ -400,263 +382,185 @@ const UniversityMenu = () => {
                   >
                     <Link
                       to={category.path}
-                      className={`flex flex-col items-center px-4 py-3 text-sm font-medium rounded-lg mx-1 transition-all duration-300 ${category.hoverGradient} group-hover:text-white ${category.color}`}
+                      className="flex items-center px-4 py-3 text-sm font-medium text-gray-700 hover:text-blue-700 transition-colors group-hover:bg-blue-50 rounded-t-lg"
                     >
-                      <div className="relative">
-                        <IconComponent size={20} className="mb-1 transition-transform duration-300 group-hover:scale-110" />
-                        {category.highlight && (
-                          <span className="absolute -top-1 -right-2 h-2 w-2">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                          </span>
-                        )}
-                      </div>
-                      <span className="text-xs font-semibold tracking-wide">{category.name}</span>
-                      
-                      {/* Animated background */}
-                      <div className={`absolute inset-0 bg-gradient-to-r ${category.gradient} rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10`}></div>
+                      <IconComponent size={18} className="mr-1" />
+                      {category.name}
+                      {category.submenu && (
+                        <ChevronDown size={16} className="ml-1 transition-transform group-hover:rotate-180" />
+                      )}
                     </Link>
 
-                    {/* Mega Dropdown Submenu - Centered */}
-                   {category.submenu && activeMenu === category.name && (
+                    {/* Mega Menu Dropdown */}
+                    {category.submenu && activeMenu === category.name && (
   <motion.div
-    className="absolute left-1/2 transform -translate-x-1/2 mt-1 w-[600px] rounded-xl shadow-2xl bg-white ring-1 ring-gray-200 z-50 overflow-hidden"
-    onMouseEnter={() => setActiveMenu(category.name)}
-    onMouseLeave={() => setActiveMenu(null)}
-    initial={{ opacity: 0, y: -20, scale: 0.95 }}
-    animate={{ opacity: 1, y: 0, scale: 1 }}
-    exit={{ opacity: 0, y: -20, scale: 0.95 }}
-    transition={{ duration: 0.3, ease: "easeInOut" }}
+    className="absolute top-full left-1/2 transform -translate-x-1/2 min-w-[600px] max-w-[90vw] rounded-b-lg shadow-xl bg-white border border-gray-200 z-50 overflow-hidden"
+    initial={{ opacity: 0, y: -10 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -10 }}
+    transition={{ duration: 0.2 }}
   >
-    {/* Header */}
-    <div className={`py-4 px-6 bg-gradient-to-r ${category.gradient} text-white`}>
-      <div className="flex items-center">
-        <IconComponent size={24} className="mr-3 " />
-        <div>
-          <h3 className="text-xl font-bold">{category.name}</h3>
-          <p className="text-sm opacity-90">{category.description}</p>
-        </div>
-      </div>
-    </div>
 
-    {/* Menu Items with staggered animation */}
-    <motion.div
-      className="p-6 grid grid-cols-2 gap-4"
-      initial="hidden"
-      animate="visible"
-      exit="hidden"
-      variants={{
-        hidden: {},
-        visible: {
-          transition: {
-            staggerChildren: 0.05,
-          },
-        },
-      }}
-    >
-      {category.submenu.map((item) => {
-        const ItemIcon = item.icon;
-        return (
-          <motion.div
-            key={item.name}
-            variants={{
-              hidden: { opacity: 0, y: 10 },
-              visible: { opacity: 1, y: 0 },
-            }}
-          >
-            <Link
-              to={item.path}
-              className={`flex items-start p-4 rounded-lg transition-all duration-200 ${
-                hoveredItem === item.name
-                  ? "bg-gray-50 transform scale-[1.02] shadow-md"
-                  : "hover:bg-gray-50"
-              }`}
-              onClick={closeAllMenus}
-              onMouseEnter={() => setHoveredItem(item.name)}
-              onMouseLeave={() => setHoveredItem(null)}
-            >
-              <div
-                className={`flex-shrink-0 h-10 w-10 rounded-lg ${category.bgColor} bg-opacity-10 flex items-center justify-center mr-4`}
-              >
-                <ItemIcon size={18} className="text-white" />
-              </div>
-              <div>
-                <div className="flex items-center">
-                  <h4 className="font-semibold text-gray-900">{item.name}</h4>
-                  {item.highlight && (
-                    <span className="ml-2 bg-emerald-500 text-white text-xs px-2 py-1 rounded-full">
-                      Featured
-                    </span>
-                  )}
-                </div>
-                <p className="text-sm text-gray-600 mt-1">{item.description}</p>
-              </div>
-            </Link>
-          </motion.div>
-        );
-      })}
-    </motion.div>
-  </motion.div>
-)}
+                        {/* Mega Menu Header */}
+                        <div className="bg-blue-800 text-white py-4 px-6">
+                          <div className="flex items-center">
+                            <IconComponent size={24} className="mr-3" />
+                            <div>
+                              <h3 className="text-xl font-bold">{category.name}</h3>
+                              <p className="text-sm opacity-90">{category.description}</p>
+                            </div>
+                          </div>
+                        </div>
 
+                        {/* Mega Menu Content */}
+                        <div className="p-6 grid grid-cols-2 gap-4">
+                          {category.submenu.map((item) => {
+                            const ItemIcon = item.icon;
+                            return (
+                              <motion.div
+                                key={item.name}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.1 }}
+                              >
+                                <Link
+                                  to={item.path}
+                                  className={`flex items-start p-3 rounded-lg transition-all duration-200 ${
+                                    hoveredItem === item.name
+                                      ? "bg-blue-50 transform scale-[1.02] shadow-md"
+                                      : "hover:bg-blue-50"
+                                  }`}
+                                  onClick={closeAllMenus}
+                                  onMouseEnter={() => setHoveredItem(item.name)}
+                                  onMouseLeave={() => setHoveredItem(null)}
+                                >
+                                  <div className="flex-shrink-0 h-10 w-10 rounded-lg bg-blue-100 flex items-center justify-center mr-3">
+                                    <ItemIcon size={18} className="text-blue-700" />
+                                  </div>
+                                  <div>
+                                    <h4 className="font-semibold text-gray-900">{item.name}</h4>
+                                    <p className="text-sm text-gray-600 mt-1">{item.description}</p>
+                                  </div>
+                                </Link>
+                              </motion.div>
+                            );
+                          })}
+                        </div>
+                      </motion.div>
+                    )}
                   </div>
                 );
               })}
             </div>
           </div>
-
-          {/* CTA Button - Desktop */}
-          <div className="hidden lg:block ml-6">
-            <Link
-              to="/apply"
-              className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold px-4 py-2 md:px-6 md:py-3 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center"
-              onClick={closeAllMenus}
-            >
-              <HeartHandshake size={18} className="mr-2" />
-              <span className="hidden sm:inline">Apply Now</span>
-            </Link>
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="lg:hidden">
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:bg-gray-100 transition-colors"
-              aria-label="Toggle menu"
-            >
-              {mobileMenuOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
-            </button>
-          </div>
         </div>
+      </div>
 
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <motion.div 
-              className="lg:hidden bg-white border-t border-gray-200"
-              initial="closed"
-              animate="open"
-              exit="closed"
-              variants={mobileMenuVariants}
-            >
-              {/* Mobile Affiliations */}
-              <div className="px-4 py-3 border-b border-gray-200 bg-gray-50">
-                <h3 className="text-sm font-semibold text-gray-700 mb-2 text-center">RECOGNITIONS & AWARDS</h3>
-                <div className="grid grid-cols-2 gap-2">
-                  {affiliations.map((affiliation, index) => {
-                    const IconComponent = affiliation.Icon;
-                    return (
-                      <motion.div 
-                        key={index} 
-                        className="flex items-center justify-center p-2 bg-white rounded-lg border border-gray-200"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                      >
-                        <IconComponent size={16} className={`mr-2 ${affiliation.color}`} />
-                        <span className="text-xs text-gray-700">{affiliation.label}</span>
-                      </motion.div>
-                    );
-                  })}
-                </div>
-              </div>
-
-              <div className="py-4 space-y-1">
-                {mainCategories.map((category) => {
-                  const IconComponent = category.icon;
-                  const hasSubmenu = category.submenu && category.submenu.length > 0;
-                  
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div 
+            className="md:hidden bg-white border-t border-gray-200"
+            initial="closed"
+            animate="open"
+            exit="closed"
+            variants={mobileMenuVariants}
+          >
+            {/* Mobile Affiliations */}
+            <div className="px-4 py-3 border-b border-gray-200 bg-gray-50">
+              <h3 className="text-sm font-semibold text-gray-700 mb-2">RECOGNITIONS & AWARDS</h3>
+              <div className="grid grid-cols-2 gap-2">
+                {affiliations.map((affiliation, index) => {
+                  const IconComponent = affiliation.Icon;
                   return (
-                    <div key={category.name} className="border-b border-gray-100 last:border-b-0">
-                      <div 
-                        className={`flex items-center justify-between px-4 py-3 rounded-lg ${hasSubmenu ? 'cursor-pointer' : ''}`}
-                        onClick={() => hasSubmenu && setMobileSubmenu(mobileSubmenu === category.name ? null : category.name)}
-                      >
-                        <Link
-                          to={category.path}
-                          className={`flex items-center font-medium ${category.color}`}
-                          onClick={!hasSubmenu ? closeAllMenus : undefined}
-                        >
-                          <IconComponent size={20} className="mr-3" />
-                          {category.name}
-                          {category.highlight && (
-                            <span className="ml-2 bg-emerald-500 text-white text-xs px-2 py-0.5 rounded-full">New</span>
-                          )}
-                        </Link>
-                        
-                        {hasSubmenu && (
-                          <motion.div
-                            variants={chevronVariants}
-                            animate={mobileSubmenu === category.name ? "open" : "closed"}
-                            transition={{ duration: 0.2 }}
-                          >
-                            <ChevronDown size={16} className="text-gray-500" />
-                          </motion.div>
-                        )}
-                      </div>
-
-                      {/* Mobile Submenu */}
-                      <AnimatePresence>
-                        {hasSubmenu && mobileSubmenu === category.name && (
-                          <motion.div
-                            className="bg-gray-50 pl-12 pr-4"
-                            initial="closed"
-                            animate="open"
-                            exit="closed"
-                            variants={subMenuVariants}
-                          >
-                            <div className="py-2 space-y-2">
-                              {category.submenu.map((item) => {
-                                const ItemIcon = item.icon;
-                                return (
-                                  <motion.div
-                                    key={item.name}
-                                    initial={{ opacity: 0, x: -20 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: 0.1 }}
-                                  >
-                                    <Link
-                                      to={item.path}
-                                      className="flex items-center py-2 text-sm text-gray-700 hover:text-gray-900 transition-colors"
-                                      onClick={closeAllMenus}
-                                    >
-                                      <ItemIcon size={16} className="mr-3 text-gray-500" />
-                                      {item.name}
-                                      {item.highlight && (
-                                        <span className="ml-2 bg-emerald-500 text-white text-xs px-2 py-0.5 rounded-full">Featured</span>
-                                      )}
-                                    </Link>
-                                  </motion.div>
-                                );
-                              })}
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
+                    <motion.div 
+                      key={index} 
+                      className="flex items-center p-2 bg-white rounded-lg border border-gray-200"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                    >
+                      <IconComponent size={16} className="mr-2 text-blue-700" />
+                      <span className="text-xs text-gray-700">{affiliation.label}</span>
+                    </motion.div>
                   );
                 })}
-                
-                {/* Mobile CTA Button */}
-                <div className="px-4 py-3 mt-4">
-                  <Link
-                    to="/apply"
-                    className=" w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold text-center px-4 py-3 rounded-lg shadow-md transition-all duration-300 flex items-center justify-center"
-                    onClick={closeAllMenus}
-                  >
-                    <HeartHandshake size={18} className="mr-2" />
-                    Apply Now
-                  </Link>
-                </div>
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+            </div>
+
+            <div className="py-2 space-y-1">
+              {mainCategories.map((category) => {
+                const IconComponent = category.icon;
+                const hasSubmenu = category.submenu && category.submenu.length > 0;
+                
+                return (
+                  <div key={category.name} className="border-b border-gray-100 last:border-b-0">
+                    <div 
+                      className={`flex items-center justify-between px-4 py-3 ${hasSubmenu ? 'cursor-pointer' : ''}`}
+                      onClick={() => hasSubmenu && setMobileSubmenu(mobileSubmenu === category.name ? null : category.name)}
+                    >
+                      <Link
+                        to={category.path}
+                        className="flex items-center font-medium text-gray-700"
+                        onClick={!hasSubmenu ? closeAllMenus : undefined}
+                      >
+                        <IconComponent size={20} className="mr-3 text-blue-700" />
+                        {category.name}
+                      </Link>
+                      
+                      {hasSubmenu && (
+                        <motion.div
+                          variants={chevronVariants}
+                          animate={mobileSubmenu === category.name ? "open" : "closed"}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <ChevronDown size={16} className="text-gray-500" />
+                        </motion.div>
+                      )}
+                    </div>
+
+                    {/* Mobile Submenu */}
+                    <AnimatePresence>
+                      {hasSubmenu && mobileSubmenu === category.name && (
+                        <motion.div
+                          className="bg-gray-50 pl-12 pr-4"
+                          initial="closed"
+                          animate="open"
+                          exit="closed"
+                          variants={subMenuVariants}
+                        >
+                          <div className="py-2 space-y-2">
+                            {category.submenu.map((item) => {
+                              const ItemIcon = item.icon;
+                              return (
+                                <motion.div
+                                  key={item.name}
+                                  initial={{ opacity: 0, x: -20 }}
+                                  animate={{ opacity: 1, x: 0 }}
+                                  transition={{ delay: 0.1 }}
+                                >
+                                  <Link
+                                    to={item.path}
+                                    className="flex items-center py-2 text-sm text-gray-700 hover:text-blue-700 transition-colors"
+                                    onClick={closeAllMenus}
+                                  >
+                                    <ItemIcon size={16} className="mr-3 text-gray-500" />
+                                    {item.name}
+                                  </Link>
+                                </motion.div>
+                              );
+                            })}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

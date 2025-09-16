@@ -94,7 +94,7 @@ const DepartmentsSection = () => {
   const heading = "Explore Our Engineering Departments";
 
   return (
-    <section className="w-full bg-gradient-to-b from-gray-50 to-emerald-50 py-12 md:py-16 px-4 sm:px-6">
+    <section className="w-full bg-gradient-to-b from-gray-50 to-blue-50 py-12 md:py-16 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -107,7 +107,7 @@ const DepartmentsSection = () => {
           <div className="lg:w-2/5">
 
           <motion.h3
-      className="text-emerald-600 font-semibold uppercase tracking-wide text-sm mb-4"
+      className="text-blue-600 font-semibold uppercase tracking-wide text-sm mb-4"
       variants={textItemVariants}
       style={{ fontFamily: "'Poppins', sans-serif" }}
     >
@@ -145,7 +145,7 @@ const DepartmentsSection = () => {
                 onClick={() => setActiveDept(index)}
                 className={`w-3 h-3 rounded-full transition-all ${
                   activeDept === index
-                    ? "bg-emerald-700 scale-110"
+                    ? "bg-blue-700 scale-110"
                     : "bg-gray-300 hover:bg-gray-400"
                 }`}
                 aria-label={`View department ${index + 1}`}
@@ -182,7 +182,7 @@ const DepartmentsSection = () => {
 
                 {/* Category Tag */}
                 <div className="absolute top-4 left-4 z-20 flex items-center">
-                  <span className="px-3 py-1 bg-emerald-700 text-white text-xs sm:text-sm font-medium rounded-full shadow-md flex items-center">
+                  <span className="px-3 py-1 bg-blue-700 text-white text-xs sm:text-sm font-medium rounded-full shadow-md flex items-center">
                     <img
                       src={departments[activeDept].iconImg}
                       alt={departments[activeDept].category}
@@ -195,7 +195,7 @@ const DepartmentsSection = () => {
                 </div>
 
                 {/* Student Count */}
-                <div className="absolute top-4 right-4 z-20 flex items-center text-white/90 text-xs sm:text-sm bg-emerald-800/80 px-3 py-1 rounded-full">
+                <div className="absolute top-4 right-4 z-20 flex items-center text-white/90 text-xs sm:text-sm bg-blue-800/80 px-3 py-1 rounded-full">
                   <Users className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
                   {departments[activeDept].students} Students
                 </div>
@@ -224,14 +224,14 @@ const DepartmentsSection = () => {
                   </motion.p>
                   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
                     <motion.span
-                      className="inline-flex items-center text-emerald-300 text-sm font-medium bg-emerald-900/30 px-3 py-1 rounded-full"
+                      className="inline-flex items-center text-blue-300 text-sm font-medium bg-blue-900/30 px-3 py-1 rounded-full"
                       variants={textItemVariants}
                     >
                       <BookOpen className="w-4 h-4 mr-1" />
                       {departments[activeDept].courses} Courses
                     </motion.span>
                     <motion.button
-                      className="inline-flex items-center text-white font-medium group-hover:text-emerald-300 transition-colors text-sm sm:text-base"
+                      className="inline-flex items-center text-white font-medium group-hover:text-blue-300 transition-colors text-sm sm:text-base"
                       variants={textItemVariants}
                       style={{ fontFamily: "'Poppins', sans-serif" }}
                     >
@@ -266,7 +266,7 @@ const DepartmentsSection = () => {
                   onClick={() => setActiveDept(index)}
                   className={`p-4 sm:p-5 rounded-xl cursor-pointer transition-all ${
                     activeDept === index
-                      ? "bg-emerald-50 border-l-4 border-emerald-700 shadow-sm"
+                      ? "bg-blue-50 border-l-4 border-blue-700 shadow-sm"
                       : "bg-white hover:bg-gray-50 shadow-sm"
                   }`}
                   whileHover={{ y: -5 }}
@@ -282,7 +282,7 @@ const DepartmentsSection = () => {
                     </div>
                     <div className="flex-1 min-w-0">
                       <div
-                        className="flex items-center text-xs text-emerald-700 font-medium mb-1"
+                        className="flex items-center text-xs text-blue-700 font-medium mb-1"
                         style={{ fontFamily: "'Poppins', sans-serif" }}
                       >
                         {dept.category}
@@ -294,7 +294,7 @@ const DepartmentsSection = () => {
                         {dept.title}
                       </h4>
                       <div
-                        className="flex items-center text-emerald-700 text-xs font-medium mt-2"
+                        className="flex items-center text-blue-700 text-xs font-medium mt-2"
                         style={{ fontFamily: "'Poppins', sans-serif" }}
                       >
                         View details <ChevronRight className="w-3 h-3 ml-1" />

@@ -38,10 +38,7 @@ const Layout = () => {
       <ScrollToTop />
       <Topbar />
       
-      {/* Navbar */}
-      <header>
-       
-      </header>
+     
 
       <CategoryMenu />
 
