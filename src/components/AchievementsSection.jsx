@@ -1,13 +1,14 @@
 "use client";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { ChevronRight, Award, Users, BookOpen, Star } from "lucide-react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { motion } from "framer-motion";
+gsap.registerPlugin(ScrollTrigger);
 
-// Fonts
 const headingFont = { fontFamily: "'Playfair Display', serif" };
 const bodyFont = { fontFamily: "'Lora', serif" };
 
-// Achievements data
 const achievements = [
   {
     number: "65+",
@@ -43,16 +44,50 @@ const achievements = [
   },
 ];
 
-const letterAnimation = {
-  hidden: { opacity: 0, y: 50 },
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.05, duration: 0.5 },
-  }),
-};
-
 const AchievementsSection = () => {
+  const headingRef = useRef(null);
+  const cardsRef = useRef([]);
+
+  useEffect(() => {
+    // Animate header letters with wave effect
+    const letters = headingRef.current.querySelectorAll(".letter");
+    gsap.fromTo(
+      letters,
+      { opacity: 0, y: 50, scale: 0.8 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.8,
+        stagger: 0.05,
+        ease: "bounce.out",
+        scrollTrigger: {
+          trigger: headingRef.current,
+          start: "top 80%",
+        },
+      }
+    );
+
+    // Animate each card
+    cardsRef.current.forEach((card) => {
+      gsap.fromTo(
+        card,
+        { opacity: 0, y: 50, scale: 0.9 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 90%",
+          },
+        }
+      );
+    });
+  }, []);
+
   return (
     <section
       className="py-24 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden"
@@ -72,23 +107,15 @@ const AchievementsSection = () => {
             Our Excellence
           </p>
 
-          {/* Letter Animation */}
           <h2
+            ref={headingRef}
             className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 flex flex-wrap"
             style={headingFont}
           >
             {"Our Achievements".split("").map((char, i) => (
-              <motion.span
-                key={i}
-                custom={i}
-                variants={letterAnimation}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="inline-block"
-              >
+              <span key={i} className="letter inline-block">
                 {char === " " ? "\u00A0" : char}
-              </motion.span>
+              </span>
             ))}
           </h2>
 
@@ -100,7 +127,7 @@ const AchievementsSection = () => {
           <motion.div
             className="flex"
             animate={{
-              x: ["0%", "-50%"], // keeps sliding seamlessly
+              x: ["0%", "-50%"],
             }}
             transition={{
               x: {
@@ -112,7 +139,11 @@ const AchievementsSection = () => {
             }}
           >
             {[...achievements, ...achievements].map((achieve, index) => (
-              <div key={index} className="flex-shrink-0 w-[350px] mx-4">
+              <div
+                key={index}
+                className="flex-shrink-0 w-[350px] mx-4"
+                ref={(el) => (cardsRef.current[index] = el)}
+              >
                 <AchievementCard achieve={achieve} headingFont={headingFont} />
               </div>
             ))}
@@ -138,40 +169,27 @@ const AchievementsSection = () => {
   );
 };
 
-// Separate component for the achievement card
 const AchievementCard = ({ achieve, headingFont }) => {
   return (
     <div className="relative w-full h-[500px] overflow-hidden group cursor-pointer rounded-2xl shadow-lg">
-      {/* Background Image */}
       <img
         src={achieve.image}
         alt={achieve.label}
         className="w-full h-full object-cover absolute inset-0 transform group-hover:scale-110 transition-transform duration-700"
       />
-
-      {/* Overlay */}
       <div className="absolute inset-0 bg-black/40" />
-
-      {/* Content */}
       <div className="relative h-full flex flex-col justify-end p-6">
         <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20 shadow-2xl">
-          {/* Number */}
           <div className="text-4xl font-bold text-white mb-2">{achieve.number}</div>
-
-          {/* Icon */}
           <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mb-4">
             <div className="text-white">{achieve.icon}</div>
           </div>
-
-          {/* Label */}
           <h3 className="text-white text-lg font-bold mb-2" style={headingFont}>
             {achieve.label}
           </h3>
-
-          {/* Description */}
-          <p className="text-gray-200 text-sm leading-relaxed mb-4 line-clamp-3">{achieve.description}</p>
-
-          {/* Hover CTA */}
+          <p className="text-gray-200 text-sm leading-relaxed mb-4 line-clamp-3">
+            {achieve.description}
+          </p>
           <div className="flex items-center text-blue-200 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <span>Learn more</span>
             <ChevronRight className="w-4 h-4 ml-1" />
