@@ -1,353 +1,274 @@
-import React, { useEffect, useRef } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, Autoplay, Pagination } from "swiper/modules";
-import { motion, useAnimation, useInView } from "framer-motion";
-import { GraduationCap, Star, Quote, Briefcase, MapPin } from "lucide-react";
-// Swiper styles
-import "swiper/css";
-import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
+"use client";
+import React, { useState, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Quote, ChevronLeft, ChevronRight, Users, Briefcase, Award, Star } from "lucide-react";
 
-// StaggeredFade component for letter-by-letter or block animation
-const StaggeredFade = ({ text, className = "", split = true }) => {
-  const ref = useRef(null);
-  const controls = useAnimation();
-  const isInView = useInView(ref, { once: true });
-
-  useEffect(() => {
-    if (isInView) controls.start("visible");
-  }, [controls, isInView]);
-
-  const container = split
-    ? {
-        hidden: { opacity: 0 },
-        visible: {
-          opacity: 1,
-          transition: { staggerChildren: 0.05 },
-        },
-      }
-    : {
-        hidden: { opacity: 0, y: 10 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-      };
-
-  const child = split
-    ? { hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }
-    : {};
-
-  if (split) {
-    const letters = text.split("");
-    return (
-      <motion.div
-        ref={ref}
-        variants={container}
-        initial="hidden"
-        animate={controls}
-        className={className}
-        aria-label={text}
-      >
-        {letters.map((letter, index) => (
-          <motion.span
-            key={index}
-            variants={child}
-            aria-hidden="true"
-            className={letter === " " ? "mr-1 inline-block" : "inline-block"}
-          >
-            {letter}
-          </motion.span>
-        ))}
-      </motion.div>
-    );
-  }
-
-  return (
-    <motion.p
-      ref={ref}
-      variants={container}
-      initial="hidden"
-      animate={controls}
-      className={className}
-    >
-      {text}
-    </motion.p>
-  );
-};
-
-// Variants for alumni cards animation
-const containerVariant = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
-
-const cardVariant = {
-  hidden: { opacity: 0, y: 30 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  },
-};
-
-const alumniData = [
+// Sample alumni data
+const alumni = [
   {
     name: "Sakshi",
-    batch: "B.Tech Civil, 2024",
-    role: "Fail - Exam; BSP Valuation work, Maple Architect",
-    img: "https://plus.unsplash.com/premium_photo-1682431850447-0318570fcdec?q=80&w=2144&auto=format&fit=crop",
+    branch: "B.Tech Civil 2020",
+    img: "https://picsum.photos/200/200?random=5",
     quote:
-      "KEC gave me the foundation and confidence to pursue my dream career in civil engineering.",
-    rating: 5,
-    company: "BSP Valuation",
-    location: "Raipur, India",
+      "KEC gave me the foundation and confidence to pursue my dream career in civil engineering. The professors provided personalized guidance, the labs were equipped with state-of-the-art facilities, and the curriculum prepared me to tackle real-world engineering challenges. My experience here has truly shaped me into a competent and confident professional.",
   },
   {
-    name: "Amisha Ramteke",
-    batch: "B.Tech Civil, 2023",
-    role: "Raipur Ultratech",
-    img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=2187&auto=format&fit=crop",
+    name: "Rohit Kumar",
+    branch: "B.Tech Mechanical 2019",
+    img: "https://picsum.photos/200/200?random=6",
     quote:
-      "The practical exposure at KEC Bhilai prepared me for real-world construction challenges.",
-    rating: 4,
-    company: "Ultratech Cement",
-    location: "Raipur, India",
+      "The faculty and resources at KEC helped me excel and secure my first job with top companies. The emphasis on practical knowledge, internships, and hands-on projects made me industry-ready. I particularly valued the mentorship from senior professors, which helped me understand complex mechanical concepts and apply them effectively in real-world scenarios.",
   },
   {
-    name: "Arpit Kumar Mishra",
-    batch: "B.Tech Civil, 2023",
-    role: "Kalptaru Projects KPIL",
-    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2187&auto=format&fit=crop",
+    name: "Anjali Singh",
+    branch: "B.Tech Computer Science 2021",
+    img: "https://picsum.photos/200/200?random=7",
     quote:
-      "With the right mentorship, I developed strong technical and leadership skills at KEC.",
-    rating: 5,
-    company: "Kalptaru Projects",
-    location: "Mumbai, India",
-  },
-  {
-    name: "Aryan Dewangan",
-    batch: "B.Tech Civil, 2023",
-    role: "Works in PWD Adhoc",
-    img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=2187&auto=format&fit=crop",
-    quote:
-      "The academic environment at KEC encouraged innovation and problem-solving.",
-    rating: 4,
-    company: "PWD",
-    location: "Bhilai, India",
-  },
-  {
-    name: "Bhavna",
-    batch: "B.Tech Civil, 2023",
-    role: "Sarthi Associates, Raipur",
-    img: "https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=2186&auto=format&fit=crop",
-    quote:
-      "My journey at KEC shaped my professional and personal growth equally.",
-    rating: 5,
-    company: "Sarthi Associates",
-    location: "Raipur, India",
-  },
-  {
-    name: "Fanendra Dewangan",
-    batch: "B.Tech Civil, 2023",
-    role: "Site Engineer, Utopia Durg",
-    img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=2187&auto=format&fit=crop",
-    quote:
-      "KEC provided me with industry exposure that was vital for my career.",
-    rating: 4,
-    company: "Utopia Construction",
-    location: "Durg, India",
+      "At KEC, I learned not just technical skills but leadership and teamwork. The college fostered an environment of collaboration, innovation, and continuous learning. From coding competitions to hackathons, every opportunity helped me grow as a software developer and a leader. I am proud to be part of the KEC alumni community, which continues to inspire me every day.",
   },
 ];
 
-const AlumniSection = () => {
-  const renderStars = (rating) => {
-    return Array.from({ length: 5 }, (_, i) => (
-      <Star
-        key={i}
-        size={14}
-        className={
-          i < rating ? "text-yellow-400 fill-yellow-400" : "text-gray-300"
+// Statistics data
+const stats = [
+  { icon: Users, value: "5,000+", label: "Alumni Network" },
+  { icon: Briefcase, value: "92%", label: "Placement Rate" },
+  { icon: Award, value: "200+", label: "Companies Recruit" },
+  { icon: Star, value: "4.8/5", label: "Satisfaction Rating" },
+];
+
+const AlumniSuccessStories = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+  const activeAlumni = alumni[activeIndex];
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
         }
-      />
-    ));
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
+  const handlePrev = () => {
+    setActiveIndex((prev) => (prev === 0 ? alumni.length - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev === alumni.length - 1 ? 0 : prev + 1));
+  };
+
+  // Letter animation variants
+  const letterVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.03,
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    }),
+  };
+
+  // Split text into letters for animation
+  const AnimatedText = ({ text, className }) => {
+    return (
+      <div className={className}>
+        {text.split("").map((letter, index) => (
+          <motion.span
+            key={index}
+            custom={index}
+            variants={letterVariants}
+            initial="hidden"
+            animate={isVisible ? "visible" : "hidden"}
+          >
+            {letter === " " ? "\u00A0" : letter}
+          </motion.span>
+        ))}
+      </div>
+    );
   };
 
   return (
-    <section className="py-16 px-4 bg-white">
-      {/* Header Animation */}
-      <div className="text-center mb-12">
-        {/* Animate Badge Separately */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700 mb-6"
+    <div ref={sectionRef} className="py-16 bg-gray-50 font-inter">
+      <div className="max-w-7xl mx-auto px-6">
+        <motion.p
+          className="text-blue-700 uppercase tracking-wider text-sm font-semibold mb-3"
+          initial={{ opacity: 0, y: 10 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
         >
-          <GraduationCap className="h-4 w-4 mr-2" />
-          Alumni Success Stories
-        </motion.div>
+          Alumni Success
+        </motion.p>
 
-        {/* Animate Heading */}
-        <div className="overflow-hidden">
-          <StaggeredFade
-            text="Where Our Graduates Shine"
-            className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
-            split={true}
-          />
-        </div>
+        <AnimatedText
+          text="Alumni Success Stories"
+          className="  text-3xl md:text-5xl font-bold text-gray-900 mb-4"
+        />
 
-        {/* Animate Paragraph */}
-        <div className="overflow-hidden">
-          <StaggeredFade
-            text="Hear from our accomplished alumni about their journey at Krishna Engineering College and how it paved the way for their successful careers."
-            className="text-lg text-gray-600 max-w-3xl mx-auto"
-            split={false}
-          />
-        </div>
-      </div>
-
-      {/* Swiper with motion container */}
-      <div className="max-w-6xl mx-auto px-4">
         <motion.div
-          variants={containerVariant}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-        >
-          <Swiper
-            effect="coverflow"
-            grabCursor
-            centeredSlides
-            loop
-            autoplay={{
-              delay: 3000,
-              disableOnInteraction: false,
-            }}
-            slidesPerView={1}
-            spaceBetween={30}
-            coverflowEffect={{
-              rotate: 0,
-              stretch: 0,
-              depth: 100,
-              modifier: 2.5,
-            }}
-            pagination={{
-              clickable: true,
-              dynamicBullets: true,
-            }}
-            modules={[EffectCoverflow, Autoplay, Pagination]}
-            className="alumni-swiper"
-            breakpoints={{
-              640: { slidesPerView: 1, spaceBetween: 20 },
-              768: { slidesPerView: 2, spaceBetween: 30 },
-              1024: { slidesPerView: 3, spaceBetween: 40 },
-            }}
-          >
-            {alumniData.map((alumni, index) => (
-              <SwiperSlide key={index}>
-                <motion.div
-                  variants={cardVariant}
-                  initial="hidden"
-                  whileInView="show"
-                  viewport={{ once: true, amount: 0.3 }}
-                  whileHover={{
-                    y: -5,
-                    boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)",
-                  }}
-                  className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm h-full flex flex-col transition-all duration-300 mx-auto max-w-xs"
+          className="w-20 h-1 bg-blue-600 mt-4 mb-8"
+          initial={{ width: 0 }}
+          animate={isVisible ? { width: 80 } : { width: 0 }}
+          transition={{ delay: 0.4, duration: 0.8 }}
+        />
+
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* Left: Quote Section (70%) */}
+          <div className="lg:w-7/10 w-full bg-gradient-to-br from-blue-100 to-blue-50 p-8 md:p-10 rounded-2xl flex flex-col justify-between relative min-h-[400px] shadow-md">
+            <motion.div
+              key={activeAlumni.name}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="h-full flex flex-col justify-between"
+            >
+              <div>
+                <Quote className="text-blue-600 w-10 h-10 mb-4 md:mb-6" />
+                <motion.p
+                  className="text-lg md:text-xl text-gray-800 italic mb-4 md:mb-6 leading-relaxed"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.3, duration: 0.5 }}
                 >
-                  <div className="flex flex-col items-center text-center mb-5">
-                    <div className="relative mb-4">
-                      <img
-                        src={alumni.img}
-                        alt={alumni.name}
-                        className="w-20 h-20 rounded-full object-cover border-4 border-blue-50 shadow-md"
-                      />
-                    </div>
-                    <h3 className="text-lg font-bold text-gray-900">
-                      {alumni.name}
-                    </h3>
-                    <p className="text-sm text-blue-600 font-medium mt-1">
-                      {alumni.batch}
-                    </p>
-                    <p className="text-xs text-gray-500 mt-1 bg-gray-50 px-3 py-1 rounded-full">
-                      {alumni.role}
-                    </p>
-                  </div>
+                  "{activeAlumni.quote}"
+                </motion.p>
+              </div>
 
-                  <div className="flex justify-center mb-4">
-                    {renderStars(alumni.rating)}
-                  </div>
+              {/* Alumni Image + Name + Branch */}
+              <div className="flex items-center gap-3 md:gap-4 border-t border-blue-200 pt-4">
+                <motion.img
+                  src={activeAlumni.img}
+                  alt={activeAlumni.name}
+                  className="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover border-2 border-white shadow-md"
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.4, duration: 0.5 }}
+                />
+                <div>
+                  <motion.h4
+                    className="text-base md:text-lg font-semibold text-gray-900"
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.5, duration: 0.5 }}
+                  >
+                    {activeAlumni.name}
+                  </motion.h4>
+                  <motion.p
+                    className="text-xs md:text-sm text-gray-600"
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.6, duration: 0.5 }}
+                  >
+                    {activeAlumni.branch}
+                  </motion.p>
+                </div>
+              </div>
+            </motion.div>
 
-                  <div className="relative mb-5">
-                    <Quote className="absolute -top-2 left-0 w-5 h-5 text-blue-100" />
-                    <p className="text-gray-700 text-sm italic pl-5 leading-relaxed">
-                      "{alumni.quote}"
-                    </p>
-                  </div>
+            {/* Arrow Buttons on Right Side */}
+            <div className=" hidden absolute right-4 bottom-2 transform -translate-y-1/2 lg:flex gap-2 md:gap-4">
+              <motion.button
+                onClick={handlePrev}
+                className="bg-white/90 backdrop-blur-md rounded-full p-2 md:p-3 hover:bg-white transition shadow-md hover:shadow-lg"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <ChevronLeft className="w-4 h-4 md:w-6 md:h-6 text-gray-900" />
+              </motion.button>
+              <motion.button
+                onClick={handleNext}
+                className="bg-white/90 backdrop-blur-md rounded-full p-2 md:p-3 hover:bg-white transition shadow-md hover:shadow-lg"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <ChevronRight className="w-4 h-4 md:w-6 md:h-6 text-gray-900" />
+              </motion.button>
+            </div>
 
-                  <div className="mt-auto pt-4 border-t border-gray-100 text-xs text-gray-500 flex justify-between">
-                    <span className="flex items-center">
-                      <Briefcase className="w-3 h-3 mr-1" />
-                      {alumni.company}
-                    </span>
-                    <span className="flex items-center">
-                      <MapPin className="w-3 h-3 mr-1" />
-                      {alumni.location}
-                    </span>
-                  </div>
-                </motion.div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </motion.div>
+            {/* Indicator dots */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-1 md:gap-2">
+              {alumni.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setActiveIndex(index)}
+                  className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all ${
+                    index === activeIndex ? "bg-blue-600 scale-110" : "bg-blue-300"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+
+         
+
+
+          {/* Right: Statistics Section (30%) */}
+          <motion.div 
+            className="md:w-3/10 relative flex flex-col justify-center"
+            initial={{ opacity: 0, x: 20 }}
+            animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+            transition={{ delay: 0.7, duration: 0.5 }}
+          >
+            <div className="bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-2xl p-8 w-full flex flex-col gap-8 shadow-lg">
+              <h3 className="text-2xl font-bold text-center">
+                Our Alumni Impact
+              </h3>
+              
+              {/* Statistics Grid */}
+              <div className="grid grid-cols-2 gap-6">
+                {stats.map((stat, index) => {
+                  const IconComponent = stat.icon;
+                  return (
+                    <motion.div 
+                      key={index}
+                      className="flex flex-col items-center text-center"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                      transition={{ delay: 0.8 + (index * 0.1), duration: 0.5 }}
+                    >
+                      <div className="bg-blue-500/20 p-3 rounded-full mb-3">
+                        <IconComponent className="w-6 h-6" />
+                      </div>
+                      <div className="text-2xl font-bold">{stat.value}</div>
+                      <div className="text-sm opacity-90 mt-1">{stat.label}</div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+              
+              {/* CTA Button */}
+              <motion.button 
+                className="bg-white text-blue-700 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition shadow-md mt-4"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, y: 10 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                transition={{ delay: 1.2, duration: 0.5 }}
+              >
+                Share Your Story
+              </motion.button>
+            </div>
+          </motion.div>
+        </div>
       </div>
-
-      {/* Swiper Custom Styles */}
-      <style jsx>{`
-        .alumni-swiper {
-          padding-bottom: 50px;
-        }
-
-        .swiper-slide {
-          background-position: center;
-          background-size: cover;
-          height: auto;
-          display: flex;
-          justify-content: center;
-        }
-
-        .swiper-3d .swiper-slide-shadow-left,
-        .swiper-3d .swiper-slide-shadow-right {
-          background-image: none;
-        }
-
-        .swiper-pagination-bullet {
-          background: #cbd5e1;
-          opacity: 0.7;
-          transition: transform 0.3s ease;
-        }
-
-        .swiper-pagination-bullet-active {
-          background: #2563eb;
-          opacity: 1;
-          transform: scale(1.3);
-        }
-
-        @media (min-width: 1024px) {
-          .swiper-slide {
-            width: 300px;
-          }
-        }
-      `}</style>
-    </section>
+    </div>
   );
 };
 
-export default AlumniSection;
+export default AlumniSuccessStories;

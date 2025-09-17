@@ -1,266 +1,117 @@
 "use client";
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation } from "swiper/modules";
-import { motion } from "framer-motion";
-import { Building2, ArrowRight, Award, Users, TrendingUp } from "lucide-react";
-import CountUp from "react-countup";
-import { useInView } from "react-intersection-observer";
+import React, { useEffect, useState, useRef } from "react";
+import { ArrowRight } from "lucide-react";
 
-import "swiper/css";
-import "swiper/css/navigation";
+const stats = [
+  { label: "Patients treated w/ care", value: 300000 },
+  { label: "Positive recovery", value: 97 },
+  { label: "Certified professionals", value: 330 },
+  { label: "Active support", value: 24 },
+  { label: "Specialized services", value: 110 },
+  { label: "Years of experience", value: 15 },
+];
 
-// Reusable StaggeredFade for letter-by-letter fade-in animation
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.05,
-      delayChildren: 0.1,
-    },
-  },
+// Animated Counter that triggers on view
+const AnimatedNumber = ({ value, suffix = "", inView }) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!inView) return;
+
+    let start = 0;
+    const duration = 2000;
+    const increment = value / (duration / 20);
+
+    const counter = setInterval(() => {
+      start += increment;
+      if (start >= value) {
+        start = value;
+        clearInterval(counter);
+      }
+      setCount(Math.floor(start));
+    }, 20);
+
+    return () => clearInterval(counter);
+  }, [inView, value]);
+
+  return <span className="text-3xl font-bold text-black">{count}{suffix}</span>;
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-};
+const AboutUs = () => {
+  const statsRef = useRef(null);
+  const paragraphRef = useRef(null);
 
-function StaggeredFade({ text, className = "" }) {
+  const [statsInView, setStatsInView] = useState(false);
+  const [paragraphInView, setParagraphInView] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.target === statsRef.current) {
+            if (entry.isIntersecting) setStatsInView(true);
+          }
+          if (entry.target === paragraphRef.current) {
+            if (entry.isIntersecting) setParagraphInView(true);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    if (statsRef.current) observer.observe(statsRef.current);
+    if (paragraphRef.current) observer.observe(paragraphRef.current);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <motion.span
-      className={className}
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      style={{ display: "inline-block" }}
-    >
-      {text.split("").map((char, i) => (
-        <motion.span
-          key={i}
-          variants={itemVariants}
-          style={{ display: "inline-block" }}
-          aria-hidden="true"
-        >
-          {char === " " ? "\u00A0" : char}
-        </motion.span>
-      ))}
-    </motion.span>
-  );
-}
+    <section className="max-w-7xl mx-auto px-4 py-16 font-inter">
+      <div className="flex flex-col lg:flex-row gap-10">
+        {/* Left Side */}
+        <div className="w-full lg:w-[30%] flex flex-col justify-end md:items-center lg:items-start text-center lg:text-left gap-4">
+          <h3 className="text-left text-sm text-black font-semibold uppercase">About Us</h3>
+          <img
+            src="https://picsum.photos/400/400"
+            alt="About us"
+            className="w-full lg:w-72 h-72 object-cover rounded-lg mt-6 lg:mt-0"
+          />
+        </div>
 
-const PlacementPartners = () => {
-  const partners = [
-    {
-      id: 1,
-      name: "Tech Mahindra",
-      industry: "IT & Telecom",
-      location: "India",
-      logo: "https://1000logos.net/wp-content/uploads/2021/05/Tech-Mahindra-logo.png",
-    },
-    
-    {
-      id: 2,
-      name: "Infosys",
-      industry: "IT & Software",
-      location: "India",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Infosys_logo.svg/1280px-Infosys_logo.svg.png",
-    },
-    {
-      id: 3,
-      name: "Wipro",
-      industry: "Technology & Services",
-      location: "India",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Wipro_new_logo.svg/250px-Wipro_new_logo.svg.png",
-    },
-    {
-      id: 4,
-      name: "Capgemini",
-      industry: "Consulting & Technology",
-      location: "Global",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Capgemini_201x_logo.svg",
-    },
-    {
-      id: 5,
-      name: "Tech Mahindra",
-      industry: "IT & Telecom",
-      location: "India",
-      logo: "https://1000logos.net/wp-content/uploads/2021/05/Tech-Mahindra-logo.png",
-    },
-    {
-      id: 6,
-      name: "HCL",
-      industry: "IT Services",
-      location: "India",
-      logo: "https://logos-world.net/wp-content/uploads/2022/07/HCL-Logo.png",
-    },
-    {
-      id: 7,
-      name: "Cognizant",
-      industry: "Consulting & IT Services",
-      location: "Global",
-      logo: "https://www.opentext.com/assets/images/partners/cognizant-logo-416x274.png",
-    }
-  ];
-
-  const stats = [
-    {
-      icon: <Users className="h-6 w-6 text-indigo-600" />,
-      value: 80,
-      suffix: "%",
-      label: "Placement Rate"
-    },
-    {
-      icon: <TrendingUp className="h-6 w-6 text-green-600" />,
-      value: 8,
-      prefix: "₹",
-      suffix: " LPA",
-      label: "Highest Package"
-    },
-    {
-      icon: <Award className="h-6 w-6 text-yellow-600" />,
-      value: 4.5,
-      prefix: "₹",
-      suffix: " LPA",
-      label: "Average Package"
-    }
-  ];
-  
-  return (
-    <section className="relative py-8 overflow-hidden bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <div className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-600 mb-4">
-            <Building2 className="h-4 w-4 mr-2" />
-            Industry Connections
-          </div>
-          <h2 className="text-4xl font-bold text-blue-900 mb-4">
-            Our{" "}
-            <StaggeredFade
-              text="Placement Partners"
-              className="text-blue-600 inline-block"
-            />
-          </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            <StaggeredFade text="We partner with leading companies to provide exceptional career opportunities for our students" />
+        {/* Right Side */}
+        <div className="w-full lg:w-[70%] flex flex-col justify-center gap-10">
+          {/* Paragraph with scroll color animation */}
+          <p
+            ref={paragraphRef}
+            className={`text-3xl font-medium leading-relaxed transition-colors duration-1000`}
+            style={{ color: paragraphInView ? "#000000" : "#888888" }}
+          >
+            We provide comprehensive detailed healthcare solutions from experts
+            in medical support, diagnostics, and patient care, running smoothly
+            and efficiently while managing tasks & clinical support.
           </p>
-        </motion.div>
 
-        {/* Stats Section with CountUp and color styling */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16"
-        >
-          {stats.map((stat, index) => {
-            const { ref, inView } = useInView({
-              triggerOnce: true,
-              threshold: 0.5
-            });
-            return (
-              <div 
-                key={index} 
-                ref={ref}
-                className="bg-white rounded-xl p-6 shadow-md border border-gray-100 flex items-center space-x-4"
-              >
-                <div className="bg-blue-50 p-3 rounded-lg">
-                  {stat.icon}
-                </div>
-                <div>
-                  <div className={`text-3xl font-bold ${
-                    stat.icon.props.className.includes("text-indigo") ? "text-indigo-600" :
-                    stat.icon.props.className.includes("text-green") ? "text-green-600" :
-                    stat.icon.props.className.includes("text-yellow") ? "text-yellow-600" :
-                    "text-gray-900"
-                  }`}>
-                    {inView ? (
-                      <CountUp
-                        start={0}
-                        end={stat.value}
-                        duration={30}
-                        prefix={stat.prefix || ""}
-                        suffix={stat.suffix || ""}
-                        decimals={stat.value % 1 !== 0 ? 1 : 0} 
-                        separator=","
-                      />
-                    ) : (
-                      <span>{stat.prefix || ""}0{stat.suffix || ""}</span>
-                    )}
-                  </div>
-                  <div className="text-sm text-gray-600">{stat.label}</div>
+          {/* Stats Grid */}
+          <div ref={statsRef} className="grid grid-cols-2 sm:grid-cols-3 gap-6">
+            {stats.map((stat, index) => (
+              <div key={index} className="flex items-center gap-3">
+                {/* Slightly rotated arrow */}
+                <ArrowRight className="text-black w-6 h-6 rotate-12" />
+                <div className="flex flex-col">
+                  <AnimatedNumber
+                    value={stat.value}
+                    inView={statsInView}
+                    suffix={stat.label.includes("%") ? "%" : stat.value > 1000 ? "K+" : "+"}
+                  />
+                  <span className="text-black">{stat.label}</span>
                 </div>
               </div>
-            );
-          })}
-        </motion.div>
-
-        {/* Partners Carousel */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="relative"
-        >
-          <Swiper
-            modules={[Autoplay, Navigation]}
-            spaceBetween={30}
-            slidesPerView={2}
-            loop={true}
-            autoplay={{
-              delay: 0,
-              disableOnInteraction: false,
-            }}
-            speed={5000}
-            breakpoints={{
-              480: { slidesPerView: 3 },
-              768: { slidesPerView: 4 },
-              1024: { slidesPerView: 5 },
-              1280: { slidesPerView: 6 },
-            }}
-            navigation={{
-              nextEl: ".partner-next",
-              prevEl: ".partner-prev",
-            }}
-            className="pb-12"
-          >
-            {partners.map((partner) => (
-              <SwiperSlide key={partner.id}>
-                <div className="bg-white mb-3 rounded-xl p-6 h-48 flex flex-col items-center justify-center shadow-sm border border-gray-100 hover:shadow-lg hover:border-blue-200 transition-all duration-300 group">
-                  <div className="h-16 w-full flex items-center justify-center mb-4">
-                    <img
-                      src={partner.logo}
-                      alt={partner.name}
-                      className="h-12 w-auto object-contain max-w-full transition-transform duration-300 group-hover:scale-110"
-                    />
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-1">{partner.name}</h3>
-                </div>
-              </SwiperSlide>
             ))}
-          </Swiper>
-
-          {/* Navigation Arrows */}
-          <button className="partner-prev absolute top-1/2 -left-4 z-10 transform -translate-y-1/2 bg-white text-gray-800 p-3 rounded-full shadow-lg hover:bg-gray-50 transition-all">
-            <ArrowRight className="h-5 w-5 rotate-180" />
-          </button>
-          <button className="partner-next absolute top-1/2 -right-4 z-10 transform -translate-y-1/2 bg-white text-gray-800 p-3 rounded-full shadow-lg hover:bg-gray-50 transition-all">
-            <ArrowRight className="h-5 w-5" />
-          </button>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );
 };
 
-export default PlacementPartners;
+export default AboutUs;

@@ -1,164 +1,208 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation, EffectFade, Parallax } from "swiper/modules";
+import { Navigation, Autoplay, Pagination } from "swiper/modules";
 import { motion } from "framer-motion";
-import { Play, Pause, GraduationCap, ArrowRight, ChevronDown, Phone, Mail, MapPin } from "lucide-react";
-
-// Import Swiper styles
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import "swiper/css";
-import "swiper/css/effect-fade";
-import "swiper/css/pagination";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+// Hero slides
+const slides = [
+  {
+    title: "China’s E-Commerce Marketplaces Connect Citizens and Global Consumers",
+    description:
+      "With a sophisticated digital infrastructure and a tech-savvy population, Chinese e-commerce giants are setting new standards for customer experience, efficiency, and international connectivity.",
+    image: "https://www.kecbhilai.com/images/slider_img2.jpg",
+    author: "David Martin",
+    readTime: "2 min read",
+  },
+  {
+    title: "Innovating Education for the Future",
+    description:
+      "Our institution is dedicated to preparing students with skills and knowledge that power innovation and leadership in a global economy.",
+    image: "https://picsum.photos/1600/800?random=1",
+    author: "Jane Doe",
+    readTime: "3 min read",
+  },
+  {
+    title: "Global Partnerships Driving Research",
+    description:
+      "We collaborate with top universities and industries worldwide to foster impactful research and innovation.",
+    image: "https://picsum.photos/1600/800?random=2",
+    author: "John Smith",
+    readTime: "4 min read",
+  },
+];
+
+// Stagger container
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.3 },
+  },
+};
+
+// Fade-up child
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+};
 
 const HeroSection = () => {
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [isMobile, setIsMobile] = useState(false);
-  
-  useEffect(() => {
-    const checkIsMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    checkIsMobile();
-    window.addEventListener('resize', checkIsMobile);
-    
-    return () => {
-      window.removeEventListener('resize', checkIsMobile);
-    };
-  }, []);
-
-  const slides = [
-    {
-      id: 1,
-      img: "https://www.kecbhilai.com/images/slider_img2.jpg",
-      heading: "Welcome to Krishna Engineering College",
-      subText: "Shaping Future Leaders with Knowledge & Innovation",
-      ctaText: "Explore Programs",
-    },
-    {
-      id: 2,
-      img: "https://www.kecbhilai.com/images/slider_img3.jpg",
-      heading: "Empowering Students for Tomorrow",
-      subText: "Learn, Grow, and Build a Successful Career",
-      ctaText: "Student Life",
-    },
-    
-  ];
-
-  const toggleAutoplay = () => {
-    setIsPlaying(!isPlaying);
-  };
-
-  // Text animation variants
-  const textVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.8, ease: "easeOut" }
-    }
-  };
-
-  const buttonVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: { 
-      opacity: 1, 
-      scale: 1,
-      transition: { duration: 0.5, delay: 0.5 }
-    },
-    hover: {
-      scale: 1.05,
-      boxShadow: "0 10px 25px rgba(234, 179, 8, 0.3)",
-      transition: { duration: 0.3 }
-    },
-    tap: { scale: 0.95 }
-  };
-
   return (
-    <div className="w-full h-50 lg:h-160 relative overflow-hidden">
-      {/* Top info bar */}
-      
-
+    <section className="relative w-full md:h-[600px] h-64 overflow-hidden font-satoshi">
       <Swiper
-        modules={[Autoplay, Pagination, Navigation, EffectFade, Parallax]}
-        autoplay={isPlaying ? { 
-          delay: 5000, 
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true 
-        } : false}
-        pagination={{ 
-          clickable: true,
-          bulletClass: "swiper-pagination-bullet !bg-white/50 !w-2 !h-2 md:!w-3 md:!h-3 !mx-1",
-          bulletActiveClass: "swiper-pagination-bullet-active !bg-yellow-400 !w-6 md:!w-8 !rounded-full"
-        }}
+        modules={[Navigation, Pagination, Autoplay]}
         navigation={{
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
+          nextEl: ".custom-swiper-button-next",
+          prevEl: ".custom-swiper-button-prev",
         }}
-        effect="fade"
-        fadeEffect={{ crossFade: true }}
-        speed={1000}
+        pagination={{
+          clickable: true,
+          el: ".custom-pagination",
+          bulletClass: "custom-bullet",
+          bulletActiveClass: "custom-bullet-active",
+          renderBullet: function (index, className) {
+            return `<span class="${className}"></span>`;
+          },
+        }}
+        autoplay={{ delay: 5000, disableOnInteraction: false }}
         loop={true}
-        parallax={true}
         className="h-full"
       >
-        {/* Parallax background */}
-        <div
-          slot="container-start"
-          className="parallax-bg"
-          data-swiper-parallax="-23%"
-        ></div>
-        
-        {slides.map((slide) => (
-          <SwiperSlide key={slide.id}>
+        {slides.map((slide, index) => (
+          <SwiperSlide key={index}>
             <div className="relative w-full h-full">
-              {/* Background Image */}
-              <div className="absolute inset-0 w-full h-full">
+              {/* Background with left-side blur */}
+              <div className="absolute inset-0 w-full h-full overflow-hidden">
                 <img
-                  src={slide.img}
-                  alt={slide.heading}
-                  className="w-full h-full object-cover"
-                  data-swiper-parallax="-23%"
+                  src={slide.image}
+                  alt={slide.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  style={{
+                    filter: "blur(0px)", // Base image remains clear
+                  }}
                 />
-                <div className="absolute inset-0 "></div>
+                
+                {/* Left-side blurred overlay */}
+                <div 
+                  className="absolute left-0 top-0 h-full w-1/3"
+                  style={{
+                    backdropFilter: "blur(8px)",
+                    WebkitBackdropFilter: "blur(8px)",
+                    maskImage: "linear-gradient(to right, black 0%, transparent 100%)",
+                    WebkitMaskImage: "linear-gradient(to right, black 0%, transparent 100%)",
+                  }}
+                >
+                  {/* Additional gradient to blend the blur effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent"></div>
+                </div>
               </div>
-              
-              {/* Content */}
-            
+
+              {/* Gradient overlay for text readability */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent"></div>
+
+              <div
+    className="absolute right-0 top-0 h-full w-1/3"
+    style={{
+      backdropFilter: "blur(5px)", // slightly lighter blur
+      WebkitBackdropFilter: "blur(5px)",
+      maskImage: "linear-gradient(to left, black 0%, transparent 100%)",
+      WebkitMaskImage: "linear-gradient(to left, black 0%, transparent 100%)",
+    }}
+  >
+    <div className="absolute inset-0 bg-gradient-to-l from-black/30 to-transparent"></div>
+  </div>
+
+              {/* Content bottom-left */}
+              <div className="relative z-10 h-full flex items-end">
+                <motion.div
+                  className="px-6 md:px-12 pb-10 md:pb-16 max-w-3xl"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: false, amount: 0.3 }}
+                  variants={staggerContainer}
+                  key={index}
+                >
+                  {/* Title */}
+                  <motion.h1
+                    className="text-lg sm:text-2xl md:text-4xl font-bold text-white leading-snug"
+                    variants={fadeUp}
+                  >
+                    {slide.title}
+                  </motion.h1>
+
+                  {/* Description */}
+                  <motion.p
+                    className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-gray-200 max-w-xl"
+                    variants={fadeUp}
+                  >
+                    {slide.description}
+                  </motion.p>
+
+                  {/* Meta + Button */}
+                  <motion.div
+                    className="mt-6 mb-5 flex flex-wrap items-center gap-6 text-gray-300 text-sm"
+                    variants={fadeUp}
+                  >
+                    <button className="flex items-center gap-2 text-white font-medium hover:text-blue-400 transition group">
+                      Read Story{" "}
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </button>
+                    <span>{slide.author}</span>
+                    <span>• {slide.readTime}</span>
+                  </motion.div>
+                </motion.div>
+              </div>
             </div>
           </SwiperSlide>
         ))}
-        
-        {/* Custom Navigation Arrows */}
-        <div className="swiper-button-prev !text-yellow-400 !left-2 md:!left-6 after:!text-xl md:after:!text-2xl !w-10 !h-10 md:!w-12 md:!h-12 !bg-black/20 !rounded-full flex items-center justify-center"></div>
-        <div className="swiper-button-next !text-yellow-400 !right-2 md:!right-6 after:!text-xl md:after:!text-2xl !w-10 !h-10 md:!w-12 md:!h-12 !bg-black/20 !rounded-full flex items-center justify-center"></div>
-        
-        {/* Play/Pause Button */}
-        <div className=" hidden lg:block absolute bottom-20 md:bottom-6 right-4 md:right-6 z-10">
-          <button 
-            onClick={toggleAutoplay}
-            className="bg-white/20 backdrop-blur-sm p-2 md:p-3 rounded-full hover:bg-white/30 transition-colors"
-            aria-label={isPlaying ? "Pause slideshow" : "Play slideshow"}
-          >
-            {isPlaying ? (
-              <Pause className="w-4 h-4 md:w-6 md:h-6 text-white" />
-            ) : (
-              <Play className="w-4 h-4 md:w-6 md:h-6 text-white" />
-            )}
-          </button>
-        </div>
-        
+
+        {/* Custom pagination */}
+        <div className="custom-pagination absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 flex space-x-2"></div>
+
+        {/* Custom navigation arrows */}
+        <button className="custom-swiper-button-prev absolute bottom-6 right-20 z-20 w-10 h-10 flex items-center justify-center rounded-full bg-black/30 hover:bg-black/50 backdrop-blur-sm transition-all duration-300 group">
+          <ChevronLeft className="w-6 h-6 text-white group-hover:text-blue-400 transition-colors" />
+        </button>
+        <button className="custom-swiper-button-next absolute bottom-6 right-6 z-20 w-10 h-10 flex items-center justify-center rounded-full bg-black/30 hover:bg-black/50 backdrop-blur-sm transition-all duration-300 group">
+          <ChevronRight className="w-6 h-6 text-white group-hover:text-blue-400 transition-colors" />
+        </button>
       </Swiper>
-      
-     
-     
 
-      
+      {/* Custom pagination bullets style */}
+      <style jsx global>{`
+        .custom-bullet {
+          display: inline-block;
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background-color: rgba(255, 255, 255, 0.5);
+          margin: 0 4px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
 
-      {/* Gradient overlay for better text readability */}
-      <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 via-transparent to-blue-900/10 pointer-events-none"></div>
-    </div>
+        .custom-bullet-active {
+          background-color: #fff;
+          width: 24px;
+          border-radius: 6px;
+        }
+
+        .swiper-pagination {
+          position: absolute;
+          bottom: 20px;
+          left: 50%;
+          transform: translateX(-50%);
+          display: flex;
+          justify-content: center;
+          z-index: 10;
+        }
+      `}</style>
+    </section>
   );
 };
 

@@ -15,38 +15,7 @@ const Gallery = () => {
   });
 
   return (
-    <section className="py-20 bg-gradient-to-br from-cyan-50 via-blue-50 to-indigo-100 relative overflow-hidden">
-      {/* Google Fonts */}
-      <link
-        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
-      />
-
-      {/* Animated background elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-        {[...Array(5)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full bg-cyan-200/30"
-            style={{
-              width: Math.random() * 200 + 100,
-              height: Math.random() * 200 + 100,
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.5, 0.3],
-            }}
-            transition={{
-              duration: Math.random() * 5 + 5,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-        ))}
-      </div>
-
+    <section className="py-20 relative overflow-hidden font-inter">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Header Section */}
         <motion.div
@@ -56,39 +25,33 @@ const Gallery = () => {
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="inline-flex items-center justify-center mb-4">
-            <div className="w-12 h-0.5 bg-gradient-to-r from-transparent to-cyan-500 mr-4"></div>
-            <motion.div
-              whileHover={{ scale: 1.2, rotate: 10 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <Camera className="text-cyan-600" size={24} />
-            </motion.div>
-          </div>
-          <motion.h2
-            className="text-4xl md:text-5xl font-bold mb-4"
-            style={{ fontFamily: "'Dancing Script', cursive" }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            Campus{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-600">
-              Gallery
-            </span>
-          </motion.h2>
           <motion.p
-            className="text-gray-600 text-lg max-w-2xl mx-auto"
-            style={{ fontFamily: "'Poppins', sans-serif" }}
+            className="text-blue-700 uppercase tracking-wider text-sm font-semibold mb-3"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+          >
+            Alumni Success
+          </motion.p>
+
+          <motion.h4
+            className="text-3xl md:text-5xl font-bold text-gray-900 mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
           >
-            Explore the vibrant life and beautiful facilities of our campus
-            through these captured moments
-          </motion.p>
+            Alumni Success Stories
+          </motion.h4>
+
+          <motion.div
+            className="w-20 h-1 bg-blue-600 mx-auto mt-4 mb-8"
+            initial={{ width: 0 }}
+            whileInView={{ width: 80 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+          />
         </motion.div>
 
         {/* Gallery Grid */}
@@ -109,23 +72,17 @@ const Gallery = () => {
               >
                 <BookOpen size={24} />
               </motion.div>
-              <h3
-                className="text-lg font-semibold text-gray-800 mb-1"
-                style={{ fontFamily: "'Poppins', sans-serif" }}
-              >
+              <h3 className="text-lg font-semibold text-gray-800 mb-1">
                 Academic Excellence
               </h3>
-              <p
-                className="text-gray-600 text-xs"
-                style={{ fontFamily: "'Poppins', sans-serif" }}
-              >
+              <p className="text-gray-600 text-xs">
                 Learning environments
               </p>
             </div>
 
             <div className="space-y-4">
               <motion.div
-                className="relative group overflow-hidden rounded-xl shadow-lg"
+                className="relative group overflow-hidden  shadow-lg"
                 whileHover={{
                   scale: 1.05,
                   boxShadow: "0 10px 25px -5px rgba(6, 182, 212, 0.4)",
@@ -141,17 +98,14 @@ const Gallery = () => {
                   className="w-full h-48 object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-cyan-900/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
-                  <p
-                    className="text-white text-xs"
-                    style={{ fontFamily: "'Poppins', sans-serif" }}
-                  >
+                  <p className="text-white text-xs">
                     Auditorium
                   </p>
                 </div>
               </motion.div>
 
               <motion.div
-                className="relative group overflow-hidden rounded-xl shadow-lg"
+                className="relative group overflow-hidden shadow-lg"
                 whileHover={{
                   scale: 1.05,
                   boxShadow: "0 10px 25px -5px rgba(6, 182, 212, 0.4)",
@@ -167,10 +121,7 @@ const Gallery = () => {
                   className="w-full aspect-square object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-cyan-900/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
-                  <p
-                    className="text-white text-xs"
-                    style={{ fontFamily: "'Poppins', sans-serif" }}
-                  >
+                  <p className="text-white text-xs">
                     Physics Laboratory
                   </p>
                 </div>
@@ -187,16 +138,10 @@ const Gallery = () => {
                   boxShadow: "0 10px 25px -5px rgba(6, 182, 212, 0.3)",
                 }}
               >
-                <div
-                  className="text-2xl font-bold text-cyan-600"
-                  style={{ fontFamily: "'Dancing Script', cursive" }}
-                >
+                <div className="text-2xl font-bold text-cyan-600">
                   50K+
                 </div>
-                <div
-                  className="text-xs text-gray-600 mt-1"
-                  style={{ fontFamily: "'Poppins', sans-serif" }}
-                >
+                <div className="text-xs text-gray-600 mt-1">
                   Books in Library
                 </div>
               </motion.div>
@@ -219,22 +164,16 @@ const Gallery = () => {
               >
                 <Users size={24} />
               </motion.div>
-              <h3
-                className="text-2xl font-semibold text-gray-800 mb-1"
-                style={{ fontFamily: "'Poppins', sans-serif" }}
-              >
+              <h3 className="text-2xl font-semibold text-gray-800 mb-1">
                 Campus Life
               </h3>
-              <p
-                className="text-gray-600"
-                style={{ fontFamily: "'Poppins', sans-serif" }}
-              >
+              <p className="text-gray-600">
                 Where learning meets experience
               </p>
             </div>
 
             <motion.div
-              className="relative group overflow-hidden rounded-2xl shadow-lg"
+              className="relative group overflow-hidden  shadow-lg"
               whileHover={{
                 scale: 1.03,
                 boxShadow: "0 15px 30px -5px rgba(6, 182, 212, 0.5)",
@@ -251,16 +190,10 @@ const Gallery = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-cyan-900/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                 <div>
-                  <p
-                    className="text-cyan-300 text-sm mb-1"
-                    style={{ fontFamily: "'Poppins', sans-serif" }}
-                  >
+                  <p className="text-cyan-300 text-sm mb-1">
                     Main Campus
                   </p>
-                  <h4
-                    className="text-white text-xl font-semibold"
-                    style={{ fontFamily: "'Poppins', sans-serif" }}
-                  >
+                  <h4 className="text-white text-xl font-semibold">
                     Aerial View
                   </h4>
                 </div>
@@ -288,7 +221,7 @@ const Gallery = () => {
               ].map((img, idx) => (
                 <motion.div
                   key={idx}
-                  className="relative group overflow-hidden rounded-xl shadow-lg"
+                  className="relative group overflow-hidden  shadow-lg"
                   whileHover={{
                     scale: 1.05,
                     boxShadow: "0 10px 25px -5px rgba(6, 182, 212, 0.4)",
@@ -304,10 +237,7 @@ const Gallery = () => {
                     className="w-full h-40 object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-cyan-900/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
-                    <p
-                      className="text-white text-xs"
-                      style={{ fontFamily: "'Poppins', sans-serif" }}
-                    >
+                    <p className="text-white text-xs">
                       {img.label}
                     </p>
                   </div>
@@ -332,22 +262,16 @@ const Gallery = () => {
               >
                 <Award size={24} />
               </motion.div>
-              <h3
-                className="text-lg font-semibold text-gray-800 mb-1"
-                style={{ fontFamily: "'Poppins', sans-serif" }}
-              >
+              <h3 className="text-lg font-semibold text-gray-800 mb-1">
                 Facilities
               </h3>
-              <p
-                className="text-gray-600 text-xs"
-                style={{ fontFamily: "'Poppins', sans-serif" }}
-              >
+              <p className="text-gray-600 text-xs">
                 Modern amenities
               </p>
             </div>
 
             <motion.div
-              className="relative group overflow-hidden rounded-xl shadow-lg"
+              className="relative group overflow-hidden  shadow-lg"
               whileHover={{
                 scale: 1.05,
                 boxShadow: "0 10px 25px -5px rgba(6, 182, 212, 0.4)",
@@ -363,17 +287,14 @@ const Gallery = () => {
                 className="w-full h-48 object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-cyan-900/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
-                <p
-                  className="text-white text-xs"
-                  style={{ fontFamily: "'Poppins', sans-serif" }}
-                >
+                <p className="text-white text-xs">
                   Auditorium
                 </p>
               </div>
             </motion.div>
 
             <motion.div
-              className="relative group overflow-hidden rounded-xl shadow-lg"
+              className="relative group overflow-hidden shadow-lg"
               whileHover={{
                 scale: 1.05,
                 boxShadow: "0 10px 25px -5px rgba(6, 182, 212, 0.4)",
@@ -389,10 +310,7 @@ const Gallery = () => {
                 className="w-full aspect-square object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-cyan-900/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
-                <p
-                  className="text-white text-xs"
-                  style={{ fontFamily: "'Poppins', sans-serif" }}
-                >
+                <p className="text-white text-xs">
                   Sports Complex
                 </p>
               </div>
@@ -409,16 +327,10 @@ const Gallery = () => {
                 boxShadow: "0 10px 25px -5px rgba(6, 182, 212, 0.3)",
               }}
             >
-              <div
-                className="text-xl font-bold text-cyan-600"
-                style={{ fontFamily: "'Dancing Script', cursive" }}
-              >
+              <div className="text-xl font-bold text-cyan-600">
                 25+
               </div>
-              <div
-                className="text-xs text-gray-600 mt-1"
-                style={{ fontFamily: "'Poppins', sans-serif" }}
-              >
+              <div className="text-xs text-gray-600 mt-1">
                 Facilities
               </div>
             </motion.div>
@@ -435,7 +347,6 @@ const Gallery = () => {
         >
           <motion.button
             className="px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-full font-medium flex items-center justify-center mx-auto gap-2"
-            style={{ fontFamily: "'Poppins', sans-serif" }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >

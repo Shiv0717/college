@@ -1,320 +1,160 @@
-"use client";
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { ArrowRight, ChevronRight, Users, BookOpen } from "lucide-react";
+import React, { useRef, useEffect } from "react";
+import { ArrowRight } from "lucide-react";
+import { useInView } from "framer-motion";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15 },
+const sections = [
+  {
+    id: "01",
+    title: "Departments",
+    description: "Explore our academic departments that shape innovation and research.",
+    link: "#",
+    image: "https://picsum.photos/600/400?random=6",
   },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.4 },
+  {
+    id: "02",
+    title: "Academies",
+    description: "Specialized academies that nurture practical skills and global exposure.",
+    link: "#",
+    image: "https://picsum.photos/600/400?random=7",
   },
-};
-
-const textContainerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.15 } },
-};
-
-const textItemVariants = {
-  hidden: { opacity: 0, y: 10 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-};
-
-// Slide animations
-const slideFromLeft = {
-  hidden: { opacity: 0, x: -50 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
+  {
+    id: "03",
+    title: "Expertise",
+    description: "Areas of expertise where our faculty and students excel worldwide.",
+    link: "#",
+    image: "https://picsum.photos/600/400?random=8",
   },
-};
-
-const slideFromRight = {
-  hidden: { opacity: 0, x: 50 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
+  {
+    id: "04",
+    title: "Placements",
+    description: "Career opportunities with top recruiters and industry leaders.",
+    link: "#",
+    image: "https://picsum.photos/600/400?random=9",
   },
-};
+  {
+    id: "05",
+    title: "Research & Innovation",
+    description: "Innovative projects and solutions driving future technologies.",
+    link: "#",
+    image: "https://picsum.photos/600/400?random=10",
+  },
+];
 
-const DepartmentsSection = () => {
-  const [activeDept, setActiveDept] = useState(0);
-
-  const departments = [
-    {
-      img: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80",
-      title: "Computer Science & Engineering",
-      desc: "Our CSE department offers cutting-edge programs in AI, Machine Learning, and Software Development with state-of-the-art laboratories and industry collaborations.",
-      students: "480",
-      courses: "12",
-      iconImg: "https://cdn-icons-png.flaticon.com/512/2103/2103793.png",
-      category: "Technology",
-    },
-    {
-      img: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80",
-      title: "Mechanical Engineering",
-      desc: "The ME department focuses on robotics, automotive systems, and advanced manufacturing with hands-on training in our fully-equipped workshops.",
-      students: "420",
-      courses: "10",
-      iconImg: "https://cdn-icons-png.flaticon.com/512/427/427735.png",
-      category: "Innovation",
-    },
-    {
-      img: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80",
-      title: "Civil Engineering",
-      desc: "Our Civil Engineering program emphasizes sustainable infrastructure, structural design, and urban planning with modern surveying equipment and software.",
-      students: "380",
-      courses: "9",
-      iconImg: "https://cdn-icons-png.flaticon.com/512/684/684809.png",
-      category: "Infrastructure",
-    },
-    {
-      img: "https://images.unsplash.com/photo-1562408590-e32931084e23?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80",
-      title: "Electrical Engineering",
-      desc: "The EE department offers specializations in power systems, electronics, and renewable energy with advanced laboratories and research opportunities.",
-      students: "350",
-      courses: "11",
-      iconImg: "https://cdn-icons-png.flaticon.com/512/3565/3565418.png",
-      category: "Energy",
-    },
-  ];
-
-  const heading = "Explore Our Engineering Departments";
+// Animation wrapper component
+const AnimatedSection = ({ children, delay = 0 }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-20%" });
 
   return (
-    <section className="w-full bg-gradient-to-b from-gray-50 to-blue-50 py-12 md:py-16 px-4 sm:px-6">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <motion.div
-          className="flex flex-col lg:flex-row justify-between items-start gap-6 mb-12"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={containerVariants}
-        >
-          <div className="lg:w-2/5">
-
-          <motion.h3
-      className="text-blue-600 font-semibold uppercase tracking-wide text-sm mb-4"
-      variants={textItemVariants}
-      style={{ fontFamily: "'Poppins', sans-serif" }}
+    <div
+      ref={ref}
+      style={{
+        transform: isInView ? "none" : "translateY(50px)",
+        opacity: isInView ? 1 : 0,
+        transition: `all 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) ${delay}s`
+      }}
     >
-      Excellence in Engineering Education
-    </motion.h3>
-
-    <motion.h2
-      className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 leading-tight text-gray-900"
-      variants={textItemVariants}
-      style={{ fontFamily: "'Dancing Script', cursive" }}
-    >
-      {heading}
-    </motion.h2>
-
-    {/* Subheading Added */}
-   
-
-    <motion.p
-      className="mt-2 text-gray-600 text-base sm:text-lg"
-      variants={textItemVariants}
-      style={{ fontFamily: "'Poppins', sans-serif" }}
-    >
-      Discover our comprehensive engineering programs designed to shape
-      the innovators and leaders of tomorrow.
-    </motion.p>
-  </div>
-          {/* Navigation Dots - Mobile only */}
-          <motion.div
-            className="flex lg:hidden justify-center items-center space-x-2 mt-4"
-            variants={textItemVariants}
-          >
-            {departments.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveDept(index)}
-                className={`w-3 h-3 rounded-full transition-all ${
-                  activeDept === index
-                    ? "bg-blue-700 scale-110"
-                    : "bg-gray-300 hover:bg-gray-400"
-                }`}
-                aria-label={`View department ${index + 1}`}
-              />
-            ))}
-          </motion.div>
-        </motion.div>
-
-        {/* Departments Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Featured Department */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={slideFromLeft}
-            className="lg:col-span-2"
-          >
-            <motion.div
-              key={activeDept}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer relative group w-full"
-            >
-              <div className="relative aspect-video md:aspect-[16/9] rounded-2xl overflow-hidden">
-                <img
-                  src={departments[activeDept].img}
-                  alt={departments[activeDept].title}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90" />
-
-                {/* Category Tag */}
-                <div className="absolute top-4 left-4 z-20 flex items-center">
-                  <span className="px-3 py-1 bg-blue-700 text-white text-xs sm:text-sm font-medium rounded-full shadow-md flex items-center">
-                    <img
-                      src={departments[activeDept].iconImg}
-                      alt={departments[activeDept].category}
-                      className="w-4 h-4 mr-2 object-contain"
-                    />
-                    <span style={{ fontFamily: "'Poppins', sans-serif" }}>
-                      {departments[activeDept].category}
-                    </span>
-                  </span>
-                </div>
-
-                {/* Student Count */}
-                <div className="absolute top-4 right-4 z-20 flex items-center text-white/90 text-xs sm:text-sm bg-blue-800/80 px-3 py-1 rounded-full">
-                  <Users className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
-                  {departments[activeDept].students} Students
-                </div>
-
-                {/* Text */}
-                <motion.div
-                  className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 z-20"
-                  variants={textContainerVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.3 }}
-                >
-                  <motion.h3
-                    className="text-lg sm:text-xl md:text-2xl font-bold text-white leading-tight mb-2"
-                    variants={textItemVariants}
-                    style={{ fontFamily: "'Poppins', sans-serif" }}
-                  >
-                    {departments[activeDept].title}
-                  </motion.h3>
-                  <motion.p
-                    className="text-sm sm:text-base text-gray-200 mb-4 line-clamp-2"
-                    variants={textItemVariants}
-                    style={{ fontFamily: "'Poppins', sans-serif" }}
-                  >
-                    {departments[activeDept].desc}
-                  </motion.p>
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-                    <motion.span
-                      className="inline-flex items-center text-blue-300 text-sm font-medium bg-blue-900/30 px-3 py-1 rounded-full"
-                      variants={textItemVariants}
-                    >
-                      <BookOpen className="w-4 h-4 mr-1" />
-                      {departments[activeDept].courses} Courses
-                    </motion.span>
-                    <motion.button
-                      className="inline-flex items-center text-white font-medium group-hover:text-blue-300 transition-colors text-sm sm:text-base"
-                      variants={textItemVariants}
-                      style={{ fontFamily: "'Poppins', sans-serif" }}
-                    >
-                      Explore department
-                      <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
-                    </motion.button>
-                  </div>
-                </motion.div>
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Departments List */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={slideFromRight}
-            className="space-y-4"
-          >
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              className="space-y-4"
-            >
-              {departments.map((dept, index) => (
-                <motion.div
-                  key={index}
-                  variants={itemVariants}
-                  onClick={() => setActiveDept(index)}
-                  className={`p-4 sm:p-5 rounded-xl cursor-pointer transition-all ${
-                    activeDept === index
-                      ? "bg-blue-50 border-l-4 border-blue-700 shadow-sm"
-                      : "bg-white hover:bg-gray-50 shadow-sm"
-                  }`}
-                  whileHover={{ y: -5 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-lg overflow-hidden mr-3 sm:mr-4 shadow-sm flex items-center justify-center bg-white p-2">
-                      <img
-                        src={dept.iconImg}
-                        alt={dept.category}
-                        className="w-full h-full object-contain"
-                      />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div
-                        className="flex items-center text-xs text-blue-700 font-medium mb-1"
-                        style={{ fontFamily: "'Poppins', sans-serif" }}
-                      >
-                        {dept.category}
-                      </div>
-                      <h4
-                        className="font-semibold text-gray-800 text-sm mb-1 line-clamp-2"
-                        style={{ fontFamily: "'Poppins', sans-serif" }}
-                      >
-                        {dept.title}
-                      </h4>
-                      <div
-                        className="flex items-center text-blue-700 text-xs font-medium mt-2"
-                        style={{ fontFamily: "'Poppins', sans-serif" }}
-                      >
-                        View details <ChevronRight className="w-3 h-3 ml-1" />
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Google Fonts */}
-      <link
-        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
-      />
-    </section>
+      {children}
+    </div>
   );
 };
 
-export default DepartmentsSection;
+const CoursesOffered = () => {
+  return (
+    <div className="bg-gradient-to-b from-gray-50 to-white py-24 font-[Poppins,sans-serif] overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6">
+        <AnimatedSection>
+          <div className="text-center mb-16">
+            <p className="text-blue-700 uppercase tracking-wider text-sm font-semibold mb-3">
+              Departments
+            </p>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+              Academic Excellence
+            </h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-blue-800 mx-auto mt-4"></div>
+          </div>
+        </AnimatedSection>
+
+        <div className="flex flex-col space-y-8">
+          {sections.map((item, index) => (
+            <AnimatedSection key={item.id} delay={index * 0.1}>
+              <div className="relative group bg-white border-l-4 border-blue-600 py-8 px-8 transition-all duration-700 hover:border-blue-800 overflow-hidden rounded-r-lg hover:bg-gray-900">
+                {/* Content Container */}
+                <div className="relative z-10">
+                  {/* Number + Title + Link */}
+                  <div className="flex flex-col md:flex-row md:items-center justify-between">
+                    <div className="flex items-center space-x-6 mb-4 md:mb-0">
+                      {/* Number with enhanced gradient effect */}
+                      <div className="relative flex-shrink-0">
+                        <span className="text-5xl font-bold text-transparent [-webkit-text-stroke:2px_#1e40af] group-hover:[-webkit-text-stroke:2px_#3b82f6]">
+                          {item.id}.
+                        </span>
+                        <span className="absolute inset-0 text-5xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                          {item.id}.
+                        </span>
+                      </div>
+                      
+                      <h3 className="text-2xl font-semibold text-gray-900 group-hover:text-white transition-colors duration-500">
+                        {item.title}
+                      </h3>
+                    </div>
+
+                    {/* Enhanced Link with smooth transition */}
+                    <a
+                      href={item.link}
+                      className="flex items-center text-blue-600 font-medium transition-all duration-500 transform translate-x-[-10px] group-hover:translate-x-0 opacity-0 group-hover:opacity-100 group-hover:bg-blue-600 group-hover:text-white px-3 py-2 rounded-md"
+                    >
+                      <span className="mr-2">Explore</span>
+                      <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
+                    </a>
+                  </div>
+
+                  {/* Description with enhanced animation */}
+                  <div className="mt-4 pl-0 md:pl-20">
+                    <p className="text-gray-600 group-hover:text-gray-300 transition-colors duration-500 leading-relaxed max-w-2xl">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Enhanced Hover Background Overlay with parallax effect */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-700 overflow-hidden">
+                  <div 
+                    className="w-full h-full transform scale-110 group-hover:scale-100 transition-transform duration-1000"
+                    style={{
+                      backgroundImage: `url(${item.image})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      filter: 'grayscale(100%) brightness(1.2)'
+                    }}
+                  ></div>
+                </div>
+
+                {/* Enhanced hover effect line with gradient */}
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-blue-800 transition-all duration-700 group-hover:w-full"></div>
+
+                {/* Subtle corner accent */}
+                <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500 group-hover:border-blue-400"></div>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+
+        {/* Enhanced CTA at the bottom */}
+        <AnimatedSection delay={0.5}>
+          <div className="text-center mt-16">
+            <a
+              href="#"
+              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-800 text-white font-medium rounded-lg transition-all duration-300 hover:from-blue-700 hover:to-blue-900 transform hover:-translate-y-1 group"
+            >
+              <span>Explore All Programs</span>
+              <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+            </a>
+          </div>
+        </AnimatedSection>
+      </div>
+    </div>
+  );
+};
+
+export default CoursesOffered;

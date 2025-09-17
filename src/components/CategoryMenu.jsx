@@ -320,7 +320,7 @@ const UniversityMenu = () => {
                 className="w-14 h-14 rounded-full p-1 object-cover border border-gray-200"
                 alt="Krishna Engineering College Logo"
               />
-              <div className="ml-3" style={{ fontFamily: 'Roboto Slab, serif' }}>
+              <div className="ml-3" style={{ fontFamily: 'inter, serif' }}>
                 <h1 className="text-lg md:text-xl font-bold text-gray-900">
                   KRISHNA
                 </h1>
@@ -335,7 +335,7 @@ const UniversityMenu = () => {
           </div>
 
           {/* Affiliations - Right Side */}
-          <div className="hidden md:flex items-center space-x-4 lg:space-x-6" style={{ fontFamily: 'Roboto Slab, serif' }}>
+          <div className="hidden md:flex items-center space-x-4 lg:space-x-6" style={{ fontFamily: 'inter, serif' }}>
             {affiliations.map((affiliation, index) => {
               const IconComponent = affiliation.Icon;
               return (
@@ -374,7 +374,7 @@ const UniversityMenu = () => {
       {/* Desktop Navigation Menu with Mega Menu */}
       <div className="hidden md:block border-t border-gray-100 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex justify-center">
+          <div className="flex justify-center relative">
             <div className="flex space-x-1">
               {mainCategories.map((category) => {
                 const IconComponent = category.icon;
@@ -383,7 +383,7 @@ const UniversityMenu = () => {
                   <div
                     key={category.name}
                     className="relative group"
-                    style={{ fontFamily: "Roboto Slab, serif" }}
+                    style={{ fontFamily: "inter, serif" }}
                     onMouseEnter={() => setActiveMenu(category.name)}
                     onMouseLeave={() => {
                       setActiveMenu(null);
@@ -403,78 +403,96 @@ const UniversityMenu = () => {
                         />
                       )}
                     </Link>
-
-                    {/* Mega Menu Dropdown */}
-                    {category.submenu && activeMenu === category.name && (
-                      <motion.div
-                        className="absolute top-full left-1/2 transform -translate-x-1/2 min-w-[600px] max-w-[90vw] rounded-b-lg shadow-xl bg-white border border-gray-200 z-50 overflow-hidden"
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        {/* Mega Menu Header */}
-                        <div className="bg-blue-800 text-white py-4 px-6">
-                          <div className="flex items-center">
-                            <IconComponent size={24} className="mr-3" />
-                            <div>
-                              <h3 className="text-xl font-bold">
-                                {category.name}
-                              </h3>
-                              <p className="text-sm opacity-90">
-                                {category.description}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Mega Menu Content */}
-                        <div className="p-6 grid grid-cols-2 gap-4">
-                          {category.submenu.map((item) => {
-                            const ItemIcon = item.icon;
-                            return (
-                              <motion.div
-                                key={item.name}
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.1 }}
-                              >
-                                <Link
-                                  to={item.path}
-                                  className={`flex items-start p-3 rounded-lg transition-all duration-200 ${
-                                    hoveredItem === item.name
-                                      ? "bg-blue-50 transform scale-[1.02] shadow-md"
-                                      : "hover:bg-blue-50"
-                                  }`}
-                                  onClick={closeAllMenus}
-                                  onMouseEnter={() => setHoveredItem(item.name)}
-                                  onMouseLeave={() => setHoveredItem(null)}
-                                >
-                                  <div className="flex-shrink-0 h-10 w-10 rounded-lg bg-blue-100 flex items-center justify-center mr-3">
-                                    <ItemIcon
-                                      size={18}
-                                      className="text-blue-700"
-                                    />
-                                  </div>
-                                  <div>
-                                    <h4 className="font-semibold text-gray-900">
-                                      {item.name}
-                                    </h4>
-                                    <p className="text-sm text-gray-600 mt-1">
-                                      {item.description}
-                                    </p>
-                                  </div>
-                                </Link>
-                              </motion.div>
-                            );
-                          })}
-                        </div>
-                      </motion.div>
-                    )}
                   </div>
                 );
               })}
             </div>
+            
+            {/* Centered Mega Menu Container */}
+            <AnimatePresence>
+              {activeMenu && (
+                <motion.div
+                  className="absolute top-full left-1/2 transform -translate-x-1/2 z-50 w-full max-w-4xl"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {mainCategories.map((category) => {
+                    if (category.name === activeMenu && category.submenu) {
+                      const IconComponent = category.icon;
+                      
+                      return (
+                        <div
+                          key={category.name}
+                          className="rounded-b-lg shadow-xl bg-white border border-gray-200 overflow-hidden"
+                          onMouseEnter={() => setActiveMenu(category.name)}
+                          onMouseLeave={() => setActiveMenu(null)}
+                        >
+                          {/* Mega Menu Header */}
+                          <div className="bg-blue-800 text-white py-4 px-6">
+                            <div className="flex items-center">
+                              <IconComponent size={24} className="mr-3" />
+                              <div>
+                                <h3 className="text-xl font-bold">
+                                  {category.name}
+                                </h3>
+                                <p className="text-sm opacity-90">
+                                  {category.description}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Mega Menu Content */}
+                          <div className="p-6 grid grid-cols-2 gap-4">
+                            {category.submenu.map((item) => {
+                              const ItemIcon = item.icon;
+                              return (
+                                <motion.div
+                                  key={item.name}
+                                  initial={{ opacity: 0, y: 10 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  transition={{ delay: 0.1 }}
+                                >
+                                  <Link
+                                    to={item.path}
+                                    className={`flex items-start p-3 rounded-lg transition-all duration-200 ${
+                                      hoveredItem === item.name
+                                        ? "bg-blue-50 transform scale-[1.02] shadow-md"
+                                        : "hover:bg-blue-50"
+                                    }`}
+                                    onClick={closeAllMenus}
+                                    onMouseEnter={() => setHoveredItem(item.name)}
+                                    onMouseLeave={() => setHoveredItem(null)}
+                                  >
+                                    <div className="flex-shrink-0 h-10 w-10 rounded-lg bg-blue-100 flex items-center justify-center mr-3">
+                                      <ItemIcon
+                                        size={18}
+                                        className="text-blue-700"
+                                      />
+                                    </div>
+                                    <div>
+                                      <h4 className="font-semibold text-gray-900">
+                                        {item.name}
+                                      </h4>
+                                      <p className="text-sm text-gray-600 mt-1">
+                                        {item.description}
+                                      </p>
+                                    </div>
+                                  </Link>
+                                </motion.div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      );
+                    }
+                    return null;
+                  })}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
       </div>

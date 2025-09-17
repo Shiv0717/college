@@ -7,6 +7,8 @@ import CoursesOffered from "../components/CoursesOffered";
 import AboutSection from "../components/AboutSection";
 import Leadership from "../components/Leadership";
 import AlumniSection from "../components/alumni";
+import UniversitySection from "../components/UniversitySection";
+import AchievementsSection from "../components/AchievementsSection";
 
 const Home = () => {
   return (
@@ -14,11 +16,14 @@ const Home = () => {
       <Herosection />
       <CoursesOffered />
       <AchievementsMarquee />
+      <AchievementsSection/>
       <Leadership />
       <AboutSection />
+      <UniversitySection/>
       <PlacementPartners />
-      <NoticeBoard />
       <AlumniSection />
+      <NoticeBoard />
+     
     </div>
   );
 };
