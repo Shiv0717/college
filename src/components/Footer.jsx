@@ -1,243 +1,273 @@
 import React from "react";
-import {
-  School,
-  Link,
-  MapPin,
-  Phone,
-  Mail,
-  Facebook,
-  Twitter,
-  Linkedin,
+import { motion } from "framer-motion";
+import { 
+  MapPin, 
+  Phone, 
+  Mail, 
+  ExternalLink, 
+  Clock, 
+  Facebook, 
+  Twitter, 
+  Instagram, 
+  Linkedin, 
   Youtube,
-  Instagram,
-  Home,
-  BookOpen,
-  GraduationCap,
-  Briefcase,
-  Calendar,
-  MessageCircle,
   Award,
-  ChevronRight,
-  Heart,
-  Sparkles,
+  GraduationCap,
+  BookOpen,
+  Users
 } from "lucide-react";
 
+// Fonts
+const headingFont = { fontFamily: "'Playfair Display', serif" };
+const bodyFont = { fontFamily: "'Lora', serif" };
+
 const Footer = () => {
+  const quickLinks = [
+    { name: "Home", url: "#" },
+    { name: "Admissions", url: "#" },
+    { name: "Courses", url: "#" },
+    { name: "Placements", url: "#" },
+    { name: "Events", url: "#" },
+    { name: "Contact Us", url: "#" },
+    { name: "About Us", url: "#" },
+    { name: "Research", url: "#" },
+    { name: "Campus Tour", url: "#" },
+    { name: "Alumni", url: "#" },
+  ];
+
+  const programs = [
+    "Computer Science & Engineering",
+    "Mechanical Engineering",
+    "Electrical Engineering",
+    "Civil Engineering",
+    "Electronics & Communication",
+    "Artificial Intelligence",
+    "Data Science",
+    "Business Administration"
+  ];
+
+  const contactInfo = [
+    {
+      icon: <Phone size={20} />,
+      text: "9285123400 / 9826130624",
+      subtext: "7000130299 / 7587329553"
+    },
+    {
+      icon: <Phone size={20} />,
+      text: "WhatsApp: 9244005187",
+      subtext: ""
+    },
+    {
+      icon: <Mail size={20} />,
+      text: "admissions@kecbhilai.com",
+      subtext: "krishnaengineeringcollege@gmail.com"
+    },
+    {
+      icon: <MapPin size={20} />,
+      text: "Behind Smriti Nagar Petrol Pump Junwani,",
+      subtext: "Khamahariya, Bhilai"
+    },
+    {
+      icon: <Clock size={20} />,
+      text: "Monday - Saturday: 9:00 AM - 5:00 PM",
+      subtext: "Sunday: Closed"
+    }
+  ];
+
+  const socialLinks = [
+    { icon: <Facebook size={20} />, url: "#", name: "Facebook" },
+    { icon: <Twitter size={20} />, url: "#", name: "Twitter" },
+    { icon: <Instagram size={20} />, url: "#", name: "Instagram" },
+    { icon: <Linkedin size={20} />, url: "#", name: "LinkedIn" },
+    { icon: <Youtube size={20} />, url: "#", name: "YouTube" }
+  ];
+
+  const achievements = [
+    { icon: <Award size={18} />, text: "NAAC Accredited" },
+    { icon: <GraduationCap size={18} />, text: "95% Placement Rate" },
+    { icon: <BookOpen size={18} />, text: "50+ Research Publications" },
+    { icon: <Users size={18} />, text: "5000+ Alumni Network" }
+  ];
+
   return (
-    <footer className="text-white pt-16 pb-8 px-4 relative overflow-hidden">
-      {/* Background image with overlay */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="https://www.kecbhilai.com/images/slider_img2.jpg"
-          alt="College Campus Background"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-blue-900/95 via-blue-800/80 to-blue-700/70"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-900/30 to-blue-800/80"></div>
-      </div>
-      
-      {/* Grid pattern overlay */}
-      <div className="absolute inset-0 z-1 opacity-10 pattern-grid-lg pattern-blue-500 pattern-size-8 pattern-opacity-100"></div>
-      
-      {/* Circular logo background */}
-      <div className="absolute -right-32 -bottom-32 w-96 h-96 opacity-10 z-1">
-        <div className="relative w-full h-full">
-          <div className="absolute inset-0 bg-blue-400 rounded-full animate-ping opacity-20"></div>
-          <div className="absolute inset-4 bg-blue-500 rounded-full flex items-center justify-center">
-            <School className="text-white" size={80} />
-          </div>
-        </div>
-      </div>
-
-      <div className="container mx-auto relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* College Information */}
-          <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center mb-6">
-              <div className="relative">
-                
-              
-              </div>
-              <h3 className="text-2xl font-bold text-yellow-400">
-                Krishna Engineering College
-              </h3>
-            </div>
-
-            <p className="mb-6 text-blue-100 leading-relaxed text-lg">
-              Krishna Engineering College is a state of the art engineering
-              college recognized for excellence, innovation, and societal
-              relevance. We produce creative and strong engineers and research
-              solutions to national challenges with an unprecedented commitment
-              to integrating across engineering, science, business and other
-              disciplines to yield transformative results.
+    <footer className="bg-gray-900 rounded-t-3xl text-white pt-20 pb-10" style={bodyFont}>
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-16">
+          {/* College Info */}
+          <motion.div 
+            className="lg:col-span-2"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h3 className="text-3xl font-light mb-6" style={headingFont}>
+              Krishna Engineering College
+            </h3>
+            <p className="text-gray-300 mb-8 leading-relaxed text-lg max-w-xl">
+              A premier institution recognized for excellence, innovation, and societal relevance. 
+              We produce creative engineers and research solutions to national challenges with 
+              an unprecedented commitment to integrating across engineering, science, business 
+              and other disciplines to yield transformative results.
             </p>
-
-            <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-6 mb-8">
-              <div className="flex items-center mb-3 sm:mb-0 bg-blue-800/50 py-2 px-4 rounded-lg backdrop-blur-sm">
-                <Award className="text-yellow-400 mr-2" size={18} />
-                <span className="text-sm text-white">Approved by AICTE</span>
+            
+            {/* Approvals */}
+            <div className="flex flex-wrap gap-4 mb-8">
+              <div className="bg-blue-800 text-white px-5 py-3 font-medium flex items-center">
+                <Award size={18} className="mr-2" />
+                Approved by AICTE
               </div>
-              <div className="flex items-center bg-blue-800/50 py-2 px-4 rounded-lg backdrop-blur-sm">
-                <Award className="text-yellow-400 mr-2" size={18} />
-                <span className="text-sm text-white">Affiliated to CSVTU</span>
+              <div className="bg-blue-800 text-white px-5 py-3 font-medium flex items-center">
+                <Award size={18} className="mr-2" />
+                Affiliated to CSVTU
               </div>
             </div>
 
-            <div className="flex space-x-4">
-              {[
-                { icon: Facebook, color: "hover:bg-blue-600" },
-                { icon: Twitter, color: "hover:bg-sky-500" },
-                { icon: Linkedin, color: "hover:bg-blue-700" },
-                { icon: Youtube, color: "hover:bg-red-600" },
-                { icon: Instagram, color: "hover:bg-pink-600" },
-              ].map((social, index) => (
-                <a
+            {/* Achievements */}
+            <div className="grid grid-cols-2 gap-4">
+              {achievements.map((achievement, index) => (
+                <motion.div 
                   key={index}
-                  href="#"
-                  className={`bg-blue-800/80 p-3 rounded-full hover:bg-yellow-400 hover:text-blue-900 transition-all duration-300 transform hover:scale-110 backdrop-blur-sm ${social.color}`}
+                  className="flex items-center text-blue-300"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <social.icon size={20} />
-                </a>
+                  <span className="mr-2">{achievement.icon}</span>
+                  <span className="text-sm">{achievement.text}</span>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-lg font-semibold mb-6 text-yellow-400 flex items-center pb-3 border-b border-blue-700">
-              <Link className="mr-2" size={20} />
-              Quick Links
+          {/* Programs */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <h4 className="text-xl font-medium mb-6 border-b border-blue-800 pb-3" style={headingFont}>
+              Academic Programs
             </h4>
-            <ul className="space-y-4">
-              {[
-                { icon: Home, text: "Home" },
-                { icon: BookOpen, text: "Admissions" },
-                { icon: GraduationCap, text: "Courses" },
-                { icon: Briefcase, text: "Placements" },
-                { icon: Calendar, text: "Events" },
-              ].map((item, index) => (
-                <li key={index}>
-                  <a
-                    href="#"
-                    className="group hover:text-yellow-400 transition-all duration-300 flex items-center py-2 px-3 rounded-lg hover:bg-blue-800/50 backdrop-blur-sm"
+            <ul className="space-y-3">
+              {programs.map((program, index) => (
+                <motion.li 
+                  key={index}
+                  whileHover={{ x: 5 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                >
+                  <a 
+                    href="#" 
+                    className="text-gray-300 hover:text-white transition-colors flex items-center group"
                   >
-                    <div className="relative">
-                      <ChevronRight
-                        className="mr-3 text-yellow-400 absolute -left-5 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1"
-                        size={16}
-                      />
-                    </div>
-                    <item.icon className="mr-3" size={18} />
-                    <span className="group-hover:translate-x-2 transition-transform">
-                      {item.text}
-                    </span>
+                    <ExternalLink size={16} className="mr-2 text-blue-400" />
+                    <span className="text-sm">{program}</span>
                   </a>
-                </li>
+                </motion.li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
-          {/* Contact Info */}
-          <div>
-            <h4 className="text-lg font-semibold mb-6 text-yellow-400 flex items-center pb-3 border-b border-blue-700">
-              <MapPin className="mr-2" size={20} />
-              Contact Us
+          {/* Contact Information */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <h4 className="text-xl font-medium mb-6 border-b border-blue-800 pb-3" style={headingFont}>
+              Contact Information
             </h4>
-
             <div className="space-y-5">
-              <div className="flex items-start p-3 rounded-lg hover:bg-blue-800/50 transition-all duration-300 backdrop-blur-sm">
-                <MapPin
-                  className="mr-3 text-yellow-400 mt-1 flex-shrink-0"
-                  size={18}
-                />
-                <div>
-                  <p className="font-medium">Krishna Engineering College</p>
-                  <p className="text-blue-100 text-sm">
-                    Behind Smriti Nagar Petrol Pump Junwani,
-                  </p>
-                  <p className="text-blue-100 text-sm">Khamahariya, Bhilai</p>
-                </div>
-              </div>
+              {contactInfo.map((item, index) => (
+                <motion.div 
+                  key={index}
+                  className="flex items-start"
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <div className="text-blue-400 mt-0.5 mr-3">
+                    {item.icon}
+                  </div>
+                  <div>
+                    <p className="text-gray-300">{item.text}</p>
+                    {item.subtext && (
+                      <p className="text-gray-400 text-sm mt-1">{item.subtext}</p>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
 
-              <div className="flex items-center p-3 rounded-lg hover:bg-blue-800/50 transition-all duration-300 backdrop-blur-sm">
-                <Phone className="mr-3 text-yellow-400" size={18} />
-                <div>
-                  <p className="font-medium">Phone Numbers</p>
-                  <p className="text-blue-100 text-sm">
-                    9285123400 / 9826130624
-                  </p>
-                  <p className="text-blue-100 text-sm">
-                    7000130299 / 7587329553
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-center p-3 rounded-lg hover:bg-blue-800/50 transition-all duration-300 backdrop-blur-sm">
-                <MessageCircle className="mr-3 text-yellow-400" size={18} />
-                <div>
-                  <p className="font-medium">WhatsApp</p>
-                  <p className="text-blue-100 text-sm">9244005187</p>
-                </div>
-              </div>
-
-              <div className="flex items-center p-3 rounded-lg hover:bg-blue-800/50 transition-all duration-300 backdrop-blur-sm">
-                <Mail className="mr-3 text-yellow-400" size={18} />
-                <div>
-                  <p className="font-medium">Email</p>
-                  <p className="text-blue-100 text-sm">
-                    admissions@kecbhilai.com
-                  </p>
-                  <p className="text-blue-100 text-sm">
-                    krishnaengineeringcollege@gmail.com
-                  </p>
-                </div>
+            {/* Social Links */}
+            <div className="mt-8">
+              <h5 className="text-lg font-medium mb-4" style={headingFont}>Follow Us</h5>
+              <div className="flex space-x-4">
+                {socialLinks.map((social, index) => (
+                  <motion.a
+                    key={index}
+                    href={social.url}
+                    className="bg-blue-800 text-white p-3 rounded-full hover:bg-blue-700 transition-colors"
+                    whileHover={{ scale: 1.1, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    aria-label={social.name}
+                  >
+                    {social.icon}
+                  </motion.a>
+                ))}
               </div>
             </div>
+          </motion.div>
+        </div>
+
+        {/* Quick Links Section */}
+      
+
+        {/* Bottom Section */}
+        <motion.div 
+          className="border-t border-gray-700 pt-8"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="text-center md:text-left mb-4 md:mb-0">
+              <p className="text-gray-400 text-sm">
+                © {new Date().getFullYear()} Krishna Engineering College. All rights reserved.
+              </p>
+              <p className="text-gray-500 text-xs mt-1">
+                Transforming Education Since 2001
+              </p>
+            </div>
+            <div className="flex flex-wrap justify-center gap-6">
+              <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
+                Privacy Policy
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
+                Terms of Service
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
+                Sitemap
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
+                Accessibility
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
+                Careers
+              </a>
+            </div>
           </div>
-        </div>
-
-        <div className="border-t border-blue-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-          {/* Left - Copyright */}
-          <p className="mb-4 md:mb-0 text-blue-200 text-sm flex items-center">
-            © 2023 Krishna Engineering College. All rights reserved.
-          </p>
-
-          {/* Right - Crafted by */}
-          <a
-            href="https://www.linkedin.com/in/u-shiv-kumar-625376219/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-blue-200 hover:text-yellow-400 transition-colors flex items-center group"
-          >
-            <span className="flex items-center">
-              Crafted with 
-              <Heart className="mx-1 text-red-500" size={14} fill="currentColor" />
-              by
-            </span>
-            <span className="ml-1 font-semibold text-white group-hover:text-yellow-400 transition-colors flex items-center">
-              Shiv Kumar
-              <Sparkles className="ml-1 text-yellow-400" size={14} />
-            </span>
-          </a>
-        </div>
+        </motion.div>
       </div>
 
-      <style jsx>{`
-        .pattern-grid-lg {
-          background-image: linear-gradient(to right, #3b82f6 1px, transparent 1px),
-                            linear-gradient(to bottom, #3b82f6 1px, transparent 1px);
-        }
-        @keyframes pulse {
-          0%, 100% { opacity: 0.2; }
-          50% { opacity: 0.4; }
-        }
-        .animate-pulse {
-          animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-      `}</style>
+      {/* Fonts */}
+      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600&family=Lora:wght@400;500;600&display=swap" rel="stylesheet" />
     </footer>
   );
 };

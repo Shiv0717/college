@@ -3,8 +3,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { motion, useInView, useAnimation } from "framer-motion";
 
 // Fonts
-const headingFont = { fontFamily: "'Playfair Display', serif" };
-const bodyFont = { fontFamily: "'Inter', sans-serif" };
+const headingFont = { fontFamily: "'Cormorant Garamond', serif" };
+const bodyFont = { fontFamily: "'Lora', serif" };
 
 // Typewriter component
 const Typewriter = ({ text, delay, className }) => {
@@ -98,56 +98,58 @@ const Counter = ({ from = 0, to, duration = 2, className }) => {
 
 const FounderSection = () => {
   return (
-    <div className="bg-gradient-to-br from-gray-50 to-white py-16 md:py-24 relative overflow-hidden">
+    <div className="bg-gradient-to-br from-white to-gray-50 py-16 md:py-24 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16">
-          <p className="text-blue-700 uppercase tracking-wider text-sm font-semibold mb-2">
-            Leadership
+          <p className="text-blue-800 uppercase tracking-widest text-xs font-medium mb-3">
+          About Us
           </p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900" style={headingFont}>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-light text-gray-900 mb-4" style={headingFont}>
             <Typewriter 
-              text="Visionary Foundation" 
+              text="Excellence in Education " 
               delay={100} 
               className="inline-block"
             />
           </h2>
-          <div className="w-16 sm:w-20 h-1 bg-blue-600 mx-auto mt-3 md:mt-4"></div>
+          <div className="w-24 h-0.5 bg-blue-800/30 mx-auto mt-5"></div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left side - images */}
-          <div className="relative h-[350px] sm:h-[400px] md:h-[500px]">
+          <div className="relative h-[400px] sm:h-[500px] md:h-[600px]">
             <motion.div
-              className="absolute left-0 top-0 w-4/5 h-4/5 rounded-2xl shadow-xl overflow-hidden z-20"
+              className="absolute left-0 top-0 w-4/5 h-4/5 overflow-hidden z-20"
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.7 }}
             >
               <img
-                src="https://picsum.photos/500/350?random=1"
+                src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
                 alt="KEC Founder"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
             </motion.div>
 
             <motion.div
-              className="absolute right-0 bottom-0 w-3/5 h-3/5 rounded-xl shadow-lg overflow-hidden z-10 bg-blue-100"
+              className="absolute right-0 bottom-0 w-3/5 h-3/5 overflow-hidden z-10"
               initial={{ opacity: 0, x: 20, y: 20 }}
               whileInView={{ opacity: 1, x: 0, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.7, delay: 0.3 }}
             >
               <img
-                src="https://picsum.photos/500/350?random=2"
+                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
                 alt="Founder mentoring students"
-                className="w-full h-full object-cover opacity-90 mix-blend-multiply"
+                className="w-full h-full object-cover"
               />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-transparent"></div>
             </motion.div>
 
-            <div className="absolute -top-4 -left-4 w-16 sm:w-24 h-16 sm:h-24 bg-blue-200 rounded-full opacity-30 z-0"></div>
-            <div className="absolute -bottom-4 -right-4 w-12 sm:w-16 h-12 sm:h-16 bg-blue-300 rounded-full opacity-40 z-0"></div>
+            <div className="absolute -top-6 -left-6 w-24 h-24 border-2 border-blue-800/10 z-0"></div>
+            <div className="absolute -bottom-6 -right-6 w-20 h-20 border-2 border-blue-800/10 z-0"></div>
           </div>
 
           {/* Right side content */}
@@ -156,97 +158,97 @@ const FounderSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.7 }}
-            className="lg:pl-4"
+            className="lg:pl-8"
           >
-            <p className="uppercase text-xs sm:text-sm tracking-widest text-blue-700 font-semibold mb-2">
+            <p className="uppercase text-xs tracking-[0.2em] text-blue-800 font-medium mb-4">
               Since 1990
             </p>
 
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 leading-snug" style={headingFont}>
-              <AnimatedLetters 
-                text="Message from the " 
-                delayPerLetter={0.03}
-              />
-              <span className="text-blue-700">
-                <AnimatedLetters 
-                  text="Founder" 
-                  delayPerLetter={0.05}
-                />
+            <h2 className="text-4xl sm:text-5xl font-light mb-6 leading-tight" style={headingFont}>
+              <span className="block mb-2">Learn more about</span>
+              <span className="text-blue-800 font-medium">
+              Krishna Engineering College
               </span>
             </h2>
 
-            <p className="text-gray-600 mb-4 sm:mb-6 leading-relaxed text-base sm:text-lg" style={bodyFont}>
+            <p className="text-gray-700 mb-6 leading-relaxed text-lg" style={bodyFont}>
               At Krishna Engineering College, we are dedicated to shaping bright
               futures by providing world-class technical education, nurturing
               innovation, and empowering students to become leaders of tomorrow.
             </p>
 
             <motion.div 
-              className="border-l-4 border-blue-700 pl-4 sm:pl-5 italic font-medium text-gray-800 mb-6 sm:mb-8 py-2 bg-blue-50/50 rounded-r-lg" 
+              className="border-l-4 border-blue-800/30 pl-5 italic text-gray-800 mb-8 py-2" 
               style={bodyFont}
               initial={{ opacity: 0, x: -15 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              Since its inception in 2001, Krishna Engineering College has become
-              one of the most reputed educational institutions in the region.
+              "Since its inception in 2001, Krishna Engineering College has become
+              one of the most reputed educational institutions in the region."
             </motion.div>
 
             {/* Stats grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6 sm:mb-8">
+            <div className="grid grid-cols-3 gap-6 mb-8">
               <motion.div 
-                className="text-center p-3 sm:p-4 bg-white rounded-lg shadow-sm border border-gray-100"
+                className="text-center p-4 border-b-4 border-blue-800/20"
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
-                <div className="text-xl sm:text-2xl font-bold text-blue-700">
+                <div className="text-3xl font-light text-blue-800 mb-1" style={headingFont}>
                   <Counter from={0} to={30} duration={2} />
                 </div>
-                <div className="text-xs sm:text-sm text-gray-600 mt-1">Years</div>
+                <div className="text-xs uppercase tracking-widest text-gray-600">Years</div>
               </motion.div>
               <motion.div 
-                className="text-center p-3 sm:p-4 bg-white rounded-lg shadow-sm border border-gray-100"
+                className="text-center p-4 border-b-4 border-blue-800/20"
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <div className="text-xl sm:text-2xl font-bold text-blue-700">
+                <div className="text-3xl font-light text-blue-800 mb-1" style={headingFont}>
                   <Counter from={0} to={7} duration={2} />K+
                 </div>
-                <div className="text-xs sm:text-sm text-gray-600 mt-1">Graduates</div>
+                <div className="text-xs uppercase tracking-widest text-gray-600">Graduates</div>
               </motion.div>
               <motion.div 
-                className="text-center p-3 sm:p-4 bg-white rounded-lg shadow-sm border border-gray-100"
+                className="text-center p-4 border-b-4 border-blue-800/20"
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
-                <div className="text-xl sm:text-2xl font-bold text-blue-700">
+                <div className="text-3xl font-light text-blue-800 mb-1" style={headingFont}>
                   <Counter from={0} to={50} duration={2} />+
                 </div>
-                <div className="text-xs sm:text-sm text-gray-600 mt-1">Programs</div>
+                <div className="text-xs uppercase tracking-widest text-gray-600">Programs</div>
               </motion.div>
             </div>
 
             {/* Founder info */}
-            
+            <div className="mb-8">
+              <p className="text-gray-900 font-medium text-lg">Mr. Rajesh Kumar</p>
+              <p className="text-gray-600 text-sm">Founder & Chairman</p>
+            </div>
 
             {/* CTA Button */}
             <motion.button 
-              className=" px-6 py-3 bg-blue-600 text-white font-medium rounded-lg transition-all duration-300 hover:bg-blue-700 hover:shadow-lg transform hover:-translate-y-1"
+              className="px-8 py-4 bg-blue-800 text-white font-medium transition-all duration-300 hover:bg-blue-900 transform hover:-translate-y-1 inline-flex items-center"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.5, delay: 0.5 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
-              Read Full Message
+              <span>Read Full Message</span>
+              <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
             </motion.button>
           </motion.div>
         </div>
