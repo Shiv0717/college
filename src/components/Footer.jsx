@@ -24,7 +24,7 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="text-white bg-[] rounded-t-3xl pt-16 pb-8 px-4 relative overflow-hidden">
+    <footer className="text-white bg-blue-900 rounded-t-3xl pt-16 pb-8 px-4 relative overflow-hidden">
       {/* Background image with overlay */}
      
       {/* Grid pattern overlay */}
