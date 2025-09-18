@@ -58,6 +58,8 @@ const fadeUp = {
 
 const HeroSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const headingFont = { fontFamily: "'Playfair Display', serif" };
+  const bodyFont = { fontFamily: "'Lora', serif" };
 
   return (
     <section className="relative w-full md:h-[600px] h-[420px] overflow-hidden font-satoshi">
@@ -145,7 +147,7 @@ const HeroSection = () => {
                     className="text-lg sm:text-2xl md:text-4xl font-bold text-white leading-snug"
                     variants={fadeUp}
                     // only show full opacity when this slide is active
-                    style={{ opacity: activeIndex === index ? 1 : 0.65 }}
+                    style={{ ...headingFont, opacity: activeIndex === index ? 1 : 0.65 }}
                   >
                     {slide.title}
                   </motion.h1>
@@ -154,7 +156,7 @@ const HeroSection = () => {
                   <motion.p
                     className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-gray-200 max-w-xl"
                     variants={fadeUp}
-                    style={{ opacity: activeIndex === index ? 1 : 0.55 }}
+                    style={{ ...bodyFont, opacity: activeIndex === index ? 1 : 0.55 }}
                   >
                     {slide.description}
                   </motion.p>
@@ -252,6 +254,8 @@ const HeroSection = () => {
           z-index: 10;
         }
       `}</style>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600&family=Lora:wght@400;500;600&display=swap" rel="stylesheet" />
     </section>
   );
 };

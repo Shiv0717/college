@@ -48,9 +48,9 @@ const Layout = () => {
       </main>
 
       {/* Footer */}
-      <footer>
+    
         <Footer />
-      </footer>
+      
     </div>
   );
 };

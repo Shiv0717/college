@@ -21,51 +21,52 @@ gsap.registerPlugin(ScrollTrigger);
 const sections = [
   {
     id: "01",
-    title: "Departments",
+    title: "Mechanical Engineering",
     description:
-      "Explore our academic departments that shape innovation and research. Our departments offer cutting-edge programs taught by industry experts and renowned scholars.",
+      "Learn the principles of mechanics, thermodynamics, and materials to design and innovate machinery, automotive systems, and industrial solutions.",
     link: "#",
-    icon: <BookOpen size={24} />,
+    icon: <Briefcase size={24} />, // you can change to a gear icon
     image:
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
     featured: true,
     longDescription:
-      "Our academic departments are the foundation of the university's educational mission. Each department is dedicated to excellence in teaching, research, and service, providing students with the knowledge and skills needed to succeed in their chosen fields.",
+      "The Department of Mechanical Engineering equips students with strong fundamentals in design, manufacturing, and automation. With access to advanced laboratories and industry collaborations, students develop expertise in areas like robotics, CAD/CAM, renewable energy systems, and advanced manufacturing processes.",
   },
   {
     id: "02",
-    title: "Academies",
+    title: "Electronics & Communication Engineering",
     description:
-      "Specialized academies that nurture practical skills and global exposure.",
+      "Focus on communication systems, embedded technologies, and signal processing for the digital era.",
     link: "#",
-    icon: <Users size={24} />,
+    icon: <Users size={24} />, // can replace with circuit icon
     image:
-      "https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1581091012184-5c8af9e8f7a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
     featured: false,
   },
   {
     id: "03",
-    title: "Expertise",
+    title: "Computer Science & Engineering",
     description:
-      "Areas of expertise where our faculty and students excel worldwide.",
+      "Master programming, AI, cloud, and data-driven technologies that power the digital future.",
     link: "#",
-    icon: <Award size={24} />,
+    icon: <Award size={24} />, // can replace with code icon
     image:
-      "https://images.unsplash.com/photo-1571260899304-425eee4c7efc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
     featured: false,
   },
   {
     id: "04",
-    title: "Placements",
+    title: "Civil Engineering",
     description:
-      "Career opportunities with top recruiters and industry leaders.",
+      "Design and build sustainable infrastructure including bridges, roads, and smart cities.",
     link: "#",
-    icon: <Briefcase size={24} />,
+    icon: <BookOpen size={24} />, // can replace with building icon
     image:
-      "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1503389152951-9f343605f61e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
     featured: false,
   },
 ];
+
 
 const CoursesOffered = () => {
   const featuredItem = sections.find((item) => item.featured);

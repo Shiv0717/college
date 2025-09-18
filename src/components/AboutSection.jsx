@@ -107,7 +107,7 @@ const Gallery = () => {
                 <img
                   src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600"
                   alt="Auditorium"
-                  className="w-full h-48 object-cover"
+                  className="w-full h-80 object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                   <p className="text-white text-sm">
@@ -129,7 +129,7 @@ const Gallery = () => {
                 <img
                   src="https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=800"
                   alt="Science Lab"
-                  className="w-full aspect-square object-cover"
+                  className="w-full h-60 aspect-square object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                   <p className="text-white text-sm">
@@ -291,7 +291,7 @@ const Gallery = () => {
               <img
                 src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600"
                 alt="Auditorium"
-                className="w-full h-48 object-cover"
+                className="w-full h-80 object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                 <p className="text-white text-sm">
@@ -313,7 +313,7 @@ const Gallery = () => {
               <img
                 src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600"
                 alt="Sports Complex"
-                className="w-full aspect-square object-cover"
+                className="w-full h-60 aspect-square object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                 <p className="text-white text-sm">

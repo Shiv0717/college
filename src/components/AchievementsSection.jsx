@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from "react";
 import { ChevronRight, Award, Users, BookOpen, Star } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { motion } from "framer-motion";
+import Marquee from "react-fast-marquee"; // ✅ import
 gsap.registerPlugin(ScrollTrigger);
 
 const headingFont = { fontFamily: "'Playfair Display', serif" };
@@ -46,10 +46,9 @@ const achievements = [
 
 const AchievementsSection = () => {
   const headingRef = useRef(null);
-  const cardsRef = useRef([]);
 
   useEffect(() => {
-    // Animate header letters with wave effect
+    // Animate header letters
     const letters = headingRef.current.querySelectorAll(".letter");
     gsap.fromTo(
       letters,
@@ -67,25 +66,6 @@ const AchievementsSection = () => {
         },
       }
     );
-
-    // Animate each card
-    cardsRef.current.forEach((card) => {
-      gsap.fromTo(
-        card,
-        { opacity: 0, y: 50, scale: 0.9 },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: card,
-            start: "top 90%",
-          },
-        }
-      );
-    });
   }, []);
 
   return (
@@ -122,43 +102,17 @@ const AchievementsSection = () => {
           <div className="w-16 sm:w-20 h-1 bg-blue-600 mt-3 md:mt-4"></div>
         </div>
 
-        {/* Infinite Marquee */}
-        <div className="relative w-full overflow-hidden py-4">
-          <motion.div
-            className="flex"
-            animate={{
-              x: ["0%", "-50%"],
-            }}
-            transition={{
-              x: {
-                repeat: Infinity,
-                repeatType: "loop",
-                duration: 20,
-                ease: "linear",
-              },
-            }}
-          >
-            {[...achievements, ...achievements].map((achieve, index) => (
-              <div
-                key={index}
-                className="flex-shrink-0 w-[350px] mx-4"
-                ref={(el) => (cardsRef.current[index] = el)}
-              >
+        {/* ✅ Infinite Marquee */}
+        <div className="relative w-full overflow-hidden py-6">
+          <Marquee gradient={false} speed={40} pauseOnHover={true}>
+            {achievements.map((achieve, index) => (
+              <div key={index} className="flex-shrink-0 w-[350px] mx-4">
                 <AchievementCard achieve={achieve} headingFont={headingFont} />
               </div>
             ))}
-          </motion.div>
+          </Marquee>
         </div>
       </div>
-
-      <style jsx>{`
-        .line-clamp-3 {
-          display: -webkit-box;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-      `}</style>
 
       {/* Fonts */}
       <link
@@ -180,7 +134,9 @@ const AchievementCard = ({ achieve, headingFont }) => {
       <div className="absolute inset-0 bg-black/40" />
       <div className="relative h-full flex flex-col justify-end p-6">
         <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20 shadow-2xl">
-          <div className="text-4xl font-bold text-white mb-2">{achieve.number}</div>
+          <div className="text-4xl font-bold text-white mb-2">
+            {achieve.number}
+          </div>
           <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mb-4">
             <div className="text-white">{achieve.icon}</div>
           </div>
