@@ -1,7 +1,22 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
 import { Quote, ChevronLeft, ChevronRight, Users, Briefcase, Award, Star } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Register GSAP plugins
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
+// Colors
+const colors = {
+  primary: "#1a365d",     // Deep blue (university primary)
+  secondary: "#b38b59",   // Gold accent (university secondary)
+  tertiary: "#2d3748",    // Dark gray
+  accent: "#3182ce",      // Light blue
+  light: "#e9d8a6",       // Cream/beige
+};
 
 // Fonts
 const headingFont = { fontFamily: "'Playfair Display', serif" };
@@ -42,30 +57,123 @@ const stats = [
 
 const AlumniSuccessStories = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
+  const headingRef = useRef(null);
+  const subheadingRef = useRef(null);
+  const dividerRef = useRef(null);
+  const quoteSectionRef = useRef(null);
+  const statsSectionRef = useRef(null);
   const activeAlumni = alumni[activeIndex];
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
+    const ctx = gsap.context(() => {
+      // Section header animations
+      gsap.fromTo(subheadingRef.current,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          scrollTrigger: {
+            trigger: subheadingRef.current,
+            start: "top 85%",
+            toggleActions: "play none none none"
+          }
         }
-      },
-      { threshold: 0.2 }
-    );
+      );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      // Animate heading letter by letter
+      const headingText = headingRef.current;
+      if (headingText) {
+        const letters = headingText.querySelectorAll('span');
+        gsap.fromTo(letters,
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            stagger: 0.03,
+            scrollTrigger: {
+              trigger: headingRef.current,
+              start: "top 85%",
+              toggleActions: "play none none none"
+            }
+          }
+        );
       }
-    };
+
+      // Divider animation
+      gsap.fromTo(dividerRef.current,
+        { width: 0 },
+        {
+          width: "96px",
+          duration: 1,
+          scrollTrigger: {
+            trigger: dividerRef.current,
+            start: "top 85%",
+            toggleActions: "play none none none"
+          }
+        }
+      );
+
+      // Quote section animation
+      gsap.fromTo(quoteSectionRef.current,
+        { opacity: 0, x: -50 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.8,
+          scrollTrigger: {
+            trigger: quoteSectionRef.current,
+            start: "top 85%",
+            toggleActions: "play none none none"
+          }
+        }
+      );
+
+      // Stats section animation
+      gsap.fromTo(statsSectionRef.current,
+        { opacity: 0, x: 50 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.8,
+          scrollTrigger: {
+            trigger: statsSectionRef.current,
+            start: "top 85%",
+            toggleActions: "play none none none"
+          }
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
+
+  // Animate content when alumni changes
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate the quote content
+      gsap.fromTo(".alumni-content",
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.6 }
+      );
+
+      // Animate the alumni image
+      gsap.fromTo(".alumni-image",
+        { scale: 0.9, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.7 }
+      );
+
+      // Animate the alumni info
+      gsap.fromTo(".alumni-info",
+        { opacity: 0, x: -20 },
+        { opacity: 1, x: 0, duration: 0.6, delay: 0.3 }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, [activeIndex]);
 
   const handlePrev = () => {
     setActiveIndex((prev) => (prev === 0 ? alumni.length - 1 : prev - 1));
@@ -75,137 +183,127 @@ const AlumniSuccessStories = () => {
     setActiveIndex((prev) => (prev === alumni.length - 1 ? 0 : prev + 1));
   };
 
-  // Letter animation variants
-  const letterVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: (i) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.02,
-        duration: 0.5,
-        ease: "easeOut",
-      },
-    }),
-  };
-
   // Split text into letters for animation
-  const AnimatedText = ({ text, className }) => {
+  const AnimatedHeading = ({ text, className }) => {
     return (
-      <div className={className}>
+      <h2 ref={headingRef} className={className} style={headingFont}>
         {text.split("").map((letter, index) => (
-          <motion.span
-            key={index}
-            custom={index}
-            variants={letterVariants}
-            initial="hidden"
-            animate={isVisible ? "visible" : "hidden"}
-          >
+          <span key={index} className="inline-block">
             {letter === " " ? "\u00A0" : letter}
-          </motion.span>
+          </span>
         ))}
-      </div>
+      </h2>
     );
   };
 
   return (
     <div ref={sectionRef} className="py-20 bg-white" style={bodyFont}>
       <div className="max-w-7xl mx-auto px-6">
-        <motion.p
+        <p 
+          ref={subheadingRef}
           className="text-blue-800 uppercase tracking-widest text-xs font-medium mb-4"
-          initial={{ opacity: 0, y: 10 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
+          style={{ color: colors.primary }}
         >
           Alumni Success
-        </motion.p>
+        </p>
 
-        <AnimatedText
+        <AnimatedHeading
           text="Alumni Success Stories"
           className="text-3xl md:text-5xl font-light text-gray-900 mb-6"
-          style={headingFont}
         />
 
-        <motion.div
+        <div 
+          ref={dividerRef}
           className="w-24 h-0.5 bg-blue-800/30 mb-12"
-          initial={{ width: 0 }}
-          animate={isVisible ? { width: 96 } : { width: 0 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
+          style={{ backgroundColor: `${colors.primary}30` }}
         />
 
         <div className="flex flex-col lg:flex-row gap-12">
           {/* Left: Quote Section (70%) */}
-          <div className="lg:w-7/10 w-full bg-gradient-to-br from-blue-50 to-blue-100 p-8 md:p-12 flex flex-col justify-between relative min-h-[450px] border-l-4 border-blue-800">
-            <motion.div
-              key={activeAlumni.name}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="h-full flex flex-col justify-between"
-            >
+          <div 
+            ref={quoteSectionRef}
+            className="lg:w-7/10 w-full bg-gradient-to-br from-blue-50 to-blue-100 p-8 md:p-12 flex flex-col justify-between relative min-h-[450px] border-l-4 border-blue-800"
+            style={{ 
+              borderLeftColor: colors.primary,
+              background: `linear-gradient(135deg, ${colors.accent}10, ${colors.primary}10)`
+            }}
+          >
+            <div className="alumni-content h-full flex flex-col justify-between">
               <div>
-                <Quote className="text-blue-800 w-8 h-8 mb-6" />
-                <motion.p
-                  className="text-xl text-gray-800 leading-relaxed mb-8"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.3, duration: 0.5 }}
-                  style={bodyFont}
-                >
+                <Quote className="text-blue-800 w-8 h-8 mb-6" style={{ color: colors.primary }} />
+                <p className="text-xl text-gray-800 leading-relaxed mb-8" style={bodyFont}>
                   "{activeAlumni.quote}"
-                </motion.p>
+                </p>
               </div>
 
               {/* Alumni Image + Name + Branch */}
               <div className="flex items-center gap-6 border-t border-blue-200 pt-6">
-                <motion.img
+                <img
                   src={activeAlumni.img}
                   alt={activeAlumni.name}
-                  className="w-16 h-16 rounded-full object-cover"
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: 0.4, duration: 0.5 }}
+                  className="alumni-image w-16 h-16 rounded-full object-cover"
                 />
-                <div>
-                  <motion.h4
-                    className="text-lg font-medium text-gray-900"
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.5, duration: 0.5 }}
-                    style={headingFont}
-                  >
+                <div className="alumni-info">
+                  <h4 className="text-lg font-medium text-gray-900" style={headingFont}>
                     {activeAlumni.name}
-                  </motion.h4>
-                  <motion.p
-                    className="text-sm text-blue-800"
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.6, duration: 0.5 }}
-                  >
+                  </h4>
+                  <p className="text-sm text-blue-800" style={{ color: colors.primary }}>
                     {activeAlumni.branch}
-                  </motion.p>
+                  </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             {/* Arrow Buttons on Right Side */}
             <div className="absolute right-6 bottom-6 flex gap-3">
-              <motion.button
+              <button
                 onClick={handlePrev}
                 className="bg-white p-3 hover:bg-blue-800 hover:text-white transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
+                style={{ 
+                  backgroundColor: 'white',
+                  color: colors.primary 
+                }}
+                onMouseEnter={(e) => {
+                  gsap.to(e.target, { 
+                    backgroundColor: colors.primary, 
+                    color: 'white',
+                    duration: 0.3 
+                  });
+                }}
+                onMouseLeave={(e) => {
+                  gsap.to(e.target, { 
+                    backgroundColor: 'white', 
+                    color: colors.primary,
+                    duration: 0.3 
+                  });
+                }}
               >
                 <ChevronLeft className="w-5 h-5" />
-              </motion.button>
-              <motion.button
+              </button>
+              <button
                 onClick={handleNext}
                 className="bg-white p-3 hover:bg-blue-800 hover:text-white transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
+                style={{ 
+                  backgroundColor: 'white',
+                  color: colors.primary 
+                }}
+                onMouseEnter={(e) => {
+                  gsap.to(e.target, { 
+                    backgroundColor: colors.primary, 
+                    color: 'white',
+                    duration: 0.3 
+                  });
+                }}
+                onMouseLeave={(e) => {
+                  gsap.to(e.target, { 
+                    backgroundColor: 'white', 
+                    color: colors.primary,
+                    duration: 0.3 
+                  });
+                }}
               >
                 <ChevronRight className="w-5 h-5" />
-              </motion.button>
+              </button>
             </div>
 
             {/* Indicator dots */}
@@ -215,21 +313,25 @@ const AlumniSuccessStories = () => {
                   key={index}
                   onClick={() => setActiveIndex(index)}
                   className={`w-2 h-2 rounded-full transition-all ${
-                    index === activeIndex ? "bg-blue-800 scale-125" : "bg-blue-300"
+                    index === activeIndex ? "scale-125" : ""
                   }`}
+                  style={{ 
+                    backgroundColor: index === activeIndex ? colors.primary : `${colors.primary}50` 
+                  }}
                 />
               ))}
             </div>
           </div>
 
           {/* Right: Statistics Section (30%) */}
-          <motion.div 
+          <div 
+            ref={statsSectionRef}
             className="lg:w-3/10 relative flex flex-col justify-center"
-            initial={{ opacity: 0, x: 20 }}
-            animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
-            transition={{ delay: 0.7, duration: 0.5 }}
           >
-            <div className="bg-blue-900 text-white p-8 w-full flex flex-col gap-10">
+            <div 
+              className="bg-blue-900 text-white p-8 w-full flex flex-col gap-10"
+              style={{ backgroundColor: colors.primary }}
+            >
               <h3 className="text-2xl font-light text-center" style={headingFont}>
                 Our Alumni Impact
               </h3>
@@ -239,36 +341,56 @@ const AlumniSuccessStories = () => {
                 {stats.map((stat, index) => {
                   const IconComponent = stat.icon;
                   return (
-                    <motion.div 
+                    <div 
                       key={index}
                       className="flex flex-col items-center text-center"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                      transition={{ delay: 0.8 + (index * 0.1), duration: 0.5 }}
                     >
-                      <div className="text-blue-200 mb-4">
+                      <div className="text-blue-200 mb-4" style={{ color: colors.light }}>
                         <IconComponent className="w-8 h-8" />
                       </div>
                       <div className="text-2xl font-light mb-2" style={headingFont}>{stat.value}</div>
-                      <div className="text-sm text-blue-200 tracking-wide">{stat.label}</div>
-                    </motion.div>
+                      <div className="text-sm text-blue-200 tracking-wide" style={{ color: colors.light }}>{stat.label}</div>
+                    </div>
                   );
                 })}
               </div>
               
               {/* CTA Button */}
-              <motion.button 
+              <button 
                 className="bg-white text-blue-900 px-6 py-3 font-medium hover:bg-blue-50 transition-colors mt-4"
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                initial={{ opacity: 0, y: 10 }}
-                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-                transition={{ delay: 1.2, duration: 0.5 }}
+                style={{ 
+                  backgroundColor: 'white',
+                  color: colors.primary
+                }}
+                onMouseEnter={(e) => {
+                  gsap.to(e.target, { 
+                    y: -2,
+                    duration: 0.2
+                  });
+                }}
+                onMouseLeave={(e) => {
+                  gsap.to(e.target, { 
+                    y: 0,
+                    duration: 0.2
+                  });
+                }}
+                onMouseDown={(e) => {
+                  gsap.to(e.target, { 
+                    scale: 0.98,
+                    duration: 0.1
+                  });
+                }}
+                onMouseUp={(e) => {
+                  gsap.to(e.target, { 
+                    scale: 1,
+                    duration: 0.1
+                  });
+                }}
               >
                 Share Your Story
-              </motion.button>
+              </button>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
 
