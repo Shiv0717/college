@@ -1,401 +1,322 @@
-"use client";
-import React from "react";
-import { Camera, ArrowRight, BookOpen, Users, Award } from "lucide-react";
-import { motion } from "framer-motion";
+import React, { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// Fonts
-const headingFont = { fontFamily: "'Playfair Display', serif" };
-const bodyFont = { fontFamily: "'Lora', serif" };
+// Register ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
 
-// Colors
-const colors = {
-  primary: "#1a365d",     // Deep blue
-  secondary: "#b38b59",   // Gold accent
-  tertiary: "#2d3748",    // Dark gray
-  accent: "#3182ce",      // Light blue
-  light: "#e9d8a6",       // Cream/beige
-};
+const CampusLife = () => {
+  const sectionRef = useRef(null);
+  const cardRefs = useRef([]);
+  const headerRef = useRef(null);
+  const ctaRef = useRef(null);
 
-const Gallery = () => {
-  // Variants for columns
-  const columnVariant = (direction = "up") => ({
-    hidden: {
-      opacity: 0,
-      y: direction === "up" ? 50 : -50,
-      x: direction === "left" ? -50 : direction === "right" ? 50 : 0,
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Header animation on scroll
+      gsap.fromTo(headerRef.current, 
+        { 
+          opacity: 0, 
+          y: 80,
+          scale: 0.9
+        },
+        { 
+          opacity: 1, 
+          y: 0,
+          scale: 1,
+          duration: 1.2, 
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      // Card animations on scroll with stagger
+      cardRefs.current.forEach((card, index) => {
+        gsap.fromTo(card,
+          { 
+            opacity: 0, 
+            y: 100,
+            rotationY: 20,
+            scale: 0.8
+          },
+          {
+            opacity: 1,
+            y: 0,
+            rotationY: 0,
+            scale: 1,
+            duration: 1,
+            ease: "power3.out",
+            delay: index * 0.1,
+            scrollTrigger: {
+              trigger: card,
+              start: "top 85%",
+              end: "bottom 20%",
+              toggleActions: "play none none reverse"
+            }
+          }
+        );
+      });
+
+      // CTA button animation on scroll
+      gsap.fromTo(ctaRef.current, 
+        { 
+          opacity: 0, 
+          y: 60,
+          scale: 0.8
+        },
+        { 
+          opacity: 1, 
+          y: 0,
+          scale: 1,
+          duration: 0.8, 
+          ease: "back.out(1.7)",
+          scrollTrigger: {
+            trigger: ctaRef.current,
+            start: "top 90%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      // Hover animations with 3D effect (unchanged)
+      cardRefs.current.forEach((card) => {
+        card.addEventListener('mouseenter', () => {
+          gsap.to(card, {
+            y: -8,
+            rotationY: 5,
+            scale: 1.02,
+            duration: 0.4,
+            ease: "power2.out"
+          });
+          
+          const image = card.querySelector('img');
+          const content = card.querySelector('.card-content');
+          const number = card.querySelector('.card-number');
+          
+          gsap.to(image, {
+            scale: 1.1,
+            duration: 0.4,
+            ease: "power2.out"
+          });
+          
+          gsap.to(number, {
+            scale: 1.1,
+            backgroundColor: card.dataset.color,
+            duration: 0.3
+          });
+        });
+
+        card.addEventListener('mouseleave', () => {
+          gsap.to(card, {
+            y: 0,
+            rotationY: 0,
+            scale: 1,
+            duration: 0.4,
+            ease: "power2.out"
+          });
+          
+          const image = card.querySelector('img');
+          const number = card.querySelector('.card-number');
+          
+          gsap.to(image, {
+            scale: 1,
+            duration: 0.4
+          });
+          
+          gsap.to(number, {
+            scale: 1,
+            duration: 0.3
+          });
+        });
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  const campusActivities = [
+    {
+      id: 1,
+      title: "Student Clubs",
+      image: "https://framerusercontent.com/images/RyOKJzmMMaIBWSlI5OegO1VZ4a0.png?scale-down-to=1024",
+      color: "#00BA59",
+      description: "Join over 50 student-led organizations and clubs spanning various interests"
     },
-    visible: {
-      opacity: 1,
-      y: 0,
-      x: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut",
-      },
+    {
+      id: 2,
+      title: "Sports & Fitness",
+      image: "https://framerusercontent.com/images/O2n8G5n1D03ZATNQNypb4zRPyZY.png?scale-down-to=1024",
+      color: "#FF6463",
+      description: "State-of-the-art facilities for all athletic pursuits and wellness programs",
+      featured: true
     },
-  });
+    {
+      id: 3,
+      title: "Academic Events",
+      image: "https://framerusercontent.com/images/axzz6ysTvd1Zc4C0TIq1eoKfy28.png?scale-down-to=1024",
+      color: "#FECF54",
+      description: "Workshops, seminars, and academic conferences with industry leaders"
+    },
+    {
+      id: 4,
+      title: "Campus Housing",
+      image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=500&h=300&fit=crop",
+      color: "#1D78FD",
+      description: "Comfortable and modern living spaces designed for student success"
+    },
+    {
+      id: 5,
+      title: "Cultural Festivals",
+      image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500&h=500&fit=crop",
+      color: "#00BA59",
+      description: "Celebrate diversity with cultural events and international festivals"
+    }
+  ];
+
+  const addToRefs = (el) => {
+    if (el && !cardRefs.current.includes(el)) {
+      cardRefs.current.push(el);
+    }
+  };
+
+  const getGridClass = (index, featured) => {
+    if (featured) return "lg:col-span-2 lg:row-span-2";
+    if (index === 0 || index === 2) return "lg:col-span-1";
+    return "lg:col-span-1";
+  };
+
+  const getHeightClass = (featured) => {
+    return featured ? "h-full" : "h-80";
+  };
 
   return (
-    <section
-      className="py-20 relative overflow-hidden bg-white"
-      style={bodyFont}
+    <section 
+      ref={sectionRef}
+      className="min-h-screen py-24 px-4 bg-white"
+      style={{ fontFamily: "'Lato', sans-serif" }}
     >
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        {/* Header Section */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.8 }}
-        >
-          <motion.p
-            className="uppercase tracking-widest text-xs font-medium mb-4"
-            style={{ color: colors.primary }}
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.5 }}
+      <div className="">
+        {/* Header */}
+        <div ref={headerRef} className="text-center mb-20">
+          <h2 
+            className="text-6xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent"
+            style={{ fontFamily: "'Merriweather', serif" }}
           >
-            Campus Gallery
-          </motion.p>
-
-          <motion.h4
-            className="text-4xl md:text-5xl font-light text-gray-900 mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            style={headingFont}
-          >
-            Explore Our Campus
-          </motion.h4>
-
-          <motion.div
-            className="mx-auto mb-8"
-            style={{ backgroundColor: colors.primary, height: "2px", width: "96px" }}
-            initial={{ width: 0 }}
-            whileInView={{ width: 96 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-          />
-        </motion.div>
-
-        {/* Gallery Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Left Column */}
-          <motion.div
-            className="lg:col-span-2 space-y-8"
-            variants={columnVariant("left")}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.4 }}
-          >
-            <div className="text-center mb-6">
-              <motion.div
-                className="w-12 h-12 mx-auto flex items-center justify-center mb-4"
-                style={{ color: colors.primary }}
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <BookOpen size={28} />
-              </motion.div>
-              <h3
-                className="text-lg font-medium text-gray-800 mb-2"
-                style={headingFont}
-              >
-                Academic Excellence
-              </h3>
-              <p className="text-gray-600 text-sm">Learning environments</p>
-            </div>
-
-            <div className="space-y-6">
-              <motion.div
-                className="relative group overflow-hidden"
-                whileHover={{
-                  scale: 1.03,
-                }}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600"
-                  alt="Auditorium"
-                  className="w-full h-80 object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                  <p className="text-white text-sm">Auditorium</p>
-                </div>
-              </motion.div>
-
-              <motion.div
-                className="relative group overflow-hidden"
-                whileHover={{
-                  scale: 1.03,
-                }}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=800"
-                  alt="Science Lab"
-                  className="w-full h-60 aspect-square object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                  <p className="text-white text-sm">Physics Laboratory</p>
-                </div>
-              </motion.div>
-
-              <motion.div
-                className="p-5 text-center"
-                style={{
-                  borderLeft: `4px solid ${colors.primary}`,
-                  backgroundColor: colors.light,
-                }}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                whileHover={{
-                  scale: 1.02,
-                }}
-              >
-                <div
-                  className="text-2xl font-light mb-2"
-                  style={{ color: colors.primary, ...headingFont }}
-                >
-                  50K+
-                </div>
-                <div className="text-xs text-gray-600 uppercase tracking-wide">
-                  Books in Library
-                </div>
-              </motion.div>
-            </div>
-          </motion.div>
-
-          {/* Middle Column */}
-          <motion.div
-            className="lg:col-span-8 space-y-8"
-            variants={columnVariant("up")}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.4 }}
-          >
-            <div className="text-center mb-6">
-              <motion.div
-                className="w-12 h-12 mx-auto flex items-center justify-center mb-4"
-                style={{ color: colors.primary }}
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <Users size={28} />
-              </motion.div>
-              <h3
-                className="text-2xl font-light text-gray-800 mb-2"
-                style={headingFont}
-              >
-                Campus Life
-              </h3>
-              <p className="text-gray-600">Where learning meets experience</p>
-            </div>
-
-            <motion.div
-              className="relative group overflow-hidden"
-              whileHover={{
-                scale: 1.02,
-              }}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <img
-                src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=1000"
-                alt="Campus Overview"
-                className="w-full h-72 object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                <div>
-                  <p className="text-sm mb-2" style={{ color: colors.light }}>
-                    Main Campus
-                  </p>
-                  <h4
-                    className="text-white text-xl font-medium"
-                    style={headingFont}
-                  >
-                    Aerial View
-                  </h4>
-                </div>
-              </div>
-            </motion.div>
-
-            <div className="grid grid-cols-2 gap-6">
-              {[
-                {
-                  src: "https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=600",
-                  label: "Basketball",
-                },
-                {
-                  src: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600",
-                  label: "Graduation",
-                },
-                {
-                  src: "https://images.unsplash.com/photo-1591123120675-6f7f1aae0e5b?w=600",
-                  label: "Study Area",
-                },
-                {
-                  src: "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=600",
-                  label: "Collaboration",
-                },
-              ].map((img, idx) => (
-                <motion.div
-                  key={idx}
-                  className="relative group overflow-hidden"
-                  whileHover={{
-                    scale: 1.03,
-                  }}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: idx * 0.1 }}
-                >
-                  <img
-                    src={img.src}
-                    alt={img.label}
-                    className="w-full h-48 object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                    <p className="text-white text-sm">{img.label}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Right Column */}
-          <motion.div
-            className="lg:col-span-2 space-y-8"
-            variants={columnVariant("right")}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.4 }}
-          >
-            <div className="text-center mb-6">
-              <motion.div
-                className="w-12 h-12 mx-auto flex items-center justify-center mb-4"
-                style={{ color: colors.primary }}
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <Award size={28} />
-              </motion.div>
-              <h3
-                className="text-lg font-medium text-gray-800 mb-2"
-                style={headingFont}
-              >
-                Facilities
-              </h3>
-              <p className="text-gray-600 text-sm">Modern amenities</p>
-            </div>
-
-            <motion.div
-              className="relative group overflow-hidden"
-              whileHover={{
-                scale: 1.03,
-              }}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <img
-                src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600"
-                alt="Auditorium"
-                className="w-full h-80 object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                <p className="text-white text-sm">Auditorium</p>
-              </div>
-            </motion.div>
-
-            <motion.div
-              className="relative group overflow-hidden"
-              whileHover={{
-                scale: 1.03,
-              }}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-            >
-              <img
-                src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600"
-                alt="Sports Complex"
-                className="w-full h-60 aspect-square object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                <p className="text-white text-sm">Sports Complex</p>
-              </div>
-            </motion.div>
-
-            <motion.div
-              className="p-5 text-center"
-              style={{
-                borderLeft: `4px solid ${colors.primary}`,
-                backgroundColor: colors.light,
-              }}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              whileHover={{
-                scale: 1.02,
-              }}
-            >
-              <div
-                className="text-xl font-light mb-2"
-                style={{ color: colors.primary, ...headingFont }}
-              >
-                25+
-              </div>
-              <div className="text-xs text-gray-600 uppercase tracking-wide">
-                Facilities
-              </div>
-            </motion.div>
-          </motion.div>
+            Campus Life
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Discover a vibrant community where learning extends beyond the classroom. 
+            Experience unforgettable moments and build lifelong connections.
+          </p>
         </div>
 
-        {/* View More Button */}
-        <motion.div
-          className="text-center mt-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          <motion.button
-            className="px-8 py-4 font-medium flex items-center justify-center mx-auto gap-3 transition-colors"
-            style={{ backgroundColor: colors.primary, color: "white" }}
-            whileHover={{ y: -2, backgroundColor: colors.accent }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <span>View Full Gallery</span>
-            <ArrowRight size={18} />
-          </motion.button>
-        </motion.div>
+        {/* Grid Layout - 2-1-2 Pattern */}
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+          {campusActivities.map((activity, index) => (
+            <div
+              key={activity.id}
+              ref={addToRefs}
+              data-color={activity.color}
+              className={`group relative overflow-hidden rounded-3xl cursor-pointer transform perspective-1000 ${getGridClass(index, activity.featured)}`}
+            >
+              <div className={`relative ${getHeightClass(activity.featured)} w-full`}>
+                {/* Image */}
+                <div className="relative w-full h-full overflow-hidden">
+                  <img
+                    src={activity.image}
+                    alt={activity.title}
+                    className="w-full h-full object-cover transform transition-transform duration-700"
+                  />
+                  
+                  {/* Gradient Overlay */}
+                  <div 
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{ 
+                      background: `linear-gradient(45deg, ${activity.color}20, transparent)` 
+                    }}
+                  />
+                </div>
+
+                {/* Content Overlay */}
+                <div className="absolute inset-0 p-8 flex flex-col justify-end bg-gradient-to-t from-black/70 via-black/20 to-transparent">
+                  {/* Number Badge */}
+                  <div 
+                    className="card-number absolute top-6 right-6 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg border-2 border-white/20 transition-all duration-300"
+                    style={{ backgroundColor: `${activity.color}80` }}
+                  >
+                    0{index + 1}
+                  </div>
+
+                  {/* Content */}
+                  <div className="card-content transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                    <div className="flex items-center mb-3">
+                      <div 
+                        className="w-3 h-3 rounded-full mr-3"
+                        style={{ backgroundColor: activity.color }}
+                      />
+                      <span 
+                        className="text-sm font-semibold tracking-wider uppercase"
+                        style={{ color: activity.color }}
+                      >
+                        Campus Life
+                      </span>
+                    </div>
+                    
+                    <h3 
+                      className="text-2xl lg:text-3xl font-bold text-white mb-3 leading-tight"
+                      style={{ fontFamily: "'Merriweather', serif" }}
+                    >
+                      {activity.title}
+                    </h3>
+                    
+                    <p className="text-white/90 text-sm lg:text-base leading-relaxed mb-4 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
+                      {activity.description}
+                    </p>
+                    
+                    <button 
+                      className="inline-flex items-center px-5 py-2.5 rounded-full font-semibold text-white border-2 border-white/30 hover:border-white/60 transition-all duration-300 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 hover:pl-6"
+                      style={{ 
+                        backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                        backdropFilter: 'blur(10px)'
+                      }}
+                    >
+                      Explore
+                      <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Hover Border */}
+                <div 
+                  className="absolute inset-0 border-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"
+                  style={{ 
+                    borderColor: activity.color,
+                    boxShadow: `inset 0 0 0 3px ${activity.color}`
+                  }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+
+      
+        
       </div>
 
-      {/* Fonts */}
-      <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600&family=Lora:wght@400;500;600&display=swap"
-        rel="stylesheet"
-      />
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Lato:wght@300;400;500;600;700&display=swap');
+      `}</style>
+
     </section>
   );
 };
 
-export default Gallery;
+export default CampusLife;

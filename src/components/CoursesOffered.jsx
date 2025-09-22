@@ -1,373 +1,366 @@
 "use client";
-import React, { useRef, useEffect } from "react";
-import {
-  ArrowRight,
-  ChevronRight,
-  BookOpen,
-  Users,
-  Award,
-  Briefcase,
-  Star,
-  Cpu,
-  Building,
-  Cog,
-} from "lucide-react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React, { useState, useRef, useEffect } from "react";
+import { Cpu, Zap, Settings, GraduationCap, Users, BookOpen, Award, Calendar, Code, Network, Database, Cloud } from "lucide-react";
+import { gsap } from "gsap";
 
-// Fonts
-const headingFont = { fontFamily: "'Playfair Display', serif" };
-const bodyFont = { fontFamily: "'Lora', serif" };
-
-// University color palette
-const colors = {
-  primary: "#1a365d",     // Deep blue (university primary)
-  secondary: "#b38b59",   // Gold accent (university secondary)
-  tertiary: "#2d3748",    // Dark gray
-  accent: "#3182ce",      // Light blue
-  light: "#e9d8a6",       // Cream/beige
-};
-
-gsap.registerPlugin(ScrollTrigger);
-
-const sections = [
-  {
-    id: "01",
-    title: "Mechanical Engineering",
-    description:
-      "Learn the principles of mechanics, thermodynamics, and materials to design and innovate machinery, automotive systems, and industrial solutions.",
-    link: "#",
-    icon: <Cog size={24} className="text-white" />,
-    image:
-      "https://framerusercontent.com/images/eOfJnRyU501ZVOEYqq4UqF5D6Y.jpg?scale-down-to=1024",
-    featured: true,
-    longDescription:
-      "The Department of Mechanical Engineering equips students with strong fundamentals in design, manufacturing, and automation. With access to advanced laboratories and industry collaborations, students develop expertise in areas like robotics, CAD/CAM, renewable energy systems, and advanced manufacturing processes.",
-    stats: [
-      { value: "50+", label: "Programs Offered" },
-      { value: "200+", label: "Faculty Members" },
-      { value: "95%", label: "Employment Rate" },
-    ]
-  },
-  {
-    id: "02",
-    title: "Electronics & Communication Engineering",
-    description:
-      "Focus on communication systems, embedded technologies, and signal processing for the digital era.",
-    link: "#",
-    icon: <Cpu size={24} className="text-white" />,
-    image:
-      "https://framerusercontent.com/images/I4K58qReYpli82TuZMgRVS7ZwUw.jpg",
-    featured: false,
-  },
-  {
-    id: "03",
-    title: "Computer Science & Engineering",
-    description:
-      "Master programming, AI, cloud, and data-driven technologies that power the digital future.",
-    link: "#",
-    icon: <Award size={24} className="text-white" />,
-    image:
-      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-    featured: false,
-  },
-  {
-    id: "04",
-    title: "Civil Engineering",
-    description:
-      "Design and build sustainable infrastructure including bridges, roads, and smart cities.",
-    link: "#",
-    icon: <Building size={24} className="text-white" />,
-    image:
-      "https://framerusercontent.com/images/I4K58qReYpli82TuZMgRVS7ZwUw.jpg",
-    featured: false,
-  },
-];
-
-const CoursesOffered = () => {
-  const featuredItem = sections.find((item) => item.featured);
-  const regularItems = sections.filter((item) => !item.featured);
-  const containerRef = useRef(null);
-  const headerRef = useRef(null);
+const EngineeringDepartments = () => {
+  const [activeDepartment, setActiveDepartment] = useState(0);
+  const [isHoverEnabled, setIsHoverEnabled] = useState(true);
+  const sectionRef = useRef(null);
+  const imageRef = useRef(null);
+  const contentRef = useRef(null);
   const titleRef = useRef(null);
-  const subtitleRef = useRef(null);
-  const dividerRef = useRef(null);
+  const descriptionRef = useRef(null);
+  const statsRef = useRef(null);
 
-  useEffect(() => {
-    // Header animations
-    gsap.fromTo(
-      headerRef.current.querySelectorAll(".animate-header-part"),
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        scrollTrigger: {
-          trigger: headerRef.current,
-          start: "top 85%",
-          toggleActions: "play none none reverse",
-        }
-      }
-    );
-
-    // Title letter animation
-    const titleText = titleRef.current.textContent;
-    titleRef.current.textContent = "";
-    const titleLetters = [];
-    
-    for (let i = 0; i < titleText.length; i++) {
-      const letter = document.createElement("span");
-      letter.textContent = titleText[i];
-      letter.className = "inline-block opacity-0";
-      titleRef.current.appendChild(letter);
-      titleLetters.push(letter);
+  const departments = [
+    {
+      id: 1,
+      number: "01",
+      title: "Computer Science & Engineering",
+      shortTitle: "CSE",
+      description: "Pioneering the future of technology with cutting-edge research in AI, Machine Learning, Cybersecurity, and Software Development. Our CSE department produces innovators who shape the digital world.",
+      icon: Cpu,
+      image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1000&h=700&fit=crop",
+      color: "from-blue-500 to-cyan-500",
+      textColor: "text-blue-600",
+      bgColor: "bg-blue-500",
+      stats: {
+        students: "1200+",
+        faculty: "45",
+        labs: "15",
+        placements: "98%"
+      },
+      features: ["AI & Machine Learning", "Cybersecurity", "Cloud Computing", "Data Science"],
+      icons: [Code, Network, Database, Cloud]
+    },
+    {
+      id: 2,
+      number: "02",
+      title: "Mechanical Engineering",
+      shortTitle: "MECH",
+      description: "Driving innovation in design, manufacturing, and automation. Our Mechanical Engineering program focuses on robotics, thermal systems, and advanced materials technology for industrial applications.",
+      icon: Settings,
+      image: "https://images.unsplash.com/photo-1581094794322-7a81a13e5c1d?w=1000&h=700&fit=crop",
+      color: "from-orange-500 to-red-500",
+      textColor: "text-orange-600",
+      bgColor: "bg-orange-500",
+      stats: {
+        students: "950+",
+        faculty: "38",
+        labs: "12",
+        placements: "95%"
+      },
+      features: ["Robotics & Automation", "Thermal Engineering", "CAD/CAM", "Advanced Materials"],
+      icons: [Settings, GraduationCap, Award, Users]
+    },
+    {
+      id: 3,
+      number: "03",
+      title: "Electrical Engineering",
+      shortTitle: "EEE",
+      description: "Powering the future with innovations in renewable energy, smart grids, and electronic systems. Our Electrical Engineering department leads in power systems, control engineering, and IoT applications.",
+      icon: Zap,
+      image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1000&h=700&fit=crop",
+      color: "from-green-500 to-emerald-500",
+      textColor: "text-green-600",
+      bgColor: "bg-green-500",
+      stats: {
+        students: "800+",
+        faculty: "32",
+        labs: "10",
+        placements: "96%"
+      },
+      features: ["Power Systems", "Renewable Energy", "Control Systems", "IoT & Embedded"],
+      icons: [Zap, BookOpen, Award, Calendar]
     }
-    
-    gsap.to(titleLetters, {
-      opacity: 1,
-      duration: 0.6,
-      stagger: 0.03,
-      delay: 0.3,
-      scrollTrigger: {
-        trigger: titleRef.current,
-        start: "top 90%",
-        toggleActions: "play none none reverse",
-      }
-    });
+  ];
 
-    // Divider animation
-    gsap.fromTo(
-      dividerRef.current,
-      { scaleX: 0 },
-      {
-        scaleX: 1,
-        duration: 1.2,
-        scrollTrigger: {
-          trigger: dividerRef.current,
-          start: "top 85%",
-          toggleActions: "play none none reverse",
-        }
-      }
-    );
+  const activeDept = departments[activeDepartment];
 
-    // Featured section animation
-    gsap.fromTo(
-      ".animate-featured",
-      { opacity: 0, y: 60 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        scrollTrigger: {
-          trigger: ".animate-featured-container",
-          start: "top 80%",
-          toggleActions: "play none none reverse",
-        }
-      }
-    );
-
-    // Card animations
-    const cards = containerRef.current.querySelectorAll(".animate-card");
-    cards.forEach((card, index) => {
-      gsap.fromTo(
-        card,
-        { opacity: 0, y: 80, rotationY: 15 },
+  // GSAP Animations
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Section entrance animation
+      gsap.fromTo(sectionRef.current,
+        { opacity: 0, y: 50 },
         {
           opacity: 1,
           y: 0,
-          rotationY: 0,
-          scrollTrigger: {
-            trigger: card,
-            start: "top 85%",
-            toggleActions: "play none none reverse",
-          },
-          duration: 0.7,
-          delay: index * 0.1,
-          ease: "back.out(1.2)",
+          duration: 1,
+          ease: "power3.out"
         }
       );
-    });
 
-    // CTA animations
-    const ctas = containerRef.current.querySelectorAll(".animate-cta");
-    ctas.forEach((cta) => {
-      gsap.fromTo(
-        cta,
-        { opacity: 0, scale: 0.9 },
+      // Initial content animation
+      gsap.fromTo([titleRef.current, descriptionRef.current],
+        { opacity: 0, x: -50 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.8,
+          stagger: 0.2,
+          delay: 0.3,
+          ease: "power3.out"
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  // Department change animation
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Image animation
+      gsap.fromTo(imageRef.current,
+        { opacity: 0, scale: 1.1 },
         {
           opacity: 1,
           scale: 1,
-          scrollTrigger: {
-            trigger: cta,
-            start: "top 90%",
-            toggleActions: "play none none reverse",
-          },
-          duration: 0.6,
-          ease: "elastic.out(1, 0.8)",
+          duration: 0.8,
+          ease: "power3.out"
         }
       );
-    });
 
-    // Stats counter animation
-    const statValues = document.querySelectorAll(".stat-value");
-    statValues.forEach((stat) => {
-      const target = parseInt(stat.textContent);
-      let count = 0;
-      const duration = 2000; // 2 seconds
-      const increment = target / (duration / 16); // 60fps
-      
-      const timer = setInterval(() => {
-        count += increment;
-        if (count >= target) {
-          stat.textContent = target + "+";
-          clearInterval(timer);
-        } else {
-          stat.textContent = Math.floor(count) + "+";
+      // Content animation
+      gsap.fromTo([titleRef.current, descriptionRef.current, statsRef.current],
+        { opacity: 0, x: -30 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.6,
+          stagger: 0.15,
+          ease: "power3.out"
         }
-      }, 16);
+      );
+
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, [activeDepartment]);
+
+  const handleDepartmentChange = (index) => {
+    if (index === activeDepartment) return;
+    
+    // Exit animation before changing
+    gsap.to([imageRef.current, titleRef.current, descriptionRef.current, statsRef.current], {
+      opacity: 0,
+      x: -30,
+      duration: 0.3,
+      ease: "power3.in",
+      onComplete: () => {
+        setActiveDepartment(index);
+      }
     });
+  };
+
+  const handleHoverChange = (index) => {
+    if (isHoverEnabled && index !== activeDepartment) {
+      handleDepartmentChange(index);
+    }
+  };
+
+  // Disable hover on mobile devices
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsHoverEnabled(window.innerWidth > 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   return (
-    <div className="bg-gradient-to-b from-gray-50 to-white py-24 overflow-hidden" style={bodyFont} ref={containerRef}>
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Header Section */}
-        <div className="text-center mb-20" ref={headerRef}>
-          <p 
-            className="text-[#b38b59] uppercase tracking-widest text-xs font-medium mb-4 animate-header-part"
-            style={{ letterSpacing: '0.2em' }}
-          >
-            Academic Programs
-          </p>
-          <h2 
-            className="text-4xl md:text-5xl font-light text-[#1a365d] mb-6 animate-header-part" 
-            style={headingFont}
-            ref={titleRef}
-          >
-            Explore Our Offerings
-          </h2>
-          <div 
-            className="w-24 h-1 bg-[#b38b59] mx-auto mb-6 animate-header-part origin-left" 
-            ref={dividerRef}
-          />
-          <p 
-            className="text-gray-700 mt-6 max-w-2xl mx-auto text-lg leading-relaxed animate-header-part"
-            ref={subtitleRef}
-          >
-            Discover our comprehensive academic programs designed to foster innovation, critical thinking, and real-world skills.
-          </p>
-        </div>
+    <section 
+      ref={sectionRef}
+      className="relative w-full min-h-screen bg-white flex items-center px-4 lg:px-20 py-16 overflow-hidden"
+    >
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100/30" />
+      
+      {/* Floating animated elements */}
+      <div className={`absolute top-20 left-10 w-72 h-72 bg-gradient-to-r ${activeDept.color} rounded-full blur-3xl opacity-10 animate-pulse`} />
+      <div className={`absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-r ${activeDept.color} rounded-full blur-3xl opacity-10 animate-pulse`} />
 
-        {/* Featured Program */}
-        <div className="flex flex-col lg:flex-row mb-16 rounded-2xl overflow-hidden  animate-featured-container">
-          <div className="lg:w-1/2 h-[500px] overflow-hidden relative group">
-            <div
-              className="h-full w-full bg-cover bg-center transition-all duration-700 group-hover:scale-105"
-              style={{ backgroundImage: `url(${featuredItem.image})` }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#1a365d]/80 to-transparent"></div>
-            <div className="absolute top-8 left-8 bg-[#b38b59] p-3 rounded-full  animate-featured">
-              {featuredItem.icon}
+      {/* Main Content Container */}
+      <div className="relative w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        
+        {/* Left Content */}
+        <div ref={contentRef} className="relative z-10 space-y-6 lg:space-y-8">
+          {/* Section Header */}
+          <div className="space-y-4 lg:space-y-6">
+            <div className="flex items-center gap-4">
+              <div className={`w-12 h-12 lg:w-14 lg:h-14 rounded-xl bg-gradient-to-r ${activeDept.color} flex items-center justify-center shadow-lg`}>
+                <activeDept.icon size={24} className="text-white" />
+              </div>
+              <div>
+                <span className="text-sm font-semibold uppercase tracking-widest text-gray-500">
+                  Engineering Departments
+                </span>
+                <div className="flex items-center gap-2 mt-1">
+                  <div className={`w-2 h-2 rounded-full ${activeDept.bgColor} animate-pulse`} />
+                  <span className="text-xs text-gray-400">Currently Active</span>
+                </div>
+              </div>
             </div>
-            <div className="absolute top-8 right-8">
-              <span className="text-6xl font-bold text-white/20" style={headingFont}>
-                {featuredItem.id}
-              </span>
-            </div>
-            <div className="absolute bottom-8 left-8">
-              <span className="text-white text-sm font-medium bg-[#b38b59] px-3 py-1 rounded-full">
-                Featured Program
-              </span>
-            </div>
-          </div>
-          <div className="lg:w-1/2 p-10 flex flex-col justify-center bg-white">
-            <h3 className="text-3xl md:text-4xl font-light text-[#1a365d] mb-6 animate-featured" style={headingFont}>
-              {featuredItem.title}
-            </h3>
             
-            <div className="flex gap-8 mb-8 animate-featured">
-              {featuredItem.stats.map((stat, index) => (
-                <div key={index} className="text-center">
-                  <p className="text-2xl font-light text-[#1a365d] mb-2 stat-value" style={headingFont}>
-                    {stat.value}
+            <div ref={titleRef}>
+              <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
+                <span className={`${activeDept.textColor}`}>{activeDept.number}</span><br />
+                {activeDept.title}
+              </h1>
+            </div>
+            
+            <p ref={descriptionRef} className="text-base lg:text-lg text-gray-600 leading-relaxed">
+              {activeDept.description}
+            </p>
+          </div>
+
+          {/* Features Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4 mt-4 lg:mt-6">
+            {activeDept.features.map((feature, index) => {
+              const IconComponent = activeDept.icons[index];
+              return (
+                <div key={feature} className="flex items-center gap-3 p-3 rounded-xl bg-white/50 backdrop-blur-sm border border-gray-100">
+                  <div className={`p-2 rounded-lg ${activeDept.bgColor} bg-opacity-10`}>
+                    <IconComponent size={18} className={`${activeDept.textColor}`} />
+                  </div>
+                  <span className="text-sm font-medium text-gray-700">{feature}</span>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Stats */}
+          <div ref={statsRef} className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mt-6 lg:mt-8">
+            {Object.entries(activeDept.stats).map(([key, value]) => (
+              <div key={key} className="text-center">
+                <div className={`text-xl lg:text-3xl font-bold ${activeDept.textColor} mb-1`}>
+                  {value}
+                </div>
+                <div className="text-xs uppercase tracking-wider text-gray-500">
+                  {key}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Department Navigation */}
+          <div className="flex flex-col gap-3 lg:gap-4 mt-6 lg:mt-8">
+            {departments.map((dept, index) => (
+              <button
+                key={dept.id}
+                onMouseEnter={() => handleHoverChange(index)}
+                onClick={() => handleDepartmentChange(index)}
+                className={`group flex items-center gap-4 lg:gap-6 p-4 lg:p-5 rounded-xl lg:rounded-2xl transition-all duration-300 border-2 border-gray-400 ${
+                  activeDepartment === index 
+                    ? `bg-white shadow-lg lg:shadow-xl border-l-4 ${dept.bgColor} scale-[1.02]`
+                    : 'bg-transparent border-transparent hover:bg-white/50'
+                } ${!isHoverEnabled ? 'hover:bg-transparent' : ''}`}
+              >
+                <div className={`text-2xl lg:text-3xl font-bold transition-all duration-300 ${
+                  activeDepartment === index ? dept.textColor : 'text-gray-300'
+                }`}>
+                  {dept.number}
+                </div>
+                
+                <div className="flex-1 text-left">
+                  <h3 className={`text-lg lg:text-xl font-semibold transition-all duration-300 ${
+                    activeDepartment === index ? 'text-gray-900' : 'text-gray-400'
+                  }`}>
+                    {dept.shortTitle}
+                  </h3>
+                  <p className={`text-xs lg:text-sm transition-all duration-300 ${
+                    activeDepartment === index ? 'text-gray-600' : 'text-gray-400'
+                  }`}>
+                    {dept.title}
                   </p>
-                  <p className="text-sm text-gray-600 tracking-wide">{stat.label}</p>
                 </div>
-              ))}
+                
+                <div className={`w-2 h-2 lg:w-3 lg:h-3 rounded-full transition-all duration-300 ${
+                  activeDepartment === index 
+                    ? `${dept.bgColor} scale-150` 
+                    : 'bg-gray-200'
+                }`} />
+              </button>
+            ))}
+          </div>
+
+          {/* Control Toggle */}
+          <div className="flex items-center gap-4 mt-4 p-3 bg-gray-50 rounded-lg">
+            <span className="text-sm text-gray-600">Navigation:</span>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setIsHoverEnabled(true)}
+                className={`px-3 py-1 rounded text-xs font-medium transition-colors ${
+                  isHoverEnabled 
+                    ? 'bg-blue-500 text-white' 
+                    : 'bg-gray-200 text-gray-600'
+                }`}
+              >
+                Hover
+              </button>
+              <button
+                onClick={() => setIsHoverEnabled(false)}
+                className={`px-3 py-1 rounded text-xs font-medium transition-colors ${
+                  !isHoverEnabled 
+                    ? 'bg-blue-500 text-white' 
+                    : 'bg-gray-200 text-gray-600'
+                }`}
+              >
+                Click Only
+              </button>
             </div>
-            
-            <p className="text-gray-700 mb-8 leading-relaxed animate-featured">{featuredItem.longDescription}</p>
-            
-            <a
-              href={featuredItem.link}
-              className="inline-flex items-center text-[#1a365d] font-medium group/btn self-start border-b-2 border-[#b38b59] pb-1 animate-featured hover:text-[#b38b59] transition-colors duration-300"
-            >
-              <span>Explore Department</span>
-              <ChevronRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover/btn:translate-x-1" />
-            </a>
           </div>
         </div>
 
-        {/* Regular Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          {regularItems.map((item) => (
-            <div 
-              key={item.id} 
-              className="relative overflow-hidden group h-full flex flex-col animate-card shadow transition-all duration-300 transform hover:-translate-y-2"
-            >
-              <div className="h-72 overflow-hidden relative">
-                <div
-                  className="h-full w-full bg-cover bg-center transition-all duration-700 group-hover:scale-105"
-                  style={{ backgroundImage: `url(${item.image})` }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1a365d]/70 to-transparent"></div>
-                <div className="absolute top-4 left-4 bg-[#b38b59] p-2 rounded-full shadow-md">
-                  {item.icon}
-                </div>
-                <div className="absolute top-4 right-4">
-                  <span className="text-4xl font-bold text-white/20" style={headingFont}>
-                    {item.id}
-                  </span>
-                </div>
-              </div>
-              <div className="p-6 flex-grow flex flex-col bg-white">
-                <h3 className="text-xl font-medium text-[#1a365d] mb-3" style={headingFont}>{item.title}</h3>
-                <p className="text-gray-700 mb-4 flex-grow">{item.description}</p>
-                <a 
-                  href={item.link} 
-                  className="inline-flex items-center text-[#1a365d] font-medium mt-auto animate-cta hover:text-[#b38b59] transition-colors duration-300 group-hover:underline"
-                >
-                  <span>Learn more</span>
-                  <ChevronRight className="ml-1 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </a>
-              </div>
-              <div className="absolute bottom-0 left-0 h-1 bg-[#b38b59] w-0 group-hover:w-full transition-all duration-500" />
-            </div>
-          ))}
-        </div>
+        {/* Right Image */}
+        <div className="relative h-[400px] lg:h-[700px] rounded-2xl lg:rounded-3xl overflow-hidden mt-8 lg:mt-0">
+          <img
+            ref={imageRef}
+            src={activeDept.image}
+            alt={activeDept.title}
+            className="absolute inset-0 w-full h-full object-cover rounded-2xl lg:rounded-3xl"
+          />
+          
+          {/* Gradient Overlay */}
+          <div className={`absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent rounded-2xl lg:rounded-3xl`} />
+          
+          {/* Department Badge */}
+          <div className={`absolute top-4 lg:top-8 left-4 lg:left-8 px-4 lg:px-6 py-2 lg:py-3 rounded-full backdrop-blur-md bg-white/90 shadow-lg`}>
+            <span className={`text-xs lg:text-sm font-bold ${activeDept.textColor}`}>
+              {activeDept.shortTitle} DEPARTMENT
+            </span>
+          </div>
 
-        {/* Bottom CTA */}
-        <div className="text-center">
-          <a 
-            href="#" 
-            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#1a365d] to-[#2d3748] text-white font-medium group animate-cta rounded-lg hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
-          >
-            <span>Explore All Programs</span>
-            <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-          </a>
-          <p className="text-gray-600 mt-6 text-sm animate-cta">
-            Join over 10,000 students who have transformed their careers with our programs
-          </p>
+          {/* Quick Navigation Dots */}
+          <div className="absolute top-1/2 right-4 lg:right-8 transform -translate-y-1/2 flex flex-col gap-3 lg:gap-4">
+            {departments.map((dept, index) => (
+              <button
+                key={dept.id}
+                onMouseEnter={() => isHoverEnabled && handleDepartmentChange(index)}
+                onClick={() => handleDepartmentChange(index)}
+                className={`group relative flex items-center justify-center w-8 h-8 lg:w-10 lg:h-10 rounded-full backdrop-blur-sm transition-all duration-300 ${
+                  activeDepartment === index 
+                    ? 'bg-white/90 shadow-lg scale-110' 
+                    : 'bg-black/20 hover:bg-black/30'
+                }`}
+              >
+                <div className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  activeDepartment === index 
+                    ? dept.bgColor
+                    : 'bg-white/60'
+                }`} />
+              </button>
+            ))}
+          </div>
         </div>
-
       </div>
-
-      {/* Fonts */}
-      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600&family=Lora:wght@400;500;600&display=swap" rel="stylesheet" />
-    </div>
+    </section>
   );
 };
 
-export default CoursesOffered;
+export default EngineeringDepartments;

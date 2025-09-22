@@ -20,14 +20,15 @@ const Home = () => {
       <AchievementsSection/>
       <AchievementsMarquee />
       {/* <UniversitySection/> */}
-      <PlacementPartners />
+      {/* <PlacementPartners /> */}
       <Leadership />
      
       <AlumniSection />
       <Super40CTA/>
       <NoticeBoard />
-      <AboutSection />
       <SkillDevelopment/>
+      <AboutSection />
+    
      
     </div>
   );

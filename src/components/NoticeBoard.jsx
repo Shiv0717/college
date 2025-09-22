@@ -8,47 +8,50 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-// Colors
+// Colors from your brand palette
 const colors = {
-  primary: "#1a365d",     // Deep blue (university primary)
-  secondary: "#b38b59",   // Gold accent (university secondary)
-  tertiary: "#2d3748",    // Dark gray
-  accent: "#3182ce",      // Light blue
-  light: "#e9d8a6",       // Cream/beige
+  green: "#00BA59",
+  red: "#FF6463",
+  yellow: "#FECF54",
+  blue: "#1D78FD",
+  dark: "#1a202c",
+  light: "#f7fafc"
 };
 
 // Fonts
-const headingFont = { fontFamily: "'Playfair Display', serif" };
-const bodyFont = { fontFamily: "'Lora', serif" };
+const headingFont = { fontFamily: "'Merriweather', serif" };
+const bodyFont = { fontFamily: "'Lato', sans-serif" };
 
 const announcements = [
   {
-    img: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
+    img: "https://plus.unsplash.com/premium_photo-1682787494765-44d02d12f5be?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     title: "Payment for Summer 2024 (Social Study)",
     date: "Aug 22, 2024 to Oct 11, 2024",
-    description:
-      "Payment schedule for Summer 2024 Social Study courses. Please ensure timely payment to avoid any delays.",
+    description: "Payment schedule for Summer 2024 Social Study courses. Please ensure timely payment to avoid any delays.",
+    color: colors.green
   },
   {
     img: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
     title: "Orientation for New Students",
     date: "Sep 01, 2024",
-    description:
-      "Orientation program for new students to introduce them to college life, faculty, and campus facilities.",
+    description: "Orientation program for new students to introduce them to college life, faculty, and campus facilities.",
+    color: colors.blue
   },
   {
     img: "https://images.unsplash.com/photo-1571260899304-425eee4c7efc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
     title: "Midterm Exams Schedule",
     date: "Oct 15, 2024 to Oct 20, 2024",
-    description:
-      "Midterm exams schedule for all courses. Please check your respective course exam dates.",
+    description: "Midterm exams schedule for all courses. Please check your respective course exam dates.",
+    color: colors.red
   },
+  
 ];
 
-const initialFeatured = announcements[0]; // Start with first card as FEATURED
+const initialFeatured = announcements[0];
 
 export default function AcademicDatesSection() {
   const [featured, setFeatured] = useState(initialFeatured);
+  const sectionRef = useRef(null);
   const headingRef = useRef(null);
   const subheadingRef = useRef(null);
   const dividerRef = useRef(null);
@@ -58,265 +61,427 @@ export default function AcademicDatesSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Header animations
-      gsap.fromTo(subheadingRef.current,
-        { opacity: 0, y: 20 },
+      // Section entrance animation
+      gsap.fromTo(sectionRef.current,
+        { opacity: 0, y: 80 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
+          duration: 1.2,
+          ease: "power3.out",
           scrollTrigger: {
-            trigger: subheadingRef.current,
+            trigger: sectionRef.current,
             start: "top 85%",
-            toggleActions: "play none none none"
+            toggleActions: "play none none reverse"
           }
         }
       );
 
-      // Animate header letters
-      const letters = headingRef.current.querySelectorAll(".letter");
-      gsap.fromTo(
-        letters,
-        { opacity: 0, y: 50, scale: 0.8 },
+      // Subheading animation
+      gsap.fromTo(subheadingRef.current,
+        { opacity: 0, y: 30, scale: 0.9 },
         {
           opacity: 1,
           y: 0,
           scale: 1,
           duration: 0.8,
-          stagger: 0.05,
           ease: "back.out(1.7)",
           scrollTrigger: {
-            trigger: headingRef.current,
+            trigger: subheadingRef.current,
             start: "top 85%",
-            toggleActions: "play none none none"
+            toggleActions: "play none none reverse"
           }
         }
       );
 
+      // Heading letters animation
+      const letters = headingRef.current?.querySelectorAll(".letter");
+      if (letters) {
+        gsap.fromTo(letters,
+          { opacity: 0, y: 60, rotationY: -30 },
+          {
+            opacity: 1,
+            y: 0,
+            rotationY: 0,
+            duration: 1,
+            stagger: 0.03,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: headingRef.current,
+              start: "top 80%",
+              toggleActions: "play none none reverse"
+            }
+          }
+        );
+      }
+
       // Divider animation
       gsap.fromTo(dividerRef.current,
-        { width: 0 },
+        { width: 0, opacity: 0 },
         {
-          width: "96px",
-          duration: 1,
+          width: "120px",
+          opacity: 1,
+          duration: 1.2,
+          ease: "power3.out",
           scrollTrigger: {
             trigger: dividerRef.current,
             start: "top 85%",
-            toggleActions: "play none none none"
+            toggleActions: "play none none reverse"
           }
         }
       );
 
       // Featured section animation
       gsap.fromTo(featuredRef.current,
-        { opacity: 0, y: 50 },
+        { opacity: 0, y: 80, scale: 0.95 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
+          scale: 1,
+          duration: 1,
+          ease: "power3.out",
           scrollTrigger: {
             trigger: featuredRef.current,
-            start: "top 85%",
-            toggleActions: "play none none none"
+            start: "top 80%",
+            toggleActions: "play none none reverse"
           }
         }
       );
 
-      // Cards animation
+      // Cards animation with stagger
       cardsRef.current.forEach((card, index) => {
         if (card) {
           gsap.fromTo(card,
-            { opacity: 0, y: 30 },
+            { opacity: 0, y: 60, rotationX: 15 },
             {
               opacity: 1,
               y: 0,
-              duration: 0.7,
-              delay: index * 0.1,
+              rotationX: 0,
+              duration: 0.8,
+              delay: index * 0.15,
+              ease: "power3.out",
               scrollTrigger: {
                 trigger: card,
                 start: "top 85%",
-                toggleActions: "play none none none"
+                toggleActions: "play none none reverse"
               }
             }
           );
         }
       });
 
-      // Animate card titles
+      // Card titles animation
       titleRefs.current.forEach((title, index) => {
         if (title) {
-          const chars = title.querySelectorAll(".letter");
-          gsap.fromTo(
-            chars,
-            { opacity: 0, y: 20 },
+          const chars = title.querySelectorAll(".char");
+          gsap.fromTo(chars,
+            { opacity: 0, y: 30 },
             {
               opacity: 1,
               y: 0,
-              stagger: 0.03,
               duration: 0.6,
-              delay: index * 0.2,
+              stagger: 0.02,
+              delay: index * 0.1,
               ease: "power3.out",
               scrollTrigger: {
                 trigger: title,
                 start: "top 90%",
-                toggleActions: "play none none none"
+                toggleActions: "play none none reverse"
               }
             }
           );
         }
       });
-    });
+
+    }, sectionRef);
 
     return () => ctx.revert();
   }, [featured]);
 
   const splitLetters = (text) =>
     text.split("").map((char, i) => (
-      <span key={i} className="letter inline-block">
+      <span key={i} className="char inline-block">
         {char === " " ? "\u00A0" : char}
       </span>
     ));
 
+  const handleCardHover = (e, item) => {
+    gsap.to(e.currentTarget, {
+      y: -10,
+      scale: 1.02,
+      duration: 0.4,
+      ease: "power2.out",
+      overwrite: "auto"
+    });
+    
+    const image = e.currentTarget.querySelector('img');
+    gsap.to(image, {
+      scale: 1.1,
+      duration: 0.4,
+      ease: "power2.out"
+    });
+  };
+
+  const handleCardLeave = (e) => {
+    gsap.to(e.currentTarget, {
+      y: 0,
+      scale: 1,
+      duration: 0.4,
+      ease: "power2.out"
+    });
+    
+    const image = e.currentTarget.querySelector('img');
+    gsap.to(image, {
+      scale: 1,
+      duration: 0.4
+    });
+  };
+
+  const handleFeaturedClick = (item) => {
+    // Animate out current featured
+    gsap.to(featuredRef.current, {
+      opacity: 0,
+      y: -50,
+      duration: 0.3,
+      ease: "power2.in",
+      onComplete: () => {
+        setFeatured(item);
+        // Animate in new featured
+        setTimeout(() => {
+          gsap.fromTo(featuredRef.current,
+            { opacity: 0, y: 50 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+              ease: "power3.out"
+            }
+          );
+        }, 50);
+      }
+    });
+  };
+
   return (
-    <div className="bg-white py-16" style={bodyFont}>
+    <div ref={sectionRef} className="bg-gradient-to-br from-gray-50 to-blue-50/20 py-24" style={bodyFont}>
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
-        <div className="mb-16 text-center">
+        <div className="mb-20 text-center">
           <p 
             ref={subheadingRef}
-            className="text-blue-800 uppercase tracking-widest text-xs font-medium mb-4"
-            style={{ color: colors.primary }}
+            className="text-blue-600 uppercase tracking-widest text-sm font-semibold mb-4"
+            style={{ color: colors.blue }}
           >
-            Academic Dates
+            Academic Calendar
           </p>
 
           <h2
             ref={headingRef}
-            className="text-4xl md:text-5xl font-light text-gray-900 mb-4 flex flex-wrap justify-center"
+            className="text-5xl md:text-6xl font-bold text-gray-900 mb-6"
             style={headingFont}
           >
-            {splitLetters("Announcements & News")}
+            <span className="bg-black bg-clip-text text-transparent">
+              {splitLetters("Announcements & News")}
+            </span>
           </h2>
 
           <div 
             ref={dividerRef}
-            className="w-24 h-0.5 bg-blue-800/30 mx-auto"
-            style={{ backgroundColor: `${colors.primary}30` }}
+            className="w-32 h-1 bg-gradient-to-r from-green-500 to-blue-500 mx-auto rounded-full"
+            style={{ 
+              background: `linear-gradient(45deg, ${colors.green}, ${colors.blue})` 
+            }}
           ></div>
         </div>
 
-        {/* Featured */}
+        {/* Featured Section */}
         <div
           key={featured.title}
           ref={featuredRef}
-          className="mb-16 border-t-4 border-blue-800"
-          style={{ borderTopColor: colors.primary }}
+          className="mb-20 rounded-3xl overflow-hidden  transform perspective-1000"
         >
-          <div className="flex flex-col md:flex-row">
-            <div className="md:w-2/3 relative">
-              <div className="absolute top-6 left-6 z-10">
+          <div className="flex flex-col lg:flex-row">
+            {/* Image Section */}
+            <div className="lg:w-2/3 relative group">
+              <div className="absolute top-8 left-8 z-20">
                 <span 
-                  className="text-5xl font-bold text-white bg-blue-800 px-4 py-3"
-                  style={{ backgroundColor: colors.primary }}
+                  className="text-6xl font-bold text-white px-6 py-4 rounded-2xl shadow-2xl"
+                  style={{ 
+                    backgroundColor: featured.color,
+                    fontFamily: "'Merriweather', serif"
+                  }}
                 >
                   01
                 </span>
               </div>
-              <img
-                src={featured.img}
-                alt={featured.title}
-                className="w-full h-64 md:h-96 object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent"></div>
-            </div>
-            <div className="md:w-1/3 p-8 border-l border-r border-b border-gray-200">
-              <div className="flex items-center mb-4">
+              
+              <div className="absolute top-8 right-8 z-20">
                 <span 
-                  className="bg-blue-800 text-white text-xs px-4 py-2 tracking-widest uppercase"
-                  style={{ backgroundColor: colors.primary }}
+                  className="text-white bg-black/30 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold tracking-wide uppercase"
+                  style={bodyFont}
                 >
                   Featured
                 </span>
-                <span 
-                  className="ml-3 text-sm text-blue-800 font-medium"
-                  style={{ color: colors.primary }}
-                >
-                  Active
-                </span>
               </div>
-              <h3
-                className="text-2xl md:text-3xl font-medium text-gray-900 mb-4"
-                style={headingFont}
-                ref={(el) => (titleRefs.current[0] = el)}
-              >
-                {splitLetters(featured.title)}
-              </h3>
-              <p 
-                className="text-blue-800 mb-4 text-sm tracking-wide"
-                style={{ color: colors.primary }}
-              >
-                {featured.date}
-              </p>
-              <p className="text-gray-700 leading-relaxed">{featured.description}</p>
+              
+              <img
+                src={'https://plus.unsplash.com/premium_photo-1682787494881-8ea045470faa?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'}
+                alt={featured.title}
+                className="w-full h-80 lg:h-[500px] object-cover transform transition-transform duration-700 group-hover:scale-105"
+              />
+              
+              <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-transparent"></div>
+              
+              {/* Overlay Content */}
+              <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+                <div className="flex items-center mb-3">
+                  <div 
+                    className="w-3 h-3 rounded-full mr-3 animate-pulse"
+                    style={{ backgroundColor: featured.color }}
+                  ></div>
+                  <span className="text-sm font-semibold tracking-wider">Active Announcement</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Content Section */}
+            <div className="lg:w-1/3 bg-white p-8 lg:p-12 border-l-0 lg:border-l border-gray-200">
+              <div className="h-full flex flex-col justify-center">
+                <div className="mb-6">
+                  <span 
+                    className="text-sm font-semibold tracking-wider uppercase px-3 py-1 rounded-full border"
+                    style={{ 
+                      color: featured.color,
+                      borderColor: `${featured.color}30`,
+                      backgroundColor: `${featured.color}10`
+                    }}
+                  >
+                    Important Update
+                  </span>
+                </div>
+                
+                <h3
+                  className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6 leading-tight"
+                  style={headingFont}
+                  ref={(el) => (titleRefs.current[0] = el)}
+                >
+                  {splitLetters(featured.title)}
+                </h3>
+                
+                <div className="flex items-center mb-6 text-gray-600">
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  <span className="font-medium" style={{ color: featured.color }}>
+                    {featured.date}
+                  </span>
+                </div>
+                
+                <p className="text-gray-700 leading-relaxed text-lg mb-8">
+                  {featured.description}
+                </p>
+                
+                <button 
+                  className="inline-flex items-center px-6 py-3 rounded-full font-semibold text-white transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg"
+                  style={{ backgroundColor: featured.color }}
+                >
+                  Read Full Announcement
+                  <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Regular Cards */}
-        <div className="grid md:grid-cols-3 gap-8">
+        {/* Regular Cards Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {announcements.map((item, idx) => (
             <div
               key={item.title}
               ref={el => cardsRef.current[idx] = el}
-              className="border border-gray-200 relative cursor-pointer group"
-              onClick={() => setFeatured(item)}
-              onMouseEnter={(e) => {
-                gsap.to(e.currentTarget, {
-                  y: -5,
-                  duration: 0.3,
-                  boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)"
-                });
-              }}
-              onMouseLeave={(e) => {
-                gsap.to(e.currentTarget, {
-                  y: 0,
-                  duration: 0.3,
-                  boxShadow: "none"
-                });
-              }}
+              className="bg-white rounded-2xl overflow-hidden transition-all duration-500 cursor-pointer group transform perspective-1000"
+              onClick={() => handleFeaturedClick(item)}
+              onMouseEnter={(e) => handleCardHover(e, item)}
+              onMouseLeave={handleCardLeave}
+              style={{ willChange: "transform" }}
             >
-              {/* Number */}
-              <div className="absolute top-6 left-6 z-10">
-                <span 
-                  className="text-4xl font-bold text-white bg-blue-800 px-3 py-2"
-                  style={{ backgroundColor: colors.primary }}
+              {/* Image Container */}
+              <div className="relative overflow-hidden h-48">
+                <div 
+                  className="absolute top-4 left-4 z-20 w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg"
+                  style={{ backgroundColor: item.color }}
                 >
-                  {(idx + 2).toString().padStart(2, "0")}
-                </span>
-              </div>
-              <div className="overflow-hidden">
+                  {(idx + 1).toString().padStart(2, "0")}
+                </div>
+                
                 <img
                   src={item.img}
                   alt={item.title}
-                  className="w-full h-60 object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+                
+                <div 
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{ 
+                    background: `linear-gradient(45deg, ${item.color}20, transparent)` 
+                  }}
+                />
               </div>
+
+              {/* Content */}
               <div className="p-6">
+                <div className="flex items-center mb-3">
+                  <div 
+                    className="w-2 h-2 rounded-full mr-2"
+                    style={{ backgroundColor: item.color }}
+                  />
+                  <span 
+                    className="text-xs font-semibold tracking-wider uppercase"
+                    style={{ color: item.color }}
+                  >
+                    Announcement
+                  </span>
+                </div>
+                
                 <h3
-                  className="text-xl font-medium text-gray-900 mb-3 group-hover:text-blue-800 transition-colors"
+                  className="text-xl font-bold text-gray-900 mb-3 leading-tight group-hover:text-blue-600 transition-colors"
                   style={headingFont}
                   ref={(el) => (titleRefs.current[idx + 1] = el)}
                 >
                   {splitLetters(item.title)}
                 </h3>
-                <p 
-                  className="text-blue-800 text-sm tracking-wide"
-                  style={{ color: colors.primary }}
-                >
-                  {item.date}
+                
+                <div className="flex items-center text-gray-600 text-sm mb-4">
+                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span style={{ color: item.color }} className="font-medium">
+                    {item.date}
+                  </span>
+                </div>
+                
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  {item.description}
                 </p>
+                
+                <button 
+                  className="mt-4 text-sm font-semibold flex items-center transition-all duration-300 group-hover:translate-x-2"
+                  style={{ color: item.color }}
+                >
+                  View Details
+                  <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
               </div>
+
+              {/* Hover Border */}
+              <div 
+                className="absolute inset-0 border-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none"
+                style={{ borderColor: item.color }}
+              />
             </div>
           ))}
         </div>
@@ -324,7 +489,7 @@ export default function AcademicDatesSection() {
 
       {/* Fonts */}
       <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Lato:wght@300;400;500;600;700&display=swap"
         rel="stylesheet"
       />
     </div>

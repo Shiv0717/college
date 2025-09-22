@@ -1,278 +1,197 @@
-"use client";
-import React, { useEffect, useRef } from "react";
-import { ChevronRight, Award, Users, BookOpen, Star, TrendingUp, Target, Globe } from "lucide-react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import React, { useRef } from "react";
 import Marquee from "react-fast-marquee";
 
-gsap.registerPlugin(ScrollTrigger);
+const CollegeAchievements = () => {
+  const headerRef = useRef(null);
 
-// University color palette
-const colors = {
-  primary: "#1a365d",     // Deep blue (university primary)
-  secondary: "#b38b59",   // Gold accent (university secondary)
-  tertiary: "#2d3748",    // Dark gray
-  accent: "#3182ce",      // Light blue
-  light: "#e9d8a6",       // Cream/beige
-};
-
-const headingFont = { fontFamily: "'Playfair Display', serif" };
-const bodyFont = { fontFamily: "'Lora', serif" };
-
-const achievements = [
-  {
-    number: "65+",
-    label: "Years Experience",
-    description: "We have over 65 years of combined experience in providing world-class education.",
-    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-    icon: <Award className="w-6 h-6" />,
-    color: colors.primary,
-  },
-  {
-    number: "100+",
-    label: "Research Publications",
-    description: "Our faculty and students have contributed to more than 100 research publications globally.",
-    image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-    icon: <BookOpen className="w-6 h-6" />,
-    color: colors.secondary,
-  },
-  {
-    number: "15+",
-    label: "National Awards",
-    description: "We are proud recipients of 15+ national awards recognizing excellence in academics.",
-    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-    icon: <Star className="w-6 h-6" />,
-    color: colors.accent,
-  },
-  {
-    number: "5000+",
-    label: "Graduates",
-    description: "Over 5000 graduates have gone on to excel in diverse industries worldwide.",
-    image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-    icon: <Users className="w-6 h-6" />,
-    color: colors.tertiary,
-  },
-  {
-    number: "95%",
-    label: "Placement Rate",
-    description: "Our graduates enjoy a 95% placement rate in top companies worldwide.",
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-    icon: <TrendingUp className="w-6 h-6" />,
-    color: "#2a9d8f",
-  },
-  {
-    number: "50+",
-    label: "Industry Partners",
-    description: "We collaborate with 50+ industry leaders for internships and research projects.",
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-    icon: <Target className="w-6 h-6" />,
-    color: "#e76f51",
-  },
-];
-
-const AchievementsSection = () => {
-  const headingRef = useRef(null);
-  const subtitleRef = useRef(null);
-  const dividerRef = useRef(null);
-
-  useEffect(() => {
-    // Animate header letters
-    const letters = headingRef.current.querySelectorAll(".letter");
-    gsap.fromTo(
-      letters,
-      { opacity: 0, y: 50, rotationX: -90 },
-      {
-        opacity: 1,
-        y: 0,
-        rotationX: 0,
-        duration: 0.8,
-        stagger: 0.05,
-        ease: "back.out(1.7)",
-        scrollTrigger: {
-          trigger: headingRef.current,
-          start: "top 85%",
-        },
-      }
-    );
-
-    // Subtitle animation
-    gsap.fromTo(
-      subtitleRef.current,
-      { opacity: 0, y: 20 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        delay: 0.5,
-        scrollTrigger: {
-          trigger: subtitleRef.current,
-          start: "top 85%",
-        },
-      }
-    );
-
-    // Divider animation
-    gsap.fromTo(
-      dividerRef.current,
-      { scaleX: 0 },
-      {
-        scaleX: 1,
-        duration: 1.2,
-        scrollTrigger: {
-          trigger: dividerRef.current,
-          start: "top 85%",
-        },
-      }
-    );
-
-    // Background pattern animation
-    gsap.to(".bg-pattern circle", {
-      rotation: 360,
-      duration: 40,
-      repeat: -1,
-      ease: "none",
-      transformOrigin: "center center",
-    });
-  }, []);
+  const achievements = [
+    {
+      id: 1,
+      title: "#1 in State Rankings",
+      image:
+        "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=500&h=400&fit=crop",
+      color: "#00BA59",
+      description:
+        "Ranked #1 university in the state for academic excellence and student satisfaction",
+      year: "2024",
+      category: "Academic Excellence",
+    },
+    {
+      id: 2,
+      title: "Research Grant Award",
+      image:
+        "https://images.unsplash.com/photo-1557426272-fc759fdf7a8d?w=500&h=400&fit=crop",
+      color: "#FF6463",
+      description:
+        "$5M research grant awarded for innovative environmental studies program",
+      year: "2023",
+      category: "Research",
+    },
+    {
+      id: 3,
+      title: "Student Innovation Award",
+      image:
+        "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=500&h=400&fit=crop",
+      color: "#FECF54",
+      description:
+        "Our students won national innovation competition for sustainable technology",
+      year: "2024",
+      category: "Student Success",
+    },
+    {
+      id: 4,
+      title: "Campus Expansion",
+      image:
+        "https://images.unsplash.com/photo-1562774053-701939374585?w=500&h=400&fit=crop",
+      color: "#1D78FD",
+      description:
+        "New $20M science and technology building opened for fall semester",
+      year: "2023",
+      category: "Infrastructure",
+    },
+    {
+      id: 5,
+      title: "Alumni Success",
+      image:
+        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&h=400&fit=crop",
+      color: "#00BA59",
+      description: "95% of graduates employed within 6 months of graduation",
+      year: "2024",
+      category: "Career Outcomes",
+    },
+    {
+      id: 6,
+      title: "Sports Championship",
+      image:
+        "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=500&h=400&fit=crop",
+      color: "#FF6463",
+      description:
+        "Basketball team wins national championship for the third consecutive year",
+      year: "2024",
+      category: "Athletics",
+    },
+  ];
 
   return (
     <section
-      className="py-24 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden"
-      style={bodyFont}
+      className=" py-18 px-4 bg-gradient-to-br from-gray-50 to-blue-50/20"
+      style={{ fontFamily: "'Lato', sans-serif" }}
     >
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-10 bg-pattern">
-        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="circles" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-              <circle cx="30" cy="30" r="5" fill={colors.primary} opacity="0.1" />
-            </pattern>
-          </defs>
-          <rect x="0" y="0" width="100%" height="100%" fill="url(#circles)" />
-        </svg>
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4">
-        {/* Header Section */}
-        <div className="text-center mb-16">
-          <p 
-            className="text-[#b38b59] uppercase tracking-wider text-sm font-semibold mb-3 opacity-0"
-            ref={subtitleRef}
-          >
-            Our Excellence
-          </p>
-
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div ref={headerRef} className="text-center mb-20">
+          <span className="text-xs font-semibold text-blue-800 tracking-widest uppercase mb-2 block font-lato">
+            Celebrating Excellence
+          </span>
           <h2
-            ref={headingRef}
-            className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
-            style={headingFont}
+            className="text-5xl lg:text-6xl font-bold mb-6 py-4 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent"
+            style={{ fontFamily: "'Merriweather', serif" }}
           >
-            {"Our Achievements".split("").map((char, i) => (
-              <span key={i} className="letter inline-block">
-                {char === " " ? "\u00A0" : char}
-              </span>
-            ))}
+            College Achievements
           </h2>
-
-          <div 
-            ref={dividerRef} 
-            className="w-16 sm:w-20 h-1 bg-[#b38b59] mt-3 md:mt-4 mx-auto transform origin-left"
-          ></div>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Recognized for excellence in education, research, and student success.
+            Our commitment to innovation and quality continues to set new standards.
+          </p>
         </div>
 
-        
-
-        {/* Marquee Section */}
-        <div className="relative w-full overflow-hidden py-6">
-          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent z-10"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10"></div>
-          
-          <Marquee gradient={false} speed={40} pauseOnHover={true}>
-            {achievements.map((achieve, index) => (
-              <div key={index} className="flex-shrink-0 w-[350px] mx-4">
-                <AchievementCard achieve={achieve} headingFont={headingFont} />
+        {/* Infinite Marquee */}
+        <Marquee
+          pauseOnHover={true}
+          gradient={false}
+          speed={40}
+          className=""
+        >
+          {achievements.map((achievement) => (
+            <div
+              key={achievement.id}
+              className="group relative overflow-hidden rounded-2xl cursor-pointer transform perspective-1000 w-80 flex-shrink-0 mr-4"
+              style={{ height: "24rem" }}
+            >
+              <div className="relative w-full h-full">
+                <div className="relative w-full h-full overflow-hidden rounded-2xl">
+                  <img
+                    src={achievement.image}
+                    alt={achievement.title}
+                    className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{
+                      background: `linear-gradient(45deg, ${achievement.color}40, transparent)`,
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all duration-500" />
+                </div>
+                <div className="absolute inset-0 p-6 flex flex-col justify-end bg-gradient-to-t from-black/80 via-black/40 to-transparent rounded-2xl">
+                  <div className="flex items-center mb-3">
+                    <div
+                      className="w-3 h-3 rounded-full mr-3"
+                      style={{ backgroundColor: achievement.color }}
+                    />
+                    <span
+                      className="text-sm font-semibold tracking-wider uppercase"
+                      style={{ color: achievement.color }}
+                    >
+                      {achievement.category}
+                    </span>
+                    <span className="text-white/60 mx-2">•</span>
+                    <span className="text-white/80 text-sm">{achievement.year}</span>
+                  </div>
+                  <h3
+                    className="text-2xl font-bold text-white mb-3 leading-tight transform translate-y-0 group-hover:-translate-y-2 transition-transform duration-500"
+                    style={{ fontFamily: "'Merriweather', serif" }}
+                  >
+                    {achievement.title}
+                  </h3>
+                  <div className="overflow-hidden">
+                    <p className="text-white/90 text-base leading-relaxed mb-4 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100 max-h-20">
+                      {achievement.description}
+                    </p>
+                  </div>
+                  <button
+                    className="inline-flex items-center px-5 py-2.5 rounded-full font-semibold text-white border-2 border-white/30 hover:border-white/60 transition-all duration-300 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 hover:pl-6 w-fit"
+                    style={{
+                      backgroundColor: "rgba(255, 255, 255, 0.1)",
+                      backdropFilter: "blur(10px)",
+                    }}
+                  >
+                    Read More
+                    <svg
+                      className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </button>
+                </div>
+                <div
+                  className="absolute inset-0 border-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"
+                  style={{
+                    borderColor: achievement.color,
+                    boxShadow: `inset 0 0 0 3px ${achievement.color}`,
+                  }}
+                />
+                <div
+                  className="absolute top-4 right-4 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg border-2 border-white/20 transition-all duration-300 group-hover:scale-110"
+                  style={{ backgroundColor: achievement.color }}
+                >
+                  {achievement.id}
+                </div>
               </div>
-            ))}
-          </Marquee>
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="text-center mt-16">
-          <button className="px-8 py-3  bg-gradient-to-r from-[#1a365d] to-[#2d3748] text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-            Discover Our Success Stories
-          </button>
-        </div>
+            </div>
+          ))}
+        </Marquee>
       </div>
-
-      {/* Fonts */}
-      <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600&family=Lora:wght@400;500;600&display=swap"
-        rel="stylesheet"
-      />
     </section>
   );
 };
 
-const AchievementCard = ({ achieve, headingFont }) => {
-  const cardRef = useRef(null);
-
-  useEffect(() => {
-    gsap.fromTo(
-      cardRef.current,
-      { opacity: 0, scale: 0.9 },
-      {
-        opacity: 1,
-        scale: 1,
-        duration: 0.6,
-        scrollTrigger: {
-          trigger: cardRef.current,
-          start: "top 90%",
-        },
-      }
-    );
-  }, []);
-
-  return (
-    <div 
-      ref={cardRef}
-      className="relative w-full h-[500px] overflow-hidden group cursor-pointer rounded-2xl shadow-lg transform hover:scale-105 transition-transform duration-500"
-    >
-      <img
-        src={achieve.image}
-        alt={achieve.label}
-        className="w-full h-full object-cover absolute inset-0 transform group-hover:scale-110 transition-transform duration-700"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-      
-      {/* Animated border */}
-      <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-white/30 transition-all duration-500"></div>
-      
-      <div className="relative h-full flex flex-col justify-end p-6">
-        <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20 shadow-2xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-          <div className="text-4xl font-bold text-white mb-2" style={headingFont}>
-            {achieve.number}
-          </div>
-          
-          <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-            <div className="text-white">{achieve.icon}</div>
-          </div>
-          
-          <h3 className="text-white text-lg font-bold mb-2" style={headingFont}>
-            {achieve.label}
-          </h3>
-          
-          <p className="text-gray-200 text-sm leading-relaxed mb-4 line-clamp-3">
-            {achieve.description}
-          </p>
-          
-          <div className="flex  items-center text-blue-200 text-sm font-medium opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
-            <span>Learn more</span>
-            <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-300" />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default AchievementsSection;
+export default CollegeAchievements;
