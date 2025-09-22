@@ -36,7 +36,9 @@ const Layout = () => {
       {navigation.state === "loading" && <Loader />}
 
       <ScrollToTop />
-      <Topbar />
+      <div className="hidden lg:block">
+    <Topbar />
+  </div>
 
       <CategoryMenu />
 
