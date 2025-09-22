@@ -41,7 +41,7 @@ const EngineeringDepartments = () => {
       shortTitle: "MECH",
       description: "Driving innovation in design, manufacturing, and automation. Our Mechanical Engineering program focuses on robotics, thermal systems, and advanced materials technology for industrial applications.",
       icon: Settings,
-      image: "https://images.unsplash.com/photo-1581094794322-7a81a13e5c1d?w=1000&h=700&fit=crop",
+      image: "https://plus.unsplash.com/premium_photo-1664297997167-88170c57bc35?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       color: "from-orange-500 to-red-500",
       textColor: "text-orange-600",
       bgColor: "bg-orange-500",

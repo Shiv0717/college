@@ -37,8 +37,6 @@ const Layout = () => {
 
       <ScrollToTop />
       <Topbar />
-      
-     
 
       <CategoryMenu />
 
@@ -48,9 +46,8 @@ const Layout = () => {
       </main>
 
       {/* Footer */}
-    
-        <Footer />
-      
+
+      <Footer />
     </div>
   );
 };
