@@ -185,7 +185,7 @@ const mainCategories = [
         color: colors.primary,
       },
       {
-        name: "Registration",
+        name: "Super 40",
         path: "/apply",
         icon: UserPlus,
         description: "Register for the Super 40 Entrance Exam 2026",
