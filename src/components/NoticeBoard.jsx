@@ -305,7 +305,7 @@ export default function AcademicDatesSection() {
             <div className="lg:w-2/3 relative group">
               <div className="absolute top-8 left-8 z-20">
                 <span 
-                  className="text-6xl font-bold text-white px-6 py-4 rounded-2xl shadow-2xl"
+                  className="text-6xl font-bold text-white px-6 py-4 rounded-2xl "
                   style={{ 
                     backgroundColor: featured.color,
                     fontFamily: "'Merriweather', serif"
@@ -401,20 +401,24 @@ export default function AcademicDatesSection() {
             <div
               key={item.title}
               ref={el => cardsRef.current[idx] = el}
-              className="bg-white rounded-2xl overflow-hidden transition-all duration-500 cursor-pointer group transform perspective-1000"
+              className="group relative bg-white rounded-2xl overflow-hidden transition-all duration-500 cursor-pointer transform perspective-1000  border border-gray-200/50"
               onClick={() => handleFeaturedClick(item)}
               onMouseEnter={(e) => handleCardHover(e, item)}
               onMouseLeave={handleCardLeave}
-              style={{ willChange: "transform" }}
             >
               {/* Image Container */}
               <div className="relative overflow-hidden h-48">
                 <div 
-                  className="absolute top-4 left-4 z-20 w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg"
+                  className="absolute top-4 left-4 z-20 w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg card-number transition-transform"
                   style={{ backgroundColor: item.color }}
                 >
                   {(idx + 1).toString().padStart(2, "0")}
                 </div>
+                
+                {/* Urgency Badge */}
+                {/* <div className="absolute top-4 right-4 z-20 bg-black/60 backdrop-blur-sm text-white px-2 py-1 rounded-full text-sm">
+                  {getUrgencyIcon(item.urgency)}
+                </div> */}
                 
                 <img
                   src={item.img}
@@ -425,36 +429,24 @@ export default function AcademicDatesSection() {
                 <div 
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   style={{ 
-                    background: `linear-gradient(45deg, ${item.color}20, transparent)` 
+                    background: `linear-gradient(45deg, ${item.color}30, transparent)` 
                   }}
                 />
               </div>
 
               {/* Content */}
-              <div className="p-6">
-                <div className="flex items-center mb-3">
-                  <div 
-                    className="w-2 h-2 rounded-full mr-2"
-                    style={{ backgroundColor: item.color }}
-                  />
-                  <span 
-                    className="text-xs font-semibold tracking-wider uppercase"
-                    style={{ color: item.color }}
-                  >
-                    Announcement
-                  </span>
-                </div>
+              <div className="p-6 relative">
+              
                 
                 <h3
-                  className="text-xl font-bold text-gray-900 mb-3 leading-tight group-hover:text-blue-600 transition-colors"
+                  className="text-xl font-bold text-gray-900 mb-3 leading-tight group-hover:text-blue-600 transition-colors duration-300"
                   style={headingFont}
-                  ref={(el) => (titleRefs.current[idx + 1] = el)}
                 >
-                  {splitLetters(item.title)}
+                  {item.title}
                 </h3>
                 
-                <div className="flex items-center text-gray-600 text-sm mb-4">
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-center text-gray-600 text-sm mb-4 bg-gray-50/50 p-2 rounded-lg">
+                  <svg className="w-4 h-4 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   <span style={{ color: item.color }} className="font-medium">
@@ -462,16 +454,15 @@ export default function AcademicDatesSection() {
                   </span>
                 </div>
                 
-                <p className="text-gray-600 text-sm leading-relaxed">
+                <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-2">
                   {item.description}
                 </p>
                 
                 <button 
-                  className="mt-4 text-sm font-semibold flex items-center transition-all duration-300 group-hover:translate-x-2"
-                  style={{ color: item.color }}
+                  className="w-full text-sm font-semibold flex items-center justify-center gap-2 transition-all duration-300 group-hover:gap-3 py-2 rounded-lg border border-gray-200 hover:border-blue-500 hover:text-blue-600"
                 >
-                  View Details
-                  <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  View Full Announcement
+                  <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </button>
@@ -479,7 +470,7 @@ export default function AcademicDatesSection() {
 
               {/* Hover Border */}
               <div 
-                className="absolute inset-0 border-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none"
+                className="absolute inset-0 border-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none"
                 style={{ borderColor: item.color }}
               />
             </div>

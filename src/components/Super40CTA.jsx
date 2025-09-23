@@ -1,361 +1,233 @@
-"use client";
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  Calendar,
-  Clock,
-  Award,
-  Users,
-  BookOpen,
-  Star,
-  ChevronRight,
-  X,
-  CheckCircle,
-} from "lucide-react";
+import React from 'react';
+import { Clock, Calendar, Award, Users, Star, BookOpen, Target, Zap, CheckCircle, ArrowRight, Shield, Rocket, GraduationCap } from 'lucide-react';
 
-// Fonts
-const headingFont = { fontFamily: "'Playfair Display', serif" };
-const bodyFont = { fontFamily: "'Lora', serif" };
-
-// Custom colors
-const colors = {
-  primary: "#1a365d", // deep blue bg
-  accentBlue: "#4094F4",
-  gold: "#FFC906",
-  green: "#5CCA7A",
-  red: "#FF3E6B",
-};
-
-const Super40CTASection = () => {
-  const [showModal, setShowModal] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    course: "",
-  });
-
+const Super40EntranceExam = () => {
   const features = [
-    { icon: <Award size={24} />, text: "Specialized Test Preparation" },
-    { icon: <Users size={24} />, text: "Limited to 40 Students Only" },
-    { icon: <BookOpen size={24} />, text: "Comprehensive Study Material" },
-    { icon: <Star size={24} />, text: "Expert Faculty Guidance" },
+    { icon: Award, text: "40 Seats Only - Elite Program", color: "text-blue-400" },
+    { icon: Star, text: "Merit-based Scholarships", color: "text-green-400" },
+    { icon: Users, text: "1:10 Faculty-Student Ratio", color: "text-orange-400" },
+    { icon: Target, text: "100% Placement Guarantee", color: "text-red-400" },
+    { icon: BookOpen, text: "Industry-focused Curriculum", color: "text-blue-400" },
+    { icon: Rocket, text: "Accelerated Learning Path", color: "text-green-400" }
+  ];
+
+  const importantDates = [
+    { date: "Jan 15, 2024", event: "Application Start", color: "bg-green-500", icon: Calendar },
+    { date: "Mar 30, 2024", event: "Last Date to Apply", color: "bg-orange-500", icon: Clock },
+    { date: "Apr 15, 2024", event: "Admit Card Available", color: "bg-blue-500", icon: Shield },
+    { date: "Apr 28, 2024", event: "Entrance Exam", color: "bg-red-500", icon: Target },
+    { date: "May 15, 2024", event: "Results Declaration", color: "bg-green-500", icon: Award }
+  ];
+
+  const eligibilityCriteria = [
+    { text: "Minimum 85% in 12th Grade", color: "border-l-blue-400" },
+    { text: "Mathematics & Physics compulsory", color: "border-l-green-400" },
+    { text: "Age limit: 17-20 years", color: "border-l-orange-400" },
+    { text: "Valid JEE/CET score accepted", color: "border-l-red-400" }
   ];
 
   const stats = [
-    { value: "95%", label: "Success Rate" },
-    { value: "40", label: "Seats Only" },
-    { value: "30", label: "Days Preparation" },
-    { value: "1000+", label: "Students Trained" },
+    { number: "40", label: "Seats Only", color: "bg-blue-500/20 text-blue-400" },
+    { number: "2%", label: "Acceptance Rate", color: "bg-green-500/20 text-green-400" },
+    { number: "100%", label: "Placement Record", color: "bg-orange-500/20 text-orange-400" }
   ];
 
-  const handleInputChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
-    setShowModal(false);
-    setFormData({ name: "", email: "", phone: "", course: "" });
-  };
+  const examPattern = [
+    { value: "180", label: "Total Marks", color: "from-blue-500 to-blue-600" },
+    { value: "3", label: "Hours Duration", color: "from-green-500 to-green-600" },
+    { value: "MCQ", label: "Question Type", color: "from-orange-500 to-orange-600" }
+  ];
 
   return (
-    <section
-      className="py-20 bg-gradient-to-br from-blue-900 to-blue-800 text-white relative overflow-hidden"
-      style={bodyFont}
-    >
-      {/* Animated Background Orbs */}
-      <motion.div
-        className="absolute inset-0 opacity-20"
-        animate={{ opacity: [0.15, 0.25, 0.15] }}
-        transition={{ duration: 6, repeat: Infinity }}
-      >
-        <motion.div
-          className="absolute top-0 left-0 w-72 h-72 bg-blue-400 rounded-full filter blur-3xl"
-          animate={{ x: [0, 30, -30, 0], y: [0, -20, 20, 0] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-400 rounded-full filter blur-3xl"
-          animate={{ x: [0, -40, 40, 0], y: [0, 20, -20, 0] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </motion.div>
-
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            {/* Registration Info */}
-            <motion.div
-              className="inline-flex items-center bg-blue-700 px-4 py-2 rounded-full mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <Calendar size={18} className="mr-2 text-yellow-300" />
-              <span className="text-sm font-medium">
-                Registration Open Until: March 30, 2024
-              </span>
-            </motion.div>
-
-            <motion.h2
-              className="text-4xl md:text-5xl font-bold mb-6 leading-tight"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              style={headingFont}
-            >
-              Super 40 Entrance Exam
-              <span
-                className="block mt-2"
-                style={{ color: colors.accentBlue }}
-              >
-                Secure Your Seat Now!
-              </span>
-            </motion.h2>
-
-            <motion.p
-              className="text-xl text-blue-100 mb-8 leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              Join the elite group of 40 students who will receive intensive
-              coaching from our expert faculty. Limited seats available for our
-              premier entrance preparation program.
-            </motion.p>
-
-            {/* Features */}
-            <motion.div
-              className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8"
-              initial="hidden"
-              whileInView="visible"
-              variants={{
-                hidden: { opacity: 0 },
-                visible: {
-                  opacity: 1,
-                  transition: { staggerChildren: 0.2 },
-                },
-              }}
-            >
-              {features.map((feature, i) => (
-                <motion.div
-                  key={i}
-                  className="flex items-center bg-blue-800/50 p-4 rounded-lg"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <div className="text-yellow-400 mr-3">{feature.icon}</div>
-                  <span className="font-medium">{feature.text}</span>
-                </motion.div>
-              ))}
-            </motion.div>
-
-            {/* Stats */}
-            <motion.div
-              className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8"
-              initial="hidden"
-              whileInView="visible"
-              variants={{
-                hidden: {},
-                visible: { transition: { staggerChildren: 0.2 } },
-              }}
-            >
-              {stats.map((stat, i) => (
-                <motion.div
-                  key={i}
-                  className="text-center"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6 }}
-                >
-                  <div
-                    className="text-3xl font-bold mb-1"
-                    style={{ color: colors.gold }}
-                  >
-                    {stat.value}
-                  </div>
-                  <div className="text-sm text-blue-200">{stat.label}</div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
-
-          {/* Right Content CTA Card */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
-          >
-            <div className="bg-white text-gray-900 rounded-2xl p-8 shadow-2xl">
-              <h3 className="text-2xl font-bold mb-2" style={headingFont}>
-                Secure Your Spot
-              </h3>
-              <p className="text-gray-600 mb-6">
-                Only 40 seats available for this exclusive program
-              </p>
-
-              <div className="space-y-4 mb-6">
-                {[
-                  "Comprehensive study materials",
-                  "Expert faculty guidance",
-                  "Regular mock tests",
-                  "Personalized attention",
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center text-green-600">
-                    <CheckCircle size={20} className="mr-2" />
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="bg-blue-50 p-4 rounded-lg mb-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-sm text-gray-600">Program Fee</div>
-                    <div
-                      className="text-2xl font-bold"
-                      style={{ color: colors.accentBlue }}
-                    >
-                      ₹15,000
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-sm text-gray-500 line-through">
-                      ₹20,000
-                    </div>
-                    <div
-                      className="text-sm font-medium"
-                      style={{ color: colors.green }}
-                    >
-                      25% Off
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <motion.button
-                onClick={() => setShowModal(true)}
-                className="w-full font-bold py-4 px-6 rounded-lg flex items-center justify-center"
-                style={{ backgroundColor: colors.gold, color: colors.primary }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <span>Register Now</span>
-                <ChevronRight size={20} className="ml-2" />
-              </motion.button>
-
-              <p className="text-center text-sm text-gray-500 mt-4">
-                <Clock size={14} className="inline mr-1 text-red-500" />
-                Limited time offer
-              </p>
-            </div>
-
-            {/* Floating Badge */}
-            <motion.div
-              className="absolute -top-4 -right-4 px-4 py-2 rounded-full font-bold text-sm"
-              style={{ backgroundColor: colors.red, color: "#fff" }}
-              animate={{ scale: [1, 1.1, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            >
-              ⚡ Only 12 Seats Left!
-            </motion.div>
-          </motion.div>
-        </div>
+    <section className="py-16 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)`,
+          backgroundSize: '40px 40px'
+        }}></div>
       </div>
 
-      {/* Modal */}
-      <AnimatePresence>
-        {showModal && (
-          <motion.div
-            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setShowModal(false)}
-          >
-            <motion.div
-              className="bg-white rounded-2xl p-6 w-full max-w-md relative"
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
-                onClick={() => setShowModal(false)}
-              >
-                <X size={24} />
-              </button>
-              <h3
-                className="text-2xl font-bold text-center mb-6"
-                style={headingFont}
-              >
-                Super 40 Registration
-              </h3>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                {["name", "email", "phone"].map((field, i) => (
-                  <div key={i}>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      {field === "name"
-                        ? "Full Name"
-                        : field === "email"
-                        ? "Email Address"
-                        : "Phone Number"}
-                    </label>
-                    <input
-                      type={field === "email" ? "email" : "text"}
-                      name={field}
-                      value={formData[field]}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
-                    />
+      {/* Animated Background Elements */}
+      <div className="absolute top-0 left-0 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-0 right-0 w-72 h-72 bg-green-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-orange-500/10 rounded-full blur-3xl animate-pulse delay-500"></div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          
+          {/* Left Content */}
+          <div className="space-y-8">
+            {/* Header */}
+            <div className="text-center lg:text-left">
+              <span className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-blue-500 to-green-500 text-white text-sm font-semibold mb-4 shadow-lg">
+                <Zap className="w-4 h-4 mr-2" />
+                Limited Seats Available
+              </span>
+              
+              <h2 className="text-4xl lg:text-5xl font-bold text-white font-playfair mb-4">
+                Super 40 
+                <span className="block bg-gradient-to-r from-blue-400 via-green-400 to-orange-400 bg-clip-text text-transparent">
+                  Entrance Exam 2024
+                </span>
+              </h2>
+              
+              <p className="text-xl text-gray-300 mb-6 max-w-2xl">
+                Join the most prestigious engineering program. Only 40 exceptional students 
+                will be selected for this transformative journey towards excellence.
+              </p>
+
+              {/* Stats */}
+              <div className="grid grid-cols-3 gap-4 mb-8">
+                {stats.map((stat, index) => (
+                  <div key={index} className={`text-center p-4 rounded-lg backdrop-blur-sm border ${stat.color} border-opacity-30`}>
+                    <div className="text-2xl font-bold">{stat.number}</div>
+                    <div className="text-sm text-gray-300">{stat.label}</div>
                   </div>
                 ))}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Interested Course
-                  </label>
-                  <select
-                    name="course"
-                    value={formData.course}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
-                  >
-                    <option value="">Select a course</option>
-                    <option value="Engineering">Engineering</option>
-                    <option value="Medical">Medical</option>
-                    <option value="Foundation">Foundation</option>
-                    <option value="Other">Other</option>
-                  </select>
+              </div>
+            </div>
+
+            {/* Features Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {features.map((feature, index) => (
+                <div key={index} className="flex items-center gap-3 p-3 bg-white/5 rounded-lg backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-300">
+                  <feature.icon className={`w-5 h-5 ${feature.color} flex-shrink-0`} />
+                  <span className="text-gray-200 text-sm font-medium">{feature.text}</span>
                 </div>
-                <motion.button
-                  type="submit"
-                  className="w-full font-bold py-3 px-6 rounded-lg"
-                  style={{ backgroundColor: colors.accentBlue, color: "#fff" }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Submit Registration
-                </motion.button>
-              </form>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lora:wght@400;500;600&display=swap"
-        rel="stylesheet"
-      />
+              ))}
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <button className="group relative bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center justify-center gap-2">
+                Apply Now
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <div className="absolute inset-0 border-2 border-white/30 rounded-lg opacity-0 group-hover:opacity-100 animate-pulse"></div>
+              </button>
+              
+              <button className="group border-2 border-white/20 hover:border-orange-400 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 backdrop-blur-sm hover:bg-orange-500/10 flex items-center justify-center gap-2">
+                <BookOpen className="w-5 h-5" />
+                Download Brochure
+              </button>
+            </div>
+
+            {/* Quick Info */}
+            <div className="flex items-center justify-center lg:justify-start gap-6 text-sm text-gray-400">
+              <div className="flex items-center gap-2">
+                <Clock className="w-4 h-4 text-blue-400" />
+                <span>3 Hour Exam</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Users className="w-4 h-4 text-green-400" />
+                <span>10,000+ Applicants</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <GraduationCap className="w-4 h-4 text-orange-400" />
+                <span>Elite Faculty</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Content - Important Dates */}
+          <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 shadow-2xl">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center gap-2 bg-red-500/20 text-red-400 px-4 py-2 rounded-full text-sm font-semibold mb-4 border border-red-500/30">
+                <Calendar className="w-4 h-4" />
+                Important Dates
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-2">Exam Schedule</h3>
+              <p className="text-gray-400">Mark your calendar for these key dates</p>
+            </div>
+
+            <div className="space-y-4">
+              {importantDates.map((item, index) => (
+                <div key={index} className="flex items-center justify-between p-4 bg-gradient-to-r from-white/5 to-white/10 rounded-lg border border-white/5 hover:border-white/20 transition-all duration-300 group hover:scale-102">
+                  <div className="flex items-center gap-4">
+                    <div className={`w-12 h-12 ${item.color} rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg`}>
+                      <item.icon className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="text-white font-semibold">{item.event}</div>
+                      <div className="text-gray-300 text-sm font-medium">{item.date}</div>
+                    </div>
+                  </div>
+                  <div className={`w-3 h-3 rounded-full ${
+                    index === 0 ? 'bg-green-500 animate-pulse' : 
+                    index === 1 ? 'bg-orange-500' : 
+                    index === 2 ? 'bg-blue-500' : 'bg-red-500'
+                  }`}></div>
+                </div>
+              ))}
+            </div>
+
+            {/* Eligibility Criteria */}
+            <div className="mt-8 p-6 bg-gradient-to-r from-blue-500/10 via-green-500/10 to-orange-500/10 rounded-lg border border-blue-500/20">
+              <h4 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                <CheckCircle className="w-5 h-5 text-green-400" />
+                Eligibility Criteria
+              </h4>
+              <div className="space-y-3">
+                {eligibilityCriteria.map((criteria, index) => (
+                  <div key={index} className={`flex items-center gap-3 text-sm text-gray-300 pl-3 border-l-4 ${criteria.color} bg-white/5 rounded-r-lg p-2`}>
+                    <div className="w-2 h-2 bg-current rounded-full"></div>
+                    {criteria.text}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Exam Pattern */}
+            <div className="mt-6 grid grid-cols-3 gap-4 text-center">
+              {examPattern.map((item, index) => (
+                <div key={index} className="p-3 bg-gradient-to-br from-white/5 to-white/10 rounded-lg border border-white/10">
+                  <div className={`bg-gradient-to-r ${item.color} bg-clip-text text-transparent font-bold text-lg`}>
+                    {item.value}
+                  </div>
+                  <div className="text-gray-400 text-xs mt-1">{item.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Banner */}
+        <div className="mt-12 text-center">
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-red-500 to-orange-500 text-white px-6 py-3 rounded-full text-sm font-semibold animate-pulse shadow-lg">
+            <Clock className="w-4 h-4" />
+            Early Application Deadline: March 30, 2024 - Apply Now!
+          </div>
+        </div>
+
+        {/* Additional Info Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+          <div className="bg-gradient-to-br from-blue-500/10 to-blue-600/10 p-6 rounded-xl border border-blue-500/20">
+            <div className="flex items-center gap-3 mb-3">
+              <Shield className="w-8 h-8 text-blue-400" />
+              <h4 className="text-lg font-bold text-white">Scholarships</h4>
+            </div>
+            <p className="text-gray-300 text-sm">Up to 100% fee waiver for top rankers based on merit and need</p>
+          </div>
+          
+          <div className="bg-gradient-to-br from-green-500/10 to-green-600/10 p-6 rounded-xl border border-green-500/20">
+            <div className="flex items-center gap-3 mb-3">
+              <Rocket className="w-8 h-8 text-green-400" />
+              <h4 className="text-lg font-bold text-white">Fast-track Career</h4>
+            </div>
+            <p className="text-gray-300 text-sm">Direct campus placements with top MNCs and startups</p>
+          </div>
+          
+          <div className="bg-gradient-to-br from-orange-500/10 to-orange-600/10 p-6 rounded-xl border border-orange-500/20">
+            <div className="flex items-center gap-3 mb-3">
+              <Users className="w-8 h-8 text-orange-400" />
+              <h4 className="text-lg font-bold text-white">Mentorship</h4>
+            </div>
+            <p className="text-gray-300 text-sm">1:1 guidance from industry experts and alumni network</p>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };
 
-export default Super40CTASection;
+export default Super40EntranceExam;
