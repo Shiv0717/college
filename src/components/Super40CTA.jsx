@@ -199,32 +199,7 @@ const Super40EntranceExam = () => {
           </div>
         </div>
 
-        {/* Additional Info Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-          <div className="bg-gradient-to-br from-blue-500/10 to-blue-600/10 p-6 rounded-xl border border-blue-500/20">
-            <div className="flex items-center gap-3 mb-3">
-              <Shield className="w-8 h-8 text-blue-400" />
-              <h4 className="text-lg font-bold text-white">Scholarships</h4>
-            </div>
-            <p className="text-gray-300 text-sm">Up to 100% fee waiver for top rankers based on merit and need</p>
-          </div>
-          
-          <div className="bg-gradient-to-br from-green-500/10 to-green-600/10 p-6 rounded-xl border border-green-500/20">
-            <div className="flex items-center gap-3 mb-3">
-              <Rocket className="w-8 h-8 text-green-400" />
-              <h4 className="text-lg font-bold text-white">Fast-track Career</h4>
-            </div>
-            <p className="text-gray-300 text-sm">Direct campus placements with top MNCs and startups</p>
-          </div>
-          
-          <div className="bg-gradient-to-br from-orange-500/10 to-orange-600/10 p-6 rounded-xl border border-orange-500/20">
-            <div className="flex items-center gap-3 mb-3">
-              <Users className="w-8 h-8 text-orange-400" />
-              <h4 className="text-lg font-bold text-white">Mentorship</h4>
-            </div>
-            <p className="text-gray-300 text-sm">1:1 guidance from industry experts and alumni network</p>
-          </div>
-        </div>
+        
       </div>
     </section>
   );

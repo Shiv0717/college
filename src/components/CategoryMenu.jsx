@@ -33,66 +33,79 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-// Colors
+// Green, Orange, Blue Color Scheme
 const colors = {
-  primary: "#1a365d",     // Deep blue (university primary)
-  secondary: "#b38b59",   // Gold accent (university secondary)
-  tertiary: "#2d3748",    // Dark gray
-  accent: "#3182ce",      // Light blue
-  light: "#e9d8a6",       // Cream/beige
+  primary: "#1e40af",     // Royal Blue
+  secondary: "#059669",   // Emerald Green
+  tertiary: "#ea580c",    // Vibrant Orange
+  accent: "#3b82f6",      // Bright Blue
+  light: "#f0fdf4",       // Light Green background
+  dark: "#1f2937",        // Dark gray
+  gradient: {
+    primary: "linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)",
+    secondary: "linear-gradient(135deg, #059669 0%, #10b981 100%)",
+    tertiary: "linear-gradient(135deg, #ea580c 0%, #f97316 100%)",
+  }
 };
 
-// Affiliations data
+// Affiliations data with color coding
 const affiliations = [
-  { Icon: Award, label: "Best Result", color: "text-yellow-500" },
-  { Icon: Star, label: "Quality Education", color: "text-green-500" },
-  { Icon: Trophy, label: "Placement", color: "text-red-500" },
-  { Icon: GraduationCap, label: "Mentor", color: "text-purple-500" },
+  { Icon: Award, label: "Best Result", color: "text-orange-500", bgColor: "#fed7aa" },
+  { Icon: Star, label: "Quality Education", color: "text-green-500", bgColor: "#bbf7d0" },
+  { Icon: Trophy, label: "Placement", color: "text-blue-500", bgColor: "#bfdbfe" },
+  { Icon: GraduationCap, label: "Mentor", color: "text-purple-500", bgColor: "#e9d5ff" },
 ];
 
-// Main categories with expanded details
+// Main categories with color coding
 const mainCategories = [
   {
     name: "Home",
     path: "/",
     icon: Home,
     description: "Welcome to Krishna Engineering College",
+    color: colors.primary,
   },
   {
     name: "About",
     path: "/about",
     icon: Users,
     description: "Discover our history and leadership",
+    color: colors.secondary,
     submenu: [
       {
         name: "About College",
         path: "/about",
         icon: Building,
         description: "Our journey and achievements",
+        color: colors.secondary,
       },
       {
         name: "Principal's Message",
         path: "/principal",
         icon: Mic,
         description: "Words from our leadership",
+        color: colors.secondary,
       },
       {
         name: "HOD",
         path: "/hod",
         icon: Users,
         description: "Heads of Departments",
+        color: colors.secondary,
       },
       {
         name: "Mission & Vision",
         path: "/mission",
         icon: Award,
         description: "Our guiding principles",
+        color: colors.secondary,
       },
       {
         name: "Governance",
         path: "/governance",
         icon: Library,
         description: "Management structure",
+        color: colors.secondary,
       },
     ],
   },
@@ -101,30 +114,35 @@ const mainCategories = [
     path: "/departments",
     icon: BookOpen,
     description: "Programs and departments",
+    color: colors.tertiary,
     submenu: [
       {
         name: "Departments",
         path: "/departments",
         icon: BookOpen,
         description: "Explore our academic departments",
+        color: colors.tertiary,
       },
       {
         name: "Courses",
         path: "/courses",
         icon: GraduationCap,
         description: "Programs we offer",
+        color: colors.tertiary,
       },
       {
         name: "Faculty",
         path: "/faculty",
         icon: Users,
         description: "Meet our professors",
+        color: colors.tertiary,
       },
       {
         name: "Research",
         path: "/research",
         icon: Beaker,
         description: "Innovation and projects",
+        color: colors.tertiary,
       },
     ],
   },
@@ -133,24 +151,28 @@ const mainCategories = [
     path: "/admission",
     icon: GraduationCap,
     description: "Join our institution",
+    color: colors.primary,
     submenu: [
       {
         name: "Process",
         path: "/admission#process",
         icon: BarChart3,
         description: "Step-by-step guide",
+        color: colors.primary,
       },
       {
         name: "Requirements",
         path: "/admission#requirements",
         icon: Bookmark,
         description: "Eligibility criteria",
+        color: colors.primary,
       },
       {
         name: "Scholarships",
         path: "/admission#scholarships",
         icon: Award,
         description: "Financial assistance",
+        color: colors.primary,
       },
     ],
   },
@@ -159,24 +181,28 @@ const mainCategories = [
     path: "/facilities",
     icon: Building,
     description: "Our facilities and infrastructure",
+    color: colors.secondary,
     submenu: [
       {
         name: "Facilities",
         path: "/facilities",
         icon: Building,
         description: "Campus amenities",
+        color: colors.secondary,
       },
       {
         name: "Infrastructure",
         path: "/infrastructure",
         icon: MapPin,
         description: "Our campus layout",
+        color: colors.secondary,
       },
       {
         name: "Gallery",
         path: "/gallery",
         icon: Image,
         description: "Campus visuals",
+        color: colors.secondary,
       },
     ],
   },
@@ -185,24 +211,28 @@ const mainCategories = [
     path: "/placements",
     icon: Briefcase,
     description: "Career opportunities",
+    color: colors.tertiary,
     submenu: [
       {
         name: "Placement Stats",
         path: "/placements#stats",
         icon: BarChart3,
         description: "Our success records",
+        color: colors.tertiary,
       },
       {
         name: "Recruiters",
         path: "/placements#recruiters",
         icon: Briefcase,
         description: "Our industry partners",
+        color: colors.tertiary,
       },
       {
         name: "Training",
         path: "/placements#training",
         icon: School,
         description: "Career preparation",
+        color: colors.tertiary,
       },
     ],
   },
@@ -211,42 +241,49 @@ const mainCategories = [
     path: "#",
     icon: Bookmark,
     description: "More ways to engage",
+    color: colors.primary,
     submenu: [
       {
         name: "Notices",
         path: "/notice",
         icon: Newspaper,
         description: "Latest announcements",
+        color: colors.primary,
       },
       {
         name: "Events",
         path: "/event",
         icon: Calendar,
         description: "Upcoming activities",
+        color: colors.primary,
       },
       {
         name: "Press",
         path: "/press",
         icon: Bookmark,
         description: "Media coverage",
+        color: colors.primary,
       },
       {
         name: "Alumni",
         path: "/alumni",
         icon: School,
         description: "Our graduates network",
+        color: colors.primary,
       },
       {
         name: "Affiliation",
         path: "/affiliation",
         icon: Award,
         description: "Accreditations",
+        color: colors.primary,
       },
       {
         name: "Contact",
         path: "/contact",
         icon: Phone,
         description: "Get in touch with us",
+        color: colors.primary,
       },
     ],
   },
@@ -350,27 +387,46 @@ const UniversityMenu = () => {
     setMobileSubmenu(null);
   };
 
+  const getCategoryColor = (categoryName) => {
+    const category = mainCategories.find(cat => cat.name === categoryName);
+    return category ? category.color : colors.primary;
+  };
+
   return (
-    <div ref={menuRef} className="bg-white shadow-md border-b border-gray-100 sticky top-0 z-50">
+    <div ref={menuRef} className="bg-white shadow-lg border-b border-gray-100 sticky top-0 z-50">
       {/* Top Bar with Logo and Affiliations */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between py-3">
           {/* Logo */}
           <div ref={logoRef} className="flex-shrink-0">
             <div className="flex items-center">
-              <img
-                src="/images/2025-08-27 19.10.46.jpg"
-                className="w-14 h-14 rounded-full p-1 object-cover border border-gray-200"
-                alt="Krishna Engineering College Logo"
-              />
+              <div 
+                className="w-14 h-14 rounded-full p-1  flex items-center justify-center"
+              
+              >
+                <img
+                  src="/images/2025-08-27 19.10.46.jpg"
+                  className="w-12 h-12 rounded-full object-cover"
+                  alt="Krishna Engineering College Logo"
+                />
+              </div>
               <div className="ml-3" style={{ fontFamily: 'inter, serif' }}>
-                <h1 className="text-lg md:text-xl font-bold text-gray-900">
+                <h1 
+                  className="text-lg md:text-xl text-blue-900 font-bold"
+                 
+                >
                   KRISHNA
                 </h1>
-                <p className="text-xs text-gray-600 -mt-1">
+                <p 
+                  className="text-xs -mt-1 font-semibold text-blue-900"
+                 
+                >
                   ENGINEERING COLLEGE
                 </p>
-                <span className="text-xs text-blue-700 font-medium md:text-sm" style={{ color: colors.primary }}>
+                <span 
+                  className="text-xs font-medium md:text-sm"
+                 
+                >
                   Managed By KPS GROUP
                 </span>
               </div>
@@ -378,43 +434,58 @@ const UniversityMenu = () => {
           </div>
 
           {/* Affiliations - Right Side */}
-          <div className="hidden md:flex items-center space-x-4 lg:space-x-6" style={{ fontFamily: 'inter, serif' }}>
-            {affiliations.map((affiliation, index) => {
-              const IconComponent = affiliation.Icon;
-              return (
-                <div 
-                  key={index} 
-                  ref={el => affiliationRefs.current[index] = el}
-                  className="flex items-center group"
-                >
-                  <div 
-                    className="p-2 rounded-full bg-gray-100 group-hover:bg-blue-50 transition-colors"
-                    style={{ backgroundColor: `${colors.primary}10` }}
-                  >
-                    <IconComponent
-                      size={16}
-                      className={`${affiliation.color} transition-colors duration-300 group-hover:text-blue-700`}
-                    />
-                  </div>
-                  <span className="ml-2 text-sm font-medium text-gray-700 hidden lg:inline">
-                    {affiliation.label}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
+          <div className="hidden md:flex items-center space-x-2 lg:space-x-4 bg-white rounded-2xl p-2 " style={{ borderColor: `${colors.primary}10`, fontFamily: 'inter, serif' }}>
+  {affiliations.map((affiliation, index) => {
+    const IconComponent = affiliation.Icon;
+    return (
+      <div 
+        key={index} 
+        ref={el => affiliationRefs.current[index] = el}
+        className="flex items-center group px-3 py-2 rounded-xl transition-all duration-300 hover:bg-gradient-to-r hover:from-white hover:to-blue-50"
+      >
+        <div 
+          className="p-2 rounded-lg mr-2 transition-all duration-300 group-hover:scale-110"
+          style={{ 
+            backgroundColor: `${affiliation.bgColor}20`,
+            border: `1px solid ${affiliation.bgColor}30`
+          }}
+        >
+          <IconComponent
+            size={16}
+            style={{ color: affiliation.color.replace('text-', '') }}
+          />
+        </div>
+        
+        <span 
+          className="text-sm whitespace-nowrap"
+          style={{ color: colors.dark }}
+        >
+          {affiliation.label}
+        </span>
+
+        {index < affiliations.length - 1 && (
+          <div className="ml-4 w-px h-4 bg-gray-300 opacity-50" />
+        )}
+      </div>
+    );
+  })}
+</div>
 
           {/* Mobile menu button */}
           <div className="md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:bg-gray-100 transition-colors"
+              className="inline-flex items-center justify-center p-3 rounded-xl transition-colors"
+              style={{ 
+                backgroundColor: colors.primary,
+                color: 'white'
+              }}
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? (
-                <X className="h-6 w-6" />
+                <X className="h-5 w-5" />
               ) : (
-                <Menu className="h-6 w-6" />
+                <Menu className="h-5 w-5" />
               )}
             </button>
           </div>
@@ -422,12 +493,17 @@ const UniversityMenu = () => {
       </div>
 
       {/* Desktop Navigation Menu with Mega Menu */}
-      <div className="hidden md:block border-t border-gray-100 bg-white">
+      <div 
+        className="hidden md:block border-t "
+        style={{ borderColor: `${colors.primary}20` }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex justify-center relative">
             <div className="flex space-x-1">
               {mainCategories.map((category, index) => {
                 const IconComponent = category.icon;
+                const isActive = activeMenu === category.name;
+                const categoryColor = getCategoryColor(category.name);
 
                 return (
                   <div
@@ -443,108 +519,163 @@ const UniversityMenu = () => {
                   >
                     <Link
                       to={category.path}
-                      className="flex items-center px-4 py-3 text-sm font-medium text-gray-700 hover:text-blue-700 transition-colors group-hover:bg-blue-50 rounded-t-lg"
+                      className="flex items-center px-5 py-4 text-sm  transition-all duration-300 group-hover:rounded-t-xl relative"
                       style={{ 
-                        color: activeMenu === category.name ? colors.primary : '#374151',
-                        backgroundColor: activeMenu === category.name ? `${colors.primary}10` : 'transparent'
+                        color: isActive ? categoryColor : colors.dark,
+                        backgroundColor: isActive ? `${categoryColor}10` : 'transparent'
                       }}
                     >
-                      <IconComponent size={18} className="mr-1" />
+                      <IconComponent 
+                        size={18} 
+                        className="mr-2" 
+                        style={{ color: isActive ? categoryColor : colors.dark }}
+                      />
                       {category.name}
                       {category.submenu && (
                         <ChevronDown
                           size={16}
-                          className="ml-1 transition-transform group-hover:rotate-180"
+                          className="ml-2 transition-transform duration-300 group-hover:rotate-180"
+                          style={{ color: isActive ? categoryColor : colors.dark }}
                         />
                       )}
+                      
+                      {/* Animated underline */}
+                      <div 
+                        className="absolute bottom-0 left-0 w-0 h-1 transition-all duration-300 group-hover:w-full"
+                        style={{ 
+                          backgroundColor: categoryColor,
+                          width: isActive ? '100%' : '0%'
+                        }}
+                      />
                     </Link>
                   </div>
                 );
               })}
             </div>
             
-            {/* Centered Mega Menu Container */}
+            {/* Enhanced Mega Menu Container */}
             {activeMenu && (
               <div
                 ref={megaMenuRef}
-                className="absolute top-full left-1/2 transform -translate-x-1/2 z-50 w-full max-w-4xl"
+                className="absolute top-full left-1/2 transform -translate-x-1/2 z-50 w-full max-w-5xl"
                 onMouseEnter={() => setActiveMenu(activeMenu)}
                 onMouseLeave={() => setActiveMenu(null)}
               >
                 {mainCategories.map((category) => {
                   if (category.name === activeMenu && category.submenu) {
                     const IconComponent = category.icon;
+                    const categoryColor = category.color;
                     
                     return (
                       <div
                         key={category.name}
-                        className="rounded-b-lg shadow-xl bg-white border border-gray-200 overflow-hidden"
+                        className="rounded-xl shadow-2xl border-2 overflow-hidden transform transition-all duration-300"
+                        style={{ 
+                          borderColor: `${categoryColor}20`,
+                          background: 'white'
+                        }}
                       >
-                        {/* Mega Menu Header */}
+                        {/* Enhanced Mega Menu Header */}
                         <div 
-                          className="bg-blue-800 text-white py-4 px-6"
-                          style={{ backgroundColor: colors.primary }}
+                          className="py-5 px-8 text-white relative overflow-hidden"
+                          style={{ background: `linear-gradient(135deg, ${categoryColor} 0%, ${categoryColor}dd 100%)` }}
                         >
-                          <div className="flex items-center">
-                            <IconComponent size={24} className="mr-3" />
+                          <div className="flex items-center relative z-10">
+                            <div 
+                              className="p-3 rounded-xl mr-4 backdrop-blur-sm"
+                              style={{ backgroundColor: 'rgba(255,255,255,0.2)' }}
+                            >
+                              <IconComponent size={28} className="text-white" />
+                            </div>
                             <div>
-                              <h3 className="text-xl font-bold">
+                              <h3 className="text-2xl font-bold">
                                 {category.name}
                               </h3>
-                              <p className="text-sm opacity-90">
+                              <p className="text-sm opacity-95 mt-1">
                                 {category.description}
                               </p>
                             </div>
                           </div>
+                          {/* Background pattern */}
+                          <div 
+                            className="absolute top-0 right-0 w-32 h-32 opacity-10"
+                            style={{ background: 'radial-gradient(circle, white 20%, transparent 70%)' }}
+                          />
                         </div>
 
-                        {/* Mega Menu Content */}
-                        <div className="p-6 grid grid-cols-2 gap-4">
-                          {category.submenu.map((item) => {
+                        {/* Enhanced Mega Menu Content */}
+                        <div className="p-8 grid grid-cols-2 gap-6">
+                          {category.submenu.map((item, index) => {
                             const ItemIcon = item.icon;
+                            const itemColor = item.color || categoryColor;
+                            
                             return (
                               <div
                                 key={item.name}
+                                className="transform transition-all duration-300 hover:scale-[1.02]"
                               >
                                 <Link
                                   to={item.path}
-                                  className={`flex items-start p-3 rounded-lg transition-all duration-200 ${
+                                  className={`flex items-start p-4 rounded-xl transition-all duration-300 border-2 ${
                                     hoveredItem === item.name
-                                      ? "bg-blue-50 transform scale-[1.02] shadow-md"
-                                      : "hover:bg-blue-50"
+                                      ? "shadow-lg transform scale-[1.02]"
+                                      : "shadow-sm hover:shadow-md"
                                   }`}
                                   onClick={closeAllMenus}
                                   onMouseEnter={() => setHoveredItem(item.name)}
                                   onMouseLeave={() => setHoveredItem(null)}
                                   style={{ 
-                                    backgroundColor: hoveredItem === item.name ? `${colors.primary}10` : 'transparent'
+                                    borderColor: hoveredItem === item.name ? `${itemColor}40` : 'transparent',
+                                    backgroundColor: hoveredItem === item.name ? `${itemColor}08` : 'white'
                                   }}
                                 >
                                   <div 
-                                    className="flex-shrink-0 h-10 w-10 rounded-lg bg-blue-100 flex items-center justify-center mr-3"
-                                    style={{ backgroundColor: `${colors.primary}20` }}
+                                    className="flex-shrink-0 h-12 w-12 rounded-xl flex items-center justify-center mr-4 shadow-sm"
+                                    style={{ 
+                                      backgroundColor: `${itemColor}15`,
+                                      border: `2px solid ${itemColor}30`
+                                    }}
                                   >
                                     <ItemIcon
-                                      size={18}
-                                      className="text-blue-700"
-                                      style={{ color: colors.primary }}
+                                      size={20}
+                                      style={{ color: itemColor }}
                                     />
                                   </div>
-                                  <div>
+                                  <div className="flex-1">
                                     <h4 
-                                      className="font-semibold text-gray-900"
-                                      style={{ color: colors.tertiary }}
+                                      className="font-bold text-lg mb-2"
+                                      style={{ color: colors.dark }}
                                     >
                                       {item.name}
                                     </h4>
-                                    <p className="text-sm text-gray-600 mt-1">
+                                    <p 
+                                      className="text-sm"
+                                      style={{ color: colors.dark + 'cc' }}
+                                    >
                                       {item.description}
                                     </p>
+                                    <div 
+                                      className="w-8 h-0.5 rounded-full mt-2"
+                                      style={{ backgroundColor: itemColor }}
+                                    />
                                   </div>
                                 </Link>
                               </div>
                             );
                           })}
+                        </div>
+
+                        {/* Mega Menu Footer */}
+                        <div 
+                          className="px-8 py-4 border-t text-center"
+                          style={{ borderColor: `${categoryColor}15`, backgroundColor: `${categoryColor}05` }}
+                        >
+                          <span 
+                            className="text-sm font-medium"
+                            style={{ color: categoryColor }}
+                          >
+                            Explore more about {category.name.toLowerCase()}
+                          </span>
                         </div>
                       </div>
                     );
@@ -557,27 +688,43 @@ const UniversityMenu = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Enhanced Mobile Menu */}
       {mobileMenuOpen && (
         <div
           ref={mobileMenuRef}
-          className="md:hidden bg-white border-t border-gray-200"
+          className="md:hidden bg-white border-t"
+          style={{ borderColor: `${colors.primary}20` }}
         >
           {/* Mobile Affiliations */}
-          <div className="px-4 py-3 border-b border-gray-200 bg-gray-50">
-            <h3 className="text-sm font-semibold text-gray-700 mb-2">
+          <div 
+            className="px-4 py-4 border-b"
+            style={{ borderColor: `${colors.primary}20`, backgroundColor: `${colors.primary}05` }}
+          >
+            <h3 
+              className="text-sm font-bold mb-3 text-center"
+              style={{ color: colors.primary }}
+            >
               RECOGNITIONS & AWARDS
             </h3>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 gap-3">
               {affiliations.map((affiliation, index) => {
                 const IconComponent = affiliation.Icon;
                 return (
                   <div
                     key={index}
-                    className="flex items-center p-2 bg-white rounded-lg border border-gray-200"
+                    className="flex items-center p-3 bg-white rounded-xl border-2 shadow-sm"
+                    style={{ borderColor: `${affiliation.bgColor}50` }}
                   >
-                    <IconComponent size={16} className="mr-2 text-blue-700" style={{ color: colors.primary }} />
-                    <span className="text-xs text-gray-700">
+                    <div 
+                      className="p-2 rounded-lg mr-3"
+                      style={{ backgroundColor: affiliation.bgColor }}
+                    >
+                      <IconComponent size={16} style={{ color: affiliation.color.replace('text-', '') }} />
+                    </div>
+                    <span 
+                      className="text-xs font-semibold"
+                      style={{ color: colors.dark }}
+                    >
                       {affiliation.label}
                     </span>
                   </div>
@@ -589,73 +736,90 @@ const UniversityMenu = () => {
           <div className="py-2 space-y-1">
             {mainCategories.map((category) => {
               const IconComponent = category.icon;
-              const hasSubmenu =
-                category.submenu && category.submenu.length > 0;
+              const hasSubmenu = category.submenu && category.submenu.length > 0;
+              const categoryColor = category.color;
 
               return (
                 <div
                   key={category.name}
-                  className="border-b border-gray-100 last:border-b-0"
+                  className="border-b last:border-b-0"
+                  style={{ borderColor: `${colors.primary}10` }}
                 >
                   <div
-                    className={`flex items-center justify-between px-4 py-3 ${
+                    className={`flex items-center justify-between px-4 py-4 ${
                       hasSubmenu ? "cursor-pointer" : ""
-                    }`}
+                    } transition-colors duration-200`}
                     onClick={() =>
                       hasSubmenu &&
                       setMobileSubmenu(
                         mobileSubmenu === category.name ? null : category.name
                       )
                     }
+                    style={{ 
+                      backgroundColor: mobileSubmenu === category.name ? `${categoryColor}08` : 'transparent'
+                    }}
                   >
                     <Link
                       to={category.path}
-                      className="flex items-center font-medium text-gray-700"
+                      className="flex items-center font-semibold"
                       onClick={!hasSubmenu ? closeAllMenus : undefined}
-                      style={{ color: colors.tertiary }}
+                      style={{ color: colors.dark }}
                     >
-                      <IconComponent
-                        size={20}
-                        className="mr-3 text-blue-700"
-                        style={{ color: colors.primary }}
-                      />
+                      <div 
+                        className="p-2 rounded-lg mr-3"
+                        style={{ backgroundColor: `${categoryColor}15` }}
+                      >
+                        <IconComponent
+                          size={18}
+                          style={{ color: categoryColor }}
+                        />
+                      </div>
                       {category.name}
                     </Link>
 
                     {hasSubmenu && (
                       <ChevronDown 
-                        size={16} 
-                        className="text-gray-500" 
-                        style={{ transform: mobileSubmenu === category.name ? 'rotate(180deg)' : 'rotate(0)' }}
+                        size={18} 
+                        style={{ 
+                          color: categoryColor,
+                          transform: mobileSubmenu === category.name ? 'rotate(180deg)' : 'rotate(0)',
+                          transition: 'transform 0.3s ease'
+                        }}
                       />
                     )}
                   </div>
 
-                  {/* Mobile Submenu */}
+                  {/* Enhanced Mobile Submenu */}
                   {hasSubmenu && mobileSubmenu === category.name && (
                     <div
-                      className="bg-gray-50 pl-12 pr-4"
-                      style={{ backgroundColor: `${colors.primary}05` }}
+                      className="pl-4 pr-4 pb-3"
+                      style={{ backgroundColor: `${categoryColor}05` }}
                     >
-                      <div className="py-2 space-y-2">
+                      <div className="space-y-2">
                         {category.submenu.map((item) => {
                           const ItemIcon = item.icon;
+                          const itemColor = item.color || categoryColor;
+                          
                           return (
                             <div
                               key={item.name}
+                              className="transform transition-transform duration-200 hover:translate-x-1"
                             >
                               <Link
                                 to={item.path}
-                                className="flex items-center py-2 text-sm text-gray-700 hover:text-blue-700 transition-colors"
+                                className="flex items-center p-3 rounded-lg bg-white shadow-sm border"
                                 onClick={closeAllMenus}
-                                style={{ color: colors.tertiary }}
+                                style={{ 
+                                  borderColor: `${itemColor}20`,
+                                  color: colors.dark
+                                }}
                               >
                                 <ItemIcon
                                   size={16}
-                                  className="mr-3 text-gray-500"
-                                  style={{ color: colors.primary }}
+                                  className="mr-3"
+                                  style={{ color: itemColor }}
                                 />
-                                {item.name}
+                                <span className="font-medium">{item.name}</span>
                               </Link>
                             </div>
                           );
