@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import Herosection from "../components/Herosection";
 import PlacementPartners from "../components/PlacementPartners";
 import AchievementsMarquee from "../components/AchievementsMarquee";
@@ -13,6 +13,18 @@ import SkillDevelopment from "../components/SkillDevelopment";
 import Super40CTA from "../components/Super40CTA";
 
 const Home = () => {
+
+
+  const newsRef = useRef(null);
+
+  // Scroll on page load if URL has hash
+  useEffect(() => {
+    if (window.location.hash === "#news-events") {
+      newsRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
+
+
   return (
     <div>
       <Herosection />
@@ -25,7 +37,7 @@ const Home = () => {
      
       <AlumniSection />
       <Super40CTA/>
-      <NoticeBoard />
+      <NoticeBoard ref={newsRef} />
       <SkillDevelopment/>
       <AboutSection />
     

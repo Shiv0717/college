@@ -262,8 +262,9 @@ export default function AcademicDatesSection() {
     });
   };
 
+
   return (
-    <div ref={sectionRef} className="bg-gradient-to-br from-gray-50 to-blue-50/20 py-24" style={bodyFont}>
+    <div ref={sectionRef}  className="bg-gradient-to-br from-gray-50 to-blue-50/20 py-24" style={bodyFont}>
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="mb-20 text-center">

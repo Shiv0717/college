@@ -179,6 +179,13 @@ const mainCategories = [
         description: "Financial assistance",
         color: colors.primary,
       },
+      {
+        name: "Registration",
+        path: "/apply",
+        icon: UserPlus,
+        description: "Register for the Super 40 Entrance Exam 2026",
+        color: colors.primary,
+      },
     ],
   },
   {
@@ -242,28 +249,14 @@ const mainCategories = [
     ],
   },
   {
-    name: "Super 40",
-    path: "#",
-    icon: GraduationCap,
-    description: "Elite entrance program",
-    color: colors.tertiary,
-    submenu: [
-      {
-        name: "Registration",
-        path: "/apply",
-        icon: UserPlus,
-        description: "Register for the Super 40 program",
-        color: colors.tertiary,
-      },
-      {
-        name: "Exam",
-        path: "/exam",
-        icon: FileText,
-        description: "Take the entrance exam",
-        color: colors.tertiary,
-      },
-    ],
+    name: "News & Events",
+    path: "#news-events", // anchor to the section
+    icon: Calendar,
+    description: "Latest updates and happenings at KEC",
+    color: colors.secondary,
+    isScrollLink: true, // custom flag to handle scrolling
   },
+  
   {
     name: "Courses",
     path: "/courses",
@@ -459,12 +452,12 @@ const UniversityMenu = () => {
           <div ref={logoRef} className="flex-shrink-0">
             <div className="flex items-center">
               <div 
-                className="w-14 h-14 rounded-full p-1  flex items-center justify-center"
+                className="w-20 h-20 rounded-full p-1  flex items-center justify-center"
               
               >
                 <img
                   src="/images/2025-08-27 19.10.46.jpg"
-                  className="w-12 h-12 rounded-full object-cover"
+                  className="w-full h-full rounded-full object-cover"
                   alt="Krishna Engineering College Logo"
                 />
               </div>
@@ -476,7 +469,7 @@ const UniversityMenu = () => {
                   KRISHNA
                 </h1>
                 <p 
-                  className="text-xs -mt-1 font-semibold text-blue-900"
+                  className="text-xs md:text-xl -mt-1 font-semibold text-blue-900"
                  
                 >
                   ENGINEERING COLLEGE
@@ -492,37 +485,47 @@ const UniversityMenu = () => {
           </div>
 
           {/* Affiliations - Right Side */}
-          <div className="hidden md:flex items-center space-x-2 lg:space-x-4 bg-white rounded-2xl p-2 " style={{ borderColor: `${colors.primary}10`, fontFamily: 'inter, serif' }}>
+          <div className="hidden md:flex items-center space-x-2 lg:space-x-4 bg-white/5 backdrop-blur-sm rounded-2xl p-2 border border-white/10" style={{ fontFamily: 'inter, serif' }}>
   {affiliations.map((affiliation, index) => {
     const IconComponent = affiliation.Icon;
+    const colorValue = affiliation.color.replace('text-', '');
+    
+    // Define different colors for each icon like the social media example
+    const socialColors = [
+      { bg: 'blue', icon: 'blue-400', hover: 'blue-600' },
+      { bg: 'cyan', icon: 'cyan-400', hover: 'cyan-600' },
+      { bg: 'pink', icon: 'pink-400', hover: 'pink-600' },
+      { bg: 'blue', icon: 'blue-300', hover: 'blue-700' },
+      { bg: 'red', icon: 'red-400', hover: 'red-600' }
+    ];
+
+    const currentColor = socialColors[index % socialColors.length];
+
     return (
       <div 
         key={index} 
         ref={el => affiliationRefs.current[index] = el}
-        className="flex items-center group px-3 py-2 rounded-xl transition-all duration-300 hover:bg-gradient-to-r hover:from-white hover:to-blue-50"
+        className={`flex items-center px-3 py-2 rounded-xl`}
       >
-        <div 
-          className="p-2 rounded-lg mr-2 transition-all duration-300 group-hover:scale-110"
-          style={{ 
-            backgroundColor: `${affiliation.bgColor}20`,
-            border: `1px solid ${affiliation.bgColor}30`
-          }}
-        >
+        {/* Icon container with different colors like social media icons */}
+        <div className={`relative p-2 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10`}>
           <IconComponent
             size={16}
-            style={{ color: affiliation.color.replace('text-', '') }}
+            className={`text-${currentColor.icon}`}
           />
+          <div 
+            className={`absolute inset-0 rounded-xl bg-${currentColor.bg}-500/10`}
+          ></div>
         </div>
         
         <span 
-          className="text-sm whitespace-nowrap"
-          style={{ color: colors.dark }}
+          className="text-sm whitespace-nowrap ml-2 text-black"
         >
           {affiliation.label}
         </span>
 
         {index < affiliations.length - 1 && (
-          <div className="ml-4 w-px h-4 bg-gray-300 opacity-50" />
+          <div className="ml-4 w-px h-4 bg-white/20" />
         )}
       </div>
     );

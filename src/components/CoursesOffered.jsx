@@ -349,12 +349,12 @@ const EngineeringDepartments = () => {
                 <activeDept.icon size={24} className="text-white" />
               </div>
               <div>
-                <span className="text-sm font-semibold uppercase tracking-widest text-gray-500">
+                <span className="text-3xl font-semibold uppercase tracking-widest text-gray-500">
                   Engineering Departments
                 </span>
                 <div className="flex items-center gap-2 mt-1">
                   <div className={`w-2 h-2 rounded-full ${activeDept.bgColor} animate-pulse`} />
-                  <span className="text-xs text-gray-400">Currently Active</span>
+                  <span className="text-xs text-gray-400"> Innovation and technical excellence</span>
                 </div>
               </div>
             </div>
@@ -425,11 +425,11 @@ const EngineeringDepartments = () => {
                 {/* Animated background */}
                 <div className={`absolute inset-0 ${dept.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
                 
-                <div className={`text-2xl lg:text-3xl font-bold transition-all duration-300 ${
+                {/* <div className={`text-2xl lg:text-3xl font-bold transition-all duration-300 ${
                   activeDepartment === index ? dept.textColor : 'text-gray-300'
                 }`}>
                   {dept.number}
-                </div>
+                </div> */}
                 
                 <div className="flex-1 text-left">
                   <h3 className={`text-lg lg:text-xl font-semibold transition-all duration-300 ${

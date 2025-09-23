@@ -103,8 +103,7 @@ const Footer = () => {
   const achievements = [
     { text: "AICTE Approved", icon: Award, color: colors.orange },
     { text: "CSVTU Affiliated", icon: GraduationCap, color: colors.green },
-    { text: "ISO Certified", icon: Award, color: colors.blue },
-    { text: "NBA Accredited", icon: Target, color: colors.red }
+    
   ];
 
   const stats = [

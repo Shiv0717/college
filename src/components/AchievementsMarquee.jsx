@@ -57,7 +57,6 @@ const CollegeDashboard = () => {
 
   const programs = [
     { name: "Engineering", students: 4500, growth: 15, color: "bg-blue-500", icon: Target },
-    { name: "Business", students: 3200, growth: 12, color: "bg-green-500", icon: BarChart3 },
   ];
 
   const achievements = [
