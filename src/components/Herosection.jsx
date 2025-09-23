@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay, Pagination, EffectFade } from "swiper/modules";
 import { motion } from "framer-motion";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, Play, Pause } from "lucide-react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -58,8 +58,13 @@ const fadeUp = {
 
 const HeroSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
   const headingFont = { fontFamily: "'Playfair Display', serif" };
   const bodyFont = { fontFamily: "'Lora', serif" };
+
+  const toggleAutoplay = () => {
+    setIsPlaying(!isPlaying);
+  };
 
   return (
     <section className="relative w-full md:h-[600px] h-[420px] overflow-hidden font-satoshi">
@@ -78,7 +83,7 @@ const HeroSection = () => {
             return `<span class="${className}"></span>`;
           },
         }}
-        autoplay={{ delay: 5000, disableOnInteraction: false }}
+        autoplay={isPlaying ? { delay: 5000, disableOnInteraction: false } : false}
         loop={true}
         effect="fade"
         fadeEffect={{ crossFade: true }}
@@ -92,7 +97,6 @@ const HeroSection = () => {
               {/* Background image animated with fade-up on active slide */}
               <div className="absolute inset-0 w-full h-full overflow-hidden">
                 <motion.img
-                  // key ensures framer re-runs variant when activeIndex changes
                   key={`bg-${index}-${activeIndex === index ? "active" : "idle"}`}
                   src={slide.image}
                   alt={slide.title}
@@ -104,34 +108,15 @@ const HeroSection = () => {
                 />
               </div>
 
-              {/* Left-side blurred overlay */}
-              <div
-                className="absolute left-0 top-0 h-full w-1/3"
-                style={{
-                  backdropFilter: "blur(8px)",
-                  WebkitBackdropFilter: "blur(8px)",
-                  maskImage: "linear-gradient(to right, black 0%, transparent 100%)",
-                  WebkitMaskImage: "linear-gradient(to right, black 0%, transparent 100%)",
-                }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
-              </div>
-
-              {/* Full gradient overlay for readability */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent" />
-
-              {/* Right subtle overlay */}
-              <div
-                className="absolute right-0 top-0 h-full w-1/3"
-                style={{
-                  backdropFilter: "blur(5px)",
-                  WebkitBackdropFilter: "blur(5px)",
-                  maskImage: "linear-gradient(to left, black 0%, transparent 100%)",
-                  WebkitMaskImage: "linear-gradient(to left, black 0%, transparent 100%)",
-                }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-l from-black/30 to-transparent" />
-              </div>
+              {/* Enhanced gradient overlay system */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/65 to-black/45" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+              
+              {/* Left accent gradient */}
+              <div className="absolute left-0 top-0 h-full w-1/3 bg-gradient-to-r from-blue-600/10 to-transparent" />
+              
+              {/* Right subtle gradient */}
+              <div className="absolute right-0 top-0 h-full w-1/4 bg-gradient-to-l from-purple-600/5 to-transparent" />
 
               {/* Content bottom-left */}
               <div className="relative z-10 h-full flex items-end">
@@ -144,83 +129,99 @@ const HeroSection = () => {
                 >
                   {/* Title */}
                   <motion.h1
-                    className="text-lg sm:text-2xl md:text-4xl font-bold text-white leading-snug"
+                    className="text-lg sm:text-2xl md:text-4xl font-bold text-white leading-snug mb-3 sm:mb-4"
                     variants={fadeUp}
-                    // only show full opacity when this slide is active
-                    style={{ ...headingFont, opacity: activeIndex === index ? 1 : 0.65 }}
+                    style={{ 
+                      ...headingFont, 
+                      opacity: activeIndex === index ? 1 : 0.65,
+                      textShadow: '0 2px 8px rgba(0,0,0,0.6)'
+                    }}
                   >
                     {slide.title}
                   </motion.h1>
 
                   {/* Description */}
                   <motion.p
-                    className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-gray-200 max-w-xl"
+                    className="text-sm sm:text-base md:text-lg text-gray-200 max-w-xl leading-relaxed mb-4 sm:mb-6"
                     variants={fadeUp}
-                    style={{ ...bodyFont, opacity: activeIndex === index ? 1 : 0.55 }}
+                    style={{ 
+                      ...bodyFont, 
+                      opacity: activeIndex === index ? 1 : 0.55,
+                      textShadow: '0 1px 4px rgba(0,0,0,0.5)'
+                    }}
                   >
                     {slide.description}
                   </motion.p>
 
                   {/* Meta + Button */}
                   <motion.div
-                    className="mt-6 mb-5 flex flex-wrap items-center gap-6 text-gray-300 text-sm"
+                    className="flex flex-wrap items-center gap-4 sm:gap-6 text-gray-300 text-sm"
                     variants={fadeUp}
                     style={{ opacity: activeIndex === index ? 1 : 0.5 }}
                   >
-                    <button className="flex items-center gap-2 text-white font-medium hover:text-blue-400 transition group">
-                      Read Story{" "}
+                    <button className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-white font-medium border border-white/30 hover:bg-white/30 transition-all duration-300 group">
+                      Read Story
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </button>
-                    <span>{slide.author}</span>
-                    <span>• {slide.readTime}</span>
+                    <div className="flex items-center gap-4">
+                      <span className="bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20">{slide.author}</span>
+                      <span className="w-1 h-1 bg-white/40 rounded-full"></span>
+                      <span>{slide.readTime}</span>
+                    </div>
                   </motion.div>
                 </motion.div>
+              </div>
+
+              {/* Slide number indicator */}
+              <div className="absolute top-6 left-6 z-20">
+                <div className="text-white text-sm font-medium bg-black/40 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20">
+                  <span className="text-lg font-bold mr-1">{activeIndex + 1}</span>
+                  <span className="text-gray-300">/ {slides.length}</span>
+                </div>
               </div>
             </div>
           </SwiperSlide>
         ))}
 
-        {/* Custom pagination */}
-        <div className="custom-pagination absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 flex space-x-2" />
+        {/* Enhanced pagination */}
+       
 
-        {/* Custom navigation arrows with loading indicator */}
-        <div className="absolute bottom-6 right-6 z-20 flex items-center gap-4">
-          {/* Loading indicator dots */}
-          <div className="flex items-center gap-2">
-            {slides.map((_, index) => (
-              <div
-                key={index}
-                className={`w-2 h-2  transition-all duration-300 ${
-                  index === activeIndex ? "bg-blue-400 scale-125" : "bg-white/40 scale-100"
-                }`}
-              />
-            ))}
-          </div>
+        {/* Enhanced controls container */}
+        <div className="absolute hidden bottom-6 right-6 z-20 md:flex items-center gap-4 backdrop-blur-sm bg-black/30 px-4 py-2 rounded-full border border-white/20">
+          {/* Play/Pause button */}
+          <button 
+            onClick={toggleAutoplay}
+            className="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/30 transition-colors"
+          >
+            {isPlaying ? (
+              <Pause className="w-4 h-4 text-white" />
+            ) : (
+              <Play className="w-4 h-4 text-white" />
+            )}
+          </button>
 
           {/* Navigation arrows */}
-          <div className=" hidden lg:flex items-center gap-2">
-            <button className="custom-swiper-button-prev w-10 h-10 flex items-center justify-center rounded-full bg-black/30 hover:bg-black/50 backdrop-blur-sm transition-all duration-300 group">
-              <ChevronLeft className="w-6 h-6 text-white group-hover:text-blue-400 transition-colors" />
+          <div className="flex items-center gap-2">
+            <button className="custom-swiper-button-prev w-8 h-8 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/30 transition-colors">
+              <ChevronLeft className="w-4 h-4 text-white" />
             </button>
-            <button className="custom-swiper-button-next w-10 h-10 flex items-center justify-center rounded-full bg-black/30 hover:bg-black/50 backdrop-blur-sm transition-all duration-300 group">
-              <ChevronRight className="w-6 h-6 text-white group-hover:text-blue-400 transition-colors" />
+            <button className="custom-swiper-button-next w-8 h-8 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/30 transition-colors">
+              <ChevronRight className="w-4 h-4 text-white" />
             </button>
           </div>
         </div>
 
         {/* Progress bar indicator */}
-        <div className="  hidden lg:block absolute bottom-10 right-48 z-20 w-20 h-1 bg-white/20  overflow-hidden">
+        <div className="absolute bottom-4 left-6 right-6 z-20 h-1 bg-white/20 rounded-full overflow-hidden">
           <motion.div
-            className="h-full bg-blue-400 origin-left"
+            className="h-full bg-gradient-to-r from-blue-400 to-purple-400 origin-left"
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{
               duration: 5,
               ease: "linear",
-              repeat: Infinity,
-              repeatType: "loop",
             }}
-            key={activeIndex} // restart for each slide
+            key={activeIndex}
           />
         </div>
       </Swiper>
@@ -229,19 +230,37 @@ const HeroSection = () => {
       <style jsx global>{`
         .custom-bullet {
           display: inline-block;
-          width: 10px;
-          height: 10px;
-          border-radius: 50%;
-          background-color: rgba(255, 255, 255, 0.5);
-          margin: 0 4px;
+          width: 8px;
+          height: 8px;
+          border-radius: 4px;
+          background-color: rgba(255, 255, 255, 0.4);
+          margin: 0 3px;
           cursor: pointer;
           transition: all 0.3s ease;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .custom-bullet::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+          transition: left 0.6s ease;
+        }
+
+        .custom-bullet:hover::before {
+          left: 100%;
         }
 
         .custom-bullet-active {
-          background-color: #fff;
+          background-color: #ffffff;
           width: 24px;
-          border-radius: 6px;
+          transform: scale(1.1);
+          box-shadow: 0 0 10px rgba(255,255,255,0.3);
         }
 
         .swiper-pagination {
@@ -253,9 +272,22 @@ const HeroSection = () => {
           justify-content: center;
           z-index: 10;
         }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+          .custom-bullet {
+            width: 6px;
+            height: 6px;
+            margin: 0 2px;
+          }
+          
+          .custom-bullet-active {
+            width: 20px;
+          }
+        }
       `}</style>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600&family=Lora:wght@400;500;600&display=swap" rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600&family=Lora:wght@400;500;600&display=swap" rel="stylesheet" />
     </section>
   );
 };

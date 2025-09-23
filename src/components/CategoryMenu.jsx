@@ -462,18 +462,18 @@ const UniversityMenu = () => {
                 />
               </div>
               <div className="ml-3" style={{ fontFamily: 'inter, serif' }}>
-                <h1 
-                  className="text-lg md:text-xl text-blue-900 font-bold"
-                 
-                >
-                  KRISHNA
-                </h1>
-                <p 
-                  className="text-xs md:text-xl -mt-1 font-semibold text-blue-900"
-                 
-                >
-                  ENGINEERING COLLEGE
-                </p>
+              <h1
+  className="text-lg md:text-xl font-bold bg-gradient-to-r from-blue-700 to-blue-900 bg-clip-text text-transparent"
+>
+  KRISHNA
+</h1>
+
+<p
+  className="text-xs md:text-xl -mt-1 font-semibold bg-gradient-to-r from-blue-700 to-blue-900 bg-clip-text text-transparent"
+>
+  ENGINEERING COLLEGE
+</p>
+
                 <span 
                   className="text-xs font-medium md:text-sm"
                  
