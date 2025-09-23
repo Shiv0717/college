@@ -606,35 +606,59 @@ const AlumniSuccessStories = () => {
           </div>
         </div>
 
-        {/* Enhanced Stats Bar with Counter Animation */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mt-8 md:mt-12">
-          {[
-            { value: counters.alumni, label: "Alumni Worldwide", color: "#FF7B35", icon: Users },
-            { value: counters.satisfaction, label: "Career Satisfaction", color: "#00BA59", icon: TrendingUp },
-            { value: counters.salary, label: "Average Salary", color: "#1D78FD", icon: Award },
-            { value: counters.countries, label: "Countries Represented", color: "#FF6463", icon: MapPin }
-          ].map((stat, index) => (
-            <div 
-              key={index}
-              ref={addToStatsRefs}
-              className="text-center p-4 md:p-6 rounded-xl md:rounded-2xl backdrop-blur-sm border border-gray-200/50 hover:scale-105 transition-transform duration-300 shadow-sm"
-              style={{ backgroundColor: `${stat.color}08` }}
-            >
-              <div className="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl mb-2 md:mb-3" style={{ backgroundColor: `${stat.color}20` }}>
-                <stat.icon className="w-5 h-5 md:w-6 md:h-6" style={{ color: stat.color }} />
-              </div>
-              
-              <div 
-                className="text-2xl md:text-3xl font-bold mb-1"
-                style={{ color: stat.color }}
-              >
-                <Counter value={stat.value} suffix={stat.label.includes('Salary') ? 'K' : stat.label.includes('Satisfaction') ? '%' : '+'} />
-              </div>
-              
-              <div className="text-xs md:text-sm text-gray-600">{stat.label}</div>
-            </div>
-          ))}
+        {/* Enhanced Stats Bar with Modern Design */}
+<div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mt-8 md:mt-12">
+  {[
+    { value: counters.alumni, label: "Alumni Worldwide", color: "#FF7B35", icon: Users },
+    { value: counters.satisfaction, label: "Career Satisfaction", color: "#00BA59", icon: TrendingUp },
+    { value: counters.salary, label: "Average Salary", color: "#1D78FD", icon: Award },
+    { value: counters.countries, label: "Countries Represented", color: "#FF6463", icon: MapPin }
+  ].map((stat, index) => (
+    <div 
+      key={index}
+      ref={addToStatsRefs}
+      className="group relative  rounded-xl text-center p-4 md:p-5 border border-gray-100 hover:border-gray-200 transition-all duration-300 bg-white"
+    >
+      {/* Hover Effect Line */}
+      <div 
+        className="absolute top-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-500"
+        style={{ backgroundColor: stat.color }}
+      />
+      
+      {/* Icon Container */}
+      <div className="relative mb-3 md:mb-4">
+        <div 
+          className="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 mx-auto transition-transform duration-300 group-hover:scale-110"
+          style={{ 
+            backgroundColor: `${stat.color}10`,
+           
+          }}
+        >
+          <stat.icon className="w-5 h-5 md:w-6 md:h-6" style={{ color: stat.color }} />
         </div>
+      </div>
+      
+      {/* Counter Value */}
+      <div 
+        className="text-2xl md:text-3xl font-bold mb-1 transition-colors duration-300"
+        style={{ color: stat.color }}
+      >
+        <Counter value={stat.value} suffix={stat.label.includes('Salary') ? 'K' : stat.label.includes('Satisfaction') ? '%' : '+'} />
+      </div>
+      
+      {/* Label */}
+      <div className="text-xs md:text-sm text-gray-600 font-medium uppercase tracking-wide">
+        {stat.label}
+      </div>
+      
+      {/* Background Pattern on Hover */}
+      <div 
+        className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-300 pointer-events-none"
+        style={{ backgroundColor: stat.color }}
+      />
+    </div>
+  ))}
+</div>
       </div>
     </section>
   );

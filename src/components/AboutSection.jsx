@@ -204,6 +204,12 @@ const CampusLife = () => {
       <div className="">
         {/* Header */}
         <div ref={headerRef} className="text-center mb-20">
+
+        <p className="text-sm text-blue-600 uppercase tracking-widest mb-2">
+    Life at KEC
+  </p>
+
+  
           <h2 
             className="text-6xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent"
             style={{ fontFamily: "'Merriweather', serif" }}
