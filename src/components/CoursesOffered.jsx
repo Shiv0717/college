@@ -1,17 +1,20 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-import { Cpu, Zap, Settings, GraduationCap, Users, BookOpen, Award, Calendar, Code, Network, Database, Cloud } from "lucide-react";
+import { Cpu, Zap, Settings, GraduationCap, Users, BookOpen, Award, Calendar, Code, Network, Database, Cloud, ArrowRight, Play, Pause } from "lucide-react";
 import { gsap } from "gsap";
 
 const EngineeringDepartments = () => {
   const [activeDepartment, setActiveDepartment] = useState(0);
   const [isHoverEnabled, setIsHoverEnabled] = useState(true);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const sectionRef = useRef(null);
   const imageRef = useRef(null);
   const contentRef = useRef(null);
   const titleRef = useRef(null);
   const descriptionRef = useRef(null);
   const statsRef = useRef(null);
+  const featuresRef = useRef([]);
+  const navItemsRef = useRef([]);
 
   const departments = [
     {
@@ -25,6 +28,7 @@ const EngineeringDepartments = () => {
       color: "from-blue-500 to-cyan-500",
       textColor: "text-blue-600",
       bgColor: "bg-blue-500",
+      gradient: "bg-gradient-to-r from-blue-500 to-cyan-500",
       stats: {
         students: "1200+",
         faculty: "45",
@@ -45,6 +49,7 @@ const EngineeringDepartments = () => {
       color: "from-orange-500 to-red-500",
       textColor: "text-orange-600",
       bgColor: "bg-orange-500",
+      gradient: "bg-gradient-to-r from-orange-500 to-red-500",
       stats: {
         students: "950+",
         faculty: "38",
@@ -65,6 +70,7 @@ const EngineeringDepartments = () => {
       color: "from-green-500 to-emerald-500",
       textColor: "text-green-600",
       bgColor: "bg-green-500",
+      gradient: "bg-gradient-to-r from-green-500 to-emerald-500",
       stats: {
         students: "800+",
         faculty: "32",
@@ -78,62 +84,104 @@ const EngineeringDepartments = () => {
 
   const activeDept = departments[activeDepartment];
 
-  // GSAP Animations
+  // Auto-play functionality
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+
+    const interval = setInterval(() => {
+      handleDepartmentChange((activeDepartment + 1) % departments.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [activeDepartment, isAutoPlaying]);
+
+  // Enhanced GSAP Animations
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Section entrance animation
+      // Staggered entrance animation
       gsap.fromTo(sectionRef.current,
-        { opacity: 0, y: 50 },
+        { opacity: 0, y: 80 },
         {
           opacity: 1,
           y: 0,
-          duration: 1,
+          duration: 1.2,
           ease: "power3.out"
         }
       );
 
-      // Initial content animation
-      gsap.fromTo([titleRef.current, descriptionRef.current],
-        { opacity: 0, x: -50 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.8,
-          stagger: 0.2,
-          delay: 0.3,
-          ease: "power3.out"
-        }
-      );
+      // Floating background elements animation
+      gsap.to(".floating-element", {
+        y: 20,
+        rotation: 5,
+        duration: 4,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        stagger: 1
+      });
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
-  // Department change animation
+  // Enhanced department change animation
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Image animation
+      // Image parallax and scale animation
       gsap.fromTo(imageRef.current,
-        { opacity: 0, scale: 1.1 },
+        { 
+          opacity: 0, 
+          scale: 1.1,
+          x: 50 
+        },
         {
           opacity: 1,
           scale: 1,
-          duration: 0.8,
+          x: 0,
+          duration: 1,
           ease: "power3.out"
         }
       );
 
-      // Content animation
-      gsap.fromTo([titleRef.current, descriptionRef.current, statsRef.current],
-        { opacity: 0, x: -30 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.6,
-          stagger: 0.15,
-          ease: "power3.out"
-        }
+      // Content slide-in with stagger
+      const tl = gsap.timeline();
+      tl.fromTo(titleRef.current,
+        { opacity: 0, x: -60, y: 20 },
+        { opacity: 1, x: 0, y: 0, duration: 0.8, ease: "back.out(1.7)" }
+      )
+      .fromTo(descriptionRef.current,
+        { opacity: 0, x: -40, y: 10 },
+        { opacity: 1, x: 0, y: 0, duration: 0.6, ease: "power3.out" },
+        "-=0.4"
+      )
+      .fromTo(featuresRef.current,
+        { 
+          opacity: 0, 
+          y: 30,
+          stagger: 0.1 
+        },
+        { 
+          opacity: 1, 
+          y: 0,
+          duration: 0.5,
+          stagger: 0.1,
+          ease: "power3.out" 
+        },
+        "-=0.3"
+      )
+      .fromTo(statsRef.current,
+        { opacity: 0, scale: 0.8 },
+        { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.5)" },
+        "-=0.2"
       );
+
+      // Active nav item highlight animation
+      gsap.to(navItemsRef.current[activeDepartment], {
+        scale: 1.02,
+        boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
+        duration: 0.3,
+        ease: "power2.out"
+      });
 
     }, sectionRef);
 
@@ -142,22 +190,68 @@ const EngineeringDepartments = () => {
 
   const handleDepartmentChange = (index) => {
     if (index === activeDepartment) return;
-    
-    // Exit animation before changing
-    gsap.to([imageRef.current, titleRef.current, descriptionRef.current, statsRef.current], {
+
+    // Reset previous active nav item
+    if (navItemsRef.current[activeDepartment]) {
+      gsap.to(navItemsRef.current[activeDepartment], {
+        scale: 1,
+        boxShadow: "0 4px 6px rgba(0,0,0,0.05)",
+        duration: 0.3
+      });
+    }
+
+    // Enhanced exit animation
+    const tl = gsap.timeline();
+    tl.to([imageRef.current, titleRef.current, descriptionRef.current, statsRef.current, ...featuresRef.current], {
       opacity: 0,
       x: -30,
-      duration: 0.3,
+      duration: 0.4,
       ease: "power3.in",
-      onComplete: () => {
-        setActiveDepartment(index);
-      }
+      stagger: 0.05
+    })
+    .add(() => {
+      setActiveDepartment(index);
     });
   };
 
   const handleHoverChange = (index) => {
     if (isHoverEnabled && index !== activeDepartment) {
+      // Hover preview animation
+      gsap.to(navItemsRef.current[index], {
+        scale: 1.05,
+        duration: 0.2,
+        ease: "power2.out"
+      });
+      
+      setTimeout(() => {
+        if (activeDepartment !== index) {
+          gsap.to(navItemsRef.current[index], {
+            scale: 1,
+            duration: 0.2
+          });
+        }
+      }, 300);
+      
       handleDepartmentChange(index);
+    }
+  };
+
+  const handleHoverStart = (index) => {
+    if (isHoverEnabled && index !== activeDepartment) {
+      gsap.to(navItemsRef.current[index], {
+        scale: 1.05,
+        duration: 0.2,
+        ease: "power2.out"
+      });
+    }
+  };
+
+  const handleHoverEnd = (index) => {
+    if (isHoverEnabled && index !== activeDepartment) {
+      gsap.to(navItemsRef.current[index], {
+        scale: 1,
+        duration: 0.2
+      });
     }
   };
 
@@ -178,22 +272,31 @@ const EngineeringDepartments = () => {
       ref={sectionRef}
       className="relative w-full min-h-screen bg-white flex items-center px-4 lg:px-20 py-16 overflow-hidden"
     >
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100/30" />
+      {/* Enhanced Animated Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100/20" />
       
-      {/* Floating animated elements */}
-      <div className={`absolute top-20 left-10 w-72 h-72 bg-gradient-to-r ${activeDept.color} rounded-full blur-3xl opacity-10 animate-pulse`} />
-      <div className={`absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-r ${activeDept.color} rounded-full blur-3xl opacity-10 animate-pulse`} />
+      {/* Animated floating elements */}
+      <div className={`floating-element absolute top-20 left-10 w-72 h-72 ${activeDept.gradient} rounded-full blur-3xl opacity-10`} />
+      <div className={`floating-element absolute bottom-20 right-10 w-96 h-96 ${activeDept.gradient} rounded-full blur-3xl opacity-10`} />
+      <div className={`floating-element absolute top-1/2 left-1/4 w-64 h-64 ${activeDept.gradient} rounded-full blur-3xl opacity-5`} />
+
+      {/* Animated grid pattern */}
+      <div className="absolute inset-0 opacity-[0.03]">
+        <div className="w-full h-full" style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, ${activeDept.textColor.split('-')[1]} 1px, transparent 0)`,
+          backgroundSize: '40px 40px'
+        }} />
+      </div>
 
       {/* Main Content Container */}
-      <div className="relative w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <div className="relative w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
         
         {/* Left Content */}
         <div ref={contentRef} className="relative z-10 space-y-6 lg:space-y-8">
           {/* Section Header */}
           <div className="space-y-4 lg:space-y-6">
             <div className="flex items-center gap-4">
-              <div className={`w-12 h-12 lg:w-14 lg:h-14 rounded-xl bg-gradient-to-r ${activeDept.color} flex items-center justify-center shadow-lg`}>
+              <div className={`w-12 h-12 lg:w-14 lg:h-14 rounded-xl ${activeDept.gradient} flex items-center justify-center shadow-lg transform transition-transform duration-300 hover:scale-110`}>
                 <activeDept.icon size={24} className="text-white" />
               </div>
               <div>
@@ -207,60 +310,72 @@ const EngineeringDepartments = () => {
               </div>
             </div>
             
-            <div ref={titleRef}>
+            <div ref={titleRef} className="transform transition-all duration-300">
               <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                <span className={`${activeDept.textColor}`}>{activeDept.number}</span><br />
+                <span className={`block text-5xl lg:text-7xl mb-2 ${activeDept.textColor} drop-shadow-sm`}>
+                  {activeDept.number}
+                </span>
                 {activeDept.title}
               </h1>
             </div>
             
-            <p ref={descriptionRef} className="text-base lg:text-lg text-gray-600 leading-relaxed">
+            <p ref={descriptionRef} className="text-base lg:text-lg text-gray-600 leading-relaxed font-light">
               {activeDept.description}
             </p>
           </div>
 
-          {/* Features Grid */}
+          {/* Enhanced Features Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4 mt-4 lg:mt-6">
             {activeDept.features.map((feature, index) => {
               const IconComponent = activeDept.icons[index];
               return (
-                <div key={feature} className="flex items-center gap-3 p-3 rounded-xl bg-white/50 backdrop-blur-sm border border-gray-100">
-                  <div className={`p-2 rounded-lg ${activeDept.bgColor} bg-opacity-10`}>
+                <div 
+                  key={feature}
+                  ref={el => featuresRef.current[index] = el}
+                  className="group flex items-center gap-3 p-3 lg:p-4 rounded-xl bg-white/70 backdrop-blur-sm border border-gray-100/50 hover:border-gray-200 transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px]"
+                >
+                  <div className={`p-2 rounded-lg ${activeDept.bgColor} bg-opacity-10 group-hover:bg-opacity-20 transition-all duration-300`}>
                     <IconComponent size={18} className={`${activeDept.textColor}`} />
                   </div>
                   <span className="text-sm font-medium text-gray-700">{feature}</span>
+                  <ArrowRight size={16} className="ml-auto text-gray-400 group-hover:text-gray-600 group-hover:translate-x-1 transition-all duration-300" />
                 </div>
               );
             })}
           </div>
 
-          {/* Stats */}
-          <div ref={statsRef} className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mt-6 lg:mt-8">
+          {/* Enhanced Stats */}
+          <div ref={statsRef} className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mt-6 lg:mt-8 p-6 bg-white/50 backdrop-blur-sm rounded-2xl border border-gray-100/50">
             {Object.entries(activeDept.stats).map(([key, value]) => (
-              <div key={key} className="text-center">
-                <div className={`text-xl lg:text-3xl font-bold ${activeDept.textColor} mb-1`}>
+              <div key={key} className="text-center group cursor-pointer">
+                <div className={`text-xl lg:text-3xl font-bold ${activeDept.textColor} mb-1 transition-transform duration-300 group-hover:scale-110`}>
                   {value}
                 </div>
-                <div className="text-xs uppercase tracking-wider text-gray-500">
+                <div className="text-xs uppercase tracking-wider text-gray-500 font-medium">
                   {key}
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Department Navigation */}
+          {/* Enhanced Department Navigation */}
           <div className="flex flex-col gap-3 lg:gap-4 mt-6 lg:mt-8">
             {departments.map((dept, index) => (
               <button
                 key={dept.id}
-                onMouseEnter={() => handleHoverChange(index)}
+                ref={el => navItemsRef.current[index] = el}
+                onMouseEnter={() => handleHoverStart(index)}
+                onMouseLeave={() => handleHoverEnd(index)}
                 onClick={() => handleDepartmentChange(index)}
-                className={`group flex items-center gap-4 lg:gap-6 p-4 lg:p-5 rounded-xl lg:rounded-2xl transition-all duration-300 border-2 border-gray-400 ${
+                className={`group relative flex items-center gap-4 lg:gap-6 p-4 lg:p-5 rounded-xl lg:rounded-2xl transition-all duration-300 border-2 overflow-hidden ${
                   activeDepartment === index 
-                    ? `bg-white shadow-lg lg:shadow-xl border-l-4 ${dept.bgColor} scale-[1.02]`
-                    : 'bg-transparent border-transparent hover:bg-white/50'
-                } ${!isHoverEnabled ? 'hover:bg-transparent' : ''}`}
+                    ? `bg-white shadow-xl border-l-4 ${dept.bgColor} scale-105`
+                    : 'bg-white/50 backdrop-blur-sm border-transparent hover:bg-white/70'
+                } ${!isHoverEnabled ? 'hover:bg-white/50' : ''}`}
               >
+                {/* Animated background */}
+                <div className={`absolute inset-0 ${dept.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
+                
                 <div className={`text-2xl lg:text-3xl font-bold transition-all duration-300 ${
                   activeDepartment === index ? dept.textColor : 'text-gray-300'
                 }`}>
@@ -283,79 +398,106 @@ const EngineeringDepartments = () => {
                 <div className={`w-2 h-2 lg:w-3 lg:h-3 rounded-full transition-all duration-300 ${
                   activeDepartment === index 
                     ? `${dept.bgColor} scale-150` 
-                    : 'bg-gray-200'
+                    : 'bg-gray-200 group-hover:bg-gray-300'
                 }`} />
               </button>
             ))}
           </div>
 
-          {/* Control Toggle */}
-          <div className="flex items-center gap-4 mt-4 p-3 bg-gray-50 rounded-lg">
-            <span className="text-sm text-gray-600">Navigation:</span>
-            <div className="flex gap-2">
-              <button
-                onClick={() => setIsHoverEnabled(true)}
-                className={`px-3 py-1 rounded text-xs font-medium transition-colors ${
-                  isHoverEnabled 
-                    ? 'bg-blue-500 text-white' 
-                    : 'bg-gray-200 text-gray-600'
-                }`}
-              >
-                Hover
-              </button>
-              <button
-                onClick={() => setIsHoverEnabled(false)}
-                className={`px-3 py-1 rounded text-xs font-medium transition-colors ${
-                  !isHoverEnabled 
-                    ? 'bg-blue-500 text-white' 
-                    : 'bg-gray-200 text-gray-600'
-                }`}
-              >
-                Click Only
-              </button>
+          {/* Enhanced Control Toggle */}
+          <div className="flex items-center justify-between mt-6 p-4 bg-white/70 backdrop-blur-sm rounded-xl border border-gray-100/50">
+            <div className="flex items-center gap-4">
+              <span className="text-sm font-medium text-gray-600">Navigation:</span>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setIsHoverEnabled(true)}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+                    isHoverEnabled 
+                      ? `${activeDept.gradient} text-white shadow-lg` 
+                      : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
+                  }`}
+                >
+                  Hover
+                </button>
+                <button
+                  onClick={() => setIsHoverEnabled(false)}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+                    !isHoverEnabled 
+                      ? `${activeDept.gradient} text-white shadow-lg` 
+                      : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
+                  }`}
+                >
+                  Click Only
+                </button>
+              </div>
             </div>
+            
+            <button
+              onClick={() => setIsAutoPlaying(!isAutoPlaying)}
+              className={`p-2 rounded-lg transition-all duration-300 ${
+                isAutoPlaying 
+                  ? `${activeDept.bgColor} text-white` 
+                  : 'bg-gray-200 text-gray-600'
+              }`}
+            >
+              {isAutoPlaying ? <Pause size={16} /> : <Play size={16} />}
+            </button>
           </div>
         </div>
 
-        {/* Right Image */}
-        <div className="relative h-[400px] lg:h-[700px] rounded-2xl lg:rounded-3xl overflow-hidden mt-8 lg:mt-0">
+        {/* Enhanced Right Image */}
+        <div className="relative h-[400px] lg:h-[700px] rounded-2xl lg:rounded-3xl overflow-hidden mt-8 lg:mt-0 group">
           <img
             ref={imageRef}
             src={activeDept.image}
             alt={activeDept.title}
-            className="absolute inset-0 w-full h-full object-cover rounded-2xl lg:rounded-3xl"
+            className="absolute inset-0 w-full h-full object-cover rounded-2xl lg:rounded-3xl transition-transform duration-700 group-hover:scale-105"
           />
           
-          {/* Gradient Overlay */}
-          <div className={`absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent rounded-2xl lg:rounded-3xl`} />
+          {/* Enhanced Gradient Overlay */}
+          <div className={`absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent rounded-2xl lg:rounded-3xl`} />
           
-          {/* Department Badge */}
-          <div className={`absolute top-4 lg:top-8 left-4 lg:left-8 px-4 lg:px-6 py-2 lg:py-3 rounded-full backdrop-blur-md bg-white/90 shadow-lg`}>
+          {/* Animated Department Badge */}
+          <div className={`absolute top-6 lg:top-8 left-6 lg:left-8 px-4 lg:px-6 py-2 lg:py-3 rounded-full backdrop-blur-md bg-white/90 shadow-lg transform transition-transform duration-300 hover:scale-105`}>
             <span className={`text-xs lg:text-sm font-bold ${activeDept.textColor}`}>
               {activeDept.shortTitle} DEPARTMENT
             </span>
           </div>
 
-          {/* Quick Navigation Dots */}
+          {/* Enhanced Quick Navigation Dots */}
           <div className="absolute top-1/2 right-4 lg:right-8 transform -translate-y-1/2 flex flex-col gap-3 lg:gap-4">
             {departments.map((dept, index) => (
               <button
                 key={dept.id}
-                onMouseEnter={() => isHoverEnabled && handleDepartmentChange(index)}
+                onMouseEnter={() => isHoverEnabled && handleHoverStart(index)}
+                onMouseLeave={() => isHoverEnabled && handleHoverEnd(index)}
                 onClick={() => handleDepartmentChange(index)}
-                className={`group relative flex items-center justify-center w-8 h-8 lg:w-10 lg:h-10 rounded-full backdrop-blur-sm transition-all duration-300 ${
+                className={`group relative flex items-center justify-center w-10 h-10 lg:w-12 lg:h-12 rounded-full backdrop-blur-sm transition-all duration-300 ${
                   activeDepartment === index 
                     ? 'bg-white/90 shadow-lg scale-110' 
-                    : 'bg-black/20 hover:bg-black/30'
+                    : 'bg-black/20 hover:bg-black/30 hover:scale-105'
                 }`}
               >
-                <div className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                <div className={`w-3 h-3 rounded-full transition-all duration-300 ${
                   activeDepartment === index 
                     ? dept.bgColor
-                    : 'bg-white/60'
+                    : 'bg-white/60 group-hover:bg-white/80'
                 }`} />
+                <span className="absolute right-full mr-2 px-2 py-1 bg-black/80 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                  {dept.shortTitle}
+                </span>
               </button>
             ))}
+          </div>
+
+          {/* Progress Indicator */}
+          <div className="absolute bottom-4 left-4 right-4 lg:left-8 lg:right-8">
+            <div className="h-1 bg-white/20 rounded-full overflow-hidden">
+              <div 
+                className={`h-full ${activeDept.bgColor} transition-all duration-1000 ease-out`}
+                style={{ width: isAutoPlaying ? '100%' : '0%' }}
+              />
+            </div>
           </div>
         </div>
       </div>

@@ -15,7 +15,7 @@ const slides = [
     title: "Krishna Engineering College: Excellence in Technical Education",
     description:
       "KEC Bhilai has been shaping future engineers with strong academic foundations, modern laboratories, and a focus on innovation and research.",
-    image: "https://picsum.photos/1600/800?random=10",
+    image: "https://plus.unsplash.com/premium_photo-1682974407026-581fe0e550ea?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     author: "KEC Editorial Team",
     readTime: "2 min read",
   },
@@ -23,7 +23,7 @@ const slides = [
     title: "Student Achievements in National Level Competitions",
     description:
       "KEC students consistently excel in national hackathons, coding contests, and technical fests, bringing laurels to the institution.",
-    image: "https://picsum.photos/1600/800?random=11",
+    image: "https://plus.unsplash.com/premium_photo-1691849271949-cb30187a80c3?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     author: "Campus News",
     readTime: "3 min read",
   },
@@ -31,7 +31,7 @@ const slides = [
     title: "Industry Partnerships Driving Placements",
     description:
       "With strong collaborations with top companies, KEC Bhilai ensures excellent placement opportunities for graduating students every year.",
-    image: "https://picsum.photos/1600/800?random=12",
+    image: "https://images.unsplash.com/photo-1623754420540-b9c18380fad1?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     author: "Placement Cell",
     readTime: "4 min read",
   },

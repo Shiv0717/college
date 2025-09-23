@@ -18,7 +18,7 @@ const AlumniSuccessStories = () => {
       degree: "Computer Science",
       currentPosition: "Senior Software Engineer at Google",
       achievement: "Led development of AI features used by 1B+ users",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face",
+      image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop&crop=face",
       color: "#00BA59",
       quote: "The hands-on projects and mentorship prepared me for real-world challenges in tech.",
       stats: {
@@ -456,10 +456,7 @@ const AlumniSuccessStories = () => {
                   </div>
                 </div>
 
-                {/* Achievement */}
-                <div className="mb-6 p-4 rounded-xl bg-gray-50 border-l-4" style={{ borderLeftColor: featuredAlumni.color }}>
-                  <p className="text-lg text-gray-800 font-medium text-center">{featuredAlumni.achievement}</p>
-                </div>
+               
 
                 {/* Quote */}
                 <div className="mt-auto p-4 bg-gradient-to-r from-gray-50 to-blue-50 rounded-xl">
