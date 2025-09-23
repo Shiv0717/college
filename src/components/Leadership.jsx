@@ -36,7 +36,7 @@ const LeadershipProfiles = () => {
         "Awarded Social Impact Leader 2023",
         "Published thought leadership articles",
       ],
-      color: "#6A5ACD",
+      color: "#FA2C37",
     },
     {
       id: "L03",
@@ -50,7 +50,7 @@ const LeadershipProfiles = () => {
         "Optimized global processes",
         "Recipient of Leadership Excellence Award",
       ],
-      color: "#20B2AA",
+      color: "#00C950",
     },
   ];
 
@@ -279,6 +279,19 @@ const LeadershipProfiles = () => {
                       ))}
                     </div>
                   </div>
+
+                  <div className="mt-8 pt-6 border-t border-gray-200/50">
+          <div className="flex items-center justify-between text-sm text-gray-600 font-lato">
+            <span className="flex items-center gap-1">
+              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+              Available for mentorship
+            </span>
+            <span className="flex items-center gap-1">
+              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+              Industry leader
+            </span>
+          </div>
+        </div>
                 </div>
               </div>
             ))}
