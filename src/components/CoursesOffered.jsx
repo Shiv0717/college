@@ -361,9 +361,9 @@ const EngineeringDepartments = () => {
             
             <div ref={titleRef} className="transform transition-all duration-300">
               <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                <span className={`block text-5xl lg:text-7xl mb-2 ${activeDept.textColor} drop-shadow-sm`}>
+                {/* <span className={`block text-5xl lg:text-7xl mb-2 ${activeDept.textColor} drop-shadow-sm`}>
                   {activeDept.number}
-                </span>
+                </span> */}
                 {activeDept.title}
               </h1>
             </div>

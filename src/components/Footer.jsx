@@ -113,6 +113,19 @@ const Footer = () => {
     { number: "15+", label: "Years", color: colors.red }
   ];
 
+  const kpsSchools = [
+    "KPS Nehru Nagar",
+    "KPS Raipur",
+    "KPS Bilaspur",
+    "KPS Naya Raipur",
+    "KPS Sundernagar",
+    "KPS Sarona",
+    "KPS Durg",
+    "KPS Utai",
+    "KPS Sindhiya Nagar"
+  ];
+  
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -191,6 +204,8 @@ const Footer = () => {
               We nurture creative engineers and develop solutions to national challenges through 
               cutting-edge research and industry collaboration.
             </p>
+
+            
             
             {/* Achievements Grid */}
             <div className="grid grid-cols-2 gap-4 mb-8">
@@ -209,6 +224,30 @@ const Footer = () => {
                 </motion.div>
               ))}
             </div>
+
+            <div
+  className="rounded-2xl p-6 backdrop-blur-sm border mb-8"
+  style={{ backgroundColor: `${colors.blue}05`, borderColor: `${colors.blue}20` }}
+>
+  <h4
+    className="text-xl font-semibold mb-4 pb-2 border-b-2 inline-flex items-center gap-2"
+    style={{ borderColor: colors.blue }}
+  >
+    <Building className="w-5 h-5" style={{ color: colors.blue }} />
+    KPS Group
+  </h4>
+  <div className="grid grid-cols-3 gap-2 text-slate-200">
+    {kpsSchools.map((school, index) => (
+      <div
+        key={index}
+        className="hover:text-white transition-colors cursor-pointer"
+      >
+        {school}
+      </div>
+    ))}
+  </div>
+</div>
+
             
             {/* Social Links */}
             <div>
@@ -236,6 +275,8 @@ const Footer = () => {
               </div>
             </div>
           </motion.div>
+
+          
 
           {/* Quick Links */}
           <motion.div variants={itemVariants}>
