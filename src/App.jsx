@@ -32,6 +32,8 @@ import ApplyNow from "./pages/ApplyNow";
 import AlumniPage from "./pages/AlumniPage";
 import Hod from "./pages/Hod";
 import Courses from "./pages/Courses";
+import Super40Form from "./pages/Super40Form";
+import Super40ExamQuestions from "./pages/Super40ExamQuestions";
 
 const router = createBrowserRouter([
   {
@@ -60,7 +62,8 @@ const router = createBrowserRouter([
       { path: "event", element:<EventComponent/>},
       { path: "press", element:<PressMediaPage/>},
       { path: "gallery", element:<GalleryPage/>},
-      { path: "apply", element:<ApplyNow/>},
+      { path: "apply", element:<Super40Form/>},
+      { path: "exam", element:<Super40ExamQuestions/>},
       { path: "*", element: <NotFound/> },
     ],
   },

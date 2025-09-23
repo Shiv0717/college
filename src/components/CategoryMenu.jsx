@@ -26,6 +26,11 @@ import {
   BarChart3,
   Star,
   Trophy,
+  UserPlus,
+  FileText,
+  Plug,
+  Zap,
+  Code,
 } from "lucide-react";
 
 // Register GSAP plugin
@@ -233,6 +238,59 @@ const mainCategories = [
         icon: School,
         description: "Career preparation",
         color: colors.tertiary,
+      },
+    ],
+  },
+  {
+    name: "Super 40",
+    path: "#",
+    icon: GraduationCap,
+    description: "Elite entrance program",
+    color: colors.tertiary,
+    submenu: [
+      {
+        name: "Registration",
+        path: "/apply",
+        icon: UserPlus,
+        description: "Register for the Super 40 program",
+        color: colors.tertiary,
+      },
+      {
+        name: "Exam",
+        path: "/exam",
+        icon: FileText,
+        description: "Take the entrance exam",
+        color: colors.tertiary,
+      },
+    ],
+  },
+  {
+    name: "Courses",
+    path: "/courses",
+    icon: BookOpen,
+    description: "Explore our specialized courses",
+    color: colors.primary,
+    submenu: [
+      {
+        name: "Drone Technology",
+        path: "/apply",
+        icon: Zap,
+        description: "Learn cutting-edge drone tech",
+        color: colors.primary,
+      },
+      {
+        name: "EV Charging Station",
+        path: "/apply",
+        icon: Plug,
+        description: "Electric Vehicle Charging Station setup",
+        color: colors.primary,
+      },
+      {
+        name: "Advanced Coding",
+        path: "/apply",
+        icon: Code,
+        description: "Master advanced programming concepts",
+        color: colors.primary,
       },
     ],
   },
@@ -499,7 +557,7 @@ const UniversityMenu = () => {
          
 
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="max-w-9xl mx-auto px-4 sm:px-6">
           <div className="flex justify-center relative">
             <div className="flex space-x-1">
               {mainCategories.map((category, index) => {
