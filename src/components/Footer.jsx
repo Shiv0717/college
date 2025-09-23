@@ -198,12 +198,12 @@ const Footer = () => {
               {achievements.map((achievement, index) => (
                 <motion.div 
                   key={index}
-                  className="flex items-center gap-3 p-3 rounded-xl backdrop-blur-sm border hover:scale-105 transition-transform duration-300"
+                  className="flex items-center gap-3 p-3 rounded-xl backdrop-blur-sm border  transition-transform duration-300"
                   style={{ 
                     backgroundColor: `${achievement.color}10`,
                     borderColor: `${achievement.color}30`
                   }}
-                  whileHover={{ scale: 1.02, y: -2 }}
+                
                 >
                   <achievement.icon className="w-5 h-5" style={{ color: achievement.color }} />
                   <span className="text-sm font-medium text-white">{achievement.text}</span>
@@ -224,12 +224,12 @@ const Footer = () => {
                       backgroundColor: `${social.color}10`,
                       borderColor: `${social.color}30`
                     }}
-                    whileHover={{ scale: 1.1, y: -2 }}
+                   
                     whileTap={{ scale: 0.95 }}
                     aria-label={social.name}
                   >
                     <social.icon className="w-5 h-5" style={{ color: social.color }} />
-                    <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-black/90 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                    <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-black/90 text-white text-xs px-2 py-1 rounded opacity-0  transition-opacity duration-300 whitespace-nowrap">
                       {social.name}
                     </div>
                   </motion.a>
@@ -260,7 +260,7 @@ const Footer = () => {
                   >
                     <a 
                       href={link.url} 
-                      className="group flex items-center gap-3 p-3 rounded-lg hover:backdrop-blur-sm transition-all duration-300"
+                      className="group flex items-center gap-3 p-3 rounded-lg transition-all duration-300"
                       style={{ backgroundColor: `${link.color}05` }}
                     >
                       <div 
@@ -272,7 +272,7 @@ const Footer = () => {
                       <span className="text-slate-200 group-hover:text-white transition-colors font-medium">
                         {link.name}
                       </span>
-                      <ArrowUpRight className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transform group-hover:translate-x-1 transition-all duration-300" style={{ color: link.color }} />
+                      <ArrowUpRight className="w-4 h-4 ml-auto opacity-0  transition-all duration-300" style={{ color: link.color }} />
                     </a>
                   </motion.li>
                 ))}
@@ -297,13 +297,13 @@ const Footer = () => {
                 {contactInfo.map((item, index) => (
                   <motion.div 
                     key={index} 
-                    className="group flex items-start gap-3 p-3 rounded-lg hover:backdrop-blur-sm transition-all duration-300 cursor-pointer"
+                    className="group flex items-start gap-3 p-3 rounded-lg  transition-all duration-300 cursor-pointer"
                     style={{ backgroundColor: `${item.color}05` }}
-                    whileHover={{ y: -2 }}
+                   
                     whileTap={{ scale: 0.98 }}
                   >
                     <div 
-                      className="p-2 rounded-lg flex-shrink-0 group-hover:scale-110 transition-transform"
+                      className="p-2 rounded-lg flex-shrink-0  transition-transform"
                       style={{ backgroundColor: `${item.color}20` }}
                     >
                       <item.icon className="w-4 h-4" style={{ color: item.color }} />
@@ -323,7 +323,7 @@ const Footer = () => {
                 <motion.button 
                   className="w-full py-3 rounded-xl font-semibold transition-colors flex items-center justify-center gap-2"
                   style={{ backgroundColor: colors.green }}
-                  whileHover={{ scale: 1.02 }}
+               
                   whileTap={{ scale: 0.98 }}
                 >
                   <Phone className="w-4 h-4" />
@@ -332,7 +332,7 @@ const Footer = () => {
                 <motion.button 
                   className="w-full border-2 py-3 rounded-xl font-semibold transition-colors flex items-center justify-center gap-2"
                   style={{ borderColor: colors.blue, color: colors.blue }}
-                  whileHover={{ scale: 1.02, backgroundColor: `${colors.blue}10` }}
+                
                   whileTap={{ scale: 0.98 }}
                 >
                   <Mail className="w-4 h-4" />
@@ -365,7 +365,7 @@ const Footer = () => {
                   backgroundColor: `${colors.red}10`,
                   borderColor: `${colors.red}30`
                 }}
-                whileHover={{ scale: 1.05 }}
+             
               >
                 Made with <Heart className="w-4 h-4 mx-1" style={{ color: colors.red }} fill="currentColor" /> by KEC Team
               </motion.span>
