@@ -207,6 +207,7 @@ const CampusLife = () => {
           <h2 
             className="text-6xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent"
             style={{ fontFamily: "'Merriweather', serif" }}
+            
           >
             Campus Life
           </h2>

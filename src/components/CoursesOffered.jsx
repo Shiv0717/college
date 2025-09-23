@@ -15,16 +15,17 @@ const EngineeringDepartments = () => {
   const statsRef = useRef(null);
   const featuresRef = useRef([]);
   const navItemsRef = useRef([]);
-
   const departments = [
     {
       id: 1,
       number: "01",
       title: "Computer Science & Engineering",
       shortTitle: "CSE",
-      description: "Pioneering the future of technology with cutting-edge research in AI, Machine Learning, Cybersecurity, and Software Development. Our CSE department produces innovators who shape the digital world.",
+      description:
+        "Pioneering the future of technology with cutting-edge research in AI, Machine Learning, Cybersecurity, and Software Development. Our CSE department produces innovators who shape the digital world.",
       icon: Cpu,
-      image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1000&h=700&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1000&h=700&fit=crop",
       color: "from-blue-500 to-cyan-500",
       textColor: "text-blue-600",
       bgColor: "bg-blue-500",
@@ -33,19 +34,26 @@ const EngineeringDepartments = () => {
         students: "1200+",
         faculty: "45",
         labs: "15",
-        placements: "98%"
+        placements: "98%",
       },
-      features: ["AI & Machine Learning", "Cybersecurity", "Cloud Computing", "Data Science"],
-      icons: [Code, Network, Database, Cloud]
+      features: [
+        "AI & Machine Learning",
+        "Cybersecurity",
+        "Cloud Computing",
+        "Data Science",
+      ],
+      icons: [Code, Network, Database, Cloud],
     },
     {
       id: 2,
       number: "02",
       title: "Mechanical Engineering",
       shortTitle: "MECH",
-      description: "Driving innovation in design, manufacturing, and automation. Our Mechanical Engineering program focuses on robotics, thermal systems, and advanced materials technology for industrial applications.",
+      description:
+        "Driving innovation in design, manufacturing, and automation. Our Mechanical Engineering program focuses on robotics, thermal systems, and advanced materials technology for industrial applications.",
       icon: Settings,
-      image: "https://plus.unsplash.com/premium_photo-1664297997167-88170c57bc35?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      image:
+        "https://plus.unsplash.com/premium_photo-1664297997167-88170c57bc35?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       color: "from-orange-500 to-red-500",
       textColor: "text-orange-600",
       bgColor: "bg-orange-500",
@@ -54,19 +62,26 @@ const EngineeringDepartments = () => {
         students: "950+",
         faculty: "38",
         labs: "12",
-        placements: "95%"
+        placements: "95%",
       },
-      features: ["Robotics & Automation", "Thermal Engineering", "CAD/CAM", "Advanced Materials"],
-      icons: [Settings, GraduationCap, Award, Users]
+      features: [
+        "Robotics & Automation",
+        "Thermal Engineering",
+        "CAD/CAM",
+        "Advanced Materials",
+      ],
+      icons: [Settings, GraduationCap, Award, Users],
     },
     {
       id: 3,
       number: "03",
       title: "Electrical Engineering",
       shortTitle: "EEE",
-      description: "Powering the future with innovations in renewable energy, smart grids, and electronic systems. Our Electrical Engineering department leads in power systems, control engineering, and IoT applications.",
+      description:
+        "Powering the future with innovations in renewable energy, smart grids, and electronic systems. Our Electrical Engineering department leads in power systems, control engineering, and IoT applications.",
       icon: Zap,
-      image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1000&h=700&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1000&h=700&fit=crop",
       color: "from-green-500 to-emerald-500",
       textColor: "text-green-600",
       bgColor: "bg-green-500",
@@ -75,12 +90,46 @@ const EngineeringDepartments = () => {
         students: "800+",
         faculty: "32",
         labs: "10",
-        placements: "96%"
+        placements: "96%",
       },
-      features: ["Power Systems", "Renewable Energy", "Control Systems", "IoT & Embedded"],
-      icons: [Zap, BookOpen, Award, Calendar]
-    }
+      features: [
+        "Power Systems",
+        "Renewable Energy",
+        "Control Systems",
+        "IoT & Embedded",
+      ],
+      icons: [Zap, BookOpen, Award, Calendar],
+    },
+    {
+      id: 4,
+      number: "04",
+      title: "Civil Engineering",
+      shortTitle: "CIVIL",
+      description:
+        "Building the foundation of modern infrastructure with expertise in structural engineering, construction technology, and sustainable design. Our Civil Engineering department shapes the skylines and smart cities of tomorrow.",
+      icon: GraduationCap,
+      image:
+        "https://plus.unsplash.com/premium_photo-1664474927853-900d5ee1fd80?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      color: "from-red-500 to-red-500",
+      textColor: "text-red-600",
+      bgColor: "bg-red-500",
+      gradient: "bg-gradient-to-r from-red-500 to-red-500",
+      stats: {
+        students: "1000+",
+        faculty: "40",
+        labs: "14",
+        placements: "94%",
+      },
+      features: [
+        "Structural Engineering",
+        "Transportation Engineering",
+        "Geotechnical Engineering",
+        "Environmental Engineering",
+      ],
+      icons: [Users, Award, Database, Settings],
+    },
   ];
+  
 
   const activeDept = departments[activeDepartment];
 

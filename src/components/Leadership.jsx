@@ -8,51 +8,52 @@ gsap.registerPlugin(ScrollTrigger);
 const LeadershipProfiles = () => {
   const cardsRef = useRef([]);
   const [activeLeader, setActiveLeader] = useState(null);
-
   const leaders = [
     {
       id: "L01",
-      name: "Alice Johnson",
-      role: "CEO, InnovateX",
-      bio: "Visionary leader with over 15 years of experience in tech and innovation. Known for inspiring teams and driving transformative projects.",
+      name: "Mr. Anand Kumar Tripathi",
+      role: "Chairman, Krishna Engineering College & Vice-Chairman, Krishna Education Society",
+      bio: "A visionary leader shaping the growth of Krishna Engineering College and contributing significantly as Vice-Chairman of Krishna Education Society.",
       image:
-        "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?auto=format&fit=crop&w=800&q=80",
+        "https://www.kecbhilai.com/images/MANAGEMENT%20&%20HIGHER%20AUTHORITIES/anand.png", // replace with actual image if available
       achievements: [
-        "Built a $50M startup",
-        "Mentored 100+ leaders",
-        "Keynote speaker at global conferences",
+        "Chairman of Krishna Engineering College",
+        "Vice-Chairman of Krishna Education Society",
+        "Driving academic excellence and innovation in education",
       ],
       color: "#FF7F50",
     },
     {
       id: "L02",
-      name: "Michael Smith",
-      role: "Founder, GreenFuture",
-      bio: "Passionate about sustainability and social impact. Michael leads with empathy, empowering communities and organizations to create meaningful change.",
+      name: "Mr. M. M. Tripathi",
+      role: "Chairman, Krishna Education Society",
+      bio: "Providing strong leadership and guidance as Chairman of Krishna Education Society, fostering an environment of learning and growth.",
       image:
-        "https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=800&q=80",
+        "https://www.kecbhilai.com/images/MANAGEMENT%20&%20HIGHER%20AUTHORITIES/mmtripathi.jpg", // replace with actual image if available
       achievements: [
-        "Founded 3 social enterprises",
-        "Awarded Social Impact Leader 2023",
-        "Published thought leadership articles",
-      ],
-      color: "#FA2C37",
-    },
-    {
-      id: "L03",
-      name: "Sara Lee",
-      role: "COO, TechNova",
-      bio: "Expert in operational excellence and team building. Sara focuses on efficiency, culture, and scaling organizations to achieve high impact.",
-      image:
-        "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=800&q=80",
-      achievements: [
-        "Scaled operations to 500+ employees",
-        "Optimized global processes",
-        "Recipient of Leadership Excellence Award",
+        "Chairman of Krishna Education Society",
+        "Promoting quality education and values",
+        "Champion of community-driven education",
       ],
       color: "#00C950",
     },
+    {
+      id: "L03",
+      name: "Mr. Pramod Kumar Tripathi",
+      role: "Secretary, Krishna Education Society",
+      bio: "Dedicated to the mission of Krishna Education Society, ensuring high standards in education and administration.",
+      image:
+        "https://www.kecbhilai.com/images/MANAGEMENT%20&%20HIGHER%20AUTHORITIES/pramodtripathi.jpg", // replace with actual image if available
+      achievements: [
+        "Secretary of Krishna Education Society",
+        "Strengthening academic and cultural initiatives",
+        "Committed to holistic student development",
+      ],
+      color: "#FA2C37",
+    },
+    
   ];
+  
 
   useEffect(() => {
     const cards = cardsRef.current;
@@ -146,7 +147,7 @@ const LeadershipProfiles = () => {
                           <img
                             src={activeLeader.image}
                             alt={activeLeader.name}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-contain"
                           />
                         </div>
                         <div
@@ -223,7 +224,7 @@ const LeadershipProfiles = () => {
                       <img
                         src={leader.image}
                         alt={leader.name}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
                       />
                     </div>
                     {/* Status Indicator */}
@@ -281,17 +282,18 @@ const LeadershipProfiles = () => {
                   </div>
 
                   <div className="mt-8 pt-6 border-t border-gray-200/50">
-          <div className="flex items-center justify-between text-sm text-gray-600 font-lato">
-            <span className="flex items-center gap-1">
-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-              Available for mentorship
-            </span>
-            <span className="flex items-center gap-1">
-              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-              Industry leader
-            </span>
-          </div>
-        </div>
+  <div className="flex items-center justify-between text-sm text-gray-600 font-lato">
+    <span className="flex items-center gap-1">
+      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+      Academic Leadership
+    </span>
+    <span className="flex items-center gap-1">
+      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+      Institutional Guidance
+    </span>
+  </div>
+</div>
+
                 </div>
               </div>
             ))}

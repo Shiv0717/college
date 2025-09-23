@@ -393,7 +393,7 @@ const UniversityMenu = () => {
   };
 
   return (
-    <div ref={menuRef} className="bg-white shadow-lg border-b border-gray-100 sticky top-0 z-50">
+    <div ref={menuRef}   className="bg-white shadow-lg border-b border-gray-100 sticky top-0 z-50">
       {/* Top Bar with Logo and Affiliations */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between py-3">
@@ -494,8 +494,10 @@ const UniversityMenu = () => {
 
       {/* Desktop Navigation Menu with Mega Menu */}
       <div 
-        className="hidden md:block border-t "
-        style={{ borderColor: `${colors.primary}20` }}
+        className="hidden md:block border-t b "
+        style={{ borderColor: `${colors.primary}20` } }
+         
+
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex justify-center relative">

@@ -34,113 +34,114 @@ const AlumniSuccessStories = () => {
     countries: 0
   });
 
-  const [visibleCards, setVisibleCards] = useState(3); // Responsive card count
-
+  const [visibleCards, setVisibleCards] = useState(2); // Responsive card count
   const alumniStories = [
     {
       id: 1,
-      name: "Sarah Chen",
-      graduationYear: "2018",
-      degree: "Computer Science",
-      currentPosition: "Senior Software Engineer at Google",
-      achievement: "Led development of AI features used by 1B+ users",
-      image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop&crop=face",
+      name: "SAZIYA NAAZ",
+      graduationYear: "2025",
+      degree: "CSE",
+      currentPosition: "Software Engineer at Codenicely",
+      achievement: "Secured placement in Codenicely before graduation.",
+      image: "https://as1.ftcdn.net/v2/jpg/01/16/24/44/1000_F_116244459_pywR1e0T3H7FPk3LTMjG6jsL3UchDpht.jpg", // replace with real photo
       color: "#FF7B35",
-      quote: "The hands-on projects and mentorship prepared me for real-world challenges in tech.",
-      stats: {
-        salary: "250",
-        promotions: "3",
-        years: "6"
-      },
-      featured: true,
-      companyLogo: "🔍"
+      quote: "My journey at KEC gave me confidence to crack Codenicely interviews.",
+      stats: { year: "2025" },
+      companyLogo: "💻",
     },
     {
       id: 2,
-      name: "Marcus Rodriguez",
-      graduationYear: "2015",
-      degree: "Business Administration",
-      currentPosition: "Founder & CEO at InnovateTech",
-      achievement: "Built $50M revenue startup from dorm room idea",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
+      name: "TARA CHAND DEWANGAN",
+      graduationYear: "2025",
+      degree: "CSE",
+      currentPosition: "Software Engineer at Sthanve Software",
+      achievement: "Placed at Sthanve Software during campus drive.",
+      image: "https://media.istockphoto.com/id/588258370/vector/male-avatar-profile-picture-vector.jpg?s=612x612&w=0&k=20&c=HySLtDNJEd_wzsAjchZxWstBToxkMHSI2rKHNss7CD0=",
       color: "#00BA59",
-      quote: "The entrepreneurship program gave me the tools and confidence to build my vision.",
-      stats: {
-        employees: "150",
-        funding: "20",
-        years: "8"
-      },
-      companyLogo: "🚀"
+      quote: "Faculty guidance helped me grab a role at Sthanve Software.",
+      stats: { year: "2025" },
+      companyLogo: "🚀",
     },
     {
       id: 3,
-      name: "Emily Watson",
-      graduationYear: "2020",
-      degree: "Graphic Design",
-      currentPosition: "Creative Director at Apple",
-      achievement: "Redesigned flagship product interfaces reaching millions",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face",
+      name: "DEVVRAT",
+      graduationYear: "2025",
+      degree: "CSE",
+      currentPosition: "Engineer at Augtech Nextwealth",
+      achievement: "Joined Augtech Nextwealth as a fresher.",
+      image: "https://via.placeholder.com/400x400.png?text=Alumni",
       color: "#1D78FD",
-      quote: "The design thinking approach I learned here shapes every project I lead today.",
-      stats: {
-        projects: "25",
-        awards: "12",
-        years: "4"
-      },
-      companyLogo: "🍎"
+      quote: "Hands-on projects at KEC shaped my problem-solving skills.",
+      stats: { year: "2025" },
+      companyLogo: "⚡",
     },
     {
       id: 4,
-      name: "Dr. James Patterson",
-      graduationYear: "2012",
-      degree: "Psychology",
-      currentPosition: "Clinical Researcher at Harvard Medical",
-      achievement: "Published groundbreaking research on cognitive behavioral therapy",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
-      color: "#FF6463",
-      quote: "The research opportunities and faculty guidance set the foundation for my career.",
-      stats: {
-        publications: "30",
-        citations: "2.5",
-        years: "12"
-      },
-      companyLogo: "⚕️"
+      name: "KUNAL SAHU",
+      graduationYear: "2024",
+      degree: "Civil",
+      currentPosition: "Site Engineer at Avinash Builders",
+      achievement: "Working as a Site Engineer in Avinash Builders.",
+      image: "https://via.placeholder.com/400x400.png?text=Alumni",
+      color: "#8B5CF6",
+      quote: "The Civil department gave me industry-level exposure.",
+      stats: { year: "2024" },
+      companyLogo: "🏗️",
     },
     {
       id: 5,
-      name: "Lisa Wang",
-      graduationYear: "2019",
-      degree: "Mechanical Engineering",
-      currentPosition: "Lead Engineer at Tesla",
-      achievement: "Developed sustainable energy solutions for electric vehicles",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face",
-      color: "#8B5CF6",
-      quote: "The engineering program taught me to think critically and solve complex problems.",
-      stats: {
-        patents: "5",
-        projects: "18",
-        years: "5"
-      },
-      companyLogo: "⚡"
+      name: "JAYA",
+      graduationYear: "2024",
+      degree: "CSE",
+      currentPosition: "Project Assistant at IIT Bhilai",
+      achievement: "Selected as Project Assistant at IIT Bhilai.",
+      image: "https://via.placeholder.com/400x400.png?text=Alumni",
+      color: "#06B6D4",
+      quote: "Research exposure at KEC prepared me for IIT Bhilai.",
+      stats: { year: "2024" },
+      companyLogo: "🎓",
     },
     {
       id: 6,
-      name: "Alex Thompson",
-      graduationYear: "2017",
-      degree: "Finance",
-      currentPosition: "Investment Banker at Goldman Sachs",
-      achievement: "Managed $2B in assets for Fortune 500 companies",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face",
-      color: "#06B6D4",
-      quote: "The financial modeling skills I gained have been invaluable in my career.",
-      stats: {
-        deals: "45",
-        assets: "2",
-        years: "7"
-      },
-      companyLogo: "💼"
-    }
+      name: "DEVID KUMAR",
+      graduationYear: "2024",
+      degree: "EE",
+      currentPosition: "Engineer at Adani (via NPTI)",
+      achievement: "Started career at NPTI, now with Adani.",
+      image: "https://via.placeholder.com/400x400.png?text=Alumni",
+      color: "#FA2C37",
+      quote: "Electrical Engineering background gave me strong fundamentals.",
+      stats: { year: "2024" },
+      companyLogo: "⚡",
+    },
+    {
+      id: 7,
+      name: "PRANESH PANDEY",
+      graduationYear: "2021",
+      degree: "Civil",
+      currentPosition: "Engineer at Coalfield India (Govt Job)",
+      achievement: "Secured a government job in Coalfield India.",
+      image: "https://via.placeholder.com/400x400.png?text=Alumni",
+      color: "#00C950",
+      quote: "Civil Engineering program prepared me for competitive exams.",
+      stats: { year: "2021" },
+      companyLogo: "🏛️",
+    },
+    {
+      id: 8,
+      name: "PRANSHUL SINGH THAKUR",
+      graduationYear: "2021",
+      degree: "Civil",
+      currentPosition: "Engineer at CSPDCL (Govt Job)",
+      achievement: "Cracked CSPDCL government job after graduation.",
+      image: "https://via.placeholder.com/400x400.png?text=Alumni",
+      color: "#FF6463",
+      quote: "Guidance from faculty helped me crack CSPDCL exams.",
+      stats: { year: "2021" },
+      companyLogo: "⚡",
+    },
   ];
+  
 
   // Handle responsive layout
   useEffect(() => {
@@ -150,7 +151,7 @@ const AlumniSuccessStories = () => {
       } else if (window.innerWidth < 1024) {
         setVisibleCards(2);
       } else {
-        setVisibleCards(3);
+        setVisibleCards(2);
       }
     };
 
@@ -427,7 +428,7 @@ const AlumniSuccessStories = () => {
                     className="w-8 h-8 md:w-12 md:h-12 rounded-xl md:rounded-2xl flex items-center justify-center text-white text-lg md:text-xl font-bold shadow-lg"
                     style={{ backgroundColor: featuredAlumni.color }}
                   >
-                    {featuredAlumni.companyLogo}
+                    <Building className="w-6 h-6 text-white" />
                   </div>
                 </div>
 
