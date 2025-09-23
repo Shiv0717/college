@@ -301,12 +301,12 @@ const TechPrograms = () => {
             <div
               key={program.id}
               ref={addToRefs}
-              className="group relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-8 hover:from-gray-700 hover:to-gray-800 transition-all duration-500 border border-gray-700/50 hover:border-gray-600/50 cursor-pointer"
+              className="group relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 hover:from-gray-700 hover:to-gray-800 transition-all duration-500 border border-gray-700/50 hover:border-gray-600/50 cursor-pointer"
             >
               {/* Program Header */}
               <div className="flex items-start justify-between mb-6">
                 <div className="flex items-center gap-4">
-                  <div className={`p-3 rounded-2xl bg-gradient-to-r ${program.iconBg} shadow-lg program-icon`}>
+                  <div className={`p-3 rounded-2xl bg-gradient-to-r ${program.iconBg}  program-icon`}>
                     <program.icon className="w-8 h-8 text-white" />
                   </div>
                   <div>
