@@ -25,27 +25,31 @@ const bodyFont = { fontFamily: "'Lato', sans-serif" };
 
 const announcements = [
   {
-    img: "https://plus.unsplash.com/premium_photo-1682787494765-44d02d12f5be?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    title: "Payment for Summer 2024 (Social Study)",
-    date: "Aug 22, 2024 to Oct 11, 2024",
-    description: "Payment schedule for Summer 2024 Social Study courses. Please ensure timely payment to avoid any delays.",
-    color: colors.green
+    img: "https://scontent.fidr4-2.fna.fbcdn.net/v/t39.30808-6/533121663_1160483856099139_6219316627004094283_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=urUem3-V-SkQ7kNvwH-JRmS&_nc_oc=AdmeSApzH0VDlcFRcyCM1TuCmLK3DdwTiMlhKCJ0uJ-SHCAVMEi1-05XIZsJyrljUhi9e45a9m5AToH1dKoVZibM&_nc_zt=23&_nc_ht=scontent.fidr4-2.fna&_nc_gid=L4KidCdcsj9xTmeCOKTmQg&oh=00_AfYyoe-JcboXYnKF1ju1b4gtYYcOhgpAz0Tm3NXGmOQ7Sw&oe=68D9E2A4",
+    title: "Happy 79th Independence Day!",
+    date: "August 15, 2025",
+    description:
+      "At Krishna Engineering College, we salute the spirit of freedom, innovation, and resilience that defines our great nation. May we continue to build a stronger India — with knowledge, technology, and unity at the core.",
+    color: colors.green,
   },
   {
     img: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
-    title: "Orientation for New Students",
-    date: "Sep 01, 2024",
-    description: "Orientation program for new students to introduce them to college life, faculty, and campus facilities.",
-    color: colors.blue
+    title: "Welcome, B.Tech Batch of 2025–26! 🎉",
+    date: "August 13, 2025 — 10:30 AM",
+    description:
+      "Induction Program 2025–26🔥🔥\nWe’re thrilled to welcome the newest members of our Krishna Engineering College family! 💙 Join us in the Seminar Hall for an inspiring session with Prof. Rajiv Prakash, Director of IIT Bhilai, as our Chief Guest. Let’s celebrate the start of an exciting journey! 🚀",
+    color: colors.blue,
   },
   {
     img: "https://images.unsplash.com/photo-1571260899304-425eee4c7efc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
-    title: "Midterm Exams Schedule",
-    date: "Oct 15, 2024 to Oct 20, 2024",
-    description: "Midterm exams schedule for all courses. Please check your respective course exam dates.",
-    color: colors.red
+    title: "Proud Moment for KEC Bhilai! ✨",
+    date: "August 12, 2025",
+    description:
+      "We were honored to host Dr. Prashant Mathur, CEO of IIT Bhilai Innovation and Technology Foundation (IBITF), and his team for the official signing of an MoU. This collaboration marks a transformative step toward innovation and opportunity for KEC Bhilai. 🚀",
+    color: colors.red,
   },
 ];
+
 
 const initialFeatured = announcements[0];
 
@@ -293,7 +297,7 @@ export default function AcademicDatesSection() {
               </div>
               
               <img
-                src={'https://plus.unsplash.com/premium_photo-1682787494881-8ea045470faa?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'}
+                src={'https://scontent.fidr4-2.fna.fbcdn.net/v/t39.30808-6/533121663_1160483856099139_6219316627004094283_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=urUem3-V-SkQ7kNvwH-JRmS&_nc_oc=AdmeSApzH0VDlcFRcyCM1TuCmLK3DdwTiMlhKCJ0uJ-SHCAVMEi1-05XIZsJyrljUhi9e45a9m5AToH1dKoVZibM&_nc_zt=23&_nc_ht=scontent.fidr4-2.fna&_nc_gid=L4KidCdcsj9xTmeCOKTmQg&oh=00_AfYyoe-JcboXYnKF1ju1b4gtYYcOhgpAz0Tm3NXGmOQ7Sw&oe=68D9E2A4'}
                 alt={featured.title}
                 className="w-full h-80 lg:h-[500px] object-cover"
               />

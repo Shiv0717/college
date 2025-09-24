@@ -31,6 +31,7 @@ import {
   Plug,
   Zap,
   Code,
+  ClipboardList
 } from "lucide-react";
 
 // Register GSAP plugin
@@ -60,10 +61,30 @@ const colors = {
 
 // Affiliations data with color coding
 const affiliations = [
-  { Icon: Award, label: "Best Result", color: "text-orange-500", bgColor: "#fed7aa" },
-  { Icon: Star, label: "Quality Education", color: "text-green-500", bgColor: "#bbf7d0" },
-  { Icon: Trophy, label: "Placement", color: "text-blue-500", bgColor: "#bfdbfe" },
-  { Icon: GraduationCap, label: "Mentor", color: "text-purple-500", bgColor: "#e9d5ff" },
+  {
+    img: "https://i0.wp.com/sjbit.edu.in/wp-content/uploads/2021/07/NAAC-Logo-250x250-1.png?ssl=1",
+    label: "NAAC Accredited",
+    color: "text-orange-500",
+    bgColor: "#fed7aa",
+  },
+  {
+    img: "https://upload.wikimedia.org/wikipedia/en/5/52/National_Institutional_Ranking_Framework_logo.png",
+    label: "NIRF Ranked",
+    color: "text-green-500",
+    bgColor: "#bbf7d0",
+  },
+  {
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx0MXjwnJVBVGn2aq6GwXvS7M4UV_EeksTlQ&s",
+    label: "NBA Accredited",
+    color: "text-blue-500",
+    bgColor: "#bfdbfe",
+  },
+  {
+    img: "https://static.wixstatic.com/media/9d31c9_8d868574531544b78f5dcf11679c32c5~mv2.png/v1/fill/w_509,h_491,al_c/9d31c9_8d868574531544b78f5dcf11679c32c5~mv2.png",
+    label: "Approved by AICTE",
+    color: "text-purple-500",
+    bgColor: "#e9d5ff",
+  },
 ];
 
 // Main categories with color coding
@@ -164,12 +185,19 @@ const mainCategories = [
     color: colors.primary,
     submenu: [
       {
-        name: "Process",
-        path: "/admission#process",
-        icon: BarChart3,
-        description: "Step-by-step guide",
+        name: "Super 40",
+        path: "/apply",
+        icon: UserPlus,
+        description: "Register for the Super 40 Entrance Exam 2026",
         color: colors.primary,
       },
+      {
+      name: "Process",
+      path: "/admission#process",
+      icon: BarChart3,
+      description: "Step-by-step guide",
+      color: colors.primary,
+    },
       {
         name: "Requirements",
         path: "/admission#requirements",
@@ -177,6 +205,9 @@ const mainCategories = [
         description: "Eligibility criteria",
         color: colors.primary,
       },
+      
+     
+      
       {
         name: "Scholarships",
         path: "/admission#scholarships",
@@ -185,12 +216,20 @@ const mainCategories = [
         color: colors.primary,
       },
       {
-        name: "Super 40",
-        path: "/apply",
-        icon: UserPlus,
-        description: "Register for the Super 40 Entrance Exam 2026",
+        name: "Super 40 Examination",
+        path: "/exam",
+        icon: ClipboardList, // You can choose another icon if preferred
+        description: "Details about the Super 40 Examination",
         color: colors.primary,
       },
+      {
+        name: "Results",
+        path: "/super40-results",
+        icon: FileText,
+        description: "View Super 40 Exam Results",
+        color: colors.primary,
+      },
+      
     ],
   },
   {
@@ -263,7 +302,7 @@ const mainCategories = [
   },
   
   {
-    name: "Courses",
+    name: "Summer Courses",
     path: "/courses",
     icon: BookOpen,
     description: "Explore our specialized courses",
@@ -271,21 +310,21 @@ const mainCategories = [
     submenu: [
       {
         name: "Drone Technology",
-        path: "/apply",
+        path: "/drone",
         icon: Zap,
         description: "Learn cutting-edge drone tech",
         color: colors.neutral,
       },
       {
         name: "EV Charging Station",
-        path: "/apply",
+        path: "/ev",
         icon: Plug,
         description: "Electric Vehicle Charging Station setup",
         color: colors.neutral,
       },
       {
         name: "Advanced Coding",
-        path: "/apply",
+        path: "/coding",
         icon: Code,
         description: "Master advanced programming concepts",
         color: colors.neutral,
@@ -452,7 +491,7 @@ const UniversityMenu = () => {
     <div ref={menuRef}   className="bg-white shadow-lg border-b border-gray-100 sticky top-0 z-50">
       {/* Top Bar with Logo and Affiliations */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between py-3">
+        <div className="flex items-center justify-between ">
           {/* Logo */}
           <div ref={logoRef} className="flex-shrink-0">
             <div className="flex items-center">
@@ -490,51 +529,34 @@ const UniversityMenu = () => {
           </div>
 
           {/* Affiliations - Right Side */}
-          <div className="hidden md:flex items-center space-x-2 lg:space-x-4 bg-white/5 backdrop-blur-sm rounded-2xl p-2 border border-white/10" style={{ fontFamily: 'inter, serif' }}>
-  {affiliations.map((affiliation, index) => {
-    const IconComponent = affiliation.Icon;
-    const colorValue = affiliation.color.replace('text-', '');
-    
-    // Define different colors for each icon like the social media example
-    const socialColors = [
-      { bg: 'blue', icon: 'blue-400', hover: 'blue-600' },
-      { bg: 'cyan', icon: 'cyan-400', hover: 'cyan-600' },
-      { bg: 'pink', icon: 'pink-400', hover: 'pink-600' },
-      { bg: 'blue', icon: 'blue-300', hover: 'blue-700' },
-      { bg: 'red', icon: 'red-400', hover: 'red-600' }
-    ];
-
-    const currentColor = socialColors[index % socialColors.length];
-
-    return (
-      <div 
-        key={index} 
-        ref={el => affiliationRefs.current[index] = el}
-        className={`flex items-center px-3 py-2 rounded-xl`}
-      >
-        {/* Icon container with different colors like social media icons */}
-        <div className={`relative p-2 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10`}>
-          <IconComponent
-            size={16}
-            className={`text-${currentColor.icon}`}
-          />
           <div 
-            className={`absolute inset-0 rounded-xl bg-${currentColor.bg}-500/10`}
-          ></div>
-        </div>
+  className="hidden md:flex items-center space-x-2 lg:space-x-4 rounded-2xl p-4"
+  style={{ 
+    fontFamily: 'Inter, serif',
+    background: 'rgba(255, 255, 255, 0.9)',
+    backdropFilter: 'blur(20px)',
+  
+  }}
+>
+  {affiliations.map(({ img, label, color, bgColor }, index) => (
+    <div
+      key={index}
+      className="flex items-center gap-3  rounded-xl    group"
+      
+    >
+      <div 
+        className="p-3 rounded-lg transition-all duration-300 group-hover:scale-110"
         
-        <span 
-          className="text-sm whitespace-nowrap ml-2 text-black"
-        >
-          {affiliation.label}
-        </span>
-
-        {index < affiliations.length - 1 && (
-          <div className="ml-4 w-px h-4 bg-white/20" />
-        )}
+      >
+        <img src={img} alt={label} className="w-6 h-6 lg:w-16 lg:h-16 object-contain" />
       </div>
-    );
-  })}
+     
+      <div 
+        className="w-1 h-8 rounded-full transition-all duration-300 group-hover:h-10"
+        style={{ backgroundColor: bgColor }}
+      ></div>
+    </div>
+  ))}
 </div>
 
           {/* Mobile menu button */}

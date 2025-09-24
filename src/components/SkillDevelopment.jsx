@@ -322,10 +322,7 @@ const TechPrograms = () => {
                     </span>
                   </div>
                 </div>
-                <div className="text-right">
-                  <div className="text-2xl font-bold text-white">{program.price}</div>
-                  <div className="text-sm text-gray-400 line-through">{program.originalPrice}</div>
-                </div>
+               
               </div>
 
               {/* Program Content */}
@@ -354,10 +351,7 @@ const TechPrograms = () => {
                     <Clock className="w-4 h-4" />
                     {program.duration}
                   </div>
-                  <div className="flex items-center gap-1">
-                    <Users className="w-4 h-4" />
-                    {program.students} students
-                  </div>
+                 
                 </div>
                 
                 <button 

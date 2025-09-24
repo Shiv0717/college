@@ -34,6 +34,9 @@ import Hod from "./pages/Hod";
 import Courses from "./pages/Courses";
 import Super40Form from "./pages/Super40Form";
 import Super40ExamQuestions from "./pages/Super40ExamQuestions";
+import Drone from "./pages/Drone";
+import EV from "./pages/EV";
+import AdvancedCodingRegistration from "./pages/Coding";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +67,9 @@ const router = createBrowserRouter([
       { path: "gallery", element:<GalleryPage/>},
       { path: "apply", element:<Super40Form/>},
       { path: "exam", element:<Super40ExamQuestions/>},
+      { path: "drone", element:<Drone/>},
+      { path: "ev", element:<EV/>},
+      { path: "coding", element:<AdvancedCodingRegistration/>},
       { path: "*", element: <NotFound/> },
     ],
   },

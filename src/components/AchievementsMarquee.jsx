@@ -69,19 +69,84 @@ const CollegeDashboard = () => {
   ];
 
   const placementStats = [
-    { company: "Google", hires: 45, package: "$145K", trend: "+18%", logo: "G", color: "bg-blue-500", icon: TrendingUp },
-    { company: "Microsoft", hires: 38, package: "$138K", trend: "+12%", logo: "M", color: "bg-green-500", icon: Target },
-    { company: "Apple", hires: 32, package: "$142K", trend: "+22%", logo: "A", color: "bg-orange-500", icon: Star },
-    { company: "Amazon", hires: 28, package: "$135K", trend: "+15%", logo: "A", color: "bg-yellow-500", icon: BarChart3 },
-    { company: "Meta", hires: 25, package: "$148K", trend: "+20%", logo: "f", color: "bg-blue-600", icon: TrendingUp },
-    { company: "Tesla", hires: 18, package: "$152K", trend: "+25%", logo: "T", color: "bg-red-500", icon: Award },
+    {
+      company: "Codenicely",
+      hires: 5,
+      package: "6 LPA",
+      trend: "+10%",
+      logo: "C",
+      color: "bg-blue-500",
+      icon: TrendingUp,
+    },
+    {
+      company: "Sthanve Software",
+      hires: 4,
+      package: "5 LPA",
+      trend: "+8%",
+      logo: "S",
+      color: "bg-green-500",
+      icon: Target,
+    },
+    {
+      company: "Augtech Nextwealth",
+      hires: 3,
+      package: "7 LPA",
+      trend: "+12%",
+      logo: "A",
+      color: "bg-orange-500",
+      icon: Star,
+    },
+    {
+      company: "Gravity Engineering Services",
+      hires: 2,
+      package: "6.5 LPA",
+      trend: "+7%",
+      logo: "G",
+      color: "bg-yellow-500",
+      icon: BarChart3,
+    },
+    {
+      company: "IB Group",
+      hires: 1,
+      package: "5.5 LPA",
+      trend: "+6%",
+      logo: "I",
+      color: "bg-blue-600",
+      icon: TrendingUp,
+    },
+    {
+      company: "Avinash Builders",
+      hires: 1,
+      package: "4.5 LPA",
+      trend: "+5%",
+      logo: "A",
+      color: "bg-red-500",
+      icon: Award,
+    },
   ];
+  
 
   const topRecruiters = [
-    { name: "Goldman Sachs", hires: 42, color: "bg-yellow-500", progress: 84 },
-    { name: "McKinsey & Company", hires: 35, color: "bg-blue-500", progress: 70 },
-    { name: "Boston Consulting", hires: 28, color: "bg-green-500", progress: 56 },
+    {
+      name: "Codenicely",
+      hires: 5,
+      color: "bg-blue-500",
+      progress: 100, // max hires
+    },
+    {
+      name: "Sthanve Software",
+      hires: 4,
+      color: "bg-green-500",
+      progress: 80,
+    },
+    {
+      name: "Augtech Nextwealth",
+      hires: 3,
+      color: "bg-orange-500",
+      progress: 60,
+    },
   ];
+  
 
   // Scroll detection
   useEffect(() => {
