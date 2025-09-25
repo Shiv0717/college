@@ -113,9 +113,9 @@ const LeadershipProfiles = () => {
   }, []);
 
   return (
-    <section className="py-16 bg-gradient-to-br from-gray-50 to-blue-50/20">
-      <div className="px-6">
-        <div className="flex flex-col lg:flex-row">
+    <section className=" py-16 bg-gradient-to-br from-gray-50 to-blue-50/20">
+      <div className="px-6 ">
+        <div className="flex  flex-col lg:flex-row">
           {/* Left Sidebar */}
           <div className="lg:w-2/5 mb-16 lg:mb-0">
             <div className="sticky top-38">

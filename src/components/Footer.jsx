@@ -1,5 +1,4 @@
 import React from "react";
-import { motion } from "framer-motion";
 import { 
   MapPin, 
   Phone, 
@@ -14,58 +13,61 @@ import {
   Award,
   Clock,
   Send,
-  ArrowUpRight,
   Building,
   Users,
   BookOpen,
   Target,
-  ArrowUp
+  ArrowUp,
+  Map,
+  Navigation,
+  Globe,
+  Star
 } from "lucide-react";
 
-// Color palette
-const colors = {
-  orange: "#FF7B35",
-  green: "#00BA59",
-  blue: "#1D78FD",
-  red: "#FF6463",
-  dark: "#0F172A",
-  light: "#F8FAFC"
-};
-
 const Footer = () => {
+  // Modern color palette
+  const colors = {
+    primary: "#2563eb",
+    secondary: "#7c3aed",
+    accent: "#f59e0b",
+    success: "#10b981",
+    dark: "#0f172a",
+    light: "#f8fafc"
+  };
+
   const quickLinks = [
-    { name: "Home", url: "#", icon: Building, color: colors.orange },
-    { name: "Admissions", url: "#", icon: Users, color: colors.green },
-    { name: "Courses", url: "#", icon: BookOpen, color: colors.blue },
-    { name: "Placements", url: "#", icon: Target, color: colors.red },
-    { name: "Events", url: "#", icon: Clock, color: colors.orange },
-    { name: "Contact Us", url: "#", icon: Send, color: colors.green },
+    { name: "Home", url: "#", icon: Building, color: colors.primary },
+    { name: "Admissions", url: "#", icon: Users, color: colors.secondary },
+    { name: "Courses", url: "#", icon: BookOpen, color: colors.accent },
+    { name: "Placements", url: "#", icon: Target, color: colors.success },
+    { name: "Events", url: "#", icon: Clock, color: colors.primary },
+    { name: "Contact", url: "#", icon: Send, color: colors.secondary },
   ];
 
   const contactInfo = [
     {
       icon: Phone,
-      text: "9285123400 / 9826130624",
-      subtext: "7000130299 / 7587329553",
-      color: colors.green
+      text: "+91 92851 23400",
+      subtext: "+91 98261 30624",
+      color: colors.success
     },
     {
       icon: Phone,
-      text: "WhatsApp: 9244005187",
+      text: "WhatsApp: +91 92440 05187",
       subtext: "",
-      color: colors.green
+      color: colors.success
     },
     {
       icon: Mail,
       text: "admissions@kecbhilai.com",
       subtext: "krishnaengcollege@gmail.com",
-      color: colors.blue
+      color: colors.primary
     },
     {
       icon: MapPin,
-      text: "Behind Smriti Nagar Petrol Pump Junwani,",
-      subtext: "Khamahariya, Bhilai",
-      color: colors.red
+      text: "Behind Smriti Nagar Petrol Pump",
+      subtext: "Junwani, Khamahariya, Bhilai",
+      color: colors.accent
     }
   ];
 
@@ -74,43 +76,46 @@ const Footer = () => {
       icon: Facebook, 
       url: "#", 
       name: "Facebook",
-      color: colors.blue,
-    },
-    { 
-      icon: Twitter, 
-      url: "#", 
-      name: "Twitter",
-      color: colors.blue,
+      color: colors.primary,
     },
     { 
       icon: Instagram, 
       url: "#", 
       name: "Instagram",
-      color: colors.red,
+      color: colors.secondary,
+    },
+    { 
+      icon: Twitter, 
+      url: "#", 
+      name: "Twitter",
+      color: colors.primary,
     },
     { 
       icon: Youtube, 
       url: "#", 
       name: "YouTube",
-      color: colors.red,
+      color: colors.accent,
     },
   ];
 
-  const achievements = [
-    { text: "AICTE Approved", icon: Award, color: colors.orange },
-    { text: "CSVTU Affiliated", icon: GraduationCap, color: colors.green },
+  const features = [
+    { text: "AICTE Approved", icon: Award, color: colors.accent },
+    { text: "CSVTU Affiliated", icon: GraduationCap, color: colors.success },
+    { text: "Industry Partnerships", icon: Users, color: colors.primary },
+    { text: "Modern Infrastructure", icon: Building, color: colors.secondary }
   ];
 
   const kpsSchools = [
-    "KPS Nehru Nagar",
-    "KPS Raipur",
-    "KPS Bilaspur",
-    "KPS Naya Raipur",
-    "KPS Sundernagar",
-    "KPS Sarona",
-    "KPS Durg",
-    "KPS Utai",
-    "KPS Sindhiya Nagar"
+    "KPS Nehru Nagar", "KPS Raipur", "KPS Bilaspur", 
+    "KPS Naya Raipur", "KPS Sundernagar", "KPS Sarona",
+    "KPS Durg", "KPS Utai", "KPS Sindhiya Nagar"
+  ];
+
+  const stats = [
+    { number: "5000+", label: "Students", color: colors.primary },
+    { number: "94%", label: "Placement", color: colors.success },
+    { number: "50+", label: "Companies", color: colors.accent },
+    { number: "15+", label: "Years", color: colors.secondary }
   ];
 
   const scrollToTop = () => {
@@ -118,93 +123,59 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-t-3xl text-white pt-12 pb-8 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-12">
-          {/* College Info */}
-          <div className="lg:col-span-2">
+    <footer className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 text-white">
+      {/* Stats Banner */}
+      
+
+      {/* Main Footer Content */}
+      <div className="max-w-7xl mx-auto  py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-8 mb-12">
+          
+          {/* Brand Section */}
+          <div className="lg:col-span-2 xl:col-span-1">
             <div className="flex items-center gap-4 mb-6">
-              <div 
-                className="p-3 rounded-2xl"
-                style={{ 
-                  backgroundColor: `${colors.blue}10`,
-                  border: `1px solid ${colors.blue}30`
-                }}
-              >
-                <GraduationCap className="w-8 h-8" style={{ color: colors.blue }} />
-              </div>
+              
               <div>
-                <h3 className="text-3xl font-bold text-white">
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-white to-slate-200 bg-clip-text text-transparent">
                   Krishna Engineering College
                 </h3>
-                <p className="text-slate-300 text-sm mt-1">Excellence in Technical Education Since 2009</p>
+                <p className="text-slate-400 text-sm">Excellence in Technical Education</p>
               </div>
             </div>
             
-            <p className="text-slate-300 mb-8 leading-relaxed text-lg max-w-2xl">
-              A premier institution recognized for excellence, innovation, and societal relevance. 
-              We nurture creative engineers and develop solutions to national challenges through 
-              cutting-edge research and industry collaboration.
+            <p className="text-slate-300 mb-6 leading-relaxed">
+              Premier institution nurturing future engineers with cutting-edge education, 
+              industry collaboration, and innovative research since 2009.
             </p>
 
-            {/* Achievements Grid */}
-            <div className="grid grid-cols-2 gap-4 mb-8">
-              {achievements.map((achievement, index) => (
+            {/* Features Grid */}
+            <div className="grid grid-cols-2 gap-3 mb-6">
+              {features.map((feature, index) => (
                 <div 
                   key={index}
-                  className="flex items-center gap-3 p-3 rounded-xl"
-                  style={{ 
-                    backgroundColor: `${achievement.color}10`,
-                    border: `1px solid ${achievement.color}30`
-                  }}
+                  className="flex items-center gap-2 p-2 rounded-lg bg-white/5 border border-white/10"
                 >
-                  <achievement.icon className="w-5 h-5" style={{ color: achievement.color }} />
-                  <span className="text-sm font-medium text-white">{achievement.text}</span>
+                  <feature.icon className="w-4 h-4" style={{ color: feature.color }} />
+                  <span className="text-xs font-medium text-slate-300">{feature.text}</span>
                 </div>
               ))}
             </div>
 
-            {/* KPS Group Section */}
-            <div
-              className="rounded-2xl p-6 mb-8"
-              style={{ backgroundColor: `${colors.blue}05`, border: `1px solid ${colors.blue}20` }}
-            >
-              <h4
-                className="text-xl font-semibold mb-4 pb-2 inline-flex items-center gap-2"
-                style={{ borderBottom: `2px solid ${colors.blue}` }}
-              >
-                <Building className="w-5 h-5" style={{ color: colors.blue }} />
-                KPS Group
-              </h4>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-2 text-slate-200">
-                {kpsSchools.map((school, index) => (
-                  <div
-                    key={index}
-                    className="text-sm"
-                  >
-                    {school}
-                  </div>
-                ))}
-              </div>
-            </div>
-            
             {/* Social Links */}
             <div>
-              <h4 className="text-lg font-semibold mb-4 text-slate-300">Connect With Us</h4>
-              <div className="flex gap-3">
+              <h4 className="text-lg font-semibold mb-4 text-slate-300">Follow Us</h4>
+              <div className="flex gap-2">
                 {socialLinks.map((social, index) => (
                   <a
                     key={index}
                     href={social.url}
-                    className="w-12 h-12 rounded-xl flex items-center justify-center"
-                    style={{ 
-                      backgroundColor: `${social.color}10`,
-                      border: `1px solid ${social.color}30`
-                    }}
-                    aria-label={social.name}
+                    className="p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 group"
+                    style={{ borderColor: `${social.color}30` }}
                   >
-                    <social.icon className="w-5 h-5" style={{ color: social.color }} />
+                    <social.icon 
+                      className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" 
+                      style={{ color: social.color }} 
+                    />
                   </a>
                 ))}
               </div>
@@ -213,119 +184,111 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <div 
-              className="rounded-2xl p-6 h-full"
-              style={{ 
-                backgroundColor: `${colors.green}05`,
-                border: `1px solid ${colors.green}20`
-              }}
-            >
-              <h4 className="text-xl font-semibold mb-6 pb-3 inline-flex items-center gap-2" style={{ borderBottom: `2px solid ${colors.green}` }}>
-                <ExternalLink className="w-5 h-5" style={{ color: colors.green }} />
-                Quick Links
-              </h4>
-              <ul className="space-y-2">
-                {quickLinks.map((link, index) => (
-                  <li key={index}>
-                    <a 
-                      href={link.url} 
-                      className="flex items-center gap-3 p-3 rounded-lg"
-                      style={{ backgroundColor: `${link.color}05` }}
-                    >
-                      <div 
-                        className="p-2 rounded-lg"
-                        style={{ backgroundColor: `${link.color}20` }}
-                      >
-                        <link.icon className="w-4 h-4" style={{ color: link.color }} />
-                      </div>
-                      <span className="text-slate-200 font-medium">
-                        {link.name}
-                      </span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
+            <h4 className="text-xl font-bold mb-6 flex items-center gap-2">
+              <Navigation className="w-5 h-5 text-blue-400" />
+              Quick Links
+            </h4>
+            <div className="grid grid-cols-1 gap-2">
+              {quickLinks.map((link, index) => (
+                <a 
+                  key={index}
+                  href={link.url} 
+                  className="group flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300"
+                >
+                  <div 
+                    className="p-2 rounded-lg transition-transform duration-300 group-hover:scale-110"
+                    style={{ backgroundColor: `${link.color}20` }}
+                  >
+                    <link.icon className="w-4 h-4" style={{ color: link.color }} />
+                  </div>
+                  <span className="text-slate-300 group-hover:text-white transition-colors font-medium">
+                    {link.name}
+                  </span>
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Contact Information & Map */}
+          {/* Contact Information */}
           <div>
-            <div 
-              className="rounded-2xl p-6 h-full"
-              style={{ 
-                backgroundColor: `${colors.orange}05`,
-                border: `1px solid ${colors.orange}20`
-              }}
-            >
-              <h4 className="text-xl font-semibold mb-6 pb-3 inline-flex items-center gap-2" style={{ borderBottom: `2px solid ${colors.orange}` }}>
-                <Send className="w-5 h-5" style={{ color: colors.orange }} />
-                Contact Info
-              </h4>
-              <div className="space-y-3 mb-6">
-                {contactInfo.map((item, index) => (
+            <h4 className="text-xl font-bold mb-6 flex items-center gap-2">
+              <Send className="w-5 h-5 text-green-400" />
+              Contact Info
+            </h4>
+            <div className="space-y-4">
+              {contactInfo.map((item, index) => (
+                <div 
+                  key={index} 
+                  className="flex items-start gap-3 p-3 rounded-xl bg-white/5 border border-white/10"
+                >
                   <div 
-                    key={index} 
-                    className="flex items-start gap-3 p-3 rounded-lg"
-                    style={{ backgroundColor: `${item.color}05` }}
+                    className="p-2 rounded-lg flex-shrink-0 mt-1"
+                    style={{ backgroundColor: `${item.color}20` }}
                   >
-                    <div 
-                      className="p-2 rounded-lg flex-shrink-0"
-                      style={{ backgroundColor: `${item.color}20` }}
-                    >
-                      <item.icon className="w-4 h-4" style={{ color: item.color }} />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-white font-medium text-sm leading-tight">{item.text}</p>
-                      {item.subtext && (
-                        <p className="text-slate-400 text-xs mt-1">{item.subtext}</p>
-                      )}
-                    </div>
+                    <item.icon className="w-4 h-4" style={{ color: item.color }} />
                   </div>
-                ))}
-              </div>
-              
-              {/* Map Section */}
-              <div className="mt-6">
-                <h5 className="text-lg font-semibold mb-3 text-white">Location Map</h5>
-                <div className="rounded-xl overflow-hidden border-2" style={{ borderColor: colors.orange }}>
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59504.690549261424!2d81.29730872663683!3d21.230137076599473!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a293d41cba65b87%3A0xa9e4dad8f8e1e7db!2sKrishna%20Engineering%20College!5e0!3m2!1sen!2sus!4v1758765096031!5m2!1sen!2sus"
-                    width="100%"
-                    height="200"
-                    style={{ border: 0 }}
-                    allowFullScreen=""
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="Krishna Engineering College Location"
-                    className="w-full h-48"
-                  ></iframe>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-white font-medium text-sm">{item.text}</p>
+                    {item.subtext && (
+                      <p className="text-slate-400 text-xs mt-1">{item.subtext}</p>
+                    )}
+                  </div>
                 </div>
-              </div>
+              ))}
+            </div>
+          </div>
 
-              {/* Quick Action Buttons */}
-              <div className="mt-4 space-y-2">
-                <button 
-                  className="w-full py-3 rounded-xl font-semibold flex items-center justify-center gap-2"
-                  style={{ backgroundColor: colors.green }}
-                >
-                  <Phone className="w-4 h-4" />
-                  Call Now
-                </button>
-                <button 
-                  className="w-full border-2 py-3 rounded-xl font-semibold flex items-center justify-center gap-2"
-                  style={{ borderColor: colors.blue, color: colors.blue }}
-                >
-                  <Mail className="w-4 h-4" />
-                  Email Us
-                </button>
-              </div>
+          {/* Map Section */}
+          <div>
+            <h4 className="text-xl font-bold mb-6 flex items-center gap-2">
+              <Map className="w-5 h-5 text-orange-400" />
+              Visit Campus
+            </h4>
+            <div className="rounded-2xl overflow-hidden shadow-2xl border-2 border-white/20">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.0431844472773!2d81.31696617549485!3d21.23013608047009!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a293d41cba65b87%3A0xa9e4dad8f8e1e7db!2sKrishna%20Engineering%20College!5e0!3m2!1sen!2sus!4v1758765414200!5m2!1sen!2sus"
+                width="100%"
+                height="200"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Krishna Engineering College Location"
+                className="w-full h-48"
+              />
+            </div>
+            <div className="mt-4 flex gap-2">
+              <button className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-2 px-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2">
+                <Phone className="w-4 h-4" />
+                Call
+              </button>
+              <button className="flex-1 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white py-2 px-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2">
+                <Mail className="w-4 h-4" />
+                Email
+              </button>
             </div>
           </div>
         </div>
 
-        {/* Bottom Section */}
+        {/* KPS Group Section */}
+        <div className="bg-gradient-to-r from-purple-600/10 to-blue-600/10 rounded-2xl p-6 mb-8 border border-white/10">
+          <h4 className="text-xl font-bold mb-4 flex items-center gap-2">
+            <Globe className="w-5 h-5 text-purple-400" />
+            KPS Group of Institutions
+          </h4>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+            {kpsSchools.map((school, index) => (
+              <div key={index} className="flex items-center gap-2 p-2 rounded-lg bg-white/5">
+                <Star className="w-3 h-3 text-yellow-400" />
+                <span className="text-sm text-slate-300">{school}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
         <div className="border-t border-slate-700 pt-8">
-          <div className="flex flex-col lg:flex-row justify-between items-center gap-4">
+          <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
             {/* Copyright */}
             <div className="flex items-center gap-4 text-slate-400 flex-wrap">
               <p className="text-sm flex items-center gap-2">
@@ -333,24 +296,19 @@ const Footer = () => {
                 <span className="w-1 h-1 bg-slate-500 rounded-full"></span>
                 All rights reserved
               </p>
-              <span 
-                className="flex items-center gap-1 text-sm px-3 py-1 rounded-full"
-                style={{ 
-                  backgroundColor: `${colors.red}10`,
-                  border: `1px solid ${colors.red}30`
-                }}
-              >
-                Made with <Heart className="w-4 h-4 mx-1" style={{ color: colors.red }} fill="currentColor" /> by KEC Team
-              </span>
+              <div className="flex items-center gap-1 text-sm px-3 py-1 rounded-full bg-red-600/10 border border-red-600/20">
+                <Heart className="w-4 h-4 text-red-400" fill="currentColor" />
+                <span>Made with passion by KSS Team</span>
+              </div>
             </div>
 
             {/* Policy Links */}
             <div className="flex items-center gap-6 flex-wrap">
-              {["Privacy Policy", "Terms of Service", "Sitemap"].map((item, index) => (
+              {["Privacy Policy", "Terms of Service", "Sitemap", "Careers"].map((item, index) => (
                 <a 
                   key={index}
                   href="#"
-                  className="text-slate-400 text-sm font-medium"
+                  className="text-slate-400 hover:text-white transition-colors text-sm font-medium"
                 >
                   {item}
                 </a>
@@ -360,16 +318,17 @@ const Footer = () => {
             {/* Scroll to Top */}
             <button
               onClick={scrollToTop}
-              className="p-3 rounded-xl flex items-center gap-2"
-              style={{ backgroundColor: colors.orange }}
-              aria-label="Scroll to top"
+              className="p-3 rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 transition-all duration-300 flex items-center gap-2 group"
             >
-              <ArrowUp className="w-5 h-5" />
-              <span className="text-sm font-medium">Top</span>
+              <ArrowUp className="w-5 h-5 transition-transform group-hover:-translate-y-1" />
+              <span className="text-sm font-medium">Back to Top</span>
             </button>
           </div>
         </div>
       </div>
+
+      {/* Decorative Elements */}
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-orange-500"></div>
     </footer>
   );
 };
