@@ -75,42 +75,30 @@ const Footer = () => {
       url: "#", 
       name: "Facebook",
       color: colors.blue,
-      bgColor: "hover:bg-blue-600"
     },
     { 
       icon: Twitter, 
       url: "#", 
       name: "Twitter",
       color: colors.blue,
-      bgColor: "hover:bg-blue-400"
     },
     { 
       icon: Instagram, 
       url: "#", 
       name: "Instagram",
       color: colors.red,
-      bgColor: "hover:bg-pink-600"
     },
     { 
       icon: Youtube, 
       url: "#", 
       name: "YouTube",
       color: colors.red,
-      bgColor: "hover:bg-red-600"
     },
   ];
 
   const achievements = [
     { text: "AICTE Approved", icon: Award, color: colors.orange },
     { text: "CSVTU Affiliated", icon: GraduationCap, color: colors.green },
-    
-  ];
-
-  const stats = [
-    { number: "5000+", label: "Students", color: colors.orange },
-    { number: "94%", label: "Placement", color: colors.green },
-    { number: "50+", label: "Companies", color: colors.blue },
-    { number: "15+", label: "Years", color: colors.red }
   ];
 
   const kpsSchools = [
@@ -124,75 +112,30 @@ const Footer = () => {
     "KPS Utai",
     "KPS Sindhiya Nagar"
   ];
-  
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6
-      }
-    }
-  };
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <footer className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-t-3xl text-white pt-16 pb-8 relative overflow-hidden">
-      {/* Background Elements */}
-      
-
+    <footer className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-t-3xl text-white pt-12 pb-8 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        {/* Stats Bar */}
-        <motion.div 
-          className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          
-        </motion.div>
-
         {/* Main Content Grid */}
-        <motion.div 
-          className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-12"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-12">
           {/* College Info */}
-          <motion.div 
-            className="lg:col-span-2"
-            variants={itemVariants}
-          >
+          <div className="lg:col-span-2">
             <div className="flex items-center gap-4 mb-6">
               <div 
-                className="p-3 rounded-2xl backdrop-blur-sm border"
+                className="p-3 rounded-2xl"
                 style={{ 
                   backgroundColor: `${colors.blue}10`,
-                  borderColor: `${colors.blue}30`
+                  border: `1px solid ${colors.blue}30`
                 }}
               >
                 <GraduationCap className="w-8 h-8" style={{ color: colors.blue }} />
               </div>
               <div>
-                <h3 className="text-3xl font-bold bg-white bg-clip-text text-transparent">
+                <h3 className="text-3xl font-bold text-white">
                   Krishna Engineering College
                 </h3>
                 <p className="text-slate-300 text-sm mt-1">Excellence in Technical Education Since 2009</p>
@@ -205,145 +148,128 @@ const Footer = () => {
               cutting-edge research and industry collaboration.
             </p>
 
-            
-            
             {/* Achievements Grid */}
             <div className="grid grid-cols-2 gap-4 mb-8">
               {achievements.map((achievement, index) => (
-                <motion.div 
+                <div 
                   key={index}
-                  className="flex items-center gap-3 p-3 rounded-xl backdrop-blur-sm border  transition-transform duration-300"
+                  className="flex items-center gap-3 p-3 rounded-xl"
                   style={{ 
                     backgroundColor: `${achievement.color}10`,
-                    borderColor: `${achievement.color}30`
+                    border: `1px solid ${achievement.color}30`
                   }}
-                
                 >
                   <achievement.icon className="w-5 h-5" style={{ color: achievement.color }} />
                   <span className="text-sm font-medium text-white">{achievement.text}</span>
-                </motion.div>
+                </div>
               ))}
             </div>
 
+            {/* KPS Group Section */}
             <div
-  className="rounded-2xl p-6 backdrop-blur-sm border mb-8"
-  style={{ backgroundColor: `${colors.blue}05`, borderColor: `${colors.blue}20` }}
->
-  <h4
-    className="text-xl font-semibold mb-4 pb-2 border-b-2 inline-flex items-center gap-2"
-    style={{ borderColor: colors.blue }}
-  >
-    <Building className="w-5 h-5" style={{ color: colors.blue }} />
-    KPS Group
-  </h4>
-  <div className="grid  md:grid-cols-3 gap-2 text-slate-200">
-    {kpsSchools.map((school, index) => (
-      <div
-        key={index}
-        className="hover:text-white transition-colors cursor-pointer"
-      >
-        {school}
-      </div>
-    ))}
-  </div>
-</div>
-
+              className="rounded-2xl p-6 mb-8"
+              style={{ backgroundColor: `${colors.blue}05`, border: `1px solid ${colors.blue}20` }}
+            >
+              <h4
+                className="text-xl font-semibold mb-4 pb-2 inline-flex items-center gap-2"
+                style={{ borderBottom: `2px solid ${colors.blue}` }}
+              >
+                <Building className="w-5 h-5" style={{ color: colors.blue }} />
+                KPS Group
+              </h4>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-2 text-slate-200">
+                {kpsSchools.map((school, index) => (
+                  <div
+                    key={index}
+                    className="text-sm"
+                  >
+                    {school}
+                  </div>
+                ))}
+              </div>
+            </div>
             
             {/* Social Links */}
             <div>
               <h4 className="text-lg font-semibold mb-4 text-slate-300">Connect With Us</h4>
               <div className="flex gap-3">
                 {socialLinks.map((social, index) => (
-                  <motion.a
+                  <a
                     key={index}
                     href={social.url}
-                    className="group relative w-12 h-12 rounded-xl backdrop-blur-sm flex items-center justify-center transition-all duration-300 border"
+                    className="w-12 h-12 rounded-xl flex items-center justify-center"
                     style={{ 
                       backgroundColor: `${social.color}10`,
-                      borderColor: `${social.color}30`
+                      border: `1px solid ${social.color}30`
                     }}
-                   
-                    whileTap={{ scale: 0.95 }}
                     aria-label={social.name}
                   >
                     <social.icon className="w-5 h-5" style={{ color: social.color }} />
-                    <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-black/90 text-white text-xs px-2 py-1 rounded opacity-0  transition-opacity duration-300 whitespace-nowrap">
-                      {social.name}
-                    </div>
-                  </motion.a>
+                  </a>
                 ))}
               </div>
             </div>
-          </motion.div>
-
-          
+          </div>
 
           {/* Quick Links */}
-          <motion.div variants={itemVariants}>
+          <div>
             <div 
-              className="rounded-2xl p-6 backdrop-blur-sm border h-full"
+              className="rounded-2xl p-6 h-full"
               style={{ 
                 backgroundColor: `${colors.green}05`,
-                borderColor: `${colors.green}20`
+                border: `1px solid ${colors.green}20`
               }}
             >
-              <h4 className="text-xl font-semibold mb-6 pb-3 border-b-2 inline-flex items-center gap-2" style={{ borderColor: colors.green }}>
+              <h4 className="text-xl font-semibold mb-6 pb-3 inline-flex items-center gap-2" style={{ borderBottom: `2px solid ${colors.green}` }}>
                 <ExternalLink className="w-5 h-5" style={{ color: colors.green }} />
                 Quick Links
               </h4>
               <ul className="space-y-2">
                 {quickLinks.map((link, index) => (
-                  <motion.li 
-                    key={index}
-                    whileHover={{ x: 5 }}
-                    transition={{ type: "spring", stiffness: 400 }}
-                  >
+                  <li key={index}>
                     <a 
                       href={link.url} 
-                      className="group flex items-center gap-3 p-3 rounded-lg transition-all duration-300"
+                      className="flex items-center gap-3 p-3 rounded-lg"
                       style={{ backgroundColor: `${link.color}05` }}
                     >
                       <div 
-                        className="p-2 rounded-lg group-hover:scale-110 transition-transform"
+                        className="p-2 rounded-lg"
                         style={{ backgroundColor: `${link.color}20` }}
                       >
                         <link.icon className="w-4 h-4" style={{ color: link.color }} />
                       </div>
-                      <span className="text-slate-200 group-hover:text-white transition-colors font-medium">
+                      <span className="text-slate-200 font-medium">
                         {link.name}
                       </span>
-                      <ArrowUpRight className="w-4 h-4 ml-auto opacity-0  transition-all duration-300" style={{ color: link.color }} />
                     </a>
-                  </motion.li>
+                  </li>
                 ))}
               </ul>
             </div>
-          </motion.div>
+          </div>
 
-          {/* Contact Information */}
-          <motion.div variants={itemVariants}>
+          {/* Contact Information & Map */}
+          <div>
             <div 
-              className="rounded-2xl p-6 backdrop-blur-sm border h-full"
+              className="rounded-2xl p-6 h-full"
               style={{ 
                 backgroundColor: `${colors.orange}05`,
-                borderColor: `${colors.orange}20`
+                border: `1px solid ${colors.orange}20`
               }}
             >
-              <h4 className="text-xl font-semibold mb-6 pb-3 border-b-2 inline-flex items-center gap-2" style={{ borderColor: colors.orange }}>
+              <h4 className="text-xl font-semibold mb-6 pb-3 inline-flex items-center gap-2" style={{ borderBottom: `2px solid ${colors.orange}` }}>
                 <Send className="w-5 h-5" style={{ color: colors.orange }} />
                 Contact Info
               </h4>
-              <div className="space-y-3">
+              <div className="space-y-3 mb-6">
                 {contactInfo.map((item, index) => (
-                  <motion.div 
+                  <div 
                     key={index} 
-                    className="group flex items-start gap-3 p-3 rounded-lg  transition-all duration-300 cursor-pointer"
+                    className="flex items-start gap-3 p-3 rounded-lg"
                     style={{ backgroundColor: `${item.color}05` }}
-                   
-                    whileTap={{ scale: 0.98 }}
                   >
                     <div 
-                      className="p-2 rounded-lg flex-shrink-0  transition-transform"
+                      className="p-2 rounded-lg flex-shrink-0"
                       style={{ backgroundColor: `${item.color}20` }}
                     >
                       <item.icon className="w-4 h-4" style={{ color: item.color }} />
@@ -354,43 +280,51 @@ const Footer = () => {
                         <p className="text-slate-400 text-xs mt-1">{item.subtext}</p>
                       )}
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
               
+              {/* Map Section */}
+              <div className="mt-6">
+                <h5 className="text-lg font-semibold mb-3 text-white">Location Map</h5>
+                <div className="rounded-xl overflow-hidden border-2" style={{ borderColor: colors.orange }}>
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59504.690549261424!2d81.29730872663683!3d21.230137076599473!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a293d41cba65b87%3A0xa9e4dad8f8e1e7db!2sKrishna%20Engineering%20College!5e0!3m2!1sen!2sus!4v1758765096031!5m2!1sen!2sus"
+                    width="100%"
+                    height="200"
+                    style={{ border: 0 }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Krishna Engineering College Location"
+                    className="w-full h-48"
+                  ></iframe>
+                </div>
+              </div>
+
               {/* Quick Action Buttons */}
-              <div className="mt-6 space-y-2">
-                <motion.button 
-                  className="w-full py-3 rounded-xl font-semibold transition-colors flex items-center justify-center gap-2"
+              <div className="mt-4 space-y-2">
+                <button 
+                  className="w-full py-3 rounded-xl font-semibold flex items-center justify-center gap-2"
                   style={{ backgroundColor: colors.green }}
-               
-                  whileTap={{ scale: 0.98 }}
                 >
                   <Phone className="w-4 h-4" />
                   Call Now
-                </motion.button>
-                <motion.button 
-                  className="w-full border-2 py-3 rounded-xl font-semibold transition-colors flex items-center justify-center gap-2"
+                </button>
+                <button 
+                  className="w-full border-2 py-3 rounded-xl font-semibold flex items-center justify-center gap-2"
                   style={{ borderColor: colors.blue, color: colors.blue }}
-                
-                  whileTap={{ scale: 0.98 }}
                 >
                   <Mail className="w-4 h-4" />
                   Email Us
-                </motion.button>
+                </button>
               </div>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
         {/* Bottom Section */}
-        <motion.div 
-          className="border-t border-slate-700 pt-8"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
+        <div className="border-t border-slate-700 pt-8">
           <div className="flex flex-col lg:flex-row justify-between items-center gap-4">
             {/* Copyright */}
             <div className="flex items-center gap-4 text-slate-400 flex-wrap">
@@ -399,50 +333,43 @@ const Footer = () => {
                 <span className="w-1 h-1 bg-slate-500 rounded-full"></span>
                 All rights reserved
               </p>
-              <motion.span 
-                className="flex items-center gap-1 text-sm backdrop-blur-sm px-3 py-1 rounded-full border"
+              <span 
+                className="flex items-center gap-1 text-sm px-3 py-1 rounded-full"
                 style={{ 
                   backgroundColor: `${colors.red}10`,
-                  borderColor: `${colors.red}30`
+                  border: `1px solid ${colors.red}30`
                 }}
-             
               >
                 Made with <Heart className="w-4 h-4 mx-1" style={{ color: colors.red }} fill="currentColor" /> by KEC Team
-              </motion.span>
+              </span>
             </div>
 
             {/* Policy Links */}
             <div className="flex items-center gap-6 flex-wrap">
               {["Privacy Policy", "Terms of Service", "Sitemap"].map((item, index) => (
-                <motion.a 
+                <a 
                   key={index}
                   href="#"
-                  className="text-slate-400 hover:text-white transition-colors text-sm font-medium"
-                  whileHover={{ y: -1 }}
-                  style={{ color: colors.slate }}
+                  className="text-slate-400 text-sm font-medium"
                 >
                   {item}
-                </motion.a>
+                </a>
               ))}
             </div>
 
             {/* Scroll to Top */}
-            <motion.button
+            <button
               onClick={scrollToTop}
-              className="p-3 rounded-xl transition-colors flex items-center gap-2"
+              className="p-3 rounded-xl flex items-center gap-2"
               style={{ backgroundColor: colors.orange }}
-              whileHover={{ scale: 1.1, y: -2 }}
-              whileTap={{ scale: 0.9 }}
               aria-label="Scroll to top"
             >
               <ArrowUp className="w-5 h-5" />
               <span className="text-sm font-medium">Top</span>
-            </motion.button>
+            </button>
           </div>
-        </motion.div>
+        </div>
       </div>
-
-     
     </footer>
   );
 };
