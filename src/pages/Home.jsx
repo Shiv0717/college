@@ -32,7 +32,7 @@ const Home = () => {
       <AchievementsSection/>
       <AchievementsMarquee />
       {/* <UniversitySection/> */}
-      {/* <PlacementPartners /> */}
+      <PlacementPartners />
       <Leadership />
      
       <AlumniSection />
